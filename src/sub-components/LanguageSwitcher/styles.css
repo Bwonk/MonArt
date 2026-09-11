@@ -1,0 +1,61 @@
+.mon-lang { position: relative; }
+.mon-lang__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 38px;
+  padding: 0 10px;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-pill);
+  color: var(--gold);
+  cursor: pointer;
+  font-family: var(--f-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transition: background var(--dur), border-color var(--dur), color var(--dur);
+}
+.mon-lang__btn:hover { background: var(--surface-hover); border-color: var(--gold); color: var(--gold-light); }
+.mon-lang__chev { width: 12px; height: 12px; }
+.mon-lang__menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 160px;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: var(--dark);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-panel);
+  box-shadow: var(--sh-modal);
+  z-index: var(--z-dropdown, 600);
+  animation: mon-reveal .22s ease;
+}
+.mon-lang__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  background: none;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  color: var(--text);
+  font-family: var(--f-ui);
+  font-size: 12px;
+  text-align: left;
+  transition: background var(--dur), color var(--dur);
+}
+.mon-lang__item:hover, .mon-lang__item.is-active { background: var(--surface-hover); color: var(--gold-light); }
+.mon-lang__item-code {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  min-width: 22px;
+}

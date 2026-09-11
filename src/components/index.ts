@@ -1,2 +1,2 @@
-export { ExampleComponent } from "./ExampleComponent/index";
-export { ExampleSection } from "./ExampleSection/index";
+export { Header } from "./Header/index";
+export { Footer } from "./Footer/index";

@@ -4,3 +4,4 @@ dist/
 *.log
 .ikas-dev-state.json
 asd
+reference/
