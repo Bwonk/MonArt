@@ -46,7 +46,7 @@ Slot'lar (17): Background, Background/Surface, Background/Surface Deep, Backgrou
 | State | Success Day | #3F7A3F | 08bjgUie0C |
 | State | Success Night | #8FBF8F | 4xZGzbOUC3 |
 
-## Tipografi (13) — `__patternElementEnum__` prop'u ile seçilir, `className` uygulanır
+## Tipografi (14) — `__patternElementEnum__` prop'u ile seçilir, `className` uygulanır
 | Ad | Font | Weight | Size | LH | LS | Transform | id |
 |---|---|---|---|---|---|---|---|
 | Display | Cinzel | 600 | 56px | 1.14 | 4px | uppercase | zpHQSeRqgJ |
@@ -62,6 +62,9 @@ Slot'lar (17): Background, Background/Surface, Background/Surface Deep, Backgrou
 | Editorial | Montserrat | 400 italic | 17.5px | 1.65 | — | — | gA8nav3Fcv |
 | Prose | Montserrat | 400 | 17px | 1.85 | .012em | — | xFbu2ZRdn8 |
 | Input | Montserrat | 400 | 13px | 1.4 | .18em | uppercase | jGKl9ygT8d |
+| Coin Script (canvas Kufi yazısı) | Reem Kufi | 400 | 30px | 1 | — | — | jyOhk5VMAx |
+
+Not: `Coin Script` yalnızca fontun (Google Fonts Reem Kufi) sayfaya yüklenmesi içindir; canvas `ctx.font` ile kullanır, DOM'da className'i gerekmez. Yerel `alpha-kufi.ttf` kullanılmaz.
 
 Not: Display referansta `clamp(32px,6vw,72px)`; tema stili sabit 56px, responsive küçültme component CSS'inde `bp()` ile yapılır.
 

@@ -9,19 +9,19 @@ Kaynak: `reference/MonArtDEMO_clean/` (MonArt Lux statik prototip). Bu doküman 
 | # | Global | İçerik | Kaynak |
 |---|---|---|---|
 | G1 | **Design token'ları** | Renk (`--black --dark --dark-2 --gold --gold-light --gold-pale --gold-dim --gold-deep --text --text-dim --text-muted --line --line-strong --ink --ink-soft`), gradyanlar (`--gold-grad --gold-grad-text --brushed-gold`), fontlar (`--f-deco --f-cinz --f-body --f-mono`), `--header-h: 84px`. Gündüz teması aynı tokenları override eder. | `monart-lux.css:14-46`, `:3449-3470` |
-| G2 | **Fontlar** | Cinzel (display/başlık/fiyat), Montserrat (UI/gövde), Cormorant Garamond (fallback), AlphaKufi (canvas Osmanlı yazısı, `@font-face`) | `MonArt Lux.html:14`, `monart-lux.css:6-12` |
+| G2 | **Fontlar** | Cinzel (display/başlık/fiyat), Montserrat (UI/gövde), Cormorant Garamond (fallback) — Google Fonts. AlphaKufi ise yerel bir ttf (`assets/alpha-kufi.ttf`, yalnız canvas Osmanlı yazısı). **ikas notu:** yerel font dosyası kullanılamaz; ikas tema tipografisi yalnızca Google Fonts adlarını kabul eder. Cinzel/Montserrat tema tipografi token'ı olarak yüklendi; AlphaKufi yerine Google Fonts **Reem Kufi** (`Coin Script` token'ı; alternatif: Reem Kufi Ink, Noto Kufi Arabic) kullanılır. | `MonArt Lux.html:14`, `monart-lux.css:6-12` |
 | G3 | **Animasyon kütüphanesi** | 13 `@keyframes` (float, scrollPulse, shimmer, pricePop, sugReveal, consentShake, giftFade, nameSlotPulse, coinDepth, bspGoldPulse(Day), logoGoldSweep), easing paleti (`cubic-bezier(.2,.7,.2,1)` ana), süre standardı .25s, 11 `prefers-reduced-motion` bloğu | `monart-lux.css` |
 | G4 | **Arka plan katmanı** | `.bg-grain` SVG feTurbulence (gece .22 overlay, gündüz .04 multiply), `.bg-glow` (kapalı), body bg `#000`/`#FFF` | `MonArt Lux.html:44-48`, `monart-lux.css:71-87` |
 | G5 | **Tema (gece/gündüz)** | `body.theme-day` toggle, `localStorage monart_theme`, varsayılan gündüz; `#themeToggle` (ay/güneş) ve `#logoFlip` (sikke↔logo 3D flip) ikisi de tetikler | `monart-lux.js:1678-1686`, `monart-logo-switch.js` |
 | G6 | **Header** (fixed 84px) | Sol: logo flip (`logo_coin.png` ↔ `logo_monetarts.png`). Orta: wordmark (gizli). Sağ: tema toggle, nav (Hakkımızda, İletişim, Özel Tasarım), dil dropdown (TR/EN/FR/IT/RU/AR), kese butonu + sayaç. Mobilde nav gizlenir. | `MonArt Lux.html:52-106` |
 | G7 | **Footer** | Logotype + "Has Mücevher Sanatı"; 4 kolon: Koleksiyon (Roma/Osmanlı/Mısır → galeri), Atölye (Tasarım Atölyesi, Zanaat Hikayemiz, Ustaya Sor), Yardım (Kargo, İade, Bakım, Kullanım Şartları), İletişim (e-posta, Selçuklu/Konya, Salı–Cumartesi 11–19, "Bize Ulaşın"); `© MMXXVI · monetarts studio`; ambassadors linki; 6 hukuki link | `MonArt Lux.html:1384-1429` |
-| G8 | **Dil sistemi (i18n)** | 6 dil, RTL (ar), 170 anahtar, `data-i18n / -html / -ph`, `monart:langchange` eventi, `localStorage monart_lang` | `monart-i18n.js` |
+| G8 | **Dil sistemi (i18n)** | Referans: 6 dil, RTL (ar), 170 anahtar, `data-i18n / -html / -ph`, `monart:langchange` eventi, `localStorage monart_lang` — **bu mekanizma taşınmaz.** ikas'ta dil, admin panelde dil başına oluşturulan **storefront routing** ile yürütülür (locale, path öneki, domain, para birimi); kodda `IkasStorefrontConfig.routings` / `storefrontRoutingId` / `getCurrentLocale()`, `baseStore.languageOptions` + `setLanguage()`, `baseStore.localeOptions` + `setLocalization()`, `withRoutePrefix()`, `I18n.getLocale()`. Section TEXT prop değerleri editor'da routing başına girilir; RTL için section root'una `dir` attribute'u `I18n.getLocale()`'e göre verilir. Header'daki `LanguageSwitcher` bu yolla yazıldı. | `monart-i18n.js` (referans) · ikas: `@ikas/bp-storefront` |
 | G9 | **Kese (cart drawer)** | Sağdan açılan panel; liste, boş durum ("Kesen henüz boş…"), toplam, "Sikke Sikke Öde :)" (SVG sikke yığını) | `MonArt Lux.html:759-900` |
 | G10 | **Toast** | `#toast`, 2.4 sn | `MonArt Lux.html:1788` |
 | G11 | **Global modal'lar** | Seal (mühür onayı), Checkout, Welcome, Bespoke (özel tasarım), Atelier (kota rezervasyon), Orders (siparişlerim), Quota, Photo Guide, Contact, Legal (7 doküman), Terms | `MonArt Lux.html:904-1317, 1433-1510` |
 | G12 | **Lightbox** | Galeri görselleri için; prev/next, zoom, swipe, klavye, sayaç, "Bu Modeli Tasarla" | `MonArt Lux.html:1766-1784` |
 | G13 | **Global state & sabit veri** | `APP` (materyal, yüzler, fiyat, hediye modu), `THEMES` (3 seri: limit, dateOn, büst/sarık/sakal opsiyonu, PNG matrisi), `MATERIALS` (925/14K/22K fiyat), `BACK_SURCHARGE`, `PLATING_PRICE`, `NAME_SUGGESTIONS`, `LEGAL_DOCS` | `monart-lux.js:24-98, 1973-2027` |
-| G14 | **Asset kütüphanesi** | 22 sikke PNG (seri × cinsiyet × altın/gümüş × büst/sarık/sakal), 3 logo (logo_coin, logo_monetarts, logotype_monetarts), egyptian_glyphs_v2.webp, photo_guide_angles.jpg, quota-modal-hero.jpg, welcome_atolye.png, style-test-1/2/3.png, alpha-kufi.ttf | `assets/` |
+| G14 | **Asset kütüphanesi** | 22 sikke PNG (seri × cinsiyet × altın/gümüş × büst/sarık/sakal), 3 logo (logo_coin, logo_monetarts, logotype_monetarts), egyptian_glyphs_v2.webp, photo_guide_angles.jpg, quota-modal-hero.jpg, welcome_atolye.png, style-test-1/2/3.png. `alpha-kufi.ttf` **taşınmaz** (yerel font ikas'a yüklenemez; Google Fonts Reem Kufi ile değiştirilir) | `assets/` |
 | G15 | **Erişilebilirlik / yardımcı** | `body.lock-scroll`, `aria-hidden`/`role=dialog` deseni, Türkçe İ için `text-transform: uppercase` kuralı, `@supports not (backdrop-filter)` fallback | `monart-lux.css:95-122, 4937` |
 
 ### 1.2 Sayfalar / görünümler ve içlerindeki bileşenler
@@ -67,14 +67,14 @@ Başlık çubuğu · Kart: eyebrow "Yalnızca Davet ile", "The MonetArts Co-Crea
 | G4 grain, G5 tema toggle | global.css (grain wrapper class) + color scheme değişimi; toggle Header'da BOOLEAN/buton |
 | G6 Header, G9 Kese, G10 Toast | `Header` section (`--isHeader`) + child/sub-component: Navbar, LangSwitcher, CartDrawer, Toast |
 | G7 Footer | `Footer` section (`--isFooter`) |
-| G8 i18n | Tüm metinler TEXT prop → ikas locale/routing |
+| G8 i18n | Admin'de dil başına storefront routing; tüm metinler TEXT prop (routing başına değer); kodda `baseStore.languageOptions` + `setLanguage()`, `IkasStorefrontConfig.routings` / `getCurrentLocale()`, `withRoutePrefix()` |
 | G11 Seal, Photo Guide | `CoinConfigurator` içinde sub-component modal'lar |
 | G11 Legal, Terms | 7+1 ayrı PAGE (`RichText` section) |
 | G11 Contact, Bespoke | PAGE + `ContactForm` / `BespokeRequestForm` section (ikas contact form API) |
 | G11 Welcome, Quota, Atelier, Orders | kapsam dışı / ileride (Orders → ikas hazır hesap sayfaları) |
 | G12 Lightbox | `CollectionGallery` sub-component |
-| G13 THEMES/MATERIALS/fiyat | ikas ürün + varyant (materyal) + Product Option Set; seri/görsel matrisi section prop'ları |
-| G14 assets | `upload_images` → ikas CDN, IMAGE prop'lar; AlphaKufi global.css |
+| G13 THEMES/MATERIALS/fiyat | ikas ürün + varyant (materyal) + Product Option Set; seri/görsel matrisi section prop'ları. **Kişiselleştirme mantığının tam spesifikasyonu:** `docs/configurator-logic.md` |
+| G14 assets | `upload_images` → ikas CDN, IMAGE prop'lar. Fontlar yalnızca Google Fonts tema tipografi token'ı (Cinzel, Montserrat, Kufi yazı için Reem Kufi `Coin Script`); canvas çizmeden önce `document.fonts.load(...)` ile bekler |
 | Sayfa 1 Hero | `HeroLogotype` section |
 | Sayfa 1 Seri kartları | `SeriesGrid` section (3 sabit kart, scalar prop'lar) |
 | Sayfa 1 Konfigüratör | `CoinConfigurator` section (PRODUCT prop) + sub: CoinCanvas, MaterialStep, FaceDesignStep, SummaryStep, GiftPanel |
@@ -93,6 +93,7 @@ Kaynak: `monart-lux.css` (5.186 satır), `monart-atelier.css` (87 satır, ayrı 
 ### 2.1 Fontlar
 - **Google Fonts** (`MonArt Lux.html:14`): **Cinzel** 400/500/600/700 · **Cormorant Garamond** 400/500/600 + italic (fallback'te var, aktif kullanılmıyor) · **Montserrat** 300–700; `subset=latin,latin-ext,cyrillic`, `display=swap`.
 - **@font-face** tek: `AlphaKufi` (`assets/alpha-kufi.ttf`, `monart-lux.css:6-12`) — yalnız canvas Osmanlı yan yazısı.
+- **ikas notu:** yerel font dosyası (`@font-face` + ttf) ikas'ta kullanılamaz; tüm fontlar Google Fonts adıyla tema tipografi token'ı olarak tanımlanır ve ikas sayfaya yükler. AlphaKufi'nin karşılığı Google Fonts **Reem Kufi** (`Coin Script` token'ı); canvas `document.fonts.load('400 30px "Reem Kufi"')` sonrası çizer.
 - ❗ Dokümanlar "Cinzel Decorative + EB Garamond" der; kod ikisini de yüklemez. CSS yorumu (`:30-32`) revizyonu belgeler: *"Başlık: Cinzel (süslü Decorative bırakıldı); UI + Alt metin: Montserrat"*.
 - Tokenlar: `--f-deco` = Cinzel (36 kullanım: H1/H2/H3, seri adı, **fiyat rakamları**, Roma rakamı, modal başlıkları) · `--f-cinz` = Montserrat (94: UI etiket, nav, buton, eyebrow, badge — isim tarihsel kalıntı) · `--f-body` = Montserrat (70: gövde, input) · `--f-mono` = Montserrat (1).
 - Rol tablosu: Hero H1 Cinzel 600 `clamp(32px,6vw,72px)` lh 1.14 `ls 4px`; Bölüm H2 Cinzel 700 `clamp(28px,4vw,48px)`; Step başlığı Cinzel 400 32px; Seri adı Cinzel 700 26px; Gövde Montserrat italic 17.5px lh 1.65; Editöryel 17px lh 1.85; UI label Montserrat 9–10px UPPERCASE ls .22–.40em; Nav 10px/500 ls .22em; **Fiyat büyük Cinzel 700 28px `--gold-light`**; Text input Montserrat 13px UPPERCASE ls .18em.

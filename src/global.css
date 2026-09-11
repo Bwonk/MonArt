@@ -14,9 +14,10 @@
    - Cinzel/Montserrat/Cormorant yüklemesi asıl olarak ikas tema tipografi
      token'ları ile yapılır (create_theme_global typography). Aşağıdaki @import
      yalnızca yedek/best-effort'tur.
-   - AlphaKufi (canvas Osmanlı yazısı) bu dosyada DEĞİL; CoinCanvas
-     sub-component'inde `FontFace` API ile yüklenecek (font-family adı
-     rename'den etkilenmesin diye).
+   - Yerel font dosyası (ttf/@font-face) KULLANILMAZ. Tüm fontlar ikas tema
+     tipografi token'larıyla (Google Fonts) yüklenir: Cinzel, Montserrat ve
+     canvas Kufi yazısı için "Coin Script" (Reem Kufi). CoinCanvas çizmeden
+     önce `document.fonts.load('400 30px "Reem Kufi"')` ile bekler.
    ============================================================================ */
 
 @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap");
