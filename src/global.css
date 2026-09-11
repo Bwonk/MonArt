@@ -44,6 +44,7 @@
   --text-muted:   #7A5F22;
   --ink:          #231D10;
   --ink-soft:     rgba(74,58,24,0.85);
+  --heading:      #231D10;   /* başlık rengi (gece: #F0D060) — section hook'u slot'a bağlar */
 
   /* Çizgi / çerçeve */
   --line:         rgba(120,90,20,0.26);
@@ -188,6 +189,7 @@
   --text-muted:   #3A3020;
   --ink:          #E8E0CC;
   --ink-soft:     rgba(214,206,186,0.78);
+  --heading:      #F0D060;
   --line:         rgba(201,168,76,0.12);
   --line-strong:  rgba(201,168,76,0.32);
   --gold-grad-text: linear-gradient(180deg, #F5E1A0 0%, #E8C76A 42%, #C9A84C 70%, #8B6914 100%);
@@ -241,6 +243,10 @@
   0%   { background-position: -30% 50%; }
   100% { background-position: 130% 50%; }
 }
+@keyframes mon-glow-pulse {
+  0%, 100% { background-position: 0% 50%; opacity: .9; }
+  50%      { background-position: 100% 50%; opacity: 1; }
+}
 
 /* Animasyon utility'leri — component CSS'ten keyframe adı yerine bunları kullan */
 .mon-anim-float        { animation: mon-float 6s ease-in-out infinite; }
@@ -254,6 +260,19 @@
 .mon-anim-shake        { animation: mon-shake .4s ease; }
 .mon-anim-coin-depth   { animation: mon-coin-depth .6s cubic-bezier(.42,0,.28,1); }
 .mon-anim-gold-sweep   { background-size: 260% 100%; animation: mon-gold-sweep 4.2s ease-in-out infinite; }
+/* Nabız atan altın metin (eyebrow'lar) */
+.mon-glow-text {
+  background-image: linear-gradient(100deg, #5A4310 0%, #6B5210 28%, #A8862C 50%, #6B5210 72%, #5A4310 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: mon-glow-pulse 3.6s ease-in-out infinite;
+}
+.mon-night .mon-glow-text {
+  background-image: linear-gradient(100deg, #8A6A18 0%, #C9A84C 28%, #FFF0B8 50%, #C9A84C 72%, #8A6A18 100%);
+}
 
 /* ----------------------------------------------------------------------------
    3. TİPOGRAFİ utility'leri
@@ -693,6 +712,6 @@
 @media (prefers-reduced-motion: reduce) {
   .mon-anim-float, .mon-anim-scroll-pulse, .mon-anim-shimmer, .mon-anim-price-pop,
   .mon-anim-reveal, .mon-anim-fade-up, .mon-anim-shake, .mon-anim-coin-depth,
-  .mon-anim-gold-sweep, .mon-btn--brushed { animation: none; }
+  .mon-anim-gold-sweep, .mon-btn--brushed, .mon-glow-text { animation: none; }
   .mon-btn, .mon-card, .mon-card--lift, .mon-panel, .mon-drawer, .mon-btn--gold::before { transition: none; }
 }

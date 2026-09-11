@@ -489,6 +489,14 @@
           "required": false,
           "defaultValue": "#FFFFFF",
           "groupId": "appearance"
+        },
+        {
+          "name": "anchorId",
+          "displayName": "Bölüm Çapası (id)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "iletisim",
+          "groupId": "appearance"
         }
       ],
       "propGroups": [
@@ -515,6 +523,451 @@
         {
           "id": "appearance",
           "name": "Görünüm"
+        }
+      ]
+    },
+    {
+      "id": "wnbxmerd-dYFA4bc8WZ",
+      "name": "SeriesCard",
+      "entry": "./src/components/SeriesCard/index.tsx",
+      "styles": "./src/components/SeriesCard/styles.css",
+      "props": [
+        {
+          "name": "badge",
+          "displayName": "Rozet",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "N° 01",
+          "groupId": "content"
+        },
+        {
+          "name": "name",
+          "displayName": "Seri Adı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Roma",
+          "groupId": "content"
+        },
+        {
+          "name": "subtitle",
+          "displayName": "Alt Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İmparator Serisi",
+          "groupId": "content"
+        },
+        {
+          "name": "description",
+          "displayName": "Açıklama",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Defne tacının altında, Roma’nın profili — bağlılığın sessiz mührü.",
+          "groupId": "content"
+        },
+        {
+          "name": "frontImage",
+          "displayName": "Ön Yüz Görseli",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "images"
+        },
+        {
+          "name": "frontAlt",
+          "displayName": "Ön Yüz Alt Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Roma · Erkek",
+          "groupId": "images"
+        },
+        {
+          "name": "backImage",
+          "displayName": "Arka Yüz Görseli",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "images"
+        },
+        {
+          "name": "backAlt",
+          "displayName": "Arka Yüz Alt Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Roma · Kadın",
+          "groupId": "images"
+        },
+        {
+          "name": "link",
+          "displayName": "Kart Bağlantısı",
+          "type": "LINK",
+          "required": false,
+          "defaultValue": {
+            "linkType": "PAGE",
+            "label": "Seriyi Keşfet",
+            "pageType": "INDEX",
+            "subLinks": []
+          },
+          "groupId": "action"
+        },
+        {
+          "name": "flipLabel",
+          "displayName": "Çevir Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Çevir",
+          "groupId": "action"
+        }
+      ],
+      "propGroups": [
+        {
+          "id": "content",
+          "name": "Content"
+        },
+        {
+          "id": "images",
+          "name": "Images"
+        },
+        {
+          "id": "action",
+          "name": "Action"
+        }
+      ]
+    },
+    {
+      "id": "wnbxmerd-w7QzXBrKkP",
+      "name": "FaqItem",
+      "entry": "./src/components/FaqItem/index.tsx",
+      "styles": "./src/components/FaqItem/styles.css",
+      "props": [
+        {
+          "name": "question",
+          "displayName": "Soru",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ürün elime ulaştığında fotoğraftaki ile birebir aynı mı görünecek?"
+        },
+        {
+          "name": "answer",
+          "displayName": "Cevap",
+          "type": "RICH_TEXT",
+          "required": false,
+          "defaultValue": "<p>Tasarımınız, yüklediğiniz görselin oranlarına ve detaylarına sadık kalınarak özenle üretilir.</p>"
+        },
+        {
+          "name": "openByDefault",
+          "displayName": "Açık Başlasın",
+          "type": "BOOLEAN",
+          "required": false,
+          "defaultValue": false
+        }
+      ]
+    },
+    {
+      "id": "wnbxmerd-F3B4w1ciEC",
+      "name": "Hero",
+      "entry": "./src/components/Hero/index.tsx",
+      "styles": "./src/components/Hero/styles.css",
+      "type": "section",
+      "props": [
+        {
+          "name": "eyebrow",
+          "displayName": "Üst Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "✦ Sanatımıza Ortak Olun ✦",
+          "groupId": "content"
+        },
+        {
+          "name": "logotype",
+          "displayName": "Logotype Görseli",
+          "type": "IMAGE",
+          "required": false,
+          "description": "Varsa başlığın yerine geçer (başlık alt metin olur)",
+          "groupId": "content"
+        },
+        {
+          "name": "title",
+          "displayName": "Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Tarihi Senin Hikayenle Yaz",
+          "groupId": "content"
+        },
+        {
+          "name": "subtitle",
+          "displayName": "Alt Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kişiye Özel · El İşçiliği · Sonsuz Anlam",
+          "groupId": "content"
+        },
+        {
+          "name": "description",
+          "displayName": "Açıklama",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Roma’nın gücü, Osmanlı’nın ihtişamı, Mısır’ın gizemi — kendi adın ve tarihinle birleşir. Her kolye benzersiz; her parça, senin hikayeni taşır.",
+          "groupId": "content"
+        },
+        {
+          "name": "showLogotypeShine",
+          "displayName": "Logotype Parıltısı",
+          "type": "BOOLEAN",
+          "required": false,
+          "defaultValue": true,
+          "groupId": "content"
+        },
+        {
+          "name": "seriesCards",
+          "displayName": "Seri Kartları",
+          "type": "COMPONENT_LIST",
+          "required": false,
+          "filteredComponentIds": [
+            "wnbxmerd-dYFA4bc8WZ"
+          ],
+          "groupId": "series"
+        },
+        {
+          "name": "primaryCta",
+          "displayName": "Birincil Buton",
+          "type": "LINK",
+          "required": false,
+          "defaultValue": {
+            "linkType": "PAGE",
+            "label": "✦ Kolyeni Tasarla",
+            "pageType": "INDEX",
+            "subLinks": []
+          },
+          "groupId": "actions"
+        },
+        {
+          "name": "secondaryCta",
+          "displayName": "İkincil Buton",
+          "type": "LINK",
+          "required": false,
+          "defaultValue": {
+            "linkType": "PAGE",
+            "label": "Koleksiyonları İncele",
+            "pageType": "INDEX",
+            "subLinks": []
+          },
+          "groupId": "actions"
+        },
+        {
+          "name": "showScrollHint",
+          "displayName": "Kaydırma İpucu",
+          "type": "BOOLEAN",
+          "required": false,
+          "defaultValue": true,
+          "groupId": "actions"
+        },
+        {
+          "name": "scrollHintText",
+          "displayName": "Kaydırma İpucu Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Aşağı Kaydır",
+          "groupId": "actions"
+        },
+        {
+          "name": "fullHeight",
+          "displayName": "Tam Ekran Yükseklik",
+          "type": "BOOLEAN",
+          "required": false,
+          "defaultValue": true,
+          "groupId": "appearance"
+        },
+        {
+          "name": "anchorId",
+          "displayName": "Bölüm Çapası (id)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "hero",
+          "groupId": "appearance"
+        },
+        {
+          "name": "backgroundColor",
+          "displayName": "Arka Plan Rengi",
+          "type": "COLOR",
+          "required": false,
+          "defaultValue": "#FFFFFF",
+          "groupId": "appearance"
+        }
+      ],
+      "propGroups": [
+        {
+          "id": "content",
+          "name": "İçerik"
+        },
+        {
+          "id": "series",
+          "name": "Seri Kartları"
+        },
+        {
+          "id": "actions",
+          "name": "Butonlar"
+        },
+        {
+          "id": "appearance",
+          "name": "Görünüm"
+        }
+      ]
+    },
+    {
+      "id": "wnbxmerd-YkCgkgqJIM",
+      "name": "OriginStory",
+      "entry": "./src/components/OriginStory/index.tsx",
+      "styles": "./src/components/OriginStory/styles.css",
+      "type": "section",
+      "props": [
+        {
+          "name": "eyebrow",
+          "displayName": "Üst Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "✦ Hakkımızda ✦"
+        },
+        {
+          "name": "title",
+          "displayName": "Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bir Mirasın Yeniden Doğuşu:"
+        },
+        {
+          "name": "titleAccent",
+          "displayName": "Başlık Vurgusu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "MonetArts’ın Hikayesi"
+        },
+        {
+          "name": "body",
+          "displayName": "Metin",
+          "type": "RICH_TEXT",
+          "required": false,
+          "defaultValue": "<p>MonetArts, geçmişin ihtişamını bugünün çizgileriyle buluşturma tutkusundan doğdu.</p>"
+        },
+        {
+          "name": "anchorId",
+          "displayName": "Bölüm Çapası (id)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "craft"
+        },
+        {
+          "name": "backgroundColor",
+          "displayName": "Arka Plan Rengi",
+          "type": "COLOR",
+          "required": false,
+          "defaultValue": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "id": "wnbxmerd-azSO30lWaH",
+      "name": "BespokeCall",
+      "entry": "./src/components/BespokeCall/index.tsx",
+      "styles": "./src/components/BespokeCall/styles.css",
+      "type": "section",
+      "props": [
+        {
+          "name": "eyebrow",
+          "displayName": "Üst Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "✦ Sanatımıza Ortak Olun ✦"
+        },
+        {
+          "name": "title",
+          "displayName": "Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Aklınızdaki tasarım listede yok mu?"
+        },
+        {
+          "name": "text",
+          "displayName": "Açıklama",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Referans fotoğrafınızı veya çiziminizi bize gönderin; teknik ekibimiz kabartma, metin ve detay isteklerinizi değerlendirip size özel bir üretim planı hazırlasın."
+        },
+        {
+          "name": "buttonLink",
+          "displayName": "Buton",
+          "type": "LINK",
+          "required": false,
+          "defaultValue": {
+            "linkType": "PAGE",
+            "label": "Özel Tasarım Talebi Oluştur",
+            "pageType": "INDEX",
+            "subLinks": []
+          }
+        },
+        {
+          "name": "anchorId",
+          "displayName": "Bölüm Çapası (id)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "ozel-tasarim"
+        },
+        {
+          "name": "backgroundColor",
+          "displayName": "Arka Plan Rengi",
+          "type": "COLOR",
+          "required": false,
+          "defaultValue": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "id": "wnbxmerd-94hk1Nk8b2",
+      "name": "Faq",
+      "entry": "./src/components/Faq/index.tsx",
+      "styles": "./src/components/Faq/styles.css",
+      "type": "section",
+      "props": [
+        {
+          "name": "eyebrow",
+          "displayName": "Üst Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": ""
+        },
+        {
+          "name": "title",
+          "displayName": "Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sıkça Sorulan Sorular"
+        },
+        {
+          "name": "items",
+          "displayName": "Sorular",
+          "type": "COMPONENT_LIST",
+          "required": false,
+          "filteredComponentIds": [
+            "wnbxmerd-w7QzXBrKkP"
+          ]
+        },
+        {
+          "name": "showNumbers",
+          "displayName": "Numaraları Göster",
+          "type": "BOOLEAN",
+          "required": false,
+          "defaultValue": true
+        },
+        {
+          "name": "anchorId",
+          "displayName": "Bölüm Çapası (id)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "sss"
+        },
+        {
+          "name": "backgroundColor",
+          "displayName": "Arka Plan Rengi",
+          "type": "COLOR",
+          "required": false,
+          "defaultValue": "#FFFFFF"
         }
       ]
     }

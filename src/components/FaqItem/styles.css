@@ -1,0 +1,83 @@
+/* ===== SSS maddesi — numara Faq section'ının CSS sayacından gelir ===== */
+.faq-item {
+  counter-increment: mon-faq;
+  border-top: 1px solid color-mix(in oklch, var(--gold) 22%, transparent);
+}
+.faq-item__q {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 4px;
+  cursor: pointer;
+  list-style: none;
+  text-align: left;
+}
+.faq-item__q::-webkit-details-marker { display: none; }
+.faq-item__q::marker { content: ''; }
+.faq-item__q:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+.faq-item__n {
+  flex: 0 0 auto;
+  min-width: 22px;
+  font-family: var(--f-deco);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: color-mix(in oklch, var(--gold) 70%, transparent);
+}
+.faq-item__n::before { content: counter(mon-faq, decimal-leading-zero); }
+
+.faq-item__qt {
+  flex: 1;
+  font-family: var(--f-body);
+  font-size: 15px;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  transition: color var(--dur, .25s);
+  text-wrap: pretty;
+}
+.faq-item__q:hover .faq-item__qt,
+.faq-item[open] .faq-item__qt { color: var(--gold); }
+
+.faq-item__mark { position: relative; flex: 0 0 auto; width: 13px; height: 13px; }
+.faq-item__mark::before,
+.faq-item__mark::after {
+  content: '';
+  position: absolute;
+  background: var(--gold);
+  transition: transform .3s ease, opacity .3s ease;
+}
+.faq-item__mark::before { left: 0; top: 6px; width: 13px; height: 1px; }
+.faq-item__mark::after { left: 6px; top: 0; width: 1px; height: 13px; }
+.faq-item[open] .faq-item__mark::after { transform: rotate(90deg); opacity: 0; }
+
+.faq-item__a {
+  padding: 0 44px 26px 44px;
+  text-align: left;
+  animation: faq-item-open .3s var(--ease-lux);
+}
+.faq-item__a p {
+  margin: 0 0 10px;
+  font-family: var(--f-body);
+  font-size: 13.5px;
+  line-height: 1.78;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+.faq-item__a p:last-child { margin-bottom: 0; }
+.faq-item__a a { color: var(--gold); }
+
+@keyframes faq-item-open {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (max-width: bp(5Xmvk6D0gV)) {
+  .faq-item__q { gap: 12px; padding: 18px 2px; }
+  .faq-item__qt { font-size: 14px; }
+  .faq-item__a { padding: 0 8px 22px 36px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq-item__a { animation: none; }
+  .faq-item__mark::before, .faq-item__mark::after { transition: none; }
+}

@@ -1,2 +1,8 @@
 export { Header } from "./Header/index";
 export { Footer } from "./Footer/index";
+export { SeriesCard } from "./SeriesCard/index";
+export { FaqItem } from "./FaqItem/index";
+export { Hero } from "./Hero/index";
+export { OriginStory } from "./OriginStory/index";
+export { BespokeCall } from "./BespokeCall/index";
+export { Faq } from "./Faq/index";

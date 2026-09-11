@@ -1,15 +1,9 @@
-import { getDefaultSrc, IkasNavigationLink } from "@ikas/bp-storefront";
+import { getDefaultSrc } from "@ikas/bp-storefront";
 import { Props } from "./types";
-import { useThemeMode } from "../../utils/theme-mode";
+import { linkAttrs } from "../../utils/links";
+import { useSectionTheme, cx } from "../../utils/theme-mode";
 import NewsletterForm from "../../sub-components/NewsletterForm";
 
-function linkAttrs(link: IkasNavigationLink) {
-  return {
-    href: link.href,
-    target: link.openInNewTab ? "_blank" : undefined,
-    rel: link.openInNewTab ? "noopener noreferrer" : undefined,
-  };
-}
 
 export function Footer(props: Props) {
   const {
@@ -35,10 +29,11 @@ export function Footer(props: Props) {
     copyrightText = "© MMXXVI · monetarts studio · tüm hakları saklıdır",
     bottomLink,
     backgroundColor = "#FFFFFF",
+    anchorId = "iletisim",
   } = props;
 
-  const mode = useThemeMode();
-  const isNight = mode === "night";
+  const theme = useSectionTheme();
+  const isNight = theme.isNight;
   const cols = columns?.links ?? [];
   const socials = socialLinks?.links ?? [];
   const legal = legalLinks?.links ?? [];
@@ -46,8 +41,9 @@ export function Footer(props: Props) {
 
   return (
     <footer
-      className={`mon-footer${isNight ? " mon-night" : ""}`}
-      style={!isNight && backgroundColor ? { backgroundColor } : undefined}
+      id={anchorId || undefined}
+      className={cx("mon-footer", theme.className)}
+      style={{ ...theme.style, ...(!isNight && backgroundColor ? { backgroundColor } : {}) }}
     >
       <div className="mon-footer__inner">
         {/* Marka */}

@@ -46,7 +46,7 @@ const LanguageSwitcher = observer(function LanguageSwitcher({ label }: Props) {
         <ChevronIcon className="mon-icon mon-lang__chev" />
       </button>
       {open && (
-        <ul className="mon-lang__menu" role="listbox" aria-label={label}>
+        <ul className="mon-lang__menu mon-anim-reveal" role="listbox" aria-label={label}>
           {options.map((o) => (
             <li key={o.id} role="option" aria-selected={o.isSelected}>
               <button

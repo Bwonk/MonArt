@@ -1,0 +1,29 @@
+/* ===== SSS ===== */
+.faq {
+  width: 100%;
+  padding: 72px var(--gutter, 28px) var(--section-y, 96px);
+  background: var(--bg-page);
+  color: var(--text);
+  scroll-margin-top: var(--header-h, 84px);
+}
+.faq__inner { max-width: var(--w-faq, 860px); margin: 0 auto; }
+.faq__eyebrow { display: block; text-align: center; margin-bottom: 14px; }
+.faq__title {
+  margin: 0 0 34px;
+  font-family: var(--f-deco);
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--gold);
+}
+.faq__list {
+  counter-reset: mon-faq;
+  border-bottom: 1px solid color-mix(in oklch, var(--gold) 22%, transparent);
+}
+.faq--plain .faq-item__n { display: none; }
+
+@media (max-width: bp(5pw2fQi7Yr)) {
+  .faq { padding: 56px var(--gutter-m, 16px) var(--section-y-m, 56px); }
+}

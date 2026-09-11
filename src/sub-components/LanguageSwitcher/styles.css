@@ -32,7 +32,6 @@
   border-radius: var(--r-panel);
   box-shadow: var(--sh-modal);
   z-index: var(--z-dropdown, 600);
-  animation: mon-reveal .22s ease;
 }
 .mon-lang__item {
   display: flex;

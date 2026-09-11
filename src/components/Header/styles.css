@@ -101,7 +101,6 @@
   border-radius: var(--r-panel);
   box-shadow: var(--sh-modal);
   flex-direction: column;
-  animation: mon-reveal .22s ease;
 }
 .mon-header__dropdown::before { content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px; }
 .mon-header__item:hover > .mon-header__dropdown,
@@ -201,5 +200,4 @@
 
 @media (prefers-reduced-motion: reduce) {
   .mon-logo-flip, .mon-header__chev, .mon-menu__backdrop { transition: none; }
-  .mon-header__dropdown { animation: none; }
 }

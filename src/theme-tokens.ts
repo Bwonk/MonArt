@@ -1,18 +1,15 @@
 /**
- * MonArt — ikas tema color-scheme SLOT id'leri.
+ * MonArt — ikas tema color-scheme SLOT id'leri ve palette id'leri.
  *
- * Slot id'leri scheme ile birlikte mağazalar arası değişmeden taşınır (portable),
- * bu yüzden burada sabit tutulabilir. Renk / tipografi / keyframe TOKEN id'leri
- * ise portable DEĞİLDİR — onları `getThemeColors()` / `getThemeTypography()` /
- * `getThemeKeyframes()` listeleri üzerinden veya prop'lar aracılığıyla okuyun.
- *
- * Kullanım (section'ın seçili scheme'ini miras alır — wrapper class ekleme):
- *   import { getThemeColorSchemes } from "@ikas/bp-storefront";
- *   import { SLOT, slotVar } from "../../theme-tokens";
- *   const bg = slotVar(SLOT.background);   // "var(--c2Vzn4YOzn)"
+ * Slot id'leri scheme ile birlikte mağazalar arası değişmeden taşınır (portable).
+ * DİKKAT: bir slot'un CSS değişken adı id'den türetilir ama birebir aynı DEĞİLDİR
+ * (ör. "c2VZN4yOzn" → "--c2Vzn4YOzn"). Bu yüzden CSS değişkenini asla elle
+ * `var(--${id})` diye kurmayın; `slotVar()` ile runtime'dan okuyun.
  *
  * Şemalar: Day (varsayılan, fildişi) · Night (koyu, altın).
  */
+import { getThemeColorSchemes } from "@ikas/bp-storefront";
+
 export const SLOT = {
   background: "c2VZN4yOzn",        // Day #FFFFFF · Night #000000
   surface: "SLAizphPly",           // Day #EFE8D8 · Night #070710
@@ -35,10 +32,47 @@ export const SLOT = {
 
 export type SlotKey = keyof typeof SLOT;
 
+/** Palette (color scheme değeri) id'leri — scheme ile birlikte taşınır. */
+export const PALETTE = {
+  day: "WhIKBfy0wc",
+  night: "eMAHxjlNKs",
+} as const;
+
+type RuntimePalette = {
+  id: string;
+  name?: string;
+  isDefault?: boolean;
+  className?: string;
+  colorsByScheme: Record<string, { resolved?: string; cssVar?: string } | undefined>;
+};
+
+function palettes(): RuntimePalette[] {
+  try {
+    const s = getThemeColorSchemes() as unknown as { values?: RuntimePalette[] };
+    return s?.values ?? [];
+  } catch {
+    return [];
+  }
+}
+
 /**
- * Bir slot'un canlı CSS değişkenini döndürür. Şema class'ı bir ÜST elemanda
- * (section wrapper) olduğu için değer, section'ın seçili şemasına göre çözülür.
+ * Slot'un canlı CSS değişkeni ("var(--Xyz)"). Değişken adı tüm palette'lerde aynıdır;
+ * değer, bir ÜST elemandaki palette className'ine göre çözülür.
+ * `fallback` verilirse "var(--Xyz, <fallback>)" döner. Slot yoksa fallback (veya "").
  */
-export function slotVar(slotId: string): string {
-  return `var(--${slotId})`;
+export function slotVar(slotId: string, fallback?: string): string {
+  for (const p of palettes()) {
+    const cssVar = p.colorsByScheme?.[slotId]?.cssVar;
+    if (cssVar) {
+      return fallback ? cssVar.replace(/\)\s*$/, `, ${fallback})`) : cssVar;
+    }
+  }
+  return fallback ?? "";
+}
+
+/** Palette className'i (ör. "_eMAHxjlNKs"); bulunamazsa "". */
+export function paletteClass(paletteId: string, nameHint?: string): string {
+  const list = palettes();
+  const p = list.find((x) => x.id === paletteId) ?? (nameHint ? list.find((x) => x.name === nameHint) : undefined);
+  return p?.className ?? "";
 }

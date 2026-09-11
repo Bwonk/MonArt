@@ -25,4 +25,5 @@ export interface Props {
   copyrightText?: string;
   bottomLink?: IkasNavigationLink | null;
   backgroundColor?: string;
+  anchorId?: string;
 }

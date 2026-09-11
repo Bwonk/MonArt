@@ -7,21 +7,14 @@ import {
   getDefaultSrc,
   Router,
   withRoutePrefix,
-  IkasNavigationLink,
 } from "@ikas/bp-storefront";
 import { Props } from "./types";
-import { useThemeMode, useScrollLock, toggleThemeMode } from "../../utils/theme-mode";
+import { linkAttrs } from "../../utils/links";
+import { useSectionTheme, useScrollLock, toggleThemeMode } from "../../utils/theme-mode";
 import CartDrawer from "../../sub-components/CartDrawer";
 import LanguageSwitcher from "../../sub-components/LanguageSwitcher";
 import { PouchIcon, SunIcon, MoonIcon, MenuIcon, CloseIcon, UserIcon, ChevronIcon } from "../../sub-components/Icons";
 
-function linkAttrs(link: IkasNavigationLink) {
-  return {
-    href: link.href,
-    target: link.openInNewTab ? "_blank" : undefined,
-    rel: link.openInNewTab ? "noopener noreferrer" : undefined,
-  };
-}
 
 export function Header(props: Props) {
   const {
@@ -56,8 +49,8 @@ export function Header(props: Props) {
     blurBackground = true,
   } = props;
 
-  const mode = useThemeMode();
-  const isNight = mode === "night";
+  const theme = useSectionTheme();
+  const isNight = theme.isNight;
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   useScrollLock(menuOpen);
@@ -76,7 +69,7 @@ export function Header(props: Props) {
 
   const rootClass = [
     "mon-header",
-    isNight ? "mon-night" : "",
+    theme.className,
     sticky ? "is-sticky" : "",
     blurBackground ? "is-glass" : "",
   ]
@@ -105,6 +98,7 @@ export function Header(props: Props) {
     <header
       className={rootClass}
       style={{
+        ...theme.style,
         ...(isNight ? {} : backgroundColor ? { "--header-bg": backgroundColor } : {}),
         "--logo-h": `${logoHeight}px`,
       }}
@@ -138,7 +132,7 @@ export function Header(props: Props) {
                   {link.subLinks?.length > 0 && <ChevronIcon className="mon-icon mon-header__chev" />}
                 </a>
                 {link.subLinks?.length > 0 && (
-                  <div className="mon-header__dropdown">
+                  <div className="mon-header__dropdown mon-anim-reveal">
                     {link.subLinks.map((sub, j) => (
                       <a key={j} className="mon-header__sublink" {...linkAttrs(sub)}>
                         {sub.label}
