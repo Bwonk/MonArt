@@ -1,0 +1,80 @@
+.pguide {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal, 9200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  pointer-events: none;
+}
+.pguide.is-open { pointer-events: auto; }
+.pguide__backdrop { opacity: 0; transition: opacity .32s ease; }
+.pguide.is-open .pguide__backdrop { opacity: 1; }
+.pguide__panel {
+  position: relative;
+  width: 100%;
+  max-width: var(--w-page, 1320px);
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  padding: 32px 32px 28px;
+  color: var(--text);
+}
+.pguide.is-open .pguide__panel { transform: none; opacity: 1; }
+.pguide__close { position: absolute; top: 14px; right: 16px; width: 34px; height: 34px; }
+.pguide__head { text-align: center; margin: 0 auto 22px; padding: 0 28px; max-width: 900px; }
+.pguide__title {
+  margin: 0 0 8px;
+  font-family: var(--f-deco);
+  font-weight: 700;
+  font-size: clamp(20px, 2.6vw, 28px);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.pguide__intro { margin: 0; font-family: var(--f-body); font-size: 16px; line-height: 1.55; color: var(--text-dim); }
+.pguide__figure { margin: 0 auto 24px; max-width: 980px; text-align: center; }
+.pguide__figure img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 0 0 1px var(--line-strong); }
+.pguide__figure figcaption {
+  margin-top: 10px;
+  font-family: var(--f-ui);
+  font-size: 9.5px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+}
+.pguide__body {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  max-width: 1100px;
+  margin: 0 auto 26px;
+}
+.pguide__body h4 {
+  grid-column: 1 / -1;
+  margin: 8px 0 -8px;
+  font-family: var(--f-deco);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.pguide__body p {
+  margin: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  background: color-mix(in oklch, var(--gold) 5%, transparent);
+  font-family: var(--f-body);
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.pguide__body p em { font-style: normal; color: var(--gold); font-weight: 600; }
+.pguide__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+
+@media (max-width: bp(5pw2fQi7Yr)) {
+  .pguide { padding: 0; align-items: stretch; }
+  .pguide__panel { max-height: 100vh; border-radius: 0; padding: 56px 16px 24px; }
+  .pguide__head { padding: 0; }
+  .pguide__body { grid-template-columns: 1fr; }
+  .pguide__actions .mon-btn { width: 100%; }
+}

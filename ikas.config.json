@@ -970,6 +970,1360 @@
           "defaultValue": "#FFFFFF"
         }
       ]
+    },
+    {
+      "id": "wnbxmerd-5HM2GavfPR",
+      "name": "CoinConfigurator",
+      "entry": "./src/components/CoinConfigurator/index.tsx",
+      "styles": "./src/components/CoinConfigurator/styles.css",
+      "type": "section",
+      "props": [
+        {
+          "name": "product",
+          "displayName": "Sikke Kolye Ürünü",
+          "type": "PRODUCT",
+          "required": false,
+          "description": "Materyal varyantlı (925 / 14K / 22K) ana ürün; opsiyon seti bu ürüne bağlı olmalı",
+          "groupId": "data"
+        },
+        {
+          "name": "giftProduct",
+          "displayName": "Hediye Sertifikası Ürünü",
+          "type": "PRODUCT",
+          "required": false,
+          "description": "Materyal varyantlı hediye sertifikası ürünü (hediye modu)",
+          "groupId": "data"
+        },
+        {
+          "name": "romaMGold",
+          "displayName": "Roma · Bay · Altın",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "artRoma"
+        },
+        {
+          "name": "romaMGoldNobust",
+          "displayName": "Roma · Bay · Altın · Büstsüz",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "artRoma"
+        },
+        {
+          "name": "romaMSilver",
+          "displayName": "Roma · Bay · Gümüş",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "artRoma"
+        },
+        {
+          "name": "romaMSilverNobust",
+          "displayName": "Roma · Bay · Gümüş · Büstsüz",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "artRoma"
+        },
+        {
+          "name": "romaFGold",
+          "displayName": "Roma · Bayan · Altın",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "artRoma"
+        },
+        {
+          "name": "romaFGoldNobust",
+          "displayName": "Roma · Bayan · Altın · Büstsüz",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "artRoma"
+        },
+        {
+          "name": "romaFSilver",
+          "displayName": "Roma · Bayan · Gümüş",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "artRoma"
+        },
+        {
+          "name": "romaFSilverNobust",
+          "displayName": "Roma · Bayan · Gümüş · Büstsüz",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "artRoma"
+        },
+        {
+          "name": "osmanliMGold",
+          "displayName": "Osmanlı · Bay · Altın",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "artOsmanli"
+        },
+        {
+          "name": "osmanliMGoldNosarik",
+          "displayName": "Osmanlı · Bay · Altın · Sarıksız",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "artOsmanli"
+        },
+        {
+          "name": "osmanliMSilver",
+          "displayName": "Osmanlı · Bay · Gümüş",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "artOsmanli"
+        },
+        {
+          "name": "osmanliMSilverNosarik",
+          "displayName": "Osmanlı · Bay · Gümüş · Sarıksız",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "artOsmanli"
+        },
+        {
+          "name": "osmanliFGold",
+          "displayName": "Osmanlı · Bayan · Altın",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "artOsmanli"
+        },
+        {
+          "name": "osmanliFGoldNosarik",
+          "displayName": "Osmanlı · Bayan · Altın · Sarıksız",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "artOsmanli"
+        },
+        {
+          "name": "osmanliFSilver",
+          "displayName": "Osmanlı · Bayan · Gümüş",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "artOsmanli"
+        },
+        {
+          "name": "osmanliFSilverNosarik",
+          "displayName": "Osmanlı · Bayan · Gümüş · Sarıksız",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "artOsmanli"
+        },
+        {
+          "name": "misirMGold",
+          "displayName": "Mısır · Bay · Altın",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "artMisir"
+        },
+        {
+          "name": "misirMSilver",
+          "displayName": "Mısır · Bay · Gümüş",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "artMisir"
+        },
+        {
+          "name": "misirFGold",
+          "displayName": "Mısır · Bayan · Altın",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "artMisir"
+        },
+        {
+          "name": "misirFSilver",
+          "displayName": "Mısır · Bayan · Gümüş",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "artMisir"
+        },
+        {
+          "name": "photoGuideImage",
+          "displayName": "Fotoğraf Rehberi Görseli",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "media"
+        },
+        {
+          "name": "glyphGuideImage",
+          "displayName": "Hiyeroglif Alfabesi Görseli",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "media"
+        },
+        {
+          "name": "eyebrow",
+          "displayName": "Üst Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "✦ Atölye ✦",
+          "groupId": "head"
+        },
+        {
+          "name": "title",
+          "displayName": "Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kendi mirasını",
+          "groupId": "head"
+        },
+        {
+          "name": "titleAccent",
+          "displayName": "Başlık Vurgusu (italik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "tasarla.",
+          "groupId": "head"
+        },
+        {
+          "name": "description",
+          "displayName": "Açıklama",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Solda canlı önizleme, sağda adım adım. Yüzü çevir; iki ayrı hikaye dök.",
+          "groupId": "head"
+        },
+        {
+          "name": "faceFrontLabel",
+          "displayName": "1. Yüz Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "1. Yüz Görünümü",
+          "groupId": "preview"
+        },
+        {
+          "name": "faceBackLabel",
+          "displayName": "2. Yüz Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "2. Yüz Görünümü",
+          "groupId": "preview"
+        },
+        {
+          "name": "flipLabel",
+          "displayName": "Yüzü Çevir",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yüzü Çevir",
+          "groupId": "preview"
+        },
+        {
+          "name": "clearLabel",
+          "displayName": "Temizle",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Temizle",
+          "groupId": "preview"
+        },
+        {
+          "name": "priceLabel",
+          "displayName": "Fiyat Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Toplam Fiyat",
+          "groupId": "preview"
+        },
+        {
+          "name": "priceSub",
+          "displayName": "Fiyat Alt Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "KDV Dahil · Ücretsiz Kargo",
+          "groupId": "preview"
+        },
+        {
+          "name": "priceUnavailableText",
+          "displayName": "Fiyat Yok Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ürün bağlandığında fiyat görünür",
+          "groupId": "preview"
+        },
+        {
+          "name": "step1Num",
+          "displayName": "Adım Numarası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "01 — Materyal",
+          "groupId": "step1"
+        },
+        {
+          "name": "step1Title",
+          "displayName": "Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Malzemeni",
+          "groupId": "step1"
+        },
+        {
+          "name": "step1TitleAccent",
+          "displayName": "Başlık Vurgusu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "seç",
+          "groupId": "step1"
+        },
+        {
+          "name": "step1Hint",
+          "displayName": "İpucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ruhu belirleyen ilk tercih.",
+          "groupId": "step1"
+        },
+        {
+          "name": "materialSilverName",
+          "displayName": "Gümüş Adı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "925 Ayar Gümüş",
+          "groupId": "step1"
+        },
+        {
+          "name": "material14kName",
+          "displayName": "14K Adı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "14 Ayar Altın",
+          "groupId": "step1"
+        },
+        {
+          "name": "material22kName",
+          "displayName": "22K Adı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "22 Ayar Altın",
+          "groupId": "step1"
+        },
+        {
+          "name": "specSilver",
+          "displayName": "Gümüş Gramaj",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "8–10 gr",
+          "groupId": "step1"
+        },
+        {
+          "name": "spec14k",
+          "displayName": "14K Gramaj",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "10–12 gr",
+          "groupId": "step1"
+        },
+        {
+          "name": "spec22k",
+          "displayName": "22K Gramaj",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "14–16 gr",
+          "groupId": "step1"
+        },
+        {
+          "name": "coinDiameter",
+          "displayName": "Sikke Çapı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "32 mm",
+          "groupId": "step1"
+        },
+        {
+          "name": "specNote",
+          "displayName": "Gramaj Notu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "(±1 gr farklılık gösterebilir)",
+          "groupId": "step1"
+        },
+        {
+          "name": "platingTitle",
+          "displayName": "Kaplama Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "24 Ayar Altın Kaplama",
+          "groupId": "step1"
+        },
+        {
+          "name": "platingDescSilver",
+          "displayName": "Kaplama Açıklaması (Gümüş)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "925 gümüş gövde üzerine 24 ayar altın kaplama.",
+          "groupId": "step1"
+        },
+        {
+          "name": "platingDesc14k",
+          "displayName": "Kaplama Açıklaması (14K)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "14 ayar altın gövde üzerine 24 ayar altın kaplama.",
+          "groupId": "step1"
+        },
+        {
+          "name": "platingFreeText",
+          "displayName": "Kaplama Ücretsiz Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ücretsiz",
+          "groupId": "step1"
+        },
+        {
+          "name": "materialMissingText",
+          "displayName": "Ürün Yok Uyarısı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Materyal fiyatları ürün bağlandığında görünür.",
+          "groupId": "step1"
+        },
+        {
+          "name": "step2Num",
+          "displayName": "2. Adım Numarası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "02 — 1. Yüz",
+          "groupId": "faces"
+        },
+        {
+          "name": "step2Title",
+          "displayName": "2. Adım Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "1. Yüzü",
+          "groupId": "faces"
+        },
+        {
+          "name": "step2TitleAccent",
+          "displayName": "2. Adım Vurgusu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "tasarla",
+          "groupId": "faces"
+        },
+        {
+          "name": "step2Hint",
+          "displayName": "2. Adım İpucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Önyüz: seri, cinsiyet, isim, tarih.",
+          "groupId": "faces"
+        },
+        {
+          "name": "step3Num",
+          "displayName": "3. Adım Numarası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "03 — 2. Yüz",
+          "groupId": "faces"
+        },
+        {
+          "name": "step3Title",
+          "displayName": "3. Adım Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "2. Yüzü",
+          "groupId": "faces"
+        },
+        {
+          "name": "step3TitleAccent",
+          "displayName": "3. Adım Vurgusu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "tasarla",
+          "groupId": "faces"
+        },
+        {
+          "name": "step3Hint",
+          "displayName": "3. Adım İpucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Farklı seri, farklı isim — ya da aynı.",
+          "groupId": "faces"
+        },
+        {
+          "name": "backToggleText",
+          "displayName": "2. Yüz Toggle Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "2. Yüzü Kişiselleştir",
+          "groupId": "faces"
+        },
+        {
+          "name": "backToggleDesc",
+          "displayName": "2. Yüz Açıklaması",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Çift taraflı kullanım için sikkenize özel 2. yüz rölyef tasarımı, ilave gramaj ve el kalemkârlığı işçiliği dâhildir.",
+          "groupId": "faces"
+        },
+        {
+          "name": "faceDividerText",
+          "displayName": "Yüz Ayracı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "✦ 2. Yüz Tasarımı ✦",
+          "groupId": "faces"
+        },
+        {
+          "name": "themeLabel",
+          "displayName": "Seri Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Tema · Seri",
+          "groupId": "faces"
+        },
+        {
+          "name": "seriesRoma",
+          "displayName": "Roma Adı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Roma",
+          "groupId": "faces"
+        },
+        {
+          "name": "seriesOsmanli",
+          "displayName": "Osmanlı Adı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Osmanlı",
+          "groupId": "faces"
+        },
+        {
+          "name": "seriesMisir",
+          "displayName": "Mısır Adı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Mısır",
+          "groupId": "faces"
+        },
+        {
+          "name": "genderLabel",
+          "displayName": "Cinsiyet Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Cinsiyet",
+          "groupId": "faces"
+        },
+        {
+          "name": "genderMale",
+          "displayName": "Bay",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "♂ Bay",
+          "groupId": "faces"
+        },
+        {
+          "name": "genderFemale",
+          "displayName": "Bayan",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "♀ Bayan",
+          "groupId": "faces"
+        },
+        {
+          "name": "bustTitle",
+          "displayName": "Büst Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Büst",
+          "groupId": "faces"
+        },
+        {
+          "name": "bustDesc",
+          "displayName": "Büst Açıklaması",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Portre, boyun ve omuz kaidesiyle birlikte kabartılır. Kaldırdığınızda yalnızca baş profili işlenir.",
+          "groupId": "faces"
+        },
+        {
+          "name": "sarikTitle",
+          "displayName": "Sarık Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sarık · Tülbent",
+          "groupId": "faces"
+        },
+        {
+          "name": "sarikDesc",
+          "displayName": "Sarık Açıklaması",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Osmanlı serisinde portre, dönem sarığı ve tülbentiyle kabartılır. Kaldırdığınızda açık baş — modern saç detayıyla işlenir.",
+          "groupId": "faces"
+        },
+        {
+          "name": "glyphNoticeTitle",
+          "displayName": "Hiyeroglif Uyarı Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Boşluk bırakmanıza gerek yok",
+          "groupId": "faces"
+        },
+        {
+          "name": "glyphNoticeText",
+          "displayName": "Hiyeroglif Uyarı Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Mısır serisinde yazdığınız harfler tek tek hiyeroglif sembollerine dönüştürülür ve kartuş içine kesintisiz bir dizi olarak işlenir. Kelimeler arasında boşluk bırakmak sikke yüzeyinde boş bir alan oluşturur; harflerinizi aralıksız yazmanız önerilir.",
+          "groupId": "faces"
+        },
+        {
+          "name": "glyphGuideLabel",
+          "displayName": "Hiyeroglif Rehberi Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Hiyeroglif Rehberi",
+          "groupId": "faces"
+        },
+        {
+          "name": "glyphGuideSub",
+          "displayName": "Hiyeroglif Rehberi Alt Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Mısır serisinde isim glif olarak işlenir",
+          "groupId": "faces"
+        },
+        {
+          "name": "nameLabel",
+          "displayName": "İsim Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İsim · Ünvan",
+          "groupId": "faces"
+        },
+        {
+          "name": "dateLabel",
+          "displayName": "Tarih Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Tarih",
+          "groupId": "faces"
+        },
+        {
+          "name": "dateSub",
+          "displayName": "Tarih Alt Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "GG.AA.YY → Roma Rakamı",
+          "groupId": "faces"
+        },
+        {
+          "name": "suggestionsHint",
+          "displayName": "Öneri Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ne yazacağını mı düşünüyorsun? Şunlara bir göz at:",
+          "groupId": "faces"
+        },
+        {
+          "name": "suggestionsMale",
+          "displayName": "Erkek Öneri Grubu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Erkek Karakter Unvanı",
+          "groupId": "faces"
+        },
+        {
+          "name": "suggestionsFemale",
+          "displayName": "Kadın Öneri Grubu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kadın Karakter Unvanı",
+          "groupId": "faces"
+        },
+        {
+          "name": "suggestionSlot",
+          "displayName": "İsim Yuvası Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İSİM",
+          "groupId": "faces"
+        },
+        {
+          "name": "suggestionNoteMisir",
+          "displayName": "Mısır Öneri Notu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Mısır serisinde yazı hiyeroglif sembollerle işlendiği için kelimeler arasında boşluk bırakmanıza gerek yoktur.",
+          "groupId": "faces"
+        },
+        {
+          "name": "photoLabel",
+          "displayName": "Fotoğraf Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Fotoğraf",
+          "groupId": "photos"
+        },
+        {
+          "name": "photoSub",
+          "displayName": "Fotoğraf Alt Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "3 açı · sipariş notuna eklenir",
+          "groupId": "photos"
+        },
+        {
+          "name": "photoSlotLabel",
+          "displayName": "Slot Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Favori",
+          "groupId": "photos"
+        },
+        {
+          "name": "uploadSub",
+          "displayName": "Yükleme Alt Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "JPG / PNG · Max 5MB",
+          "groupId": "photos"
+        },
+        {
+          "name": "samePhotoText",
+          "displayName": "Aynı Fotoğraf Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "1. yüzde yüklediğim fotoğrafın bu yüzde de kullanılmasını istiyorum.",
+          "groupId": "photos"
+        },
+        {
+          "name": "consentText",
+          "displayName": "Telif Onayı Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yüklediğim görselin telif/mülkiyet haklarına uygun olduğunu ve çözünürlük/baskı kalitesi sorumluluğunun tarafıma ait olduğunu kabul ediyorum.",
+          "groupId": "photos"
+        },
+        {
+          "name": "consentInfoTitle",
+          "displayName": "Onay Bilgi Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bu onay ne anlama geliyor?",
+          "groupId": "photos"
+        },
+        {
+          "name": "consentInfoBody",
+          "displayName": "Onay Bilgi Metni",
+          "type": "RICH_TEXT",
+          "required": false,
+          "defaultValue": "<p><strong>Telif ve mülkiyet.</strong> Yüklediğiniz fotoğrafın size ait olduğunu veya kullanım izniniz bulunduğunu beyan etmiş olursunuz. Üçüncü kişilere ait fotoğraflar, marka logoları veya telifli görseller için doğacak sorumluluk yükleyene aittir.</p><p><strong>Çözünürlük ve baskı kalitesi.</strong> Sikke yüzeyine işlenen portrenin netliği, yüklediğiniz fotoğrafın çözünürlüğüne bağlıdır. Düşük çözünürlüklü veya bulanık fotoğraflardan kaynaklanan sonuçlar ayıplı mal sayılmaz ve iade gerekçesi oluşturmaz.</p><p><strong>Görselinizin akıbeti.</strong> Fotoğraflar yalnızca üretim, kalite kontrolü ve teslimat amacıyla işlenir; üçüncü şahıslarla paylaşılmaz, tanıtım materyali olarak kullanılmaz ve teslimattan en geç 14 gün sonra sistemlerimizden kalıcı olarak silinir.</p>",
+          "groupId": "photos"
+        },
+        {
+          "name": "cancelInfoTitle",
+          "displayName": "İptal Bilgi Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Fotoğraf uygunluğu ve siparişin iptali",
+          "groupId": "photos"
+        },
+        {
+          "name": "cancelInfoBody",
+          "displayName": "İptal Bilgi Metni",
+          "type": "RICH_TEXT",
+          "required": false,
+          "defaultValue": "<p><strong>Sanatın icra edilebilirliği.</strong> Yüklediğiniz fotoğraflar, kabartma portre işçiliğine teknik olarak elverişli olup olmadığı yönünden üretim ekibimizce incelenir. Çözünürlüğün yetersiz olması, yüzün kapalı, gölgede veya profilden okunamaz durumda bulunması, açıların rehberimize uymaması ya da görselin sanatsal işçiliğe imkân vermemesi hâlinde tasarımınızı hakkıyla üretemeyiz.</p><p><strong>Tek taraflı fesih hakkımız.</strong> Bu hâllerde MonetArts Studio, siparişi tek taraflı olarak feshetme hakkını saklı tutar. Fesih bir yaptırım değildir; sanatımızı icra edemeyeceğimiz gerekçesine dayanır. Öncelikle sizinle iletişime geçilir ve yeni fotoğraf gönderme imkânı tanınır.</p><p><strong>Bedelin iadesi.</strong> 6502 sayılı Tüketicinin Korunması Hakkında Kanun ve Mesafeli Sözleşmeler Yönetmeliği'nin 16. maddesi uyarınca, siparişin tarafımızca ifa edilememesi hâlinde sözleşme feshedilir; tahsil edilen tüm bedel ve varsa teslim masrafları, fesih bildiriminden itibaren <strong>en geç 14 gün içinde</strong> hiçbir kesinti yapılmaksızın ödeme yönteminize iade edilir.</p><p><strong>Üretime geçildikten sonra.</strong> Kalıp ve kabartma işçiliği başladıktan sonra fotoğraf kaynaklı fesih gündeme gelmez; uygunluk incelemesi üretim öncesinde tamamlanır.</p>",
+          "groupId": "photos"
+        },
+        {
+          "name": "consentMissingToast",
+          "displayName": "Onay Eksik Uyarısı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "✦ Lütfen görsel telif ve baskı kalitesi sorumluluğunu onaylayınız.",
+          "groupId": "photos"
+        },
+        {
+          "name": "photoTooLargeToast",
+          "displayName": "Büyük Dosya Uyarısı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Fotoğraf 5 MB'tan büyük olamaz.",
+          "groupId": "photos"
+        },
+        {
+          "name": "photoTypeToast",
+          "displayName": "Dosya Tipi Uyarısı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yalnızca JPG veya PNG yükleyebilirsiniz.",
+          "groupId": "photos"
+        },
+        {
+          "name": "noteLabel",
+          "displayName": "Not Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sipariş Notu",
+          "groupId": "note"
+        },
+        {
+          "name": "noteOptional",
+          "displayName": "İsteğe Bağlı Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "(isteğe bağlı)",
+          "groupId": "note"
+        },
+        {
+          "name": "notePlaceholder",
+          "displayName": "Not Placeholder",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Hediye notu, teslimat tercihi veya üretim ekibimize iletmek istediğiniz bir detay varsa buraya yazabilirsiniz.",
+          "groupId": "note"
+        },
+        {
+          "name": "step4Num",
+          "displayName": "4. Adım Numarası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "04 — Mühür",
+          "groupId": "step4"
+        },
+        {
+          "name": "step4Title",
+          "displayName": "4. Adım Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Siparişini",
+          "groupId": "step4"
+        },
+        {
+          "name": "step4TitleAccent",
+          "displayName": "4. Adım Vurgusu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "tamamla",
+          "groupId": "step4"
+        },
+        {
+          "name": "step4Hint",
+          "displayName": "4. Adım İpucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Tasarımını gözden geçir, atölyeye gönder.",
+          "groupId": "step4"
+        },
+        {
+          "name": "sumMaterial",
+          "displayName": "Özet · Materyal",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Materyal",
+          "groupId": "step4"
+        },
+        {
+          "name": "sumFront",
+          "displayName": "Özet · 1. Yüz",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "1. Yüz",
+          "groupId": "step4"
+        },
+        {
+          "name": "sumBack",
+          "displayName": "Özet · 2. Yüz",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "2. Yüz",
+          "groupId": "step4"
+        },
+        {
+          "name": "sumTotal",
+          "displayName": "Özet · Toplam",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Toplam",
+          "groupId": "step4"
+        },
+        {
+          "name": "addToCartText",
+          "displayName": "Sepete Ekle Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Keseye At ✦",
+          "groupId": "step4"
+        },
+        {
+          "name": "addingText",
+          "displayName": "Ekleniyor Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ekleniyor…",
+          "groupId": "step4"
+        },
+        {
+          "name": "productMissingText",
+          "displayName": "Ürün Yok Uyarısı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sepete ekleme, ürün bağlandığında aktif olur.",
+          "groupId": "step4"
+        },
+        {
+          "name": "optionErrorText",
+          "displayName": "Eksik Alan Uyarısı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Lütfen zorunlu alanları doldurun.",
+          "groupId": "step4"
+        },
+        {
+          "name": "cartErrorText",
+          "displayName": "Sepet Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sepete eklenemedi, lütfen tekrar deneyin.",
+          "groupId": "step4"
+        },
+        {
+          "name": "addedToast",
+          "displayName": "Eklendi Bildirimi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "● Sepete eklendi",
+          "groupId": "step4"
+        },
+        {
+          "name": "trust1",
+          "displayName": "Güven Rozeti 1",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "⚡ Bu ürün size özel olarak üretilmektedir. Hazırlanma ve kargoya verilme süresi 10-15 iş günüdür.",
+          "groupId": "step4"
+        },
+        {
+          "name": "trust2",
+          "displayName": "Güven Rozeti 2",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "🔒 Güvenli Ödeme",
+          "groupId": "step4"
+        },
+        {
+          "name": "trust3",
+          "displayName": "Güven Rozeti 3",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "✦ Sertifika",
+          "groupId": "step4"
+        },
+        {
+          "name": "trust4",
+          "displayName": "Güven Rozeti 4",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "↩ Ürünlerimiz kişiye özel / sipariş üzerine elde üretildiğinden dolayı iade ve değişim kabul edilmemektedir.",
+          "groupId": "step4"
+        },
+        {
+          "name": "showGiftMode",
+          "displayName": "Hediye Modunu Göster",
+          "type": "BOOLEAN",
+          "required": false,
+          "defaultValue": true,
+          "groupId": "gift"
+        },
+        {
+          "name": "giftSelfText",
+          "displayName": "Kendim İçin",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kendim İçin Tasarla",
+          "groupId": "gift"
+        },
+        {
+          "name": "giftGiftText",
+          "displayName": "Hediye Et",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Miras Hediye Et",
+          "groupId": "gift"
+        },
+        {
+          "name": "giftRedeemText",
+          "displayName": "Teslim Al",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Mirası Teslim Al",
+          "groupId": "gift"
+        },
+        {
+          "name": "giftIntro",
+          "displayName": "Hediye Açıklaması",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "MonetArts Zamansız Hediye Sertifikası ile sevdiklerinize kendi hikayelerini mermer üzerinde tasarlama özgürlüğünü armağan edin. Seçtiğiniz değerli maden doğrultusunda adınıza üretilecek benzersiz sertifika koduyla, hediyeyi sunduğunuz kişi bu stüdyoya gelerek kendi portresini, ismini ve unvanını tamamen ücretsiz olarak kolyesine işletebilir.",
+          "groupId": "gift"
+        },
+        {
+          "name": "giftChooseLabel",
+          "displayName": "Maden Seçimi Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Değerli Madeni Seçin",
+          "groupId": "gift"
+        },
+        {
+          "name": "giftAddText",
+          "displayName": "Sertifika Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sertifikayı Keseye At ❦",
+          "groupId": "gift"
+        },
+        {
+          "name": "giftAddedToast",
+          "displayName": "Sertifika Eklendi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "❦ Hediye sertifikası keseye eklendi",
+          "groupId": "gift"
+        },
+        {
+          "name": "giftMissingText",
+          "displayName": "Sertifika Ürünü Yok",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Hediye sertifikası, ürün bağlandığında aktif olur.",
+          "groupId": "gift"
+        },
+        {
+          "name": "redeemIntro",
+          "displayName": "Teslim Al Açıklaması",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Size iletilen MonetArts Hediye Sertifika kodunu girin, mirasınızı özgürce tasarlamaya başlayın.",
+          "groupId": "gift"
+        },
+        {
+          "name": "redeemPlaceholder",
+          "displayName": "Kod Placeholder",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "MONETARTS-XXXX-XXXX-XXXX",
+          "groupId": "gift"
+        },
+        {
+          "name": "redeemButton",
+          "displayName": "Onayla Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Onayla",
+          "groupId": "gift"
+        },
+        {
+          "name": "redeemOkText",
+          "displayName": "Kod Kabul Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Mirasınız teslim alındı — tasarımı tamamlayıp keseye attığınızda sertifika kodu sepetinize uygulanır.",
+          "groupId": "gift"
+        },
+        {
+          "name": "redeemErrText",
+          "displayName": "Kod Hata Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kod tanınamadı, lütfen sertifikanızdaki kodu kontrol edin.",
+          "groupId": "gift"
+        },
+        {
+          "name": "redeemAppliedLabel",
+          "displayName": "Sertifika Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sertifika ile Karşılanacak",
+          "groupId": "gift"
+        },
+        {
+          "name": "redeemFailedToast",
+          "displayName": "Kod Uygulanamadı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sertifika kodu sepete uygulanamadı; ödeme adımında tekrar deneyin.",
+          "groupId": "gift"
+        },
+        {
+          "name": "sealTitle",
+          "displayName": "Mühür Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Mühürlenmeden Önce Son Kontrol",
+          "groupId": "seal"
+        },
+        {
+          "name": "sealText",
+          "displayName": "Mühür Metni",
+          "type": "RICH_TEXT",
+          "required": false,
+          "defaultValue": "<p>Bu madalyon, seçtiğiniz antik serinin ruhuna uygun olarak <em>tamamen sizin adınıza</em> ve size özel üretilecektir. Belirttiğiniz isim, unvan ve tarih kombinasyonları <strong>kalıba döküldükten sonra geri dönüşü mümkün değildir</strong>. MonetArts kaynaklı tüm işçilik ve üretim hataları tarafımızca memnuniyetle telafi edilir; ancak sizin tarafınızdan yapılacak yazım ve imla hatalarının telafisi mümkün olmamaktadır. Lütfen bilgilerinizi son bir kez gözden geçirin.</p>",
+          "groupId": "seal"
+        },
+        {
+          "name": "sealCancel",
+          "displayName": "Mühür Vazgeç",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bir Daha Göz Atayım",
+          "groupId": "seal"
+        },
+        {
+          "name": "sealConfirm",
+          "displayName": "Mühür Onayla",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Keseye At ✦",
+          "groupId": "seal"
+        },
+        {
+          "name": "pgTitle",
+          "displayName": "Rehber Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Portre Çekim Açıları ve Talimatları",
+          "groupId": "guide"
+        },
+        {
+          "name": "pgIntro",
+          "displayName": "Rehber Girişi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Özel tasarım ürünlerinizin modellemesini en doğru derinlikle 3D ortama aktarabilmemiz için fotoğrafınızı tam göz hizasından ve aşağıdaki 3 farklı açıdan çekip iletmeniz gerekmektedir:",
+          "groupId": "guide"
+        },
+        {
+          "name": "pgCaption",
+          "displayName": "Görsel Altyazısı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Portre Çekim Açıları · 45° · 60° · 90°",
+          "groupId": "guide"
+        },
+        {
+          "name": "pgBody",
+          "displayName": "Rehber Maddeleri",
+          "type": "RICH_TEXT",
+          "required": false,
+          "defaultValue": "<h4>1. Tam Profil Çekimi (90°)</h4><p><em>Açıklama:</em> Kamerayı yüzünüzün tam yan tarafına, tam 90 derecelik açı yapacak şekilde konumlandırın.</p><p><em>Detay:</em> Yüzünüzün yalnızca tek bir profili görünmeli, diğer gözünüz veya yüzünüzün diğer yarısı kadraja girmemelidir. Burun köprüsü, çene hattı ve kulak yapısı tamamen net olmalıdır.</p><h4>2. Yarım Profil / Çapraz Çekim (60°)</h4><p><em>Açıklama:</em> Kamerayı tam yan profilinizden hafifçe öne doğru kaydırarak 60 derecelik bir açıyla konumlandırın.</p><p><em>Detay:</em> Yüzün yan profili baskın kalmakla birlikte, arka tarafta kalan gözün kirpik çizgisi veya göz çevresi hafifçe görünmeye başlamalıdır.</p><h4>3. Üç Çeyrek Çekim (45°)</h4><p><em>Açıklama:</em> Kamerayı yüzünüzün tam karşısı ile yan profili arasındaki tam orta noktaya (45 derece) getirin.</p><p><em>Detay:</em> Yüzün hem ön tarafı hem de yan profili dengeli şekilde görünür; hafif çapraz duruş korunur.</p><h4>Yükleme Sırası</h4><p><em>Favori 1:</em> En beğendiğiniz fotoğrafı ilk sıraya yükleyin.</p><p><em>Favori 2 ve 3:</em> Ardından diğer iki kareyi beğeni sıranıza göre yükleyin. Üç fotoğraf birlikte 90°, 60° ve 45° açılarını kapsamalıdır.</p><h4>Dikkat Edilmesi Gereken Ortak Kurallar</h4><p><em>Kamera Yüksekliği:</em> Tüm çekimler tam göz hizasından yapılmalıdır.</p><p><em>Saç ve Aksesuar:</em> Saçlarınızı arkada toplayarak kulak, boyun ve çene hattınızı tamamen açıkta bırakın.</p><p><em>Makyaj ve Filtre:</em> Filtre ve ağır makyaj kullanmayın.</p>",
+          "groupId": "guide"
+        },
+        {
+          "name": "pgCancel",
+          "displayName": "Rehber Vazgeç",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İptal",
+          "groupId": "guide"
+        },
+        {
+          "name": "pgConfirm",
+          "displayName": "Rehber Devam",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Tamam, Devam Et",
+          "groupId": "guide"
+        },
+        {
+          "name": "optFace1",
+          "displayName": "Yüz 1 Öneki",
+          "type": "TEXT",
+          "required": false,
+          "description": "Opsiyon adları bu önekle başlar: 'Yüz 1 · Seri'",
+          "defaultValue": "Yüz 1",
+          "groupId": "options"
+        },
+        {
+          "name": "optFace2",
+          "displayName": "Yüz 2 Öneki",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yüz 2",
+          "groupId": "options"
+        },
+        {
+          "name": "optSeries",
+          "displayName": "Seri Opsiyonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Seri",
+          "groupId": "options"
+        },
+        {
+          "name": "optGender",
+          "displayName": "Cinsiyet Opsiyonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Cinsiyet",
+          "groupId": "options"
+        },
+        {
+          "name": "optBust",
+          "displayName": "Büst Opsiyonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Büst",
+          "groupId": "options"
+        },
+        {
+          "name": "optSarik",
+          "displayName": "Sarık Opsiyonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sarık",
+          "groupId": "options"
+        },
+        {
+          "name": "optName",
+          "displayName": "İsim Opsiyonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İsim",
+          "groupId": "options"
+        },
+        {
+          "name": "optDate",
+          "displayName": "Tarih Opsiyonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Tarih",
+          "groupId": "options"
+        },
+        {
+          "name": "optRoman",
+          "displayName": "Roma Rakamı Opsiyonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Roma Rakamı",
+          "groupId": "options"
+        },
+        {
+          "name": "optPhotos",
+          "displayName": "Fotoğraf Opsiyonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Fotoğraf",
+          "groupId": "options"
+        },
+        {
+          "name": "optBackFace",
+          "displayName": "2. Yüz Opsiyonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "2. Yüz",
+          "groupId": "options"
+        },
+        {
+          "name": "optPlating",
+          "displayName": "Kaplama Opsiyonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kaplama",
+          "groupId": "options"
+        },
+        {
+          "name": "optConsent",
+          "displayName": "Telif Opsiyonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Telif",
+          "groupId": "options"
+        },
+        {
+          "name": "optNote",
+          "displayName": "Not Opsiyonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sipariş Notu",
+          "groupId": "options"
+        },
+        {
+          "name": "anchorId",
+          "displayName": "Bölüm Çapası (id)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "atolye",
+          "groupId": "appearance"
+        },
+        {
+          "name": "backgroundColor",
+          "displayName": "Arka Plan Rengi",
+          "type": "COLOR",
+          "required": false,
+          "defaultValue": "#FFFFFF",
+          "groupId": "appearance"
+        }
+      ],
+      "propGroups": [
+        {
+          "id": "data",
+          "name": "Ürün"
+        },
+        {
+          "id": "artRoma",
+          "name": "Sikke Görselleri · Roma"
+        },
+        {
+          "id": "artOsmanli",
+          "name": "Sikke Görselleri · Osmanlı"
+        },
+        {
+          "id": "artMisir",
+          "name": "Sikke Görselleri · Mısır"
+        },
+        {
+          "id": "media",
+          "name": "Rehber Görselleri"
+        },
+        {
+          "id": "head",
+          "name": "Başlık"
+        },
+        {
+          "id": "preview",
+          "name": "Önizleme Metinleri"
+        },
+        {
+          "id": "step1",
+          "name": "Adım 1 · Materyal"
+        },
+        {
+          "id": "faces",
+          "name": "Adım 2–3 · Yüzler"
+        },
+        {
+          "id": "photos",
+          "name": "Fotoğraflar"
+        },
+        {
+          "id": "note",
+          "name": "Sipariş Notu"
+        },
+        {
+          "id": "step4",
+          "name": "Adım 4 · Özet"
+        },
+        {
+          "id": "gift",
+          "name": "Hediye Modu"
+        },
+        {
+          "id": "seal",
+          "name": "Mühür Onayı"
+        },
+        {
+          "id": "guide",
+          "name": "Fotoğraf Rehberi"
+        },
+        {
+          "id": "options",
+          "name": "ikas Opsiyon Adları"
+        },
+        {
+          "id": "appearance",
+          "name": "Görünüm"
+        }
+      ]
     }
   ],
   "customTypes": []

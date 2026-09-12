@@ -1,0 +1,12 @@
+.coin-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: var(--sh-coin);
+  transition: transform var(--dur-flip, 280ms) var(--ease-coin, cubic-bezier(.55,.04,.55,1));
+  transform-origin: center;
+}
+.coin-canvas.is-flipping { transform: scaleX(0); }
+@media (prefers-reduced-motion: reduce) {
+  .coin-canvas { transition: none; }
+}

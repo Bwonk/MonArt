@@ -1,0 +1,95 @@
+.seal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal, 9200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 16px;
+  pointer-events: none;
+}
+.seal.is-open { pointer-events: auto; }
+.seal__backdrop { opacity: 0; transition: opacity .35s ease; }
+.seal.is-open .seal__backdrop { opacity: 1; }
+.seal__panel {
+  position: relative;
+  width: 100%;
+  max-width: var(--w-modal, 560px);
+  max-height: calc(100vh - 56px);
+  overflow: hidden;
+  border: 1px solid rgba(201,168,76,0.42);
+  box-shadow: 0 40px 100px -20px rgba(0,0,0,0.95), 0 0 80px rgba(201,168,76,0.10), inset 0 0 0 1px rgba(255,235,180,0.06);
+  background: linear-gradient(160deg, #16151b 0%, #0a0a10 55%, #07070b 100%);
+  color: #E8E0CC;
+}
+.seal.is-open .seal__panel { transform: none; opacity: 1; }
+/* koyu mermer + altın damar */
+.seal__marble {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 80% at 20% 0%, rgba(201,168,76,0.10) 0%, transparent 55%),
+    radial-gradient(80% 60% at 100% 100%, rgba(120,90,30,0.10) 0%, transparent 55%);
+}
+.seal__marble::before,
+.seal__marble::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.32;
+  mix-blend-mode: screen;
+  background:
+    linear-gradient(115deg, transparent 38%, rgba(201,168,76,0.18) 39%, transparent 41%),
+    linear-gradient(155deg, transparent 58%, rgba(201,168,76,0.10) 59%, transparent 60.6%),
+    linear-gradient(95deg, transparent 22%, rgba(201,168,76,0.08) 22.4%, transparent 22.9%);
+}
+.seal__marble::after { opacity: 0.16; filter: blur(1.2px); transform: scale(1.05); }
+.seal__inner {
+  position: relative;
+  z-index: 1;
+  padding: 36px 36px 28px;
+  text-align: center;
+  overflow-y: auto;
+  max-height: calc(100vh - 56px);
+}
+.seal__mark {
+  display: inline-flex;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 14px;
+  color: #e8c265;
+  filter: drop-shadow(0 0 12px rgba(201,168,76,0.35));
+}
+.seal__mark svg { width: 100%; height: 100%; }
+.seal__title {
+  margin: 0 0 14px;
+  font-family: var(--f-deco);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #F0D060;
+}
+.seal__text {
+  max-width: 56ch;
+  margin: 0 auto 26px;
+  font-family: var(--f-body);
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: rgba(214,206,186,0.85);
+  text-wrap: pretty;
+}
+.seal__text p { margin: 0 0 10px; }
+.seal__text p:last-child { margin: 0; }
+.seal__text em { color: #F0D060; font-style: italic; }
+.seal__text strong { color: #FFF0B8; }
+.seal__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.seal__cancel { color: rgba(214,206,186,0.85); border-color: rgba(201,168,76,0.32); }
+.seal__cancel:hover { color: #F0D060; }
+
+@media (max-width: bp(5Xmvk6D0gV)) {
+  .seal__inner { padding: 28px 20px 22px; }
+  .seal__actions { flex-direction: column; }
+  .seal__actions .mon-btn { width: 100%; }
+}

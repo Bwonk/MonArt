@@ -1,0 +1,313 @@
+/* ===== Sikke konfigüratörü (Atölye) ===== */
+.cfg {
+  position: relative;
+  width: 100%;
+  padding: var(--section-y, 96px) var(--gutter, 28px);
+  background: var(--bg-page);
+  color: var(--text);
+  scroll-margin-top: var(--header-h, 84px);
+}
+
+/* Başlık */
+.cfg__head { max-width: var(--w-page, 1320px); margin: 0 auto 56px; text-align: center; }
+.cfg__eyebrow { display: block; margin-bottom: 14px; }
+.cfg__title {
+  margin: 0 0 10px;
+  font-family: var(--f-deco);
+  font-weight: 700;
+  font-size: clamp(28px, 4vw, 48px);
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: var(--heading);
+}
+.cfg__title em { font-style: italic; font-weight: 400; color: var(--gold); }
+.cfg__desc { max-width: 520px; margin: 0 auto; font-family: var(--f-body); font-style: italic; font-size: 16px; color: var(--ink-soft); }
+
+/* İki kolon */
+.cfg__shell {
+  max-width: var(--w-page, 1320px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: var(--w-preview, 380px) 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+/* ---- Sol: sticky önizleme ---- */
+.cfg__preview {
+  position: sticky;
+  top: calc(var(--header-h, 84px) + 20px);
+  align-self: start;
+  padding: 22px 20px 20px;
+  background: color-mix(in srgb, var(--dark) 70%, transparent);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  max-height: calc(100vh - var(--header-h, 84px) - 32px);
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201,168,76,0.3) transparent;
+}
+.cfg__face-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  font-family: var(--f-ui);
+  font-size: 9.5px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+}
+.cfg__dot { width: 5px; height: 5px; border-radius: var(--r-pill); background: var(--gold); }
+.cfg__stage { width: 100%; max-width: 280px; aspect-ratio: 1 / 1; margin: 0 auto 18px; }
+.cfg__preview-actions { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.cfg__flip, .cfg__clear {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 22px;
+  border: 1px solid var(--gold);
+  border-radius: var(--r-btn);
+  background: rgba(201,168,76,.10);
+  box-shadow: 0 0 14px rgba(201,168,76,.18) inset;
+  color: var(--gold-light);
+  font-family: var(--f-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--dur), color var(--dur), letter-spacing var(--dur);
+}
+.cfg__flip:hover { background: rgba(201,168,76,0.18); }
+.cfg__flip-icon { width: 13px; height: 13px; }
+.cfg__clear { padding: 8px 18px; font-size: 9.5px; font-weight: 500; letter-spacing: 0.3em; }
+.cfg__clear:hover { background: var(--gold-grad); color: var(--on-gold); letter-spacing: 0.34em; }
+.cfg__price-box { margin-top: 18px; padding-top: 16px; border-top: 1px dashed rgba(201,168,76,0.22); text-align: center; }
+.cfg__price-label { margin-bottom: 8px; font-family: var(--f-ui); font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold-dim); }
+.cfg__price-sub { margin-top: 6px; font-family: var(--f-body); font-style: italic; font-size: 12.5px; color: var(--gold-dim); }
+
+/* ---- Sağ: adımlar ---- */
+.cfg__form { display: flex; flex-direction: column; gap: 64px; min-width: 0; }
+.cfg__step { display: flex; flex-direction: column; gap: 0; }
+.cfg__step-title {
+  margin: 10px 0 6px;
+  font-family: var(--f-deco);
+  font-weight: 400;
+  font-size: 32px;
+  text-transform: uppercase;
+  color: var(--heading);
+}
+.cfg__step-title em { font-style: italic; color: var(--gold); }
+.cfg__hint { margin: 0 0 28px; font-family: var(--f-body); font-style: italic; font-size: 15px; color: var(--ink-soft); }
+.cfg__notice { margin: 12px 0 0; font-family: var(--f-body); font-style: italic; font-size: 12.5px; color: var(--gold-dim); }
+.cfg__notice--center { text-align: center; }
+
+/* Materyal kartları */
+.cfg__materials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.cfg__mat { padding: 22px 16px 18px; text-align: center; cursor: pointer; color: inherit; font: inherit; }
+.cfg__swatch {
+  display: block;
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 12px;
+  border-radius: var(--r-pill);
+  box-shadow: inset 0 0 14px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,168,76,0.32);
+}
+.cfg__swatch--silver { background: var(--swatch-silver); }
+.cfg__swatch--14k { background: var(--swatch-14k); }
+.cfg__swatch--22k { background: var(--swatch-22k); }
+.cfg__swatch--sm { width: 34px; height: 34px; margin-bottom: 7px; }
+.cfg__mat-name { display: block; margin-bottom: 4px; font-family: var(--f-ui); font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
+.cfg__mat-price { display: block; min-height: 1.2em; font-family: var(--f-deco); font-weight: 700; font-size: 16px; color: var(--gold-light); }
+.cfg__mat-spec { display: block; margin-top: 6px; font-family: var(--f-body); font-style: italic; font-size: 11px; color: var(--gold-dim); }
+
+/* Kaplama / 2. yüz kartları */
+.cfg__plate, .cfg__back-toggle {
+  position: relative;
+  display: grid;
+  grid-template-columns: 20px 1fr auto;
+  align-items: center;
+  gap: 14px;
+  margin-top: 14px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  transition: border-color var(--dur-fast), background var(--dur-fast);
+}
+.cfg__plate:hover, .cfg__back-toggle:hover { border-color: rgba(201,168,76,.55); }
+.cfg__plate.is-active, .cfg__back-toggle.is-active { border-color: rgba(201,168,76,.75); background: var(--surface-active); }
+.cfg__plate input, .cfg__back-toggle input { position: absolute; opacity: 0; width: 0; height: 0; }
+.cfg__plate-box, .cfg__back-box { width: 18px; height: 18px; border: 1px solid rgba(201,168,76,.55); display: grid; place-items: center; transition: background .18s; }
+.cfg__plate input:checked + .cfg__plate-box, .cfg__back-toggle input:checked + .cfg__back-box { background: var(--gold); border-color: var(--gold); }
+.cfg__plate input:checked + .cfg__plate-box::after, .cfg__back-toggle input:checked + .cfg__back-box::after { content: "✓"; font-size: 12px; line-height: 1; color: #14110A; }
+.cfg__plate input:focus-visible + .cfg__plate-box, .cfg__back-toggle input:focus-visible + .cfg__back-box { box-shadow: 0 0 0 3px rgba(201,168,76,.25); }
+.cfg__plate-body { display: grid; gap: 5px; min-width: 0; }
+.cfg__plate-name { font-family: var(--f-body); font-size: 14.5px; font-weight: 500; color: var(--ink); }
+.cfg__plate-desc { font-family: var(--f-body); font-size: 12.5px; font-weight: 300; line-height: 1.62; color: var(--ink-soft); }
+.cfg__plate-price {
+  padding: 7px 14px;
+  border: 1px solid color-mix(in oklch, var(--gold) 55%, transparent);
+  background: color-mix(in oklch, var(--gold) 14%, transparent);
+  font-family: var(--f-body);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  color: var(--gold);
+  white-space: nowrap;
+}
+.cfg__plate-price.is-free { color: var(--success); font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase; }
+.cfg__back-toggle { grid-template-columns: 20px 1fr; margin-top: 4px; }
+.cfg__back-text { font-family: var(--f-body); font-size: 14px; color: var(--text); }
+.cfg__back-text b { color: var(--gold-light); font-weight: 600; }
+.cfg__back-desc {
+  margin: 0 0 20px;
+  padding: 10px 14px 14px;
+  border: 1px solid var(--line);
+  border-top: none;
+  background: color-mix(in oklch, var(--gold) 3%, transparent);
+  font-family: var(--f-body);
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-dim);
+}
+.cfg__divider { margin: -24px 0; }
+
+/* Sipariş notu */
+.cfg__note { display: grid; gap: 9px; }
+.cfg__note-label { font-family: var(--f-deco); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+.cfg__note-label span { font-family: var(--f-body); font-size: 10.5px; letter-spacing: .04em; text-transform: none; color: var(--text-muted); }
+.cfg__note-input { resize: vertical; min-height: 74px; font-size: 13px; line-height: 1.6; border-radius: 0; }
+.cfg__note-count { justify-self: end; font-family: var(--f-body); font-size: 10.5px; letter-spacing: .06em; color: var(--text-muted); }
+
+/* Özet */
+.cfg__summary { padding: 24px 24px 22px; background: color-mix(in srgb, var(--dark) 70%, transparent); border: 1px solid var(--line); border-radius: var(--r-card); }
+.cfg__row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 10px 0; font-family: var(--f-body); font-size: 15px; border-bottom: 1px dashed rgba(201,168,76,0.12); }
+.cfg__row:last-child { border-bottom: none; padding-bottom: 0; }
+.cfg__k { flex-shrink: 0; font-family: var(--f-ui); font-size: 9.5px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-dim); }
+.cfg__v { font-style: italic; text-align: right; color: var(--gold-light); }
+.cfg__v-note { font-style: italic; color: var(--text-dim); }
+.cfg__total { font-family: var(--f-deco); font-weight: 700; font-size: 22px; font-style: normal; }
+
+/* Hediye modu */
+.cfg__gift { margin-top: 22px; }
+.cfg__gift-self, .cfg__gift-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: 100%;
+  padding: 13px 14px;
+  background: transparent;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  font-family: var(--f-ui);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  transition: border-color var(--dur), color var(--dur), background var(--dur);
+}
+.cfg__gift-self { border-radius: 3px; padding: 14px 18px; }
+.cfg__gift-self span, .cfg__gift-tab span { color: var(--gold); opacity: .7; }
+.cfg__gift-self:hover, .cfg__gift-tab:hover { border-color: rgba(201,168,76,0.42); }
+.cfg__gift-self.is-active, .cfg__gift-tab.is-active { border-color: var(--gold); background: rgba(201,168,76,0.07); color: var(--gold-light); box-shadow: inset 0 0 22px rgba(201,168,76,0.08); }
+.cfg__gift-tabs { display: grid; grid-template-columns: 1fr 1fr; margin-top: 8px; }
+.cfg__gift-tabs .cfg__gift-tab:first-child { border-radius: 3px 0 0 3px; border-right-width: 0; }
+.cfg__gift-tabs .cfg__gift-tab:last-child { border-radius: 0 3px 3px 0; }
+.cfg__redeem { margin-top: 14px; padding: 18px; border: 1px solid rgba(201,168,76,0.24); border-radius: 4px; background: rgba(201,168,76,0.04); }
+.cfg__redeem-intro { margin: 0 0 12px; font-family: var(--f-body); font-size: 13px; line-height: 1.6; color: var(--text-dim); }
+.cfg__redeem-row { display: flex; gap: 10px; }
+.cfg__redeem-input { flex: 1; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; }
+.cfg__redeem-msg { margin: 12px 0 0; font-family: var(--f-body); font-size: 13px; line-height: 1.5; }
+.cfg__redeem-msg.is-ok { color: var(--success); }
+.cfg__redeem-msg.is-err { color: var(--error-soft); }
+.cfg__gift-panel { margin-top: 16px; padding: 20px 20px 22px; border: 1px solid rgba(201,168,76,0.28); border-radius: 3px; background: rgba(201,168,76,0.035); }
+.cfg__gift-intro { margin: 0 0 18px; font-family: var(--f-body); font-size: 14px; line-height: 1.85; color: var(--text); text-wrap: pretty; }
+.cfg__gift-label { display: block; margin-bottom: 12px; }
+.cfg__gift-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.cfg__gift-card { display: flex; flex-direction: column; align-items: center; gap: 7px; padding: 16px 8px 14px; background: transparent; cursor: pointer; color: inherit; font: inherit; }
+.cfg__gift-name { font-family: var(--f-ui); font-size: 9px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; line-height: 1.3; color: var(--text); }
+.cfg__gift-price { font-family: var(--f-deco); font-weight: 700; font-size: 14px; color: var(--gold-light); }
+/* hediye modunda yüz adımları sönük */
+.cfg.is-gift .cfg__step:nth-of-type(2), .cfg.is-gift .cfg__step:nth-of-type(3), .cfg.is-gift .cfg__divider, .cfg.is-gift .cfg__note { opacity: .3; filter: grayscale(.55); pointer-events: none; user-select: none; }
+
+/* Sepete ekle + güven */
+.cfg__add { margin-top: 24px; }
+.cfg__add:disabled { opacity: .45; cursor: not-allowed; animation: none; }
+.cfg__trust { margin-top: 22px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 24px; font-family: var(--f-ui); font-size: 9.5px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-dim); text-align: center; }
+
+/* Toast */
+.cfg__toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  z-index: var(--z-toast, 999);
+  max-width: min(520px, 92vw);
+  padding: 12px 20px;
+  border: 1px solid var(--gold);
+  border-radius: var(--r-card);
+  background: var(--dark);
+  box-shadow: var(--sh-modal);
+  font-family: var(--f-ui);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  text-align: center;
+}
+
+/* ---- Mobil ≤ 860px ---- */
+@media (max-width: bp(5pw2fQi7Yr)) {
+  .cfg { padding: var(--section-y-m, 56px) 0 80px; }
+  .cfg__head { padding: 0 var(--gutter-m, 16px); margin-bottom: 28px; }
+  .cfg__shell { display: block; }
+  .cfg__preview {
+    top: var(--header-h, 84px);
+    z-index: 100;
+    height: 136px;
+    max-height: none;
+    padding: 16px 18px 0;
+    border: none;
+    border-radius: 0;
+    overflow: visible;
+    display: grid;
+    grid-template-columns: 96px 1fr 96px;
+    grid-template-rows: 120px;
+    column-gap: 10px;
+    align-items: start;
+    will-change: transform;
+  }
+  .cfg__face-label { display: none; }
+  .cfg__stage { grid-column: 2; grid-row: 1; width: 240px; height: 240px; max-width: none; margin: 0; justify-self: center; align-self: start; position: relative; z-index: 2; }
+  .cfg__preview-actions { grid-column: 1; grid-row: 1; align-items: stretch; gap: 8px; }
+  .cfg__flip, .cfg__clear { padding: 8px 10px; font-size: 8.5px; letter-spacing: 0.14em; justify-content: center; }
+  .cfg__price-box { position: absolute; right: 18px; top: 58px; transform: translateY(-50%); margin: 0; padding: 0; border: none; text-align: right; }
+  .cfg__price-label { font-size: 8.5px; letter-spacing: 0.24em; margin-bottom: 2px; }
+  .cfg__price { font-size: 20px; }
+  .cfg__price-sub { display: none; }
+  .cfg__form { gap: 48px; padding: 124px var(--gutter-m, 16px) 0; }
+  .cfg__step-title { font-size: 24px; }
+  .cfg__materials { grid-template-columns: 1fr; gap: 10px; }
+  .cfg__mat { display: grid; grid-template-columns: auto 1fr auto; grid-template-rows: auto auto; align-items: center; column-gap: 14px; padding: 14px 16px; text-align: left; }
+  .cfg__swatch { grid-row: 1 / 3; width: 36px; height: 36px; margin: 0; }
+  .cfg__mat-name { grid-column: 2; grid-row: 1; margin: 0; }
+  .cfg__mat-price { grid-column: 3; grid-row: 1 / 3; font-size: 14px; }
+  .cfg__mat-spec { grid-column: 2; grid-row: 2; margin-top: 3px; }
+}
+@media (max-width: bp(5Xmvk6D0gV)) {
+  .cfg__plate { grid-template-columns: 20px 1fr; row-gap: 8px; padding: 14px 15px; }
+  .cfg__plate-price { grid-column: 2; justify-self: start; }
+  .cfg__redeem-row { flex-direction: column; }
+  .cfg__summary { padding: 18px 16px; }
+  .cfg__row { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .cfg__v { text-align: left; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cfg__flip, .cfg__clear { transition: none; }
+}

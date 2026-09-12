@@ -374,7 +374,7 @@ Yükleme (`L:2196-2206`): `document.fonts.ready.then(drawCoin)` + `document.font
 
 ### 14.1 Ürün ve opsiyon modeli (admin'de kurulacak)
 - Tek ürün **"Sikke Kolye"**; **varyant tipi Materyal**: 925 Ayar Gümüş / 14 Ayar Altın / 22 Ayar Altın (fiyat varyantta). `MATERIALS` sabitleri koda gömülmez; fiyat `getProductVariantFormattedFinalPrice` ile gösterilir.
-- **Product Option Set** (ikas kişiselleştirme; `get_framework_guide("product-options")`):
+- **Product Option Set** (ikas kişiselleştirme; admin kurulum listesi ve isim sözleşmesi: `docs/configurator-admin-setup.md`):
 
 | Referans alanı | ikas opsiyonu | Not |
 |---|---|---|
@@ -392,7 +392,7 @@ Yükleme (`L:2196-2206`): `document.fonts.ready.then(drawCoin)` + `document.font
 
 Değerler `IkasOrderLineItemOption.values[]` olarak sipariş satırına düşer; referansın `Yuz1_*` custom property şeması gereksizdir. Akış: `getProductOptionSet(product)` → `getDisplayedOptions` → `setTextValue/selectValue/setCheckboxValue/productOptionFileUpload` → `validateOptionSet` → `addItemToCart(variant, product, 1)` → `initProductOptionSetValues`.
 
-- Hediye sertifikası: ayrı ürün + ikas hediye kartı/kupon (kod üretimi ve redeem ikas'ta). Bu fazda kapsam dışı.
+- Hediye sertifikası: ayrı ürün (`giftProduct` prop'u, aynı Materyal varyantları) + redeem için ikas **kupon kodu** (`MONETARTS-XXXX-XXXX-XXXX`), sepete eklendikten sonra `saveCouponCode` ile uygulanır. Admin kurulumu: `docs/configurator-admin-setup.md`.
 
 ### 14.2 Bileşen mimarisi
 - **`CoinConfigurator` section** (PRODUCT prop, `usePageData`), sub-component'ler: `MaterialStep`, `FaceDesignStep` (×2), `SummaryStep`, `SealModal`, `PhotoGuideModal`, `CoinCanvas`.
