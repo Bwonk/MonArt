@@ -197,6 +197,43 @@ export function suggestionParts(s: NameSuggestion): { pre: string; post: string;
     : { pre: s.title + sep, post: "", prefill: s.title + sep, caretAtStart: false };
 }
 
+/* ------------------------------------------------------------------ galeri → konfigüratör URL parametreleri */
+
+/** Koleksiyon galerisinden konfigüratöre taşınan seçim (`?seri=&cinsiyet=&materyal=`). */
+export interface DesignParams {
+  series?: Series;
+  gender?: Gender;
+  material?: MaterialKey;
+}
+
+export const DESIGN_PARAM_KEYS = ["seri", "cinsiyet", "materyal"] as const;
+
+const GENDER_PARAM: Record<Gender, string> = { M: "bay", F: "bayan" };
+const MATERIAL_PARAM: Record<MaterialKey, string> = { silver: "gumus", "14k": "14k", "22k": "22k" };
+
+export function designQuery(p: DesignParams): Record<string, string | undefined> {
+  return {
+    seri: p.series,
+    cinsiyet: p.gender ? GENDER_PARAM[p.gender] : undefined,
+    materyal: p.material ? MATERIAL_PARAM[p.material] : undefined,
+  };
+}
+
+export function parseSeries(value: string | null | undefined): Series | undefined {
+  const v = normalizeKey(value ?? "");
+  return (SERIES as string[]).includes(v) ? (v as Series) : undefined;
+}
+
+export function parseDesignQuery(query: Record<string, string | undefined>): DesignParams {
+  const g = normalizeKey(query.cinsiyet ?? "");
+  const m = normalizeKey(query.materyal ?? "");
+  return {
+    series: parseSeries(query.seri),
+    gender: g === "bay" ? "M" : g === "bayan" ? "F" : undefined,
+    material: (Object.keys(MATERIAL_PARAM) as MaterialKey[]).find((k) => MATERIAL_PARAM[k] === m),
+  };
+}
+
 /* ------------------------------------------------------------------ fotoğraf doğrulama */
 
 export const PHOTO_MAX_BYTES = 5 * 1024 * 1024;

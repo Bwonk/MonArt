@@ -614,6 +614,14 @@
           "required": false,
           "defaultValue": "Çevir",
           "groupId": "action"
+        },
+        {
+          "name": "seriesKey",
+          "displayName": "Seri (galeri sekmesi)",
+          "type": "ENUM",
+          "required": false,
+          "description": "Doluysa karta tıklayınca linke ?seri=<seri> eklenir",
+          "enumTypeId": "5rzSm7oLdF"
         }
       ],
       "propGroups": [
@@ -2324,7 +2332,747 @@
           "name": "Görünüm"
         }
       ]
+    },
+    {
+      "id": "wnbxmerd-Cv0kAyhqw9",
+      "name": "CollectionGallery",
+      "entry": "./src/components/CollectionGallery/index.tsx",
+      "styles": "./src/components/CollectionGallery/styles.css",
+      "type": "section",
+      "props": [
+        {
+          "name": "backLink",
+          "displayName": "Geri Linki",
+          "type": "LINK",
+          "required": false,
+          "defaultValue": {
+            "linkType": "PAGE",
+            "label": "Ana Sayfa",
+            "pageType": "INDEX",
+            "subLinks": []
+          },
+          "groupId": "page"
+        },
+        {
+          "name": "title",
+          "displayName": "Sayfa Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kadim Seriler",
+          "groupId": "page"
+        },
+        {
+          "name": "inviteText",
+          "displayName": "Davet Satırı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "MonetArts Miras Notu · Lütfen Okuyunuz",
+          "groupId": "page"
+        },
+        {
+          "name": "discoverText",
+          "displayName": "Seriyi Keşfet Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Seriyi Keşfet",
+          "groupId": "page"
+        },
+        {
+          "name": "designLink",
+          "displayName": "Konfigüratör Linki",
+          "type": "LINK",
+          "required": false,
+          "description": "'Bu Modeli Tasarla' ve 'Seriyi Keşfet' buraya ?seri=&cinsiyet=&materyal= ekleyerek gider",
+          "defaultValue": {
+            "linkType": "PAGE",
+            "label": "Atölye",
+            "pageType": "INDEX",
+            "subLinks": []
+          },
+          "groupId": "page"
+        },
+        {
+          "name": "colMale",
+          "displayName": "Sütun · Bay",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bay",
+          "groupId": "grid"
+        },
+        {
+          "name": "colFemale",
+          "displayName": "Sütun · Bayan",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bayan",
+          "groupId": "grid"
+        },
+        {
+          "name": "colModel",
+          "displayName": "Sütun · Model",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Model",
+          "groupId": "grid"
+        },
+        {
+          "name": "colPackaging",
+          "displayName": "Sütun · Paketleme",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Paketleme",
+          "groupId": "grid"
+        },
+        {
+          "name": "rowSilver",
+          "displayName": "Satır · Gümüş",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "925 Gümüş",
+          "groupId": "grid"
+        },
+        {
+          "name": "row14k",
+          "displayName": "Satır · 14 Ayar",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "14 Ayar",
+          "groupId": "grid"
+        },
+        {
+          "name": "row22k",
+          "displayName": "Satır · 22 Ayar",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "22 Ayar",
+          "groupId": "grid"
+        },
+        {
+          "name": "genderMale",
+          "displayName": "Cinsiyet · Erkek",
+          "type": "TEXT",
+          "required": false,
+          "description": "Lightbox alt satırında",
+          "defaultValue": "Erkek",
+          "groupId": "grid"
+        },
+        {
+          "name": "genderFemale",
+          "displayName": "Cinsiyet · Kadın",
+          "type": "TEXT",
+          "required": false,
+          "description": "Lightbox alt satırında",
+          "defaultValue": "Kadın",
+          "groupId": "grid"
+        },
+        {
+          "name": "showEmptyCells",
+          "displayName": "Boş Hücreleri Göster",
+          "type": "BOOLEAN",
+          "required": false,
+          "description": "Görseli olmayan hücrelerde yer tutucu göster",
+          "defaultValue": true,
+          "groupId": "grid"
+        },
+        {
+          "name": "lbCta",
+          "displayName": "Bu Modeli Tasarla",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bu Modeli Tasarla",
+          "groupId": "lightbox"
+        },
+        {
+          "name": "lbHint",
+          "displayName": "Mobil İpucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "← kaydır → · çift tıkla zoom",
+          "groupId": "lightbox"
+        },
+        {
+          "name": "lbPrev",
+          "displayName": "Önceki (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Önceki",
+          "groupId": "lightbox"
+        },
+        {
+          "name": "lbNext",
+          "displayName": "Sonraki (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sonraki",
+          "groupId": "lightbox"
+        },
+        {
+          "name": "lbClose",
+          "displayName": "Kapat (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kapat",
+          "groupId": "lightbox"
+        },
+        {
+          "name": "lbZoom",
+          "displayName": "Yakınlaştır (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yakınlaştır",
+          "groupId": "lightbox"
+        },
+        {
+          "name": "lbOpen",
+          "displayName": "Görseli Aç (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Büyüt",
+          "groupId": "lightbox"
+        },
+        {
+          "name": "romaTab",
+          "displayName": "Roma · Sekme",
+          "type": "TEXT",
+          "required": false,
+          "description": "Boş bırakılırsa seri gizlenir",
+          "defaultValue": "Roma",
+          "groupId": "roma"
+        },
+        {
+          "name": "romaEyebrow",
+          "displayName": "Roma · Eyebrow",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "✦ Roma Serisi · Hikayesi ✦",
+          "groupId": "roma"
+        },
+        {
+          "name": "romaTitle",
+          "displayName": "Roma · Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İmparatorluğun Mührü,",
+          "groupId": "roma"
+        },
+        {
+          "name": "romaTitleItalic",
+          "displayName": "Roma · Başlık (italik satır)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sevginin Tanığı.",
+          "groupId": "roma"
+        },
+        {
+          "name": "romaBody1",
+          "displayName": "Roma · Paragraf 1",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Antik Roma'da patrisyen sınıfının en köklü geleneklerinden biri, sevdiklerine kendi portresinin işlendiği altın sikkeler hediye etmekti. İmparatorun yüzünün kazındığı bu sikkeler; sadece bir mücevher değil, 'Sen benim için ebediyim' mesajını taşıyan en yüksek sevgi beyanıydı.",
+          "groupId": "roma"
+        },
+        {
+          "name": "romaBody2",
+          "displayName": "Roma · Paragraf 2",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "MonetArts atölyelerinde, bu kadim geleneği sizin için yeniden hayata geçiriyoruz.",
+          "groupId": "roma"
+        },
+        {
+          "name": "romaTag1",
+          "displayName": "Roma · Etiket 1",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "El Kalemkâr",
+          "groupId": "roma"
+        },
+        {
+          "name": "romaTag2",
+          "displayName": "Roma · Etiket 2",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Roma Rakamı",
+          "groupId": "roma"
+        },
+        {
+          "name": "romaTag3",
+          "displayName": "Roma · Etiket 3",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Defne Frizi",
+          "groupId": "roma"
+        },
+        {
+          "name": "romaSilverMale",
+          "displayName": "Roma · Gümüş · Bay",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "romaImg"
+        },
+        {
+          "name": "romaSilverFemale",
+          "displayName": "Roma · Gümüş · Bayan",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "romaImg"
+        },
+        {
+          "name": "romaSilverModel",
+          "displayName": "Roma · Gümüş · Model",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "romaImg"
+        },
+        {
+          "name": "romaSilverPackaging",
+          "displayName": "Roma · Gümüş · Paketleme",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "romaImg"
+        },
+        {
+          "name": "romaGold14Male",
+          "displayName": "Roma · 14 Ayar · Bay",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "romaImg"
+        },
+        {
+          "name": "romaGold14Female",
+          "displayName": "Roma · 14 Ayar · Bayan",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "romaImg"
+        },
+        {
+          "name": "romaGold14Model",
+          "displayName": "Roma · 14 Ayar · Model",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "romaImg"
+        },
+        {
+          "name": "romaGold14Packaging",
+          "displayName": "Roma · 14 Ayar · Paketleme",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "romaImg"
+        },
+        {
+          "name": "romaGold22Male",
+          "displayName": "Roma · 22 Ayar · Bay",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "romaImg"
+        },
+        {
+          "name": "romaGold22Female",
+          "displayName": "Roma · 22 Ayar · Bayan",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "romaImg"
+        },
+        {
+          "name": "romaGold22Model",
+          "displayName": "Roma · 22 Ayar · Model",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "romaImg"
+        },
+        {
+          "name": "romaGold22Packaging",
+          "displayName": "Roma · 22 Ayar · Paketleme",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "romaImg"
+        },
+        {
+          "name": "osmanliTab",
+          "displayName": "Osmanlı · Sekme",
+          "type": "TEXT",
+          "required": false,
+          "description": "Boş bırakılırsa seri gizlenir",
+          "defaultValue": "Osmanlı",
+          "groupId": "osmanli"
+        },
+        {
+          "name": "osmanliEyebrow",
+          "displayName": "Osmanlı · Eyebrow",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "✦ Osmanlı Serisi · Hikayesi ✦",
+          "groupId": "osmanli"
+        },
+        {
+          "name": "osmanliTitle",
+          "displayName": "Osmanlı · Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Tuğranın Sırrı,",
+          "groupId": "osmanli"
+        },
+        {
+          "name": "osmanliTitleItalic",
+          "displayName": "Osmanlı · Başlık (italik satır)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sultanlığın Armağanı.",
+          "groupId": "osmanli"
+        },
+        {
+          "name": "osmanliBody1",
+          "displayName": "Osmanlı · Paragraf 1",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Osmanlı sarayında hediyeleşme bir sanattı. Padişahlar, sadakatini ispat etmek isteyenlere tuğrasının işlendiği altın madalyonlar bağışlardı. Bu madalyonu taşımak; yalnızca bir süs değil, 'Ben seninle varım' yemini anlamına gelirdi.",
+          "groupId": "osmanli"
+        },
+        {
+          "name": "osmanliBody2",
+          "displayName": "Osmanlı · Paragraf 2",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "MonetArts, bu sultanî geleneği modern bir sevgi diline tercüme ediyor.",
+          "groupId": "osmanli"
+        },
+        {
+          "name": "osmanliTag1",
+          "displayName": "Osmanlı · Etiket 1",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Tuğra",
+          "groupId": "osmanli"
+        },
+        {
+          "name": "osmanliTag2",
+          "displayName": "Osmanlı · Etiket 2",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Hat Sanatı",
+          "groupId": "osmanli"
+        },
+        {
+          "name": "osmanliTag3",
+          "displayName": "Osmanlı · Etiket 3",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Çift Yüz",
+          "groupId": "osmanli"
+        },
+        {
+          "name": "osmanliSilverMale",
+          "displayName": "Osmanlı · Gümüş · Bay",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "osmanliImg"
+        },
+        {
+          "name": "osmanliSilverFemale",
+          "displayName": "Osmanlı · Gümüş · Bayan",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "osmanliImg"
+        },
+        {
+          "name": "osmanliSilverModel",
+          "displayName": "Osmanlı · Gümüş · Model",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "osmanliImg"
+        },
+        {
+          "name": "osmanliSilverPackaging",
+          "displayName": "Osmanlı · Gümüş · Paketleme",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "osmanliImg"
+        },
+        {
+          "name": "osmanliGold14Male",
+          "displayName": "Osmanlı · 14 Ayar · Bay",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "osmanliImg"
+        },
+        {
+          "name": "osmanliGold14Female",
+          "displayName": "Osmanlı · 14 Ayar · Bayan",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "osmanliImg"
+        },
+        {
+          "name": "osmanliGold14Model",
+          "displayName": "Osmanlı · 14 Ayar · Model",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "osmanliImg"
+        },
+        {
+          "name": "osmanliGold14Packaging",
+          "displayName": "Osmanlı · 14 Ayar · Paketleme",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "osmanliImg"
+        },
+        {
+          "name": "osmanliGold22Male",
+          "displayName": "Osmanlı · 22 Ayar · Bay",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "osmanliImg"
+        },
+        {
+          "name": "osmanliGold22Female",
+          "displayName": "Osmanlı · 22 Ayar · Bayan",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "osmanliImg"
+        },
+        {
+          "name": "osmanliGold22Model",
+          "displayName": "Osmanlı · 22 Ayar · Model",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "osmanliImg"
+        },
+        {
+          "name": "osmanliGold22Packaging",
+          "displayName": "Osmanlı · 22 Ayar · Paketleme",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "osmanliImg"
+        },
+        {
+          "name": "misirTab",
+          "displayName": "Mısır · Sekme",
+          "type": "TEXT",
+          "required": false,
+          "description": "Boş bırakılırsa seri gizlenir",
+          "defaultValue": "Mısır",
+          "groupId": "misir"
+        },
+        {
+          "name": "misirEyebrow",
+          "displayName": "Mısır · Eyebrow",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "✦ Mısır Serisi · Hikayesi ✦",
+          "groupId": "misir"
+        },
+        {
+          "name": "misirTitle",
+          "displayName": "Mısır · Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Firavunun Mührü,",
+          "groupId": "misir"
+        },
+        {
+          "name": "misirTitleItalic",
+          "displayName": "Mısır · Başlık (italik satır)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sonsuzluğa Yazılan Aşk.",
+          "groupId": "misir"
+        },
+        {
+          "name": "misirBody1",
+          "displayName": "Mısır · Paragraf 1",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Antik Mısır'da altın; güneş tanrısı Ra'nın eti, ölümsüzlüğün simgesiydi. Firavunlar ve soylular, sevdiklerine kartuş — adın hiyeroglif yazısıyla kazındığı oval madalyon — hediye ederlerdi. Bu hediye 'Senin adın sonsuza dek yaşayacak' anlamını taşırdı.",
+          "groupId": "misir"
+        },
+        {
+          "name": "misirBody2",
+          "displayName": "Mısır · Paragraf 2",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "MonetArts'ın Mısır serisi, bu ebediyet felsefesini günümüze taşır.",
+          "groupId": "misir"
+        },
+        {
+          "name": "misirTag1",
+          "displayName": "Mısır · Etiket 1",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kartuş",
+          "groupId": "misir"
+        },
+        {
+          "name": "misirTag2",
+          "displayName": "Mısır · Etiket 2",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Hiyeroglif",
+          "groupId": "misir"
+        },
+        {
+          "name": "misirTag3",
+          "displayName": "Mısır · Etiket 3",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "22 Ayar",
+          "groupId": "misir"
+        },
+        {
+          "name": "misirSilverMale",
+          "displayName": "Mısır · Gümüş · Bay",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "misirImg"
+        },
+        {
+          "name": "misirSilverFemale",
+          "displayName": "Mısır · Gümüş · Bayan",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "misirImg"
+        },
+        {
+          "name": "misirSilverModel",
+          "displayName": "Mısır · Gümüş · Model",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "misirImg"
+        },
+        {
+          "name": "misirSilverPackaging",
+          "displayName": "Mısır · Gümüş · Paketleme",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "misirImg"
+        },
+        {
+          "name": "misirGold14Male",
+          "displayName": "Mısır · 14 Ayar · Bay",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "misirImg"
+        },
+        {
+          "name": "misirGold14Female",
+          "displayName": "Mısır · 14 Ayar · Bayan",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "misirImg"
+        },
+        {
+          "name": "misirGold14Model",
+          "displayName": "Mısır · 14 Ayar · Model",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "misirImg"
+        },
+        {
+          "name": "misirGold14Packaging",
+          "displayName": "Mısır · 14 Ayar · Paketleme",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "misirImg"
+        },
+        {
+          "name": "misirGold22Male",
+          "displayName": "Mısır · 22 Ayar · Bay",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "misirImg"
+        },
+        {
+          "name": "misirGold22Female",
+          "displayName": "Mısır · 22 Ayar · Bayan",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "misirImg"
+        },
+        {
+          "name": "misirGold22Model",
+          "displayName": "Mısır · 22 Ayar · Model",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "misirImg"
+        },
+        {
+          "name": "misirGold22Packaging",
+          "displayName": "Mısır · 22 Ayar · Paketleme",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "misirImg"
+        },
+        {
+          "name": "anchorId",
+          "displayName": "Çapa (id)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "galeri",
+          "groupId": "appearance"
+        },
+        {
+          "name": "backgroundColor",
+          "displayName": "Arka Plan (Gündüz)",
+          "type": "COLOR",
+          "required": false,
+          "defaultValue": "#FBFAF7",
+          "groupId": "appearance"
+        }
+      ],
+      "propGroups": [
+        {
+          "id": "page",
+          "name": "Sayfa"
+        },
+        {
+          "id": "grid",
+          "name": "Grid Etiketleri"
+        },
+        {
+          "id": "lightbox",
+          "name": "Lightbox"
+        },
+        {
+          "id": "roma",
+          "name": "Roma · Hikâye"
+        },
+        {
+          "id": "romaImg",
+          "name": "Roma · Görseller"
+        },
+        {
+          "id": "osmanli",
+          "name": "Osmanlı · Hikâye"
+        },
+        {
+          "id": "osmanliImg",
+          "name": "Osmanlı · Görseller"
+        },
+        {
+          "id": "misir",
+          "name": "Mısır · Hikâye"
+        },
+        {
+          "id": "misirImg",
+          "name": "Mısır · Görseller"
+        },
+        {
+          "id": "appearance",
+          "name": "Görünüm"
+        }
+      ]
     }
   ],
-  "customTypes": []
+  "customTypes": [
+    {
+      "id": "5rzSm7oLdF",
+      "name": "Seri",
+      "type": "enum",
+      "enumOptions": {
+        "Roma": "roma",
+        "Osmanlı": "osmanli",
+        "Mısır": "misir"
+      },
+      "isDynamic": false
+    }
+  ]
 }

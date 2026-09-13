@@ -1,5 +1,9 @@
 # ikas Code Components Project
 
+MonArt proje durumu, kurallar ve faz planı (her oturumda otomatik yüklenir):
+
+@docs/ROADMAP.md
+
 You are building **Preact + TypeScript components for an e-commerce storefront**.
 This project uses the ikas Code Components framework with an MCP server for API documentation.
 

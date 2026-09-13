@@ -2,7 +2,7 @@ import { useState } from "preact/hooks";
 import { getDefaultSrc, createMediaSrcset, IkasImage } from "@ikas/bp-storefront";
 import { Props } from "./types";
 import { cx } from "../../utils/theme-mode";
-import { linkAttrs } from "../../utils/links";
+import { linkAttrs, withQuery } from "../../utils/links";
 import { FlipIcon } from "../../sub-components/Icons";
 
 function CoinFace({ image, alt, side }: { image?: IkasImage | null; alt: string; side: "front" | "back" }) {
@@ -29,10 +29,14 @@ export function SeriesCard(props: Props) {
     backAlt = "",
     link,
     flipLabel = "Çevir",
+    seriesKey,
   } = props;
 
   const [flipped, setFlipped] = useState(false);
   const canFlip = !!backImage;
+  // Seri seçiliyse link galeride o sekmeyi açar (?seri=roma).
+  const attrs = linkAttrs(link);
+  if (attrs.href && seriesKey) attrs.href = withQuery(attrs.href, { seri: seriesKey });
 
   return (
     <article className={cx("series-card", flipped && "is-flipped")}>
@@ -59,7 +63,7 @@ export function SeriesCard(props: Props) {
 
       <h3 className="series-card__name">
         {link?.href ? (
-          <a className="series-card__link" {...linkAttrs(link)}>
+          <a className="series-card__link" {...attrs}>
             {name}
           </a>
         ) : (

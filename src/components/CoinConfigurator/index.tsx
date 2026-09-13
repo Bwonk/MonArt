@@ -18,6 +18,7 @@ import {
   addItemToCart,
   saveCouponCode,
   formatCurrency,
+  Router,
 } from "@ikas/bp-storefront";
 import { Props } from "./types";
 import { useSectionTheme, cx } from "../../utils/theme-mode";
@@ -35,6 +36,8 @@ import {
   artworkCandidates,
   materialFromLabel,
   dateToRoman,
+  parseDesignQuery,
+  DESIGN_PARAM_KEYS,
 } from "../../utils/coin";
 import { allOptions, findOption, findOptions, setChoiceByKeywords, setCheckbox, setText, isFile, optionExtraPrice } from "../../utils/ikas-options";
 import CoinCanvas from "../../sub-components/CoinCanvas";
@@ -383,6 +386,44 @@ export function CoinConfigurator(props: Props) {
     guideResolver.current?.(ok);
     guideResolver.current = null;
   };
+
+  /* Galeriden gelen seçim: ?seri=&cinsiyet=&materyal= (docs/collection-gallery.md §2.5).
+     Ürün yükleme effect'inden SONRA çalışmalı ki URL'deki materyal varyant materyalini ezsin. */
+  useEffect(() => {
+    let q: Record<string, string> = {};
+    try {
+      q = Router.router_getQueryParams() ?? {};
+    } catch {
+      return;
+    }
+    const d = parseDesignQuery(q);
+    if (!d.series && !d.gender && !d.material) return;
+    setFront((f) => {
+      const series = d.series ?? f.series;
+      return { ...f, series, gender: d.gender ?? f.gender, text: f.text.slice(0, SERIES_RULES[series].limit) };
+    });
+    setCurrentFace("front");
+    if (d.material) setMaterial(d.material);
+    // Parametreleri temizle: sayfa yenilenince seçim ve kaydırma tekrarlanmasın
+    try {
+      const url = new URL(window.location.href);
+      for (const k of DESIGN_PARAM_KEYS) url.searchParams.delete(k);
+      window.history.replaceState(window.history.state, "", url.toString());
+    } catch {
+      /* URL güncellenemezse sessizce geç */
+    }
+    // Çapa linki gibi anlık atla; görseller yüklenmeden atlanırsa sonradan kayan düzen hedefi kaçırır.
+    let t = 0;
+    const jump = () => {
+      t = window.setTimeout(() => rootRef.current?.scrollIntoView({ block: "start" }), 50);
+    };
+    if (document.readyState === "complete") jump();
+    else window.addEventListener("load", jump, { once: true });
+    return () => {
+      window.removeEventListener("load", jump);
+      window.clearTimeout(t);
+    };
+  }, []);
 
   /* Yüz bölümü görünürken sikkeyi otomatik çevir (viewport %45 çizgisi) */
   useEffect(() => {

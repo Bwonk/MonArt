@@ -7,3 +7,4 @@ export { OriginStory } from "./OriginStory/index";
 export { BespokeCall } from "./BespokeCall/index";
 export { Faq } from "./Faq/index";
 export { CoinConfigurator } from "./CoinConfigurator/index";
+export { CollectionGallery } from "./CollectionGallery/index";
