@@ -3,23 +3,16 @@ import {
   cartStore,
   Router,
   withRoutePrefix,
-  getDefaultSrc,
   getIkasOrderTotalItemCount,
   getIkasOrderFormattedTotalFinalPrice,
-  getOrderLineItemFormattedFinalPriceWithQuantity,
-  getIkasOrderLineVariantMainImage,
-  getIkasOrderLineVariantHref,
   getCheckoutUrlFromCartStore,
-  changeItemQuantity,
-  removeItem,
-  isOrderLineItemAutoCreated,
-  IkasCart,
-  IkasOrderLineItem,
 } from "@ikas/bp-storefront";
 import { useScrollLock } from "../../utils/theme-mode";
-import { CloseIcon, PouchIcon, TrashIcon, PlusIcon, MinusIcon } from "../Icons";
+import { CloseIcon, PouchIcon } from "../Icons";
+import CartLine, { CartLineTexts } from "../CartLine";
+import CoinCheckoutButton from "../CoinCheckoutButton";
 
-export interface CartDrawerTexts {
+export interface CartDrawerTexts extends CartLineTexts {
   title: string;
   emptyText: string;
   emptyHint: string;
@@ -27,8 +20,6 @@ export interface CartDrawerTexts {
   totalLabel: string;
   checkoutButtonText: string;
   viewCartButtonText: string;
-  removeLabel: string;
-  quantityLabel: string;
   closeLabel: string;
 }
 
@@ -38,90 +29,10 @@ interface Props {
   texts: CartDrawerTexts;
 }
 
-/** Kişiselleştirme opsiyonlarını (Yüz 1 · İsim …) tek satırlık özetlere çevirir. */
-function optionSummary(item: IkasOrderLineItem): string[] {
-  const opts = item.options ?? [];
-  const lines: string[] = [];
-  for (const opt of opts) {
-    const vals = (opt.values ?? [])
-      .map((v) => v.name ?? v.value)
-      .filter((v): v is string => !!v && v.trim().length > 0);
-    if (vals.length) lines.push(`${opt.name}: ${vals.join(", ")}`);
-  }
-  return lines;
-}
-
-const CartLine = observer(function CartLine({
-  cart,
-  item,
-  texts,
-}: {
-  cart: IkasCart;
-  item: IkasOrderLineItem;
-  texts: CartDrawerTexts;
-}) {
-  const image = getIkasOrderLineVariantMainImage(item.variant);
-  const href = getIkasOrderLineVariantHref(item.variant);
-  const readOnly = isOrderLineItemAutoCreated(cart, item);
-  const summary = optionSummary(item);
-
-  return (
-    <li className="kese-line">
-      <a className="kese-line__thumb" href={href ?? undefined} aria-hidden="true">
-        {image ? <img src={getDefaultSrc(image)} alt="" loading="lazy" /> : <span className="kese-line__thumb-empty" />}
-      </a>
-      <div className="kese-line__body">
-        <a className="kese-line__name" href={href ?? undefined}>
-          {item.variant.name}
-        </a>
-        {summary.length > 0 && (
-          <ul className="kese-line__opts">
-            {summary.map((s, i) => (
-              <li key={i}>{s}</li>
-            ))}
-          </ul>
-        )}
-        <div className="kese-line__row">
-          {!readOnly ? (
-            <div className="kese-qty" role="group" aria-label={texts.quantityLabel}>
-              <button
-                type="button"
-                className="kese-qty__btn"
-                aria-label="−"
-                disabled={item.quantity <= 1}
-                onClick={() => changeItemQuantity(item, item.quantity - 1)}
-              >
-                <MinusIcon className="mon-icon" />
-              </button>
-              <span className="kese-qty__val">{item.quantity}</span>
-              <button
-                type="button"
-                className="kese-qty__btn"
-                aria-label="+"
-                onClick={() => changeItemQuantity(item, item.quantity + 1)}
-              >
-                <PlusIcon className="mon-icon" />
-              </button>
-            </div>
-          ) : (
-            <span className="kese-qty__val">{item.quantity}</span>
-          )}
-          <span className="kese-line__price">{getOrderLineItemFormattedFinalPriceWithQuantity(item)}</span>
-        </div>
-      </div>
-      {!readOnly && (
-        <button type="button" className="kese-line__remove" aria-label={texts.removeLabel} onClick={() => removeItem(item)}>
-          <TrashIcon className="mon-icon" />
-        </button>
-      )}
-    </li>
-  );
-});
-
 const CartDrawer = observer(function CartDrawer({ open, onClose, texts }: Props) {
   useScrollLock(open);
   const cart = cartStore.cart;
-  const lines = cart?.orderLineItems ?? [];
+  const lines = (cart?.orderLineItems ?? []).filter((item) => !item.deleted);
   const count = cart ? getIkasOrderTotalItemCount(cart) : 0;
   const isEmpty = lines.length === 0;
 
@@ -165,7 +76,7 @@ const CartDrawer = observer(function CartDrawer({ open, onClose, texts }: Props)
           <>
             <ul className="kese__list mon-scrollbar">
               {lines.map((item) => (
-                <CartLine key={item.id} cart={cart!} item={item} texts={texts} />
+                <CartLine key={item.id} cart={cart!} item={item} texts={texts} variant="drawer" />
               ))}
             </ul>
             <footer className="kese__foot">
@@ -173,9 +84,7 @@ const CartDrawer = observer(function CartDrawer({ open, onClose, texts }: Props)
                 <span className="mon-label">{texts.totalLabel}</span>
                 <span className="mon-price mon-price--md mon-gold-text">{cart ? getIkasOrderFormattedTotalFinalPrice(cart) : ""}</span>
               </div>
-              <button type="button" className="mon-btn mon-btn--brushed kese__checkout" onClick={goCheckout}>
-                {texts.checkoutButtonText}
-              </button>
+              <CoinCheckoutButton className="kese__checkout" text={texts.checkoutButtonText} onClick={goCheckout} />
               <a
                 className="kese__view-cart mon-nav-link"
                 href={withRoutePrefix("/cart")}

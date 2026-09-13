@@ -19,6 +19,28 @@ import {
 } from "@ikas/bp-storefront";
 import { normalizeKey } from "./coin";
 
+/**
+ * Varsayılan opsiyon sözleşmesi: admin'deki opsiyon adlarında aranan anahtar kelimeler.
+ * CoinConfigurator bunları "Opsiyon Sözleşmesi" prop'larıyla değiştirebilir; sepet özeti
+ * (CartDrawer, CartPage) yalnız bu varsayılanları kullanır.
+ */
+export const OPTION_CONTRACT = {
+  face1: "Yüz 1",
+  face2: "Yüz 2",
+  series: "Seri",
+  gender: "Cinsiyet",
+  bust: "Büst",
+  sarik: "Sarık",
+  name: "İsim",
+  date: "Tarih",
+  roman: "Roma Rakamı",
+  photos: "Fotoğraf",
+  backFace: "2. Yüz",
+  plating: "Kaplama",
+  consent: "Telif",
+  note: "Sipariş Notu",
+} as const;
+
 /** Opsiyon setindeki tüm opsiyonlar (çocuklar dahil, düzleştirilmiş). */
 export function allOptions(product: IkasProduct | null | undefined): IkasProductOption[] {
   const set = product?.productOptionSet;
@@ -37,8 +59,8 @@ export function allOptions(product: IkasProduct | null | undefined): IkasProduct
   return out;
 }
 
-/** Adı verilen tüm anahtar kelimeleri içeren ilk opsiyon. */
-export function findOption(options: IkasProductOption[], ...keywords: Array<string | undefined>): IkasProductOption | undefined {
+/** Adı verilen tüm anahtar kelimeleri içeren ilk opsiyon (ürün opsiyonu ya da sepet satırı opsiyonu). */
+export function findOption<T extends { name: string }>(options: T[], ...keywords: Array<string | undefined>): T | undefined {
   const keys = keywords.map((k) => normalizeKey(k ?? "")).filter(Boolean);
   if (!keys.length) return undefined;
   return options.find((o) => {
@@ -48,7 +70,7 @@ export function findOption(options: IkasProductOption[], ...keywords: Array<stri
 }
 
 /** Adı verilen tüm anahtar kelimeleri içeren tüm opsiyonlar. */
-export function findOptions(options: IkasProductOption[], ...keywords: Array<string | undefined>): IkasProductOption[] {
+export function findOptions<T extends { name: string }>(options: T[], ...keywords: Array<string | undefined>): T[] {
   const keys = keywords.map((k) => normalizeKey(k ?? "")).filter(Boolean);
   if (!keys.length) return [];
   return options.filter((o) => {

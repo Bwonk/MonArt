@@ -71,96 +71,9 @@
 .kese__list {
   list-style: none;
   margin: 0;
-  padding: 8px 22px;
+  padding: 4px 22px 12px;
   flex: 1;
   overflow-y: auto;
-}
-
-.kese-line {
-  display: grid;
-  grid-template-columns: 76px 1fr auto;
-  gap: 14px;
-  align-items: start;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--line);
-}
-.kese-line__thumb {
-  width: 76px;
-  height: 76px;
-  border-radius: var(--r-pill);
-  overflow: hidden;
-  border: 1px solid var(--line-strong);
-  background: var(--dark);
-  display: block;
-}
-.kese-line__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.kese-line__thumb-empty { display: block; width: 100%; height: 100%; background: var(--swatch-22k); opacity: .5; }
-
-.kese-line__body { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-.kese-line__name {
-  font-family: var(--f-deco);
-  font-size: 14px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--gold-light);
-  text-decoration: none;
-}
-.kese-line__opts {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  font-size: 12px;
-  line-height: 1.5;
-  color: var(--text-dim);
-}
-.kese-line__row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-top: 4px;
-}
-.kese-line__price {
-  font-family: var(--f-deco);
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--gold-light);
-}
-.kese-line__remove {
-  background: none;
-  border: none;
-  padding: 6px;
-  cursor: pointer;
-  color: var(--text-muted);
-  transition: color var(--dur);
-}
-.kese-line__remove:hover { color: var(--error); }
-
-.kese-qty {
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--r-card);
-}
-.kese-qty__btn {
-  background: none;
-  border: none;
-  width: 28px;
-  height: 28px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: var(--gold);
-}
-.kese-qty__btn:disabled { opacity: .35; cursor: not-allowed; }
-.kese-qty__btn .mon-icon { width: 14px; height: 14px; }
-.kese-qty__val {
-  min-width: 28px;
-  text-align: center;
-  font-family: var(--f-ui);
-  font-size: 13px;
-  font-weight: 600;
 }
 
 .kese__foot {
@@ -176,4 +89,12 @@
   justify-content: space-between;
 }
 .kese__checkout { margin-top: 4px; }
+
 .kese__view-cart { align-self: center; }
+
+@media (max-width: bp(5Xmvk6D0gV)) {
+  .kese__panel { width: 100vw; }
+  .kese__head { padding: 18px 16px 14px; }
+  .kese__list { padding: 0 16px 8px; }
+  .kese__foot { padding: 14px 16px 18px; }
+}

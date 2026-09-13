@@ -45,6 +45,11 @@ export function Header(props: Props) {
     viewCartButtonText = "Keseyi Gör",
     removeLabel = "Kaldır",
     quantityLabel = "Adet",
+    cartFrontLabel = "Ön",
+    cartBackLabel = "Arka",
+    cartPlatingLabel = "24 Ayar Altın Kaplama",
+    decreaseLabel = "Adedi azalt",
+    increaseLabel = "Adedi artır",
     backgroundColor = "#FFFFFF",
     blurBackground = true,
   } = props;
@@ -86,7 +91,12 @@ export function Header(props: Props) {
     viewCartButtonText,
     removeLabel,
     quantityLabel,
+    decreaseLabel,
+    increaseLabel,
     closeLabel,
+    frontLabel: cartFrontLabel,
+    backLabel: cartBackLabel,
+    platingLabel: cartPlatingLabel,
   };
 
   const goHome = (e: Event) => {

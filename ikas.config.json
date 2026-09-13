@@ -257,6 +257,47 @@
           "required": false,
           "defaultValue": true,
           "groupId": "appearance"
+        },
+        {
+          "name": "cartFrontLabel",
+          "displayName": "Ön Yüz Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ön",
+          "groupId": "cartTexts"
+        },
+        {
+          "name": "cartBackLabel",
+          "displayName": "Arka Yüz Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Arka",
+          "groupId": "cartTexts"
+        },
+        {
+          "name": "cartPlatingLabel",
+          "displayName": "Kaplama Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "description": "Kaplama opsiyonu işaretliyse satır başlığına eklenir",
+          "defaultValue": "24 Ayar Altın Kaplama",
+          "groupId": "cartTexts"
+        },
+        {
+          "name": "decreaseLabel",
+          "displayName": "Adet Azalt (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Adedi azalt",
+          "groupId": "cartTexts"
+        },
+        {
+          "name": "increaseLabel",
+          "displayName": "Adet Artır (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Adedi artır",
+          "groupId": "cartTexts"
         }
       ],
       "propGroups": [
@@ -3054,6 +3095,300 @@
         {
           "id": "misirImg",
           "name": "Mısır · Görseller"
+        },
+        {
+          "id": "appearance",
+          "name": "Görünüm"
+        }
+      ]
+    },
+    {
+      "id": "wnbxmerd-0bOGxJFtlY",
+      "name": "CartPage",
+      "entry": "./src/components/CartPage/index.tsx",
+      "styles": "./src/components/CartPage/styles.css",
+      "type": "section",
+      "props": [
+        {
+          "name": "eyebrow",
+          "displayName": "Üst Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "",
+          "groupId": "content"
+        },
+        {
+          "name": "title",
+          "displayName": "Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kese",
+          "groupId": "content"
+        },
+        {
+          "name": "itemsLabel",
+          "displayName": "Adet Birimi",
+          "type": "TEXT",
+          "required": false,
+          "description": "Başlık yanındaki sayı: (2 parça)",
+          "defaultValue": "parça",
+          "groupId": "content"
+        },
+        {
+          "name": "loadingText",
+          "displayName": "Yükleniyor Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kese hazırlanıyor…",
+          "groupId": "content"
+        },
+        {
+          "name": "emptyText",
+          "displayName": "Boş Kese Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kesen henüz boş.",
+          "groupId": "content"
+        },
+        {
+          "name": "emptyHint",
+          "displayName": "Boş Kese Alt Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Atölyede ilk eserini şekillendir.",
+          "groupId": "content"
+        },
+        {
+          "name": "emptyButtonText",
+          "displayName": "Boş Kese Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Atölyeye Git",
+          "groupId": "content"
+        },
+        {
+          "name": "continueText",
+          "displayName": "Geri Dönüş Linki Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Atölyeye Dön",
+          "groupId": "content"
+        },
+        {
+          "name": "continueLink",
+          "displayName": "Geri Dönüş Linki",
+          "type": "LINK",
+          "required": false,
+          "description": "Boşsa ana sayfaya gider. Boş kese butonu da bunu kullanır.",
+          "groupId": "content"
+        },
+        {
+          "name": "frontLabel",
+          "displayName": "Ön Yüz Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ön",
+          "groupId": "line"
+        },
+        {
+          "name": "backLabel",
+          "displayName": "Arka Yüz Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Arka",
+          "groupId": "line"
+        },
+        {
+          "name": "platingLabel",
+          "displayName": "Kaplama Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "description": "Kaplama opsiyonu işaretliyse satır başlığına eklenir",
+          "defaultValue": "24 Ayar Altın Kaplama",
+          "groupId": "line"
+        },
+        {
+          "name": "detailsLabel",
+          "displayName": "Detaylar Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "description": "Boş bırakılırsa açılır liste gizlenir",
+          "defaultValue": "Tasarım Detayları",
+          "groupId": "line"
+        },
+        {
+          "name": "yesText",
+          "displayName": "İşaretli Kutu Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Evet",
+          "groupId": "line"
+        },
+        {
+          "name": "filesText",
+          "displayName": "Dosya Birimi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "dosya",
+          "groupId": "line"
+        },
+        {
+          "name": "removeLabel",
+          "displayName": "Kaldır (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kaldır",
+          "groupId": "line"
+        },
+        {
+          "name": "quantityLabel",
+          "displayName": "Adet (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Adet",
+          "groupId": "line"
+        },
+        {
+          "name": "decreaseLabel",
+          "displayName": "Adet Azalt (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Adedi azalt",
+          "groupId": "line"
+        },
+        {
+          "name": "increaseLabel",
+          "displayName": "Adet Artır (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Adedi artır",
+          "groupId": "line"
+        },
+        {
+          "name": "summaryTitle",
+          "displayName": "Özet Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sipariş Özeti",
+          "groupId": "summary"
+        },
+        {
+          "name": "subtotalLabel",
+          "displayName": "Ara Toplam Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ara Toplam",
+          "groupId": "summary"
+        },
+        {
+          "name": "totalLabel",
+          "displayName": "Toplam Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Toplam",
+          "groupId": "summary"
+        },
+        {
+          "name": "shippingNote",
+          "displayName": "Kargo Notu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kargo ücreti ödeme adımında hesaplanır.",
+          "groupId": "summary"
+        },
+        {
+          "name": "checkoutButtonText",
+          "displayName": "Ödeme Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sikke Sikke Öde :)",
+          "groupId": "summary"
+        },
+        {
+          "name": "couponLabel",
+          "displayName": "Kupon Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kupon veya Sertifika Kodu",
+          "groupId": "coupon"
+        },
+        {
+          "name": "couponPlaceholder",
+          "displayName": "Kupon Yer Tutucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "MONETARTS-XXXX-XXXX-XXXX",
+          "groupId": "coupon"
+        },
+        {
+          "name": "couponApplyText",
+          "displayName": "Uygula Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Uygula",
+          "groupId": "coupon"
+        },
+        {
+          "name": "couponApplyingText",
+          "displayName": "Uygulanıyor Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Uygulanıyor…",
+          "groupId": "coupon"
+        },
+        {
+          "name": "couponRemoveText",
+          "displayName": "Kuponu Kaldır",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kaldır",
+          "groupId": "coupon"
+        },
+        {
+          "name": "couponAppliedLabel",
+          "displayName": "Uygulanan Kod Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Uygulanan kod",
+          "groupId": "coupon"
+        },
+        {
+          "name": "couponErrorText",
+          "displayName": "Kupon Hata Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kod geçersiz ya da bu keseye uygulanamıyor.",
+          "groupId": "coupon"
+        },
+        {
+          "name": "backgroundColor",
+          "displayName": "Arka Plan Rengi",
+          "type": "COLOR",
+          "required": false,
+          "defaultValue": "#FFFFFF",
+          "groupId": "appearance"
+        }
+      ],
+      "propGroups": [
+        {
+          "id": "content",
+          "name": "İçerik",
+          "description": "Başlık, boş kese ve geri dönüş linki"
+        },
+        {
+          "id": "line",
+          "name": "Satır Metinleri",
+          "description": "Kişiselleştirme özeti ve satır kontrolleri"
+        },
+        {
+          "id": "summary",
+          "name": "Özet",
+          "description": "Ara toplam, toplam ve ödeme butonu"
+        },
+        {
+          "id": "coupon",
+          "name": "Kupon",
+          "description": "Kupon / hediye sertifikası kodu alanı"
         },
         {
           "id": "appearance",

@@ -40,7 +40,7 @@ Editor URL'sini tarayıcıda açık tut. MCP editor araçları ancak editor bağ
 | 3 | CoinConfigurator (canvas, iki yüz, hediye/redeem, mühür ve foto rehberi modalları) | ✅ bitti |
 | 4 | Konfigüratör canlı test + ürün bağlama + ürün sayfası | ✅ bitti (fotoğraf yükleme ve sipariş satırı elle testi Faz 11 QA'ya ertelendi) |
 | 5 | Koleksiyon galerisi + Lightbox | ✅ bitti (yayın önizlemesinde uçtan uca test edildi) |
-| 6 | Sepet sayfası + drawer'da kişiselleştirme özeti | ⏳ |
+| 6 | Sepet sayfası + drawer'da kişiselleştirme özeti | ✅ bitti (editör önizlemesinde masaüstü, 380px, Day/Night, kupon ve adet test edildi) |
 | 7 | Statik içerik sayfaları: Hakkımızda, SSS, 7 hukuki doküman + Görsel Hakları | ⏳ |
 | 8 | Formlar: İletişim + Özel Tasarım talebi | ⏳ |
 | 9 | Marka Elçileri sayfası (karar gerekli) | ⏳ |
@@ -128,6 +128,7 @@ Bunlar önceki fazlarda hata yapılıp düzeltilen konular. Her fazda geçerli.
 | FaqItem | child | `wnbxmerd-w7QzXBrKkP` |
 | CoinConfigurator | section | `wnbxmerd-5HM2GavfPR` |
 | CollectionGallery | section | `wnbxmerd-Cv0kAyhqw9` |
+| CartPage | section | `wnbxmerd-0bOGxJFtlY` |
 
 Özel enum "Seri" (`roma` / `osmanli` / `misir`): `5rzSm7oLdF`. SeriesCard'ın `seriesKey` prop'u bunu kullanır.
 
@@ -146,6 +147,8 @@ Bunlar önceki fazlarda hata yapılıp düzeltilen konular. Her fazda geçerli.
 **Ürün sayfası** — page id `NnPJ9lYfHR` (PRODUCT). Sıra: Header `pqNSy4UC7g` · CoinConfigurator `vCT6WKmBTD` · Footer `Z6bMdp2VzT`. Konfigüratörün `product` prop'u `usePageData: true`; diğer 160 değer Ana sayfadan kopyalandı. `giftProduct` boş.
 
 **Koleksiyon sayfası** — page id `zQWeWMtpEV` (CUSTOM, slug `koleksiyon`, vitrinde **`/pages/koleksiyon`**; CUSTOM sayfalar `/pages/<slug>` altında yayınlanır). Sıra: Header `E2CEgC1Ty0` · CollectionGallery `KmMWViHQSH` · Footer `tyvOc9iBPx`. Galerideki 12 sikke görseli konfigüratörün yüklü görselleriyle aynı id'ler. Ana sayfadaki Hero "Koleksiyonları İncele" butonu ve 3 seri kartı bu sayfaya gider (kartlar `?seri=` ekler). Footer'ın Koleksiyon sütunu da bağlı.
+
+**Sepet sayfası** — page id `lBaF5XFhjB` (CART). Sıra: Header `mYelHbcKWW` · CartPage `uZr5rmv1FA` · Footer `w5yumDkrtk`. "Atölyeye Dön" (`continueLink`) EXTERNAL `/#atolye`; boşsa INDEX'e gider. Drawer ve sayfa aynı `CartLine` + `CoinCheckoutButton` sub-component'lerini ve `src/utils/cart-summary.ts` özetini kullanır. Özet, opsiyon adlarını `OPTION_CONTRACT` (`src/utils/ikas-options.ts`) varsayılanlarıyla eşler; konfigüratördeki "Opsiyon Sözleşmesi" prop'ları değiştirilirse sepet özeti eşleşmez. Satır küçük resmi tasarıma göre seçilir: konfigüratör sikke görsellerinin haritasını localStorage'a (`monart_artwork`, `src/utils/coin-thumbs.ts`) yazar, satır 1. yüzün seri/cinsiyet/büst/sarık ve materyal+kaplama bilgisiyle aynı görseli bulur; harita yoksa ürün görseline düşer. Her iki ürünün tüm varyantlarında yedek görsel olarak MA monogram sikkesi var (admin'den yüklendi; ödeme sayfası ve admin bunu gösterir).
 
 **Mağaza** — `dev-monoart.myikas.com`, storefront `a9b97462-bc96-4c36-87c0-1cf0d37313e9`, vitrin satış kanalı `ed3c0b49-3edd-4b05-acf5-3f0899e03cf5`. Kategori yok.
 
@@ -174,7 +177,6 @@ Bunlar önceki fazlarda hata yapılıp düzeltilen konular. Her fazda geçerli.
 | Fotoğraf yükleme editör önizlemesinde otomasyonla denenemedi (iç iframe). Kullanıcı elle test edecek: 5 MB/tür reddi, yükleme, sipariş satırında dosya URL'leri | CoinConfigurator | 11 (QA) |
 | Test siparişi verilip sipariş satırında tüm opsiyon değerlerinin göründüğü kontrol edilmedi (Faz 4 bitti kriteri, kullanıcı elle yapacak) | CoinConfigurator | 11 (QA) |
 | %100 kupon sepetteki **tüm** Sikke Kolye adetlerini sıfırlıyor. Gerçek sertifika için sertifika bedeli kadar Sabit Tutar indirim ya da adet sınırı seçilmeli | admin | 11 |
-| Sepet satırında CHECKBOX değeri "true" yazıyor; kişiselleştirme özeti okunur hale getirilecek | CartDrawer | 6 |
 | Fiyatlar "₺ 22,000.00" biçiminde; mağaza para birimi biçimi admin ayarlarından TR'ye çevrilmeli | admin | 11 |
 | "Kolyeni Tasarla" CTA'sı `#atolye` çapasına gitmeli | Hero | 11 |
 | Footer'daki birçok link INDEX'e gidiyor (Koleksiyon sütunu Faz 5'te bağlandı) | Footer | 7 ve 11 |
@@ -182,8 +184,8 @@ Bunlar önceki fazlarda hata yapılıp düzeltilen konular. Her fazda geçerli.
 | Ana vitrinde (`dev-monoart.myikas.com`) hâlâ eski tema var ve `<html lang="en">` dönüyor; büyük harfe çevrilen Türkçe metinde i → I oluyor. Bizim temanın önizlemesi `lang="tr"`. Ana temaya yayından sonra doğrula | tüm section'lar | 11 |
 | Galeride 22 Ayar, Model ve Paketleme görselleri yok, yer tutucu görünüyor. Merchant yükleyecek; istenirse `showEmptyCells` kapatılır | CollectionGallery | içerik |
 | BespokeCall butonu şimdilik `mailto` | BespokeCall | 8 |
+| Sepet sayfası "Atölyeye Dön" EXTERNAL `/#atolye`; dil routing prefix'i almaz | CartPage | 11 |
 | Header nav EXTERNAL `/#craft` gibi linklerle çalışıyor | Header | 11 |
-| Sepet drawer'ı satırda kişiselleştirme opsiyonlarını göstermiyor | CartDrawer | 6 |
 | Hangi referans modülleri atılacak: Atölye/kota, Siparişlerim, Welcome, Quota, Elçiler, Özel Tasarım formu | — | 8 ve 9 başında karar |
 
 ---

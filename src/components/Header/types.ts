@@ -33,4 +33,10 @@ export interface Props {
   quantityLabel?: string;
   backgroundColor?: string;
   blurBackground?: boolean;
+  cartFrontLabel?: string;
+  cartBackLabel?: string;
+  /** Kaplama opsiyonu işaretliyse satır başlığına eklenir */
+  cartPlatingLabel?: string;
+  decreaseLabel?: string;
+  increaseLabel?: string;
 }

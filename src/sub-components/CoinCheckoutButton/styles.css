@@ -1,0 +1,87 @@
+/* ===== "Sikke Sikke Öde" — referans .btn-coin-checkout ===== */
+.coin-pay {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  padding: 16px 22px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(201, 168, 76, 0.6);
+  background: linear-gradient(180deg, #1a160f 0%, #0c0a06 100%);
+  color: #f4d27a;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform var(--dur, .25s) ease, box-shadow var(--dur, .25s) ease, border-color var(--dur, .25s) ease;
+}
+.coin-pay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(244, 210, 122, 0.18) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.8s ease;
+  pointer-events: none;
+}
+.coin-pay:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: rgba(244, 210, 122, 0.95);
+  box-shadow: 0 12px 30px -10px rgba(244, 210, 122, 0.18), 0 0 0 1px rgba(244, 210, 122, 0.18);
+}
+.coin-pay:hover:not(:disabled)::before { transform: translateX(120%); }
+.coin-pay:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.coin-pay:disabled { opacity: 0.45; cursor: not-allowed; }
+.coin-pay:disabled::before { display: none; }
+.coin-pay[aria-busy="true"] { opacity: 0.7; cursor: progress; }
+
+.coin-pay__label {
+  position: relative;
+  z-index: 1;
+  font-family: var(--f-ui);
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #f4d27a;
+}
+.coin-pay__smile {
+  display: inline-block;
+  margin-left: 6px;
+  letter-spacing: 0;
+  color: #e8c265;
+  transition: transform 0.4s ease;
+}
+.coin-pay:hover:not(:disabled) .coin-pay__smile { transform: rotate(-12deg) scale(1.1); }
+
+.coin-pay__icon {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  width: 64px;
+  height: 38px;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.65));
+}
+.coin-pay__icon svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.coin-pay__top,
+.coin-pay__lean {
+  transition: transform 0.45s cubic-bezier(.2, .7, .2, 1);
+  transform-origin: center;
+}
+.coin-pay:hover:not(:disabled) .coin-pay__top { transform: translate(-1px, -0.8px) rotate(-2deg); }
+.coin-pay:hover:not(:disabled) .coin-pay__lean { transform: rotate(22deg); transform-origin: 49px 32.5px; }
+
+@media (max-width: bp(5Xmvk6D0gV)) {
+  .coin-pay { padding: 14px 16px 12px; gap: 12px; }
+  .coin-pay__label { letter-spacing: 0.06em; }
+  .coin-pay__icon { width: 56px; height: 34px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coin-pay,
+  .coin-pay::before,
+  .coin-pay__smile,
+  .coin-pay__top,
+  .coin-pay__lean { transition: none; }
+}

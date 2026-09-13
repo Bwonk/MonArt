@@ -39,7 +39,8 @@ import {
   parseDesignQuery,
   DESIGN_PARAM_KEYS,
 } from "../../utils/coin";
-import { allOptions, findOption, findOptions, setChoiceByKeywords, setCheckbox, setText, isFile, optionExtraPrice } from "../../utils/ikas-options";
+import { OPTION_CONTRACT, allOptions, findOption, findOptions, setChoiceByKeywords, setCheckbox, setText, isFile, optionExtraPrice } from "../../utils/ikas-options";
+import { saveArtworkMap } from "../../utils/coin-thumbs";
 import CoinCanvas from "../../sub-components/CoinCanvas";
 import FaceDesigner from "../../sub-components/FaceDesigner";
 import SealModal from "../../sub-components/SealModal";
@@ -49,6 +50,8 @@ import { FlipIcon } from "../../sub-components/Icons";
 type GiftMode = "self" | "gift" | "redeem";
 const GIFT_CODE_RE = /^MONETARTS-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/;
 const FLIP_MS = 280;
+/** Sikke görseli prop anahtarları: romaMGold, osmanliFSilverNosarik … */
+const ARTWORK_KEY_RE = /^(roma|osmanli|misir)[MF](Gold|Silver)(Nobust|Nosarik)?$/;
 
 interface MaterialCard {
   key: MaterialKey;
@@ -173,20 +176,20 @@ export function CoinConfigurator(props: Props) {
     pgBody = "",
     pgCancel = "İptal",
     pgConfirm = "Devam",
-    optFace1 = "Yüz 1",
-    optFace2 = "Yüz 2",
-    optSeries = "Seri",
-    optGender = "Cinsiyet",
-    optBust = "Büst",
-    optSarik = "Sarık",
-    optName = "İsim",
-    optDate = "Tarih",
-    optRoman = "Roma Rakamı",
-    optPhotos = "Fotoğraf",
-    optBackFace = "2. Yüz",
-    optPlating = "Kaplama",
-    optConsent = "Telif",
-    optNote = "Sipariş Notu",
+    optFace1 = OPTION_CONTRACT.face1,
+    optFace2 = OPTION_CONTRACT.face2,
+    optSeries = OPTION_CONTRACT.series,
+    optGender = OPTION_CONTRACT.gender,
+    optBust = OPTION_CONTRACT.bust,
+    optSarik = OPTION_CONTRACT.sarik,
+    optName = OPTION_CONTRACT.name,
+    optDate = OPTION_CONTRACT.date,
+    optRoman = OPTION_CONTRACT.roman,
+    optPhotos = OPTION_CONTRACT.photos,
+    optBackFace = OPTION_CONTRACT.backFace,
+    optPlating = OPTION_CONTRACT.plating,
+    optConsent = OPTION_CONTRACT.consent,
+    optNote = OPTION_CONTRACT.note,
     anchorId = "atolye",
     backgroundColor = "#FFFFFF",
     closeLabel = "Kapat",
@@ -304,6 +307,17 @@ export function CoinConfigurator(props: Props) {
     }
     return null;
   };
+  // Sepet satırı küçük resimleri için görsel haritasını paylaş (bkz. utils/coin-thumbs.ts).
+  useEffect(() => {
+    const map: Record<string, string> = {};
+    for (const [key, value] of Object.entries(props as unknown as Record<string, unknown>)) {
+      if (!ARTWORK_KEY_RE.test(key)) continue;
+      const src = imgSrc(value as IkasImage | null | undefined);
+      if (src) map[key] = src;
+    }
+    saveArtworkMap(map);
+  }, [props]);
+
   const thumbs = useMemo<Record<Series, string | null>>(() => {
     const p = props as unknown as Record<string, IkasImage | null | undefined>;
     return { roma: imgSrc(p.romaMGold), osmanli: imgSrc(p.osmanliMGold), misir: imgSrc(p.misirMGold) };

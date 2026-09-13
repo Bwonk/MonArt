@@ -96,6 +96,8 @@ Kod değeri de anahtar kelimeyle seçer; değer adı şunları içermeli:
 
 Tüm değerler `IkasOrderLineItemOption.values[]` olarak sipariş satırına düşer; ek "custom property" yok. Fotoğraflar FILE opsiyonu üzerinden ikas CDN'e yüklenir (sepete eklerken `productOptionFileUpload`).
 
+Sepet çekmecesi ve sepet sayfası bu değerlerden okunur bir özet türetir (`src/utils/cart-summary.ts`): başlık `Seri · Cinsiyet · Materyal` (kaplama işaretliyse `· 24 Ayar Altın Kaplama`), meta `Ön: İsim · Roma rakamı` ve 2. yüz açıksa `Arka: …`. Sepet sayfasındaki "Tasarım Detayları" listesi tüm dolu opsiyonları gösterir; CHECKBOX "Evet", FILE "N dosya" olarak yazılır. Özet opsiyonları **varsayılan** sözleşme anahtarlarıyla (`OPTION_CONTRACT`) bulur. Admin'deki opsiyon adları yukarıdaki tabloya uymalı; konfigüratördeki "Opsiyon Sözleşmesi" prop'larını değiştirmek sepet özetini bozar.
+
 ---
 
 ## 3. Hediye modu
