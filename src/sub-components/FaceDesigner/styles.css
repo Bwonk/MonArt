@@ -170,6 +170,7 @@
 .fd__uploads { display: grid; gap: 10px; }
 .fd__uploads.is-locked { opacity: .5; pointer-events: none; }
 .fd__upload { position: relative; display: flex; align-items: center; padding: 0; }
+.fd__file-input { display: none !important; }
 .fd__upload-btn {
   display: flex;
   align-items: center;

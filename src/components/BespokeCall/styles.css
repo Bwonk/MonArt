@@ -15,7 +15,7 @@
   background: color-mix(in oklch, var(--gold) 6%, transparent);
 }
 .bespoke__eyebrow {
-  display: inline-block;
+  display: block;
   margin-bottom: 16px;
   font-family: var(--f-deco);
   font-size: 10.5px;
@@ -23,6 +23,7 @@
   text-transform: uppercase;
 }
 .bespoke__title {
+  display: block;
   margin: 0 0 14px;
   font-family: var(--f-deco);
   font-size: clamp(19px, 2.2vw, 25px);

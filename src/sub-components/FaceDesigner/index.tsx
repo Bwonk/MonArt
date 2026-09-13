@@ -291,7 +291,7 @@ export default function FaceDesigner(props: Props) {
             const file = state.photos[slot];
             return (
               <div key={slot} className={cx("mon-dropzone fd__upload", file && "is-filled")}>
-                <input ref={(el) => { fileRefs.current[slot] = el; }} type="file" accept="image/jpeg,image/png,image/webp" hidden onChange={(e) => onFile(slot, e)} />
+                <input ref={(el) => { fileRefs.current[slot] = el; }} type="file" className="fd__file-input" accept="image/jpeg,image/png,image/webp" hidden onChange={(e) => onFile(slot, e)} />
                 <button type="button" className="fd__upload-btn" onClick={() => void pickPhoto(slot)} disabled={photosLocked || disabled}>
                   <span className="fd__upload-icon" aria-hidden="true">↑</span>
                   <span className="fd__upload-text">

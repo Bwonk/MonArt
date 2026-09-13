@@ -47,6 +47,16 @@ export function findOption(options: IkasProductOption[], ...keywords: Array<stri
   });
 }
 
+/** Adı verilen tüm anahtar kelimeleri içeren tüm opsiyonlar. */
+export function findOptions(options: IkasProductOption[], ...keywords: Array<string | undefined>): IkasProductOption[] {
+  const keys = keywords.map((k) => normalizeKey(k ?? "")).filter(Boolean);
+  if (!keys.length) return [];
+  return options.filter((o) => {
+    const n = normalizeKey(o.name);
+    return keys.every((k) => n.includes(k));
+  });
+}
+
 /** CHOICE opsiyonunda, değeri anahtar kelimelerden biriyle eşleşen seçeneği tek seçili yapar. */
 export function setChoiceByKeywords(option: IkasProductOption | undefined, keywords: string[], exclude: string[] = []): void {
   if (!option || !isChoiceOption(option)) return;

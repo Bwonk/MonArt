@@ -284,7 +284,8 @@
     will-change: transform;
   }
   .cfg__face-label { display: none; }
-  .cfg__stage { grid-column: 2; grid-row: 1; width: 240px; height: 240px; max-width: none; margin: 0; justify-self: center; align-self: start; position: relative; z-index: 2; }
+  /* Sikke orta sütundan geniş; negatif yatay margin taşmayı iki yana eşit dağıtır (justify-self tek başına başa hizalıyor). */
+  .cfg__stage { grid-column: 2; grid-row: 1; width: 240px; height: 240px; max-width: none; margin: 0 calc((100% - 240px) / 2); justify-self: center; align-self: start; position: relative; z-index: 2; }
   .cfg__preview-actions { grid-column: 1; grid-row: 1; align-items: stretch; gap: 8px; }
   .cfg__flip, .cfg__clear { padding: 8px 10px; font-size: 8.5px; letter-spacing: 0.14em; justify-content: center; }
   .cfg__price-box { position: absolute; right: 18px; top: 58px; transform: translateY(-50%); margin: 0; padding: 0; border: none; text-align: right; }
@@ -301,6 +302,8 @@
   .cfg__mat-spec { grid-column: 2; grid-row: 2; margin-top: 3px; }
 }
 @media (max-width: bp(5Xmvk6D0gV)) {
+  .cfg__price-box { z-index: 3; }
+  .cfg__price { font-size: 17px; }
   .cfg__plate { grid-template-columns: 20px 1fr; row-gap: 8px; padding: 14px 15px; }
   .cfg__plate-price { grid-column: 2; justify-self: start; }
   .cfg__redeem-row { flex-direction: column; }

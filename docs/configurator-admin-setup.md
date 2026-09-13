@@ -60,7 +60,8 @@ Bir opsiyon "Yüz 1" **ve** "Seri" kelimelerini içeriyorsa 1. yüzün seri opsi
 
 | # | Opsiyon adı | Tip | Ayar | Fiyat |
 |---|---|---|---|---|
-| 1 | **Kaplama** (24 Ayar Altın Kaplama) | CHECKBOX | zorunlu değil | AMOUNT **3.000 ₺** (kod, 14K seçiliyken UI'da "Ücretsiz" gösterir ve 22K'da kartı gizler; ikas tarafında farklı fiyat isteniyorsa `otherPrices` ile para birimi bazında verilebilir) |
+| 1 | **Kaplama** (24 Ayar Altın Kaplama) | CHECKBOX | zorunlu değil | AMOUNT **3.000 ₺**. Gümüşte bu opsiyon işaretlenir; 22K'da kart gizlidir |
+| 1b | **Kaplama (14K)** (24 Ayar Altın Kaplama (14K)) | CHECKBOX | zorunlu değil | **ücretsiz**. ikas opsiyon fiyatı varyanta göre değişemediği için 14K'ya ayrı opsiyon açılır. Kod adında "Kaplama" geçen opsiyonlardan 14K'da en ucuzunu, gümüşte en pahalısını işaretler. Bu opsiyon yoksa 14K kartı "Ücretsiz" yerine gerçek fiyatı gösterir |
 | 2 | **2. Yüz** (2. Yüzü Kişiselleştir) | CHECKBOX | zorunlu değil | AMOUNT — referans materyale göre 8.000 / 14.000 / 24.000 ₺. ikas opsiyon fiyatı varyanta göre değişemez; **tek fiyat** girin (öneri 14.000 ₺) ya da RATIO (%15) kullanın; kod RATIO'yu varyant fiyatı üzerinden hesaplar |
 | 3 | **Sipariş Notu** | TEXT_AREA | max 400 | — |
 
@@ -114,9 +115,16 @@ Section'ın `giftProduct` prop'una bağlanır. "Miras Hediye Et" sekmesinde mate
 
 Referans akışta kod `MONETARTS-XXXX-XXXX-XXXX` biçimindedir. ikas'ta bu, **kupon kodu** olarak kurulur:
 
-1. Admin → Pazarlama → **Kuponlar** → yeni kupon, kod `MONETARTS-AB12-CD34-EF56` biçiminde (4+4+4 büyük harf/rakam; kod bu deseni doğrular).
-2. İndirim: **%100** (ya da sertifika bedeli kadar sabit tutar), yalnız "Sikke Kolye" ürününe, tek kullanımlık, kullanım sayısı 1.
+1. Admin → İndirimler → **Kampanyalar** → yeni kampanya, kupon kodu `MONETARTS-AB12-CD34-EF56` biçiminde (4+4+4 büyük harf/rakam; kod bu deseni doğrular). ikas kodu küçük harfle saklıyor; kod önce girildiği gibi, reddedilirse küçük harfle yeniden dener.
+2. İndirim ve kapsam:
+   - **Koşullar:** "Belirli Ürünler" → açılır listeden **Ürünler** → "Sikke Kolye" (tüm varyantlar).
+   - **Müşteriler:** "Tüm Kişiler". "Spesifik Müşteriler" boş bırakılırsa kupon kimseye indirim vermez.
+   - **Ayarlar:** satış kanalı kısıtı açıksa kurlarda **TRY** seçili olmalı.
+   - **Oran mı tutar mı:** %100 oran sepetteki **tüm** Sikke Kolye adetlerini sıfırlar (test sepetinde 4 adet birden ₺0 oldu). Tek sikke karşılansın isteniyorsa sertifika bedeli kadar **Sabit Tutar** indirim kullanın.
+   - Tek kullanımlık: kupon toplam limiti 1.
 3. Sertifika satışı sonrası kodu müşteriye e-posta/sertifika üzerinde iletin (manuel ya da ikas otomasyonu).
+
+Kampanyayı `createCampaign` (admin API) ile kurmayın ya da kurduktan sonra arayüzde kontrol edin: API ile verilen `PRODUCT` filtresi arayüzde tanınmadı, müşteri ve kur alanları boş kaldı ve kupon `COUPON_APPLIED_WITHOUT_DISCOUNT` hatası verdi.
 
 Kod tarafı: müşteri "Mirası Teslim Al" sekmesinde kodu girer → desen doğrulanır → sikke sepete eklenince `saveCouponCode` ile kupon sepete uygulanır. Kupon geçersizse `redeemFailedToast` gösterilir, ürün sepette kalır (müşteri ödeme adımında da kodu deneyebilir).
 
@@ -135,12 +143,15 @@ Alternatif: ikas **Hediye Kartı** ürünü; bu durumda redeem ödeme sayfasınd
 
 ## 5. Test listesi
 
-- [ ] Üç materyal kartı fiyatla listeleniyor; 22K'da kaplama kartı gizli; 14K'da "Ücretsiz".
-- [ ] Roma: isim üst yay, tarih Roma rakamı alt yay; büst kapalıyken görsel değişiyor.
-- [ ] Osmanlı: isim sağ kenar (Reem Kufi); sarık kapalıyken görsel değişiyor.
-- [ ] Mısır: canvas'a yazı çizilmiyor; hiyeroglif rehberi açılıyor.
-- [ ] "2. Yüzü Kişiselleştir" açılınca sikke çevriliyor, özet 2. yüzü listeliyor, fiyat artıyor.
-- [ ] Fotoğraf: 3 slot, 5 MB üstü ve jpg/png/webp dışı reddediliyor, rehber modalı ilk yüklemede açılıyor.
-- [ ] Telif kutusu işaretsizken "Keseye At" toast + kaydırma yapıyor.
-- [ ] Mühür modalı onaylanınca ürün sepete düşüyor, sepet çekmecesi açılıyor, sipariş satırında opsiyon değerleri + fotoğraf URL'leri görünüyor.
-- [ ] Hediye: sertifika ürünü sepete düşüyor. Redeem: geçerli kupon sepete uygulanıyor, geçersizde toast.
+Faz 4'te editör önizlemesinde (masaüstü ve 400 px) denendi. İşaretsizler elle test edilecek.
+
+- [x] Üç materyal kartı fiyatla listeleniyor; 22K'da kaplama kartı gizli; 14K'da "Ücretsiz".
+- [x] Roma: isim üst yay, tarih Roma rakamı alt yay; büst kapalıyken görsel değişiyor.
+- [x] Osmanlı: isim sağ kenar (Reem Kufi); sarık kapalıyken görsel değişiyor.
+- [x] Mısır: canvas'a yazı çizilmiyor; hiyeroglif rehberi açılıyor.
+- [x] "2. Yüzü Kişiselleştir" açılınca sikke çevriliyor, özet 2. yüzü listeliyor, fiyat artıyor.
+- [ ] Fotoğraf: 3 slot, 5 MB üstü ve jpg/png/webp dışı reddediliyor. Rehber modalı açılıyor (denendi); yükleme editörde otomasyonla denenemiyor.
+- [x] Telif kutusu işaretsizken "Keseye At" toast + kaydırma yapıyor.
+- [x] Mühür modalı onaylanınca ürün sepete düşüyor, sepet çekmecesi açılıyor, çekmece satırında opsiyon değerleri görünüyor.
+- [ ] Test siparişinde sipariş satırında opsiyon değerleri + fotoğraf URL'leri görünüyor.
+- [x] Hediye: sertifika ürünü sepete düşüyor. Redeem: geçerli kupon sepete uygulanıyor, geçersizde hata mesajı.

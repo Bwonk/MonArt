@@ -581,6 +581,7 @@
   outline: none;
   transition: border-color var(--dur), box-shadow var(--dur);
 }
+.mon-field::placeholder { color: var(--text-muted); }
 .mon-field:hover { border-color: var(--gold-dim); }
 .mon-field:focus { border-color: var(--gold); box-shadow: var(--sh-focus); }
 .mon-field.is-error { border-color: var(--error); box-shadow: 0 0 0 3px rgba(176,52,52,0.18); }

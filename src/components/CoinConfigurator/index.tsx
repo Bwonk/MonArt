@@ -36,7 +36,7 @@ import {
   materialFromLabel,
   dateToRoman,
 } from "../../utils/coin";
-import { allOptions, findOption, setChoiceByKeywords, setCheckbox, setText, isFile, optionExtraPrice } from "../../utils/ikas-options";
+import { allOptions, findOption, findOptions, setChoiceByKeywords, setCheckbox, setText, isFile, optionExtraPrice } from "../../utils/ikas-options";
 import CoinCanvas from "../../sub-components/CoinCanvas";
 import FaceDesigner from "../../sub-components/FaceDesigner";
 import SealModal from "../../sub-components/SealModal";
@@ -247,7 +247,9 @@ export function CoinConfigurator(props: Props) {
   }, [product?.id]);
 
   const options = useMemo(() => (optionsLoaded ? allOptions(product) : []), [product, optionsLoaded]);
-  const platingOpt = useMemo(() => findOption(options, optPlating), [options, optPlating]);
+  /* Kaplama: admin'de birden fazla "Kaplama" opsiyonu olabilir (ör. 14K için ücretsiz ayrı opsiyon).
+     14K'da en ucuzu, diğer materyallerde en pahalısı kullanılır. */
+  const platingOpts = useMemo(() => findOptions(options, optPlating).slice().sort((a, b) => (a.price ?? 0) - (b.price ?? 0)), [options, optPlating]);
   const backOpt = useMemo(() => findOption(options, optBackFace), [options, optBackFace]);
 
   /* ------------------------------------------------------------ türetilmiş değerler */
@@ -259,11 +261,15 @@ export function CoinConfigurator(props: Props) {
   const currencySymbol = variant?.prices?.[0]?.currencySymbol ?? "₺";
 
   const basePrice = variant ? getProductVariantFinalPrice(variant) : null;
+  const platingOpt = platingOpts.length ? (material === "14k" ? platingOpts[0] : platingOpts[platingOpts.length - 1]) : undefined;
   const platingExtra = basePrice != null && isPlated ? optionExtraPrice(platingOpt, currencyCode, basePrice) : 0;
   const backExtra = basePrice != null && backEnabled ? optionExtraPrice(backOpt, currencyCode, basePrice) : 0;
   const totalPrice = basePrice != null ? basePrice + platingExtra + backExtra : null;
   const totalText = totalPrice != null ? formatCurrency(totalPrice, currencyCode, currencySymbol) : null;
-  const platingPriceText = platingOpt && basePrice != null ? formatCurrency(optionExtraPrice(platingOpt, currencyCode, basePrice), currencyCode, currencySymbol) : null;
+  const platingUnitPrice = platingOpt && basePrice != null ? optionExtraPrice(platingOpt, currencyCode, basePrice) : null;
+  const platingPriceText = platingUnitPrice != null && platingUnitPrice > 0 ? `+${formatCurrency(platingUnitPrice, currencyCode, currencySymbol)}` : null;
+  /* "Ücretsiz" yalnız ikas tarafında da ücretsizse gösterilir; aksi halde gerçek fiyat yazılır. */
+  const platingLabel = platingOpt ? (platingUnitPrice === 0 ? platingFreeText : platingPriceText) : material === "14k" ? platingFreeText : null;
   const backPriceText = backOpt && basePrice != null ? formatCurrency(optionExtraPrice(backOpt, currencyCode, basePrice), currencyCode, currencySymbol) : null;
 
   const materialNames: Record<MaterialKey, string> = { silver: materialSilverName, "14k": material14kName, "22k": material22kName };
@@ -445,7 +451,7 @@ export function CoinConfigurator(props: Props) {
       [optFace1, front, true],
       [optFace2, back, backEnabled],
     ];
-    setCheckbox(platingOpt, isPlated);
+    for (const o of platingOpts) setCheckbox(o, isPlated && o === platingOpt);
     setCheckbox(backOpt, backEnabled);
     setText(findOption(options, optNote), note);
     for (const [prefix, f, active] of faces) {
@@ -463,7 +469,7 @@ export function CoinConfigurator(props: Props) {
   };
   useEffect(() => {
     syncOptions();
-  }, [options, front, back, backEnabled, isPlated, note]);
+  }, [options, front, back, backEnabled, isPlated, note, platingOpt]);
 
   /* ------------------------------------------------------------ özet */
   const genderLabel = (f: FaceState) => (f.gender === "M" ? props.genderMale ?? "♂ Bay" : props.genderFemale ?? "♀ Bayan");
@@ -524,7 +530,9 @@ export function CoinConfigurator(props: Props) {
         return;
       }
       if (redeemCode && cartStore.cart) {
-        const r = await saveCouponCode(cartStore.cart, redeemCode);
+        let r = await saveCouponCode(cartStore.cart, redeemCode);
+        /* ikas kupon kodlarını küçük harfle saklayabiliyor; büyük harfle reddedilirse küçük harfle yeniden dene. */
+        if (!r.success && cartStore.cart) r = await saveCouponCode(cartStore.cart, redeemCode.toLocaleLowerCase("en-US"));
         if (!r.success) showToast(redeemFailedToast);
         setRedeemCode(null);
         setRedeemInput("");
@@ -533,6 +541,9 @@ export function CoinConfigurator(props: Props) {
       if (optionSet) initProductOptionSetValues(optionSet);
       showToast(addedToast);
       window.dispatchEvent(new CustomEvent("ikas:open-cart-sidebar"));
+    } catch (err) {
+      console.error("[CoinConfigurator] addToCart", err);
+      showToast(cartErrorText);
     } finally {
       setAdding(false);
     }
@@ -551,6 +562,9 @@ export function CoinConfigurator(props: Props) {
       }
       showToast(giftAddedToast);
       window.dispatchEvent(new CustomEvent("ikas:open-cart-sidebar"));
+    } catch (err) {
+      console.error("[CoinConfigurator] addGift", err);
+      showToast(cartErrorText);
     } finally {
       setAdding(false);
     }
@@ -648,7 +662,7 @@ export function CoinConfigurator(props: Props) {
                   <span className="cfg__plate-name">{platingTitle}</span>
                   <span className="cfg__plate-desc">{material === "14k" ? platingDesc14k : platingDescSilver}</span>
                 </span>
-                <span className={cx("cfg__plate-price", material === "14k" && "is-free")}>{material === "14k" ? platingFreeText : platingPriceText ? `+${platingPriceText}` : ""}</span>
+                {platingLabel && <span className={cx("cfg__plate-price", platingLabel === platingFreeText && "is-free")}>{platingLabel}</span>}
               </label>
             )}
           </section>

@@ -54,7 +54,8 @@
   max-height: calc(100vh - 56px);
 }
 .seal__mark {
-  display: inline-flex;
+  display: flex;
+  margin-inline: auto;
   width: 56px;
   height: 56px;
   margin-bottom: 14px;
@@ -63,6 +64,7 @@
 }
 .seal__mark svg { width: 100%; height: 100%; }
 .seal__title {
+  display: block;
   margin: 0 0 14px;
   font-family: var(--f-deco);
   font-weight: 700;

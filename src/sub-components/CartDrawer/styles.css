@@ -12,6 +12,7 @@
   transition: opacity var(--dur, .25s) ease;
 }
 .kese.is-open .kese__backdrop { opacity: 1; }
+.kese.is-open .kese__panel { transform: none; }
 
 .kese__panel {
   position: absolute;

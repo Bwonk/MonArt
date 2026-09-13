@@ -103,6 +103,7 @@
 .series-card__flip:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
 .series-card__name {
+  display: block;
   margin: 0 0 4px;
   font-family: var(--f-deco);
   font-weight: 700;
