@@ -6,4 +6,6 @@ export interface Props {
   showNumbers?: boolean;
   anchorId?: string;
   backgroundColor?: string;
+  /** Bu section sayfanın ilk başlığıysa açın (ör. SSS sayfası). Ana sayfada kapalı kalmalı. */
+  titleAsH1?: boolean;
 }

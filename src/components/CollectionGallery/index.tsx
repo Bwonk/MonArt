@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "preact/hooks";
 import { Router, getDefaultSrc, createMediaSrcset, IkasImage } from "@ikas/bp-storefront";
 import { Props } from "./types";
 import { useSectionTheme, cx } from "../../utils/theme-mode";
-import { linkAttrs, withQuery } from "../../utils/links";
+import { linkAttrs, linkHref, withQuery } from "../../utils/links";
 import { SERIES, Series, Gender, MaterialKey, designQuery, parseSeries } from "../../utils/coin";
 import Lightbox, { LightboxItem } from "../../sub-components/Lightbox";
 
@@ -125,7 +125,7 @@ export function CollectionGallery(props: Props) {
 
   const colLabel: Record<ColKey, string> = { Male: colMale, Female: colFemale, Model: colModel, Packaging: colPackaging };
   const rowLabel: Record<RowKey, string> = { Silver: rowSilver, Gold14: row14k, Gold22: row22k };
-  const designHref = designLink?.href || "";
+  const designHref = linkHref(designLink) || "";
 
   const cells: Cell[] = [];
   const lbItems: LightboxItem[] = [];

@@ -916,6 +916,14 @@
           "type": "COLOR",
           "required": false,
           "defaultValue": "#FFFFFF"
+        },
+        {
+          "name": "titleAsH1",
+          "displayName": "Başlık Sayfanın Ana Başlığı (h1)",
+          "type": "BOOLEAN",
+          "required": false,
+          "description": "Bu section sayfanın ilk başlığıysa açın (ör. Hakkımızda). Ana sayfada kapalı kalmalı.",
+          "defaultValue": false
         }
       ]
     },
@@ -1025,6 +1033,14 @@
           "type": "COLOR",
           "required": false,
           "defaultValue": "#FFFFFF"
+        },
+        {
+          "name": "titleAsH1",
+          "displayName": "Başlık Sayfanın Ana Başlığı (h1)",
+          "type": "BOOLEAN",
+          "required": false,
+          "description": "Bu section sayfanın ilk başlığıysa açın (ör. SSS sayfası). Ana sayfada kapalı kalmalı.",
+          "defaultValue": false
         }
       ]
     },

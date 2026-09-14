@@ -6,4 +6,6 @@ export interface Props {
   body?: string;
   anchorId?: string;
   backgroundColor?: string;
+  /** Bu section sayfanın ilk başlığıysa açın (ör. Hakkımızda). Ana sayfada kapalı kalmalı. */
+  titleAsH1?: boolean;
 }

@@ -9,8 +9,10 @@ export function OriginStory(props: Props) {
     body = "",
     anchorId = "craft",
     backgroundColor = "#FFFFFF",
+    titleAsH1 = false,
   } = props;
   const theme = useSectionTheme();
+  const Title = titleAsH1 ? "h1" : "h2";
 
   return (
     <section
@@ -21,7 +23,7 @@ export function OriginStory(props: Props) {
       <div className="origin__inner">
         {eyebrow && <div className="mon-eyebrow origin__eyebrow">{eyebrow}</div>}
         {(title || titleAccent) && (
-          <h2 className="origin__title">
+          <Title className="origin__title">
             {title}
             {titleAccent && (
               <>
@@ -29,7 +31,7 @@ export function OriginStory(props: Props) {
                 <em className="origin__accent">{titleAccent}</em>
               </>
             )}
-          </h2>
+          </Title>
         )}
         {body && <div className="origin__plaque" dangerouslySetInnerHTML={{ __html: body }} />}
       </div>

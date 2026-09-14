@@ -60,6 +60,7 @@
   line-height: 1.5;
   color: var(--text-dim);
   text-decoration: none;
+  overflow-wrap: anywhere; /* uzun e-posta ~880px'te satırı taşırıyordu */
   transition: color var(--dur);
 }
 .mon-footer__link:hover { color: var(--gold-light); }

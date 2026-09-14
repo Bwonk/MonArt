@@ -436,6 +436,7 @@
   line-height: 1.2;
   transition: transform var(--dur), box-shadow var(--dur), background var(--dur), border-color var(--dur), color var(--dur);
 }
+.mon-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 .mon-btn--lg { padding: 16px 32px; font-size: var(--fs-btn-lg); }
 
 .mon-btn--gold {                     /* Birincil CTA */

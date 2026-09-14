@@ -50,7 +50,8 @@
   backdrop-filter: blur(10px);
 }
 .mon-header.is-glass.mon-night .mon-header__bar {
-  background: var(--header-bg);
+  /* Sayfa zemini (body) beyaz; en üstte cam bar onu gösterip griye çalıyordu. Altına gece zemini. */
+  background: linear-gradient(var(--header-bg), var(--header-bg)), var(--bg-page);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
 }

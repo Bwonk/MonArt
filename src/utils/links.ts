@@ -1,9 +1,20 @@
-import type { IkasNavigationLink } from "@ikas/bp-storefront";
+import { withRoutePrefix, type IkasNavigationLink } from "@ikas/bp-storefront";
+
+/**
+ * Link href'i dil routing'ine göre düzeltir. PAGE linkleri prefix'i zaten taşır; EXTERNAL
+ * göreli linkler (`/#atolye`, `/pages/koleksiyon?seri=roma`) taşımaz. `withRoutePrefix`
+ * idempotent, mutlak URL / mailto / tel'e dokunmaz.
+ */
+export function linkHref(link: IkasNavigationLink | null | undefined): string | undefined {
+  const href = link?.href;
+  if (!href) return undefined;
+  return href.startsWith("/") ? withRoutePrefix(href) : href;
+}
 
 /** LINK / LIST_OF_LINK öğesi için <a> öznitelikleri (yeni sekme güvenli). */
 export function linkAttrs(link: IkasNavigationLink | null | undefined) {
   return {
-    href: link?.href || undefined,
+    href: linkHref(link),
     target: link?.openInNewTab ? "_blank" : undefined,
     rel: link?.openInNewTab ? "noopener noreferrer" : undefined,
   };

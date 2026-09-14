@@ -10,8 +10,10 @@ export function Faq(props: Props) {
     showNumbers = true,
     anchorId = "sss",
     backgroundColor = "#FFFFFF",
+    titleAsH1 = false,
   } = props;
   const theme = useSectionTheme();
+  const Title = titleAsH1 ? "h1" : "h2";
   const list = (items as any[]) ?? [];
 
   return (
@@ -22,7 +24,7 @@ export function Faq(props: Props) {
     >
       <div className="faq__inner">
         {eyebrow && <div className="mon-eyebrow faq__eyebrow">{eyebrow}</div>}
-        {title && <h2 className="faq__title">{title}</h2>}
+        {title && <Title className="faq__title">{title}</Title>}
         {list.length > 0 && (
           <div className="faq__list">
             <IkasComponentRenderer id="faq-items" components={list} parentProps={parentProps} />
