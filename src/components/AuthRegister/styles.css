@@ -1,0 +1,10 @@
+/* ===== Kayıt sayfası — düzen AuthLayout'ta ===== */
+.auth {
+  width: 100%;
+  padding: 0 var(--gutter, 28px);
+  background: var(--bg-page);
+  color: var(--text);
+}
+@media (max-width: bp(5pw2fQi7Yr)) {
+  .auth { padding: 0 var(--gutter-m, 16px); }
+}

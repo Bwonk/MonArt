@@ -1,0 +1,23 @@
+/* ===== Şifre alanı ===== */
+.pwf { position: relative; }
+.pwf__input { padding-right: 48px; }
+.pwf__toggle {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  transform: translateY(-50%);
+  color: var(--gold);
+  background: none;
+  border: 0;
+  border-radius: var(--r-btn, 1px);
+  cursor: pointer;
+  transition: color var(--dur, .2s);
+}
+.pwf__toggle:hover { color: var(--gold-light); }
+.pwf__toggle:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
+.pwf__icon { width: 18px; height: 18px; }

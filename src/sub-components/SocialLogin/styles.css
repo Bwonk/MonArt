@@ -1,0 +1,50 @@
+/* ===== Sosyal giriş ===== */
+.sl {
+  display: grid;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.sl__buttons {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+}
+.sl__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 10px 14px;
+  font-family: var(--f-body);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink);
+  background: var(--bg-page);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-btn, 1px);
+  cursor: pointer;
+  transition: border-color var(--dur, .2s), background var(--dur, .2s);
+}
+.sl__btn:hover { border-color: var(--gold); background: var(--surface-hover); }
+.sl__btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.sl__icon { flex: none; }
+
+.sl__divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--f-ui);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+}
+.sl__divider::before,
+.sl__divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}

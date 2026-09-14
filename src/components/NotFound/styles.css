@@ -1,0 +1,100 @@
+/* ===== 404 · Sayfa bulunamadı ===== */
+.nf {
+  width: 100%;
+  min-height: 72vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 96px var(--gutter, 28px);
+  background: var(--bg-page);
+  color: var(--text);
+}
+.nf__inner {
+  max-width: var(--w-copy, 640px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.nf__eyebrow {
+  display: block;
+  margin-bottom: 18px;
+}
+
+/* Hata kodu: Cinzel altın gradyan, "0" yerine dönen sikke */
+.nf__code {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.06em;
+  margin: 0 0 22px;
+  font-family: var(--f-deco);
+  font-weight: 600;
+  font-size: clamp(96px, 16vw, 176px);
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+.nf__coin {
+  display: inline-block;
+  width: 0.86em;
+  height: 0.86em;
+  perspective: 600px;
+}
+.nf__coin-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: nf-spin 9s linear infinite;
+  filter: drop-shadow(0 10px 18px rgba(90, 67, 16, 0.22));
+}
+@keyframes nf-spin {
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(360deg); }
+}
+
+.nf__title {
+  display: block;
+  margin: 0 0 16px;
+  font-family: var(--f-deco);
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--heading);
+  text-wrap: balance;
+}
+.nf__text {
+  max-width: 500px;
+  margin: 0 0 34px;
+  font-family: var(--f-body);
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.nf__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+.nf__btn {
+  min-width: 220px;
+  padding: 16px 32px;
+}
+.nf__btn.mon-btn--outline { padding: 15px 31px; }
+.nf__btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+@media (max-width: bp(5Xmvk6D0gV)) {
+  .nf { min-height: 64vh; padding: 64px var(--gutter-m, 16px); }
+  .nf__text { font-size: 14px; margin-bottom: 28px; }
+  .nf__actions { flex-direction: column; align-self: stretch; }
+  .nf__btn { width: 100%; min-width: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nf__coin-img { animation: none; }
+}

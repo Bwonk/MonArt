@@ -1,0 +1,161 @@
+/* ===== Üyelik sayfaları ortak düzeni (Giriş, Kayıt, Şifre, Doğrulama) ===== */
+.au {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: calc(var(--header-h, 84px) * 0.5 + 24px) 0 var(--section-y, 96px);
+}
+
+/* ---------- Başlık ---------- */
+.au__head {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.au__eyebrow {
+  display: block;
+  margin-bottom: 14px;
+  font-family: var(--f-deco);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.au__title {
+  display: block;
+  margin: 0;
+  font-family: var(--f-deco);
+  font-size: clamp(26px, 3.4vw, 38px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--heading);
+  text-wrap: balance;
+}
+.au__intro {
+  max-width: 420px;
+  margin: 14px auto 0;
+  font-family: var(--f-body);
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--text);
+  text-wrap: pretty;
+}
+
+/* ---------- Kart ---------- */
+.au__card {
+  padding: 34px 36px 32px;
+  background: var(--dark);
+  border: 1px solid var(--line-strong);
+  border-top: 2px solid var(--gold);
+  border-radius: var(--r-card, 2px);
+}
+.au__form {
+  display: grid;
+  gap: 20px;
+}
+
+/* Şifre satırının altındaki sağa yaslı link */
+.au__aside {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -8px;
+}
+
+.au__submit {
+  width: 100%;
+  margin-top: 4px;
+}
+.au__submit:disabled { cursor: progress; opacity: 0.75; }
+
+/* Hata / bilgi bandı */
+.au__banner {
+  margin: 0;
+  padding: 12px 14px;
+  font-family: var(--f-body);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--error);
+  background: color-mix(in srgb, var(--error) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--error) 35%, transparent);
+  border-radius: var(--r-card, 2px);
+}
+.au__banner--ok {
+  color: var(--success);
+  background: color-mix(in srgb, var(--success) 8%, transparent);
+  border-color: color-mix(in srgb, var(--success) 35%, transparent);
+}
+
+/* Durum ekranı (doğrulanıyor, bağlantı geçersiz) */
+.au__status {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  padding: 20px 4px 8px;
+  text-align: center;
+}
+.au__status-mark {
+  font-size: 28px;
+  line-height: 1;
+  color: var(--gold);
+}
+.au__status-title {
+  display: block;
+  margin: 0;
+  font-family: var(--f-deco);
+  font-size: clamp(18px, 2.2vw, 22px);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  color: var(--heading);
+}
+.au__status-text {
+  max-width: 380px;
+  margin: 0;
+  font-family: var(--f-body);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-dim);
+  text-wrap: pretty;
+}
+.au__status .mon-btn { margin-top: 6px; }
+.au__status--left { justify-items: stretch; text-align: left; padding-top: 0; }
+.au__status--left .au__status-title,
+.au__status--left .au__status-text { max-width: none; }
+
+/* Metin linkleri */
+.au__link {
+  font-family: var(--f-body);
+  font-size: 13px;
+  color: var(--gold);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--gold) 45%, transparent);
+  text-underline-offset: 3px;
+  transition: color var(--dur, .2s), text-decoration-color var(--dur, .2s);
+}
+.au__link:hover { color: var(--gold-light); text-decoration-color: currentColor; }
+
+.au__footer {
+  margin: 22px 0 0;
+  font-family: var(--f-body);
+  font-size: 14px;
+  text-align: center;
+  color: var(--text);
+}
+.au__footer .au__link { margin-left: 6px; font-size: 14px; font-weight: 600; }
+
+/* Klavye odağı (global .mon-btn'de yok) */
+.au__submit:focus-visible,
+.au__status .mon-btn:focus-visible,
+.au__link:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+@media (max-width: bp(5pw2fQi7Yr)) {
+  .au { padding: 32px 0 var(--section-y-m, 56px); }
+}
+@media (max-width: bp(5Xmvk6D0gV)) {
+  .au__card { padding: 26px 18px 24px; }
+}

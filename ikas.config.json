@@ -4585,6 +4585,1218 @@
           "name": "Görünüm"
         }
       ]
+    },
+    {
+      "id": "wnbxmerd-dKuZC6tweb",
+      "name": "NotFound",
+      "entry": "./src/components/NotFound/index.tsx",
+      "styles": "./src/components/NotFound/styles.css",
+      "type": "section",
+      "props": [
+        {
+          "name": "eyebrow",
+          "displayName": "Üst Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "✦ Sayfa Bulunamadı ✦",
+          "groupId": "content"
+        },
+        {
+          "name": "code",
+          "displayName": "Hata Kodu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "404",
+          "groupId": "content"
+        },
+        {
+          "name": "title",
+          "displayName": "Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bu Sayfa Henüz Basılmadı",
+          "groupId": "content"
+        },
+        {
+          "name": "description",
+          "displayName": "Açıklama",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Aradığın sayfa taşınmış ya da hiç var olmamış olabilir. Atölyeye dönüp kendi sikkeni tasarlayabilirsin.",
+          "groupId": "content"
+        },
+        {
+          "name": "primaryLink",
+          "displayName": "Birincil Buton",
+          "type": "LINK",
+          "required": false,
+          "defaultValue": {
+            "linkType": "PAGE",
+            "label": "Ana Sayfaya Dön",
+            "pageType": "INDEX",
+            "subLinks": []
+          },
+          "groupId": "actions"
+        },
+        {
+          "name": "secondaryLink",
+          "displayName": "İkincil Buton",
+          "type": "LINK",
+          "required": false,
+          "defaultValue": {
+            "linkType": "EXTERNAL",
+            "label": "Kolyeni Tasarla",
+            "externalLink": "/#atolye",
+            "subLinks": []
+          },
+          "groupId": "actions"
+        },
+        {
+          "name": "coinImage",
+          "displayName": "Sikke Görseli (0 yerine)",
+          "type": "IMAGE",
+          "required": false,
+          "description": "Hata kodundaki 0 rakamının yerine dönen sikke olarak gösterilir. Boşsa rakam yazı olarak kalır.",
+          "groupId": "appearance"
+        },
+        {
+          "name": "backgroundColor",
+          "displayName": "Arka Plan Rengi",
+          "type": "COLOR",
+          "required": false,
+          "defaultValue": "#FFFFFF",
+          "groupId": "appearance"
+        }
+      ],
+      "propGroups": [
+        {
+          "id": "content",
+          "name": "İçerik"
+        },
+        {
+          "id": "actions",
+          "name": "Butonlar"
+        },
+        {
+          "id": "appearance",
+          "name": "Görünüm"
+        }
+      ]
+    },
+    {
+      "id": "wnbxmerd-jt9Ht3KkOu",
+      "name": "AuthLogin",
+      "entry": "./src/components/AuthLogin/index.tsx",
+      "styles": "./src/components/AuthLogin/styles.css",
+      "type": "section",
+      "props": [
+        {
+          "name": "eyebrow",
+          "displayName": "Üst Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "✦ Hesabım ✦",
+          "groupId": "content"
+        },
+        {
+          "name": "title",
+          "displayName": "Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Giriş Yap",
+          "groupId": "content"
+        },
+        {
+          "name": "intro",
+          "displayName": "Giriş Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Siparişlerini takip etmek ve adreslerini yönetmek için hesabına giriş yap.",
+          "groupId": "content"
+        },
+        {
+          "name": "emailLabel",
+          "displayName": "E-posta Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "E-posta",
+          "groupId": "form"
+        },
+        {
+          "name": "emailPlaceholder",
+          "displayName": "E-posta Örnek Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "ornek@eposta.com",
+          "groupId": "form"
+        },
+        {
+          "name": "passwordLabel",
+          "displayName": "Şifre Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Şifre",
+          "groupId": "form"
+        },
+        {
+          "name": "showPasswordLabel",
+          "displayName": "Şifreyi Göster (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Şifreyi göster",
+          "groupId": "form"
+        },
+        {
+          "name": "hidePasswordLabel",
+          "displayName": "Şifreyi Gizle (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Şifreyi gizle",
+          "groupId": "form"
+        },
+        {
+          "name": "forgotText",
+          "displayName": "Şifremi Unuttum Linki",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Şifremi unuttum",
+          "groupId": "form"
+        },
+        {
+          "name": "submitText",
+          "displayName": "Giriş Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Giriş Yap",
+          "groupId": "form"
+        },
+        {
+          "name": "submittingText",
+          "displayName": "Giriş Butonu (yükleniyor)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Giriş yapılıyor…",
+          "groupId": "form"
+        },
+        {
+          "name": "requiredError",
+          "displayName": "Zorunlu Alan Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bu alan zorunlu.",
+          "groupId": "errors"
+        },
+        {
+          "name": "emailError",
+          "displayName": "E-posta Biçim Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Geçerli bir e-posta adresi gir.",
+          "groupId": "errors"
+        },
+        {
+          "name": "passwordMinError",
+          "displayName": "Şifre Uzunluk Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Şifre en az 6 karakter olmalı.",
+          "groupId": "errors"
+        },
+        {
+          "name": "failureText",
+          "displayName": "Giriş Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Giriş yapılamadı. E-posta adresini ve şifreni kontrol et.",
+          "groupId": "errors"
+        },
+        {
+          "name": "socialFailureText",
+          "displayName": "Sosyal Giriş Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sosyal hesapla giriş tamamlanamadı, lütfen tekrar dene.",
+          "groupId": "errors"
+        },
+        {
+          "name": "showGoogle",
+          "displayName": "Google ile Giriş",
+          "type": "BOOLEAN",
+          "required": false,
+          "defaultValue": true,
+          "groupId": "social"
+        },
+        {
+          "name": "googleText",
+          "displayName": "Google Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Google ile devam et",
+          "groupId": "social"
+        },
+        {
+          "name": "showFacebook",
+          "displayName": "Facebook ile Giriş",
+          "type": "BOOLEAN",
+          "required": false,
+          "defaultValue": true,
+          "groupId": "social"
+        },
+        {
+          "name": "facebookText",
+          "displayName": "Facebook Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Facebook ile devam et",
+          "groupId": "social"
+        },
+        {
+          "name": "dividerText",
+          "displayName": "Ayraç Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "veya",
+          "groupId": "social"
+        },
+        {
+          "name": "registerPrompt",
+          "displayName": "Kayıt Sorusu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Hesabın yok mu?",
+          "groupId": "links"
+        },
+        {
+          "name": "registerText",
+          "displayName": "Kayıt Linki",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kayıt ol",
+          "groupId": "links"
+        },
+        {
+          "name": "backgroundColor",
+          "displayName": "Arka Plan Rengi",
+          "type": "COLOR",
+          "required": false,
+          "defaultValue": "#FFFFFF",
+          "groupId": "appearance"
+        }
+      ],
+      "propGroups": [
+        {
+          "id": "content",
+          "name": "İçerik"
+        },
+        {
+          "id": "form",
+          "name": "Form Alanları"
+        },
+        {
+          "id": "errors",
+          "name": "Hata Metinleri"
+        },
+        {
+          "id": "social",
+          "name": "Sosyal Giriş"
+        },
+        {
+          "id": "links",
+          "name": "Bağlantılar"
+        },
+        {
+          "id": "appearance",
+          "name": "Görünüm"
+        }
+      ]
+    },
+    {
+      "id": "wnbxmerd-0LDctfbvBs",
+      "name": "AuthRegister",
+      "entry": "./src/components/AuthRegister/index.tsx",
+      "styles": "./src/components/AuthRegister/styles.css",
+      "type": "section",
+      "props": [
+        {
+          "name": "eyebrow",
+          "displayName": "Üst Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "✦ Hesabım ✦",
+          "groupId": "content"
+        },
+        {
+          "name": "title",
+          "displayName": "Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kayıt Ol",
+          "groupId": "content"
+        },
+        {
+          "name": "intro",
+          "displayName": "Giriş Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Birkaç adımda hesabını oluştur; siparişlerini ve adreslerini tek yerden yönet.",
+          "groupId": "content"
+        },
+        {
+          "name": "firstNameLabel",
+          "displayName": "Ad Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ad",
+          "groupId": "form"
+        },
+        {
+          "name": "lastNameLabel",
+          "displayName": "Soyad Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Soyad",
+          "groupId": "form"
+        },
+        {
+          "name": "emailLabel",
+          "displayName": "E-posta Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "E-posta",
+          "groupId": "form"
+        },
+        {
+          "name": "emailPlaceholder",
+          "displayName": "E-posta Örnek Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "ornek@eposta.com",
+          "groupId": "form"
+        },
+        {
+          "name": "showPhone",
+          "displayName": "Telefon Alanı",
+          "type": "BOOLEAN",
+          "required": false,
+          "defaultValue": true,
+          "groupId": "form"
+        },
+        {
+          "name": "phoneLabel",
+          "displayName": "Telefon Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Telefon",
+          "groupId": "form"
+        },
+        {
+          "name": "phoneHint",
+          "displayName": "Telefon Notu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "(isteğe bağlı)",
+          "groupId": "form"
+        },
+        {
+          "name": "phonePlaceholder",
+          "displayName": "Telefon Örnek Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "+90 5__ ___ __ __",
+          "groupId": "form"
+        },
+        {
+          "name": "passwordLabel",
+          "displayName": "Şifre Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Şifre",
+          "groupId": "form"
+        },
+        {
+          "name": "passwordHint",
+          "displayName": "Şifre Notu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "(en az 6 karakter)",
+          "groupId": "form"
+        },
+        {
+          "name": "showPasswordLabel",
+          "displayName": "Şifreyi Göster (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Şifreyi göster",
+          "groupId": "form"
+        },
+        {
+          "name": "hidePasswordLabel",
+          "displayName": "Şifreyi Gizle (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Şifreyi gizle",
+          "groupId": "form"
+        },
+        {
+          "name": "agreementText",
+          "displayName": "Üyelik Onayı Metni",
+          "type": "TEXT",
+          "required": false,
+          "description": "{link} yerine Üyelik Onayı Linki'nin etiketi bağlantı olarak gelir.",
+          "defaultValue": "{link} ve gizlilik politikasını okudum, onaylıyorum.",
+          "groupId": "consent"
+        },
+        {
+          "name": "agreementLink",
+          "displayName": "Üyelik Onayı Linki",
+          "type": "LINK",
+          "required": false,
+          "defaultValue": {
+            "linkType": "PAGE",
+            "label": "Kullanım şartlarını",
+            "pageType": "INDEX",
+            "subLinks": []
+          },
+          "groupId": "consent"
+        },
+        {
+          "name": "marketingText",
+          "displayName": "Pazarlama İzni Metni",
+          "type": "TEXT",
+          "required": false,
+          "description": "İsteğe bağlı onay. {link} yerine Pazarlama İzni Linki gelir.",
+          "defaultValue": "{link} kapsamında kampanya ve fırsatlardan haberdar olmak için ticari elektronik ileti almak istiyorum.",
+          "groupId": "consent"
+        },
+        {
+          "name": "marketingLink",
+          "displayName": "Pazarlama İzni Linki",
+          "type": "LINK",
+          "required": false,
+          "defaultValue": {
+            "linkType": "PAGE",
+            "label": "KVKK Aydınlatma Metni",
+            "pageType": "INDEX",
+            "subLinks": []
+          },
+          "groupId": "consent"
+        },
+        {
+          "name": "consentError",
+          "displayName": "Onay Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Devam etmek için onay vermelisin.",
+          "groupId": "consent"
+        },
+        {
+          "name": "submitText",
+          "displayName": "Kayıt Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kayıt Ol",
+          "groupId": "form"
+        },
+        {
+          "name": "submittingText",
+          "displayName": "Kayıt Butonu (yükleniyor)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kaydediliyor…",
+          "groupId": "form"
+        },
+        {
+          "name": "requiredError",
+          "displayName": "Zorunlu Alan Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bu alan zorunlu.",
+          "groupId": "errors"
+        },
+        {
+          "name": "emailError",
+          "displayName": "E-posta Biçim Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Geçerli bir e-posta adresi gir.",
+          "groupId": "errors"
+        },
+        {
+          "name": "passwordMinError",
+          "displayName": "Şifre Uzunluk Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Şifre en az 6 karakter olmalı.",
+          "groupId": "errors"
+        },
+        {
+          "name": "failureText",
+          "displayName": "Kayıt Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kayıt oluşturulamadı. Bu e-postayla bir hesabın olabilir; giriş yapmayı ya da şifreni sıfırlamayı dene.",
+          "groupId": "errors"
+        },
+        {
+          "name": "socialFailureText",
+          "displayName": "Sosyal Giriş Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sosyal hesapla giriş tamamlanamadı, lütfen tekrar dene.",
+          "groupId": "errors"
+        },
+        {
+          "name": "showGoogle",
+          "displayName": "Google ile Kayıt",
+          "type": "BOOLEAN",
+          "required": false,
+          "defaultValue": true,
+          "groupId": "social"
+        },
+        {
+          "name": "googleText",
+          "displayName": "Google Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Google ile devam et",
+          "groupId": "social"
+        },
+        {
+          "name": "showFacebook",
+          "displayName": "Facebook ile Kayıt",
+          "type": "BOOLEAN",
+          "required": false,
+          "defaultValue": true,
+          "groupId": "social"
+        },
+        {
+          "name": "facebookText",
+          "displayName": "Facebook Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Facebook ile devam et",
+          "groupId": "social"
+        },
+        {
+          "name": "dividerText",
+          "displayName": "Ayraç Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "veya",
+          "groupId": "social"
+        },
+        {
+          "name": "loginPrompt",
+          "displayName": "Giriş Sorusu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Zaten hesabın var mı?",
+          "groupId": "links"
+        },
+        {
+          "name": "loginText",
+          "displayName": "Giriş Linki",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Giriş yap",
+          "groupId": "links"
+        },
+        {
+          "name": "backgroundColor",
+          "displayName": "Arka Plan Rengi",
+          "type": "COLOR",
+          "required": false,
+          "defaultValue": "#FFFFFF",
+          "groupId": "appearance"
+        }
+      ],
+      "propGroups": [
+        {
+          "id": "content",
+          "name": "İçerik"
+        },
+        {
+          "id": "form",
+          "name": "Form Alanları"
+        },
+        {
+          "id": "consent",
+          "name": "Onaylar"
+        },
+        {
+          "id": "errors",
+          "name": "Hata Metinleri"
+        },
+        {
+          "id": "social",
+          "name": "Sosyal Giriş"
+        },
+        {
+          "id": "links",
+          "name": "Bağlantılar"
+        },
+        {
+          "id": "appearance",
+          "name": "Görünüm"
+        }
+      ]
+    },
+    {
+      "id": "wnbxmerd-JEkqLQnAB4",
+      "name": "AuthForgotPassword",
+      "entry": "./src/components/AuthForgotPassword/index.tsx",
+      "styles": "./src/components/AuthForgotPassword/styles.css",
+      "type": "section",
+      "props": [
+        {
+          "name": "eyebrow",
+          "displayName": "Üst Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "✦ Hesabım ✦",
+          "groupId": "content"
+        },
+        {
+          "name": "title",
+          "displayName": "Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Şifremi Unuttum",
+          "groupId": "content"
+        },
+        {
+          "name": "intro",
+          "displayName": "Giriş Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Hesabına kayıtlı e-posta adresini yaz; sana şifre yenileme bağlantısı gönderelim.",
+          "groupId": "content"
+        },
+        {
+          "name": "emailLabel",
+          "displayName": "E-posta Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "E-posta",
+          "groupId": "form"
+        },
+        {
+          "name": "emailPlaceholder",
+          "displayName": "E-posta Örnek Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "ornek@eposta.com",
+          "groupId": "form"
+        },
+        {
+          "name": "submitText",
+          "displayName": "Gönder Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bağlantı Gönder",
+          "groupId": "form"
+        },
+        {
+          "name": "submittingText",
+          "displayName": "Gönder Butonu (yükleniyor)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Gönderiliyor…",
+          "groupId": "form"
+        },
+        {
+          "name": "requiredError",
+          "displayName": "Zorunlu Alan Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bu alan zorunlu.",
+          "groupId": "errors"
+        },
+        {
+          "name": "emailError",
+          "displayName": "E-posta Biçim Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Geçerli bir e-posta adresi gir.",
+          "groupId": "errors"
+        },
+        {
+          "name": "failureText",
+          "displayName": "Gönderim Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bağlantı gönderilemedi. E-posta adresini kontrol edip tekrar dene.",
+          "groupId": "errors"
+        },
+        {
+          "name": "successTitle",
+          "displayName": "Başarı Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "E-postanı kontrol et",
+          "groupId": "success"
+        },
+        {
+          "name": "successText",
+          "displayName": "Başarı Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bu adrese kayıtlı bir hesap varsa şifre yenileme bağlantısı birkaç dakika içinde gelir. Gereksiz (spam) klasörüne de bakmayı unutma.",
+          "groupId": "success"
+        },
+        {
+          "name": "successButtonText",
+          "displayName": "Başarı Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Giriş Sayfasına Dön",
+          "groupId": "success"
+        },
+        {
+          "name": "backPrompt",
+          "displayName": "Geri Dön Sorusu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Şifreni hatırladın mı?",
+          "groupId": "links"
+        },
+        {
+          "name": "backText",
+          "displayName": "Giriş Linki",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Giriş yap",
+          "groupId": "links"
+        },
+        {
+          "name": "backgroundColor",
+          "displayName": "Arka Plan Rengi",
+          "type": "COLOR",
+          "required": false,
+          "defaultValue": "#FFFFFF",
+          "groupId": "appearance"
+        }
+      ],
+      "propGroups": [
+        {
+          "id": "content",
+          "name": "İçerik"
+        },
+        {
+          "id": "form",
+          "name": "Form Alanları"
+        },
+        {
+          "id": "errors",
+          "name": "Hata Metinleri"
+        },
+        {
+          "id": "success",
+          "name": "Sonuç Ekranları"
+        },
+        {
+          "id": "links",
+          "name": "Bağlantılar"
+        },
+        {
+          "id": "appearance",
+          "name": "Görünüm"
+        }
+      ]
+    },
+    {
+      "id": "wnbxmerd-sHFNplFxzU",
+      "name": "AuthRecoverPassword",
+      "entry": "./src/components/AuthRecoverPassword/index.tsx",
+      "styles": "./src/components/AuthRecoverPassword/styles.css",
+      "type": "section",
+      "props": [
+        {
+          "name": "eyebrow",
+          "displayName": "Üst Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "✦ Hesabım ✦",
+          "groupId": "content"
+        },
+        {
+          "name": "title",
+          "displayName": "Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yeni Şifre Belirle",
+          "groupId": "content"
+        },
+        {
+          "name": "intro",
+          "displayName": "Giriş Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Hesabın için yeni bir şifre belirle.",
+          "groupId": "content"
+        },
+        {
+          "name": "passwordLabel",
+          "displayName": "Şifre Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yeni şifre",
+          "groupId": "form"
+        },
+        {
+          "name": "passwordHint",
+          "displayName": "Şifre Notu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "(en az 6 karakter)",
+          "groupId": "form"
+        },
+        {
+          "name": "passwordAgainLabel",
+          "displayName": "Şifre Tekrar Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yeni şifre (tekrar)",
+          "groupId": "form"
+        },
+        {
+          "name": "showPasswordLabel",
+          "displayName": "Şifreyi Göster (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Şifreyi göster",
+          "groupId": "form"
+        },
+        {
+          "name": "hidePasswordLabel",
+          "displayName": "Şifreyi Gizle (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Şifreyi gizle",
+          "groupId": "form"
+        },
+        {
+          "name": "submitText",
+          "displayName": "Kaydet Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Şifreyi Kaydet",
+          "groupId": "form"
+        },
+        {
+          "name": "submittingText",
+          "displayName": "Kaydet Butonu (yükleniyor)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kaydediliyor…",
+          "groupId": "form"
+        },
+        {
+          "name": "requiredError",
+          "displayName": "Zorunlu Alan Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bu alan zorunlu.",
+          "groupId": "errors"
+        },
+        {
+          "name": "passwordMinError",
+          "displayName": "Şifre Uzunluk Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Şifre en az 6 karakter olmalı.",
+          "groupId": "errors"
+        },
+        {
+          "name": "passwordMatchError",
+          "displayName": "Şifre Eşleşme Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Şifreler eşleşmiyor.",
+          "groupId": "errors"
+        },
+        {
+          "name": "failureText",
+          "displayName": "Kaydetme Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Şifre değiştirilemedi. Bağlantının süresi dolmuş olabilir; yeni bir bağlantı iste.",
+          "groupId": "errors"
+        },
+        {
+          "name": "successTitle",
+          "displayName": "Başarı Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Şifren güncellendi",
+          "groupId": "success"
+        },
+        {
+          "name": "successText",
+          "displayName": "Başarı Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yeni şifrenle giriş yapabilirsin.",
+          "groupId": "success"
+        },
+        {
+          "name": "successButtonText",
+          "displayName": "Başarı Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Giriş Yap",
+          "groupId": "success"
+        },
+        {
+          "name": "invalidTitle",
+          "displayName": "Geçersiz Bağlantı Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bağlantı geçersiz",
+          "groupId": "success"
+        },
+        {
+          "name": "invalidText",
+          "displayName": "Geçersiz Bağlantı Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bu şifre yenileme bağlantısı eksik ya da süresi dolmuş. Yeni bir bağlantı isteyebilirsin.",
+          "groupId": "success"
+        },
+        {
+          "name": "invalidButtonText",
+          "displayName": "Geçersiz Bağlantı Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yeni Bağlantı İste",
+          "groupId": "success"
+        },
+        {
+          "name": "forgotText",
+          "displayName": "Yeni Bağlantı Linki",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yeni bağlantı iste",
+          "groupId": "links"
+        },
+        {
+          "name": "backgroundColor",
+          "displayName": "Arka Plan Rengi",
+          "type": "COLOR",
+          "required": false,
+          "defaultValue": "#FFFFFF",
+          "groupId": "appearance"
+        }
+      ],
+      "propGroups": [
+        {
+          "id": "content",
+          "name": "İçerik"
+        },
+        {
+          "id": "form",
+          "name": "Form Alanları"
+        },
+        {
+          "id": "errors",
+          "name": "Hata Metinleri"
+        },
+        {
+          "id": "success",
+          "name": "Sonuç Ekranları"
+        },
+        {
+          "id": "links",
+          "name": "Bağlantılar"
+        },
+        {
+          "id": "appearance",
+          "name": "Görünüm"
+        }
+      ]
+    },
+    {
+      "id": "wnbxmerd-mHwtZ0bnxo",
+      "name": "AuthVerifyEmail",
+      "entry": "./src/components/AuthVerifyEmail/index.tsx",
+      "styles": "./src/components/AuthVerifyEmail/styles.css",
+      "type": "section",
+      "props": [
+        {
+          "name": "eyebrow",
+          "displayName": "Üst Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "✦ Hesabım ✦",
+          "groupId": "content"
+        },
+        {
+          "name": "title",
+          "displayName": "Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "E-posta Doğrulama",
+          "groupId": "content"
+        },
+        {
+          "name": "loadingText",
+          "displayName": "Doğrulanıyor Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Hesabın doğrulanıyor…",
+          "groupId": "content"
+        },
+        {
+          "name": "successTitle",
+          "displayName": "Başarı Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Hesabın doğrulandı",
+          "groupId": "success"
+        },
+        {
+          "name": "successText",
+          "displayName": "Başarı Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "E-posta adresin onaylandı. Artık giriş yapabilirsin.",
+          "groupId": "success"
+        },
+        {
+          "name": "loginButtonText",
+          "displayName": "Giriş Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Giriş Yap",
+          "groupId": "success"
+        },
+        {
+          "name": "errorTitle",
+          "displayName": "Hata Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Doğrulama tamamlanamadı",
+          "groupId": "resend"
+        },
+        {
+          "name": "errorText",
+          "displayName": "Hata Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bağlantı geçersiz ya da süresi dolmuş olabilir. E-posta adresini yaz, sana yeni bir doğrulama bağlantısı gönderelim.",
+          "groupId": "resend"
+        },
+        {
+          "name": "emailLabel",
+          "displayName": "E-posta Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "E-posta",
+          "groupId": "resend"
+        },
+        {
+          "name": "emailPlaceholder",
+          "displayName": "E-posta Örnek Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "ornek@eposta.com",
+          "groupId": "resend"
+        },
+        {
+          "name": "resendText",
+          "displayName": "Tekrar Gönder Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bağlantıyı Tekrar Gönder",
+          "groupId": "resend"
+        },
+        {
+          "name": "resendingText",
+          "displayName": "Tekrar Gönder (yükleniyor)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Gönderiliyor…",
+          "groupId": "resend"
+        },
+        {
+          "name": "resendSuccessText",
+          "displayName": "Tekrar Gönderildi Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yeni doğrulama bağlantısı gönderildi. E-postanı kontrol et.",
+          "groupId": "resend"
+        },
+        {
+          "name": "resendFailureText",
+          "displayName": "Tekrar Gönderme Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bağlantı gönderilemedi, lütfen tekrar dene.",
+          "groupId": "resend"
+        },
+        {
+          "name": "requiredError",
+          "displayName": "Zorunlu Alan Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bu alan zorunlu.",
+          "groupId": "resend"
+        },
+        {
+          "name": "emailError",
+          "displayName": "E-posta Biçim Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Geçerli bir e-posta adresi gir.",
+          "groupId": "resend"
+        },
+        {
+          "name": "backPrompt",
+          "displayName": "Giriş Sorusu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Hesabın zaten doğrulandı mı?",
+          "groupId": "links"
+        },
+        {
+          "name": "backText",
+          "displayName": "Giriş Linki",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Giriş yap",
+          "groupId": "links"
+        },
+        {
+          "name": "backgroundColor",
+          "displayName": "Arka Plan Rengi",
+          "type": "COLOR",
+          "required": false,
+          "defaultValue": "#FFFFFF",
+          "groupId": "appearance"
+        }
+      ],
+      "propGroups": [
+        {
+          "id": "content",
+          "name": "İçerik"
+        },
+        {
+          "id": "success",
+          "name": "Sonuç Ekranları"
+        },
+        {
+          "id": "resend",
+          "name": "Tekrar Gönderme"
+        },
+        {
+          "id": "links",
+          "name": "Bağlantılar"
+        },
+        {
+          "id": "appearance",
+          "name": "Görünüm"
+        }
+      ]
     }
   ],
   "customTypes": [
