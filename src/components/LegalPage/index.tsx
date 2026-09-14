@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "preact/hooks";
-import { Router } from "@ikas/bp-storefront";
 import { Props } from "./types";
 import { linkAttrs } from "../../utils/links";
 import { useSectionTheme, cx } from "../../utils/theme-mode";
@@ -15,13 +14,6 @@ function toPath(href: string | undefined | null): string {
   }
 }
 
-function initialPath(): string {
-  try {
-    return toPath(Router.getCurrentPath());
-  } catch {
-    return "";
-  }
-}
 export function LegalPage(props: Props) {
   const {
     eyebrow = "✦",
@@ -40,8 +32,9 @@ export function LegalPage(props: Props) {
   const links = (navLinks?.links ?? []).filter((l) => l.href);
   const hasNav = showNav && links.length > 0;
 
-  // SSR'da Router'dan, mount sonrası tarayıcıdan okunur (routing prefix'i dahil).
-  const [currentPath, setCurrentPath] = useState(initialPath);
+  // Yalnız mount sonrası tarayıcıdan okunur (routing prefix'i dahil). İlk render'da okumak hydration'da
+  // SSR ile uyuşmaz: sunucuda Router "/pages" döner, hydrate attribute'ları yamamaz ve vurgu hiç görünmez.
+  const [currentPath, setCurrentPath] = useState("");
   useEffect(() => {
     setCurrentPath(toPath(window.location.pathname));
   }, []);

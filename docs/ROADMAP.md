@@ -41,7 +41,7 @@ Editor URL'sini tarayıcıda açık tut. MCP editor araçları ancak editor bağ
 | 4 | Konfigüratör canlı test + ürün bağlama + ürün sayfası | ✅ bitti (fotoğraf yükleme ve sipariş satırı elle testi Faz 11 QA'ya ertelendi) |
 | 5 | Koleksiyon galerisi + Lightbox | ✅ bitti (yayın önizlemesinde uçtan uca test edildi) |
 | 6 | Sepet sayfası + drawer'da kişiselleştirme özeti | ✅ bitti (editör önizlemesinde masaüstü, 380px, Day/Night, kupon ve adet test edildi) |
-| 7 | Statik içerik sayfaları: Hakkımızda, SSS, 7 hukuki doküman + Görsel Hakları | ✅ bitti (editör önizlemesinde masaüstü, 380px, Day/Night test edildi; link tıklamaları ve yan menü aktif vurgusu yayın önizlemesinde denenecek) |
+| 7 | Statik içerik sayfaları: Hakkımızda, SSS, 7 hukuki doküman + Görsel Hakları | ✅ bitti (editörde masaüstü, 380px, Day/Night; yayın önizlemesinde metinler, link akışları ve Night düzeltmeleri doğrulandı. Yan menü aktif vurgusu düzeltmesi yeniden yayın bekliyor) |
 | 8 | Formlar: İletişim + Özel Tasarım talebi | ⏳ |
 | 9 | Marka Elçileri sayfası (karar gerekli) | ⏳ |
 | 10 | Hazır hesap sayfaları + 404 | ⏳ |
@@ -85,6 +85,7 @@ Bunlar önceki fazlarda hata yapılıp düzeltilen konular. Her fazda geçerli.
 - Büyük görselde (lightbox vb.) `srcset`'in doğal genişliğine güvenme. CDN küçük kaynağı büyütmediği için görsel olduğundan küçük çiziliyor. Boyutu kapsayıcıdan ver: `width/height: 100%; object-fit: contain`.
 - COMPONENT_LIST child'ının (FaqItem, SeriesCard) wrapper'ı global token'ları gündüz değerine sıfırlar; parent'ın gece paleti child'a inmez. Child kökünde de `useSectionTheme()` className ve style'ı uygulanır (Faz 7'de düzeltildi).
 - Section'lar arasında boşluk için `margin` kullanma: gece modunda aradan sayfanın beyaz zemini görünür. Boşluk `padding` ile verilir (Faz 7'de Footer düzeltildi).
+- Tarayıcıya özgü değerleri (URL, localStorage) ilk render'da okuma; `useState` boş/varsayılanla başlasın, değer `useEffect`'te set edilsin. Hydrate mevcut DOM attribute'larını yamamaz, ilk render'da farklı değer okunursa fark hiç görünmez (Faz 7 LegalPage aktif vurgusu).
 - Grid öğesi sütunundan genişse `justify-self: center` onu başa hizalıyor. Ortalamak için negatif yatay margin kullan: `margin-inline: calc((100% - <genişlik>) / 2)`.
 
 **Tema**
@@ -202,7 +203,7 @@ Hukuki metinler referansın `LEGAL_DOCS`'undan (ve Kullanım Şartları i18n `te
 | Footer'da INDEX'e giden linkler kaldı: "Tasarım Atölyesi" (`#atolye` çapası olmalı) ve alt bar "ambassadors" (Faz 9). Yardım, hukuki satır ve Atölye sütunu Faz 7'de bağlandı | Footer | 9 ve 11 |
 | Hukuki metinler referanstaki kısa taslak. Mesafeli Satış'ta satıcı unvanı, adres, MERSİS/vergi no, iletişim ve ödeme/teslim bilgileri; KVKK'da veri sorumlusunun iletişim bilgisi ve başvuru yöntemi yok. Merchant/avukat tamamlamalı, sonra `updatedDate` doldurulmalı | LegalPage sayfaları | içerik |
 | İçerik tutarsızlığı: SSS 4. soru "5 ila 15 iş günü", Teslimat ve Mesafeli Satış "10-15 iş günü" diyor | SSS / hukuki | içerik |
-| Hukuki sayfalar, Hakkımızda ve SSS arası link tıklamaları ile yan menü aktif vurgusu yayın önizlemesinde test edilmedi | LegalPage, Footer | 11 (QA) |
+| Yan menü aktif vurgusu ilk yayında görünmedi (hydration: ilk render'da okunan yol SSR'dan farklıydı). Düzeltildi, editöre aktarıldı; yeniden yayından sonra masaüstü ve mobil çiplerde (aktif çipin görünür alana kayması) doğrulanacak. Link tıklamaları, metinler ve Night düzeltmeleri yayın önizlemesinde doğrulandı | LegalPage | 8 başında |
 | Night modunda sayfa en üstteyken Header gri görünüyor: cam (glass) bar arkadaki beyaz body zeminini gösteriyor. Body'ye gece zemini verilmeli ya da gece modunda bar opak olmalı | Header | 11 (QA) |
 | Hakkımızda ve SSS sayfalarında `h1` yok (OriginStory ve Faq başlığı `h2`) | SEO | 11 |
 | Footer seri linkleri EXTERNAL `/pages/koleksiyon?seri=…`; dil routing prefix'i almaz | Footer | 11 |
