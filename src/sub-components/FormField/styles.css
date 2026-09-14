@@ -1,0 +1,101 @@
+/* ===== Form alanı (İletişim, Özel Tasarım) ===== */
+.mf-field {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+.mf-label {
+  display: block;
+  font-family: var(--f-deco);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.mf-hint {
+  margin-left: 6px;
+  font-family: var(--f-body);
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: color-mix(in srgb, var(--text) 62%, transparent);
+}
+
+/* global.css `.mon-field` üzerine ince ayar */
+.mf-control {
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  background: var(--bg-page);
+}
+/* Gece paletinde --text-muted neredeyse görünmüyor; iki temada da okunur ton. */
+.mf-control::placeholder { color: color-mix(in srgb, var(--text) 50%, transparent); opacity: 1; }
+.mf-field.has-error .mf-control {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px rgba(176, 52, 52, 0.14);
+}
+textarea.mf-control {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.mf-select { position: relative; }
+.mf-select .mf-control {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 40px;
+  cursor: pointer;
+}
+.mf-select .mf-control.is-placeholder { color: color-mix(in srgb, var(--text) 50%, transparent); }
+.mf-select__caret {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-58%);
+  font-size: 15px;
+  line-height: 1;
+  color: var(--gold);
+  pointer-events: none;
+}
+
+.mf-below {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.mf-error {
+  font-family: var(--f-body);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--error);
+}
+.mf-aside {
+  margin-left: auto;
+  font-family: var(--f-body);
+  font-size: 10.5px;
+  color: color-mix(in srgb, var(--text) 62%, transparent);
+  white-space: nowrap;
+}
+
+/* İki sütunlu satır */
+.mf-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 18px;
+}
+@media (max-width: bp(5Xmvk6D0gV)) {
+  .mf-row { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Klavye odağı: global .mon-btn'de focus-visible yok (Faz 11 QA'da genelleştirilecek). */
+.cf__submit:focus-visible,
+.bq__btn:focus-visible,
+.mf-done .mon-btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}

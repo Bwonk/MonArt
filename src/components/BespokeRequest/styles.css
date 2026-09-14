@@ -1,0 +1,102 @@
+/* ===== Özel tasarım talebi sayfası ===== */
+.bq {
+  width: 100%;
+  min-height: 60vh;
+  padding: calc(var(--header-h, 84px) * 0.5 + 24px) var(--gutter, 28px) var(--section-y, 96px);
+  background: var(--bg-page);
+  color: var(--text);
+  scroll-margin-top: var(--header-h, 84px);
+}
+.bq__inner {
+  display: grid;
+  gap: 36px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ---------- Başlık ---------- */
+.bq__head { text-align: center; }
+.bq__eyebrow {
+  display: block;
+  margin-bottom: 14px;
+  font-family: var(--f-deco);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.bq__title {
+  display: block;
+  margin: 0;
+  font-family: var(--f-deco);
+  font-size: clamp(26px, 3.4vw, 40px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--heading);
+  text-wrap: balance;
+}
+.bq__intro {
+  max-width: 520px;
+  margin: 16px auto 0;
+  font-family: var(--f-body);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text);
+  text-wrap: pretty;
+}
+
+/* ---------- Form kartı ---------- */
+.bq__card {
+  min-width: 0;
+  padding: 40px 44px 36px;
+  background: var(--dark);
+  border: 1px solid var(--line-strong);
+  border-top: 2px solid var(--gold);
+  border-radius: var(--r-card, 4px);
+}
+.bq__form {
+  display: grid;
+  gap: 22px;
+}
+.bq__notice {
+  margin: 0;
+  padding: 14px 17px;
+  font-family: var(--f-body);
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: color-mix(in srgb, var(--text) 85%, transparent);
+  border-left: 2px solid var(--gold);
+  background: var(--surface-hover);
+  text-wrap: pretty;
+}
+.bq__failure {
+  margin: 0;
+  font-family: var(--f-body);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--error);
+}
+.bq__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 4px;
+}
+.bq__btn:disabled { cursor: progress; opacity: 0.75; }
+
+/* ---------- Mobil ---------- */
+@media (max-width: bp(5pw2fQi7Yr)) {
+  .bq {
+    padding: 32px var(--gutter-m, 16px) var(--section-y-m, 56px);
+  }
+  .bq__inner { gap: 28px; }
+}
+@media (max-width: bp(5Xmvk6D0gV)) {
+  .bq__card { padding: 28px 18px 26px; }
+  .bq__actions { flex-direction: column-reverse; }
+  .bq__btn { width: 100%; }
+}

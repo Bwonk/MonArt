@@ -3496,6 +3496,803 @@
           "name": "Görünüm"
         }
       ]
+    },
+    {
+      "id": "wnbxmerd-ncdF4QsnHr",
+      "name": "ContactForm",
+      "entry": "./src/components/ContactForm/index.tsx",
+      "styles": "./src/components/ContactForm/styles.css",
+      "type": "section",
+      "props": [
+        {
+          "name": "eyebrow",
+          "displayName": "Üst Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "✦ MonetArts Collections ✦",
+          "groupId": "content"
+        },
+        {
+          "name": "title",
+          "displayName": "Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bize Ulaşın",
+          "groupId": "content"
+        },
+        {
+          "name": "intro",
+          "displayName": "Açıklama",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Formu doldurun; mesajınız doğrudan ekibimize ulaşır ve en kısa sürede belirttiğiniz e-posta veya telefondan size dönüş yaparız.",
+          "groupId": "content"
+        },
+        {
+          "name": "firstNameLabel",
+          "displayName": "Ad Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ad *",
+          "groupId": "fields"
+        },
+        {
+          "name": "lastNameLabel",
+          "displayName": "Soyad Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Soyad *",
+          "groupId": "fields"
+        },
+        {
+          "name": "emailLabel",
+          "displayName": "E-posta Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "E-posta *",
+          "groupId": "fields"
+        },
+        {
+          "name": "phoneLabel",
+          "displayName": "Telefon Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Telefon *",
+          "groupId": "fields"
+        },
+        {
+          "name": "phonePlaceholder",
+          "displayName": "Telefon Yer Tutucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "05XX XXX XX XX",
+          "groupId": "fields"
+        },
+        {
+          "name": "subjectLabel",
+          "displayName": "Konu Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Konu",
+          "groupId": "fields"
+        },
+        {
+          "name": "subjectOptions",
+          "displayName": "Konu Seçenekleri (| ile ayırın)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sipariş Öncesi Bilgi | Mevcut Siparişim | Özel Tasarım Talebi | Kurumsal / Toplu Sipariş | İade & Değişim | Diğer",
+          "groupId": "fields"
+        },
+        {
+          "name": "orderLabel",
+          "displayName": "Sipariş No Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sipariş No",
+          "groupId": "fields"
+        },
+        {
+          "name": "orderHint",
+          "displayName": "Sipariş No Ek Notu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "(varsa)",
+          "groupId": "fields"
+        },
+        {
+          "name": "orderPlaceholder",
+          "displayName": "Sipariş No Yer Tutucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "MA-0000",
+          "groupId": "fields"
+        },
+        {
+          "name": "messageLabel",
+          "displayName": "Mesaj Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Mesajınız *",
+          "groupId": "fields"
+        },
+        {
+          "name": "messagePlaceholder",
+          "displayName": "Mesaj Yer Tutucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sormak istediğiniz her şeyi buraya yazabilirsiniz.",
+          "groupId": "fields"
+        },
+        {
+          "name": "consentText",
+          "displayName": "KVKK Onay Metni ({link} = bağlantı)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İlettiğim bilgilerin talebimin yanıtlanması amacıyla işlenmesine, {link} kapsamında onay veriyorum.",
+          "groupId": "consent"
+        },
+        {
+          "name": "consentLink",
+          "displayName": "KVKK Bağlantısı",
+          "type": "LINK",
+          "required": false,
+          "defaultValue": {
+            "linkType": "EXTERNAL",
+            "label": "KVKK Aydınlatma Metni",
+            "externalLink": "/pages/kvkk",
+            "subLinks": []
+          },
+          "groupId": "consent"
+        },
+        {
+          "name": "consentError",
+          "displayName": "Onay Hata Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Devam etmek için KVKK onayını işaretleyin.",
+          "groupId": "consent"
+        },
+        {
+          "name": "submitText",
+          "displayName": "Gönder Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Mesajı Gönder",
+          "groupId": "messages"
+        },
+        {
+          "name": "submittingText",
+          "displayName": "Gönderiliyor Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Gönderiliyor…",
+          "groupId": "messages"
+        },
+        {
+          "name": "requiredError",
+          "displayName": "Zorunlu Alan Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bu alan zorunludur.",
+          "groupId": "messages"
+        },
+        {
+          "name": "emailError",
+          "displayName": "E-posta Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Geçerli bir e-posta adresi girin.",
+          "groupId": "messages"
+        },
+        {
+          "name": "phoneError",
+          "displayName": "Telefon Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Geçerli bir telefon numarası girin.",
+          "groupId": "messages"
+        },
+        {
+          "name": "failureText",
+          "displayName": "Gönderim Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Mesajınız gönderilemedi. Lütfen biraz sonra tekrar deneyin.",
+          "groupId": "messages"
+        },
+        {
+          "name": "successTitle",
+          "displayName": "Başarı Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Mesajınız alındı",
+          "groupId": "messages"
+        },
+        {
+          "name": "successText",
+          "displayName": "Başarı Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ekibimiz en kısa sürede belirttiğiniz e-posta veya telefondan size dönüş yapacak.",
+          "groupId": "messages"
+        },
+        {
+          "name": "successButtonText",
+          "displayName": "Yeni Mesaj Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yeni Mesaj",
+          "groupId": "messages"
+        },
+        {
+          "name": "messageTag",
+          "displayName": "Panel Etiketi (mesaj başı)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İletişim",
+          "groupId": "messages"
+        },
+        {
+          "name": "showInfo",
+          "displayName": "İletişim Bilgilerini Göster",
+          "type": "BOOLEAN",
+          "required": false,
+          "defaultValue": true,
+          "groupId": "info"
+        },
+        {
+          "name": "infoTitle",
+          "displayName": "Bilgi Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İletişim Bilgileri",
+          "groupId": "info"
+        },
+        {
+          "name": "infoEmailLabel",
+          "displayName": "E-posta Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "E-posta",
+          "groupId": "info"
+        },
+        {
+          "name": "infoEmail",
+          "displayName": "E-posta",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "hello@monetartscollections.com",
+          "groupId": "info"
+        },
+        {
+          "name": "infoPhoneLabel",
+          "displayName": "Telefon Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Telefon / WhatsApp",
+          "groupId": "info"
+        },
+        {
+          "name": "infoPhone",
+          "displayName": "Telefon",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "",
+          "groupId": "info"
+        },
+        {
+          "name": "infoAddressLabel",
+          "displayName": "Adres Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Atölye",
+          "groupId": "info"
+        },
+        {
+          "name": "infoAddress",
+          "displayName": "Adres",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Selçuklu / Konya",
+          "groupId": "info"
+        },
+        {
+          "name": "infoHoursLabel",
+          "displayName": "Saat Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Çalışma Saatleri",
+          "groupId": "info"
+        },
+        {
+          "name": "infoHours",
+          "displayName": "Çalışma Saatleri",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Salı – Cumartesi 11:00 – 19:00",
+          "groupId": "info"
+        },
+        {
+          "name": "backgroundColor",
+          "displayName": "Arka Plan (Gündüz)",
+          "type": "COLOR",
+          "required": false,
+          "defaultValue": "#FFFFFF",
+          "groupId": "appearance"
+        },
+        {
+          "name": "anchorId",
+          "displayName": "Çapa (id)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "",
+          "groupId": "appearance"
+        }
+      ],
+      "propGroups": [
+        {
+          "id": "content",
+          "name": "İçerik"
+        },
+        {
+          "id": "fields",
+          "name": "Form Alanları"
+        },
+        {
+          "id": "consent",
+          "name": "KVKK Onayı"
+        },
+        {
+          "id": "messages",
+          "name": "Butonlar ve Mesajlar"
+        },
+        {
+          "id": "info",
+          "name": "İletişim Bilgileri"
+        },
+        {
+          "id": "appearance",
+          "name": "Görünüm"
+        }
+      ]
+    },
+    {
+      "id": "wnbxmerd-EXHqxAvbZ1",
+      "name": "BespokeRequest",
+      "entry": "./src/components/BespokeRequest/index.tsx",
+      "styles": "./src/components/BespokeRequest/styles.css",
+      "type": "section",
+      "props": [
+        {
+          "name": "eyebrow",
+          "displayName": "Üst Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "✦ MonetArts Atölyesi ✦",
+          "groupId": "content"
+        },
+        {
+          "name": "title",
+          "displayName": "Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Özel Tasarım Talebi",
+          "groupId": "content"
+        },
+        {
+          "name": "intro",
+          "displayName": "Açıklama",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Aklınızdaki tasarımı anlatın; teknik ekibimiz sizinle birlikte planlasın.",
+          "groupId": "content"
+        },
+        {
+          "name": "firstNameLabel",
+          "displayName": "Ad Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ad",
+          "groupId": "fields"
+        },
+        {
+          "name": "firstNamePlaceholder",
+          "displayName": "Ad Yer Tutucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Adınız",
+          "groupId": "fields"
+        },
+        {
+          "name": "lastNameLabel",
+          "displayName": "Soyad Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Soyad",
+          "groupId": "fields"
+        },
+        {
+          "name": "lastNamePlaceholder",
+          "displayName": "Soyad Yer Tutucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Soyadınız",
+          "groupId": "fields"
+        },
+        {
+          "name": "phoneLabel",
+          "displayName": "Telefon Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Telefon / WhatsApp",
+          "groupId": "fields"
+        },
+        {
+          "name": "phonePlaceholder",
+          "displayName": "Telefon Yer Tutucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "05xx xxx xx xx",
+          "groupId": "fields"
+        },
+        {
+          "name": "emailLabel",
+          "displayName": "E-posta Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "E-posta",
+          "groupId": "fields"
+        },
+        {
+          "name": "emailPlaceholder",
+          "displayName": "E-posta Yer Tutucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "ornek@eposta.com",
+          "groupId": "fields"
+        },
+        {
+          "name": "materialLabel",
+          "displayName": "Materyal Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Materyal Tercihi",
+          "groupId": "fields"
+        },
+        {
+          "name": "materialPlaceholder",
+          "displayName": "Materyal Yer Tutucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Seçiniz…",
+          "groupId": "fields"
+        },
+        {
+          "name": "materialOptions",
+          "displayName": "Materyal Seçenekleri (| ile ayırın)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bronz | Gümüş Kaplama | 925 Ayar Gümüş | Altın Kaplama | 14 Ayar Altın | 22 Ayar Altın | Kararsızım — ekibiniz önersin",
+          "groupId": "fields"
+        },
+        {
+          "name": "noteLabel",
+          "displayName": "Not Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Özel Açıklama / Not",
+          "groupId": "fields"
+        },
+        {
+          "name": "notePlaceholder",
+          "displayName": "Not Yer Tutucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sikke üzerinde görmek istediğiniz kabartma, metin, tarih veya detayları anlatın.",
+          "groupId": "fields"
+        },
+        {
+          "name": "noteMaxLength",
+          "displayName": "Not Karakter Sınırı",
+          "type": "NUMBER",
+          "required": false,
+          "defaultValue": 800,
+          "groupId": "fields"
+        },
+        {
+          "name": "notice",
+          "displayName": "Bilgilendirme Notu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Talebiniz teknik ekibimiz tarafından değerlendirilecek; üretim uygunluğu, materyal ve fiyatlandırma incelendikten sonra belirttiğiniz iletişim kanalından size dönüş yapılacaktır.",
+          "groupId": "fields"
+        },
+        {
+          "name": "filesLabel",
+          "displayName": "Görsel Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Referans Görsel",
+          "groupId": "upload"
+        },
+        {
+          "name": "filesHint",
+          "displayName": "Görsel Ek Notu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "(fotoğraf veya çizim)",
+          "groupId": "upload"
+        },
+        {
+          "name": "dropLead",
+          "displayName": "Bırakma Alanı Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Dosyaları buraya bırakın",
+          "groupId": "upload"
+        },
+        {
+          "name": "dropHint",
+          "displayName": "Bırakma Alanı Notu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "veya tıklayıp seçin · JPG, PNG, WEBP · en fazla 5 dosya · dosya başına 5 MB",
+          "groupId": "upload"
+        },
+        {
+          "name": "removeFileLabel",
+          "displayName": "Dosya Kaldır (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kaldır",
+          "groupId": "upload"
+        },
+        {
+          "name": "maxFiles",
+          "displayName": "En Fazla Dosya",
+          "type": "NUMBER",
+          "required": false,
+          "defaultValue": 5,
+          "groupId": "upload"
+        },
+        {
+          "name": "fileTypeError",
+          "displayName": "Dosya Türü Hatası ({name})",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "{name}: yalnız JPG, PNG veya WEBP yükleyebilirsiniz.",
+          "groupId": "upload"
+        },
+        {
+          "name": "fileSizeError",
+          "displayName": "Dosya Boyutu Hatası ({name})",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "{name}: dosya 5 MB'tan büyük.",
+          "groupId": "upload"
+        },
+        {
+          "name": "fileLimitError",
+          "displayName": "Dosya Sayısı Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "En fazla 5 dosya ekleyebilirsiniz.",
+          "groupId": "upload"
+        },
+        {
+          "name": "uploadError",
+          "displayName": "Yükleme Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Görseller yüklenemedi. Lütfen tekrar deneyin ya da görselleri kaldırıp talebinizi görselsiz gönderin.",
+          "groupId": "upload"
+        },
+        {
+          "name": "product",
+          "displayName": "Yükleme Ürünü (Sikke Kolye)",
+          "type": "PRODUCT",
+          "required": false,
+          "groupId": "upload"
+        },
+        {
+          "name": "uploadOptionName",
+          "displayName": "Yükleme Opsiyonu Adı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yüz 1 · Fotoğraf",
+          "groupId": "upload"
+        },
+        {
+          "name": "consentText",
+          "displayName": "KVKK Onay Metni ({link} = bağlantı)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İlettiğim bilgilerin talebimin yanıtlanması amacıyla işlenmesine, {link} kapsamında onay veriyorum.",
+          "groupId": "consent"
+        },
+        {
+          "name": "consentLink",
+          "displayName": "KVKK Bağlantısı",
+          "type": "LINK",
+          "required": false,
+          "defaultValue": {
+            "linkType": "EXTERNAL",
+            "label": "KVKK Aydınlatma Metni",
+            "externalLink": "/pages/kvkk",
+            "subLinks": []
+          },
+          "groupId": "consent"
+        },
+        {
+          "name": "consentError",
+          "displayName": "Onay Hata Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Devam etmek için KVKK onayını işaretleyin.",
+          "groupId": "consent"
+        },
+        {
+          "name": "submitText",
+          "displayName": "Gönder Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Talebi Gönder",
+          "groupId": "messages"
+        },
+        {
+          "name": "uploadingText",
+          "displayName": "Yükleniyor Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Görseller yükleniyor…",
+          "groupId": "messages"
+        },
+        {
+          "name": "submittingText",
+          "displayName": "Gönderiliyor Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Gönderiliyor…",
+          "groupId": "messages"
+        },
+        {
+          "name": "cancelLink",
+          "displayName": "Vazgeç Bağlantısı",
+          "type": "LINK",
+          "required": false,
+          "defaultValue": {
+            "linkType": "PAGE",
+            "label": "Vazgeç",
+            "pageType": "INDEX",
+            "subLinks": []
+          },
+          "groupId": "messages"
+        },
+        {
+          "name": "requiredError",
+          "displayName": "Zorunlu Alan Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bu alan zorunludur.",
+          "groupId": "messages"
+        },
+        {
+          "name": "emailError",
+          "displayName": "E-posta Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Geçerli bir e-posta adresi girin.",
+          "groupId": "messages"
+        },
+        {
+          "name": "phoneError",
+          "displayName": "Telefon Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Geçerli bir telefon numarası girin.",
+          "groupId": "messages"
+        },
+        {
+          "name": "materialError",
+          "displayName": "Materyal Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Lütfen bir materyal seçin.",
+          "groupId": "messages"
+        },
+        {
+          "name": "failureText",
+          "displayName": "Gönderim Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Talebiniz gönderilemedi. Lütfen biraz sonra tekrar deneyin.",
+          "groupId": "messages"
+        },
+        {
+          "name": "successTitle",
+          "displayName": "Başarı Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Talebiniz alındı",
+          "groupId": "messages"
+        },
+        {
+          "name": "successText",
+          "displayName": "Başarı Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Teknik ekibimiz 24 saat içinde belirttiğiniz iletişim kanalından size ulaşacak.",
+          "groupId": "messages"
+        },
+        {
+          "name": "successButtonText",
+          "displayName": "Yeni Talep Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yeni Talep",
+          "groupId": "messages"
+        },
+        {
+          "name": "messageTag",
+          "displayName": "Panel Etiketi (mesaj başı)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Özel Tasarım Talebi",
+          "groupId": "messages"
+        },
+        {
+          "name": "filesHeading",
+          "displayName": "Mesajda Görsel Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Referans görseller",
+          "groupId": "messages"
+        },
+        {
+          "name": "backgroundColor",
+          "displayName": "Arka Plan (Gündüz)",
+          "type": "COLOR",
+          "required": false,
+          "defaultValue": "#FFFFFF",
+          "groupId": "appearance"
+        },
+        {
+          "name": "anchorId",
+          "displayName": "Çapa (id)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "",
+          "groupId": "appearance"
+        }
+      ],
+      "propGroups": [
+        {
+          "id": "content",
+          "name": "İçerik"
+        },
+        {
+          "id": "fields",
+          "name": "Form Alanları"
+        },
+        {
+          "id": "upload",
+          "name": "Referans Görsel Yükleme",
+          "description": "Görseller seçilen ürünün FILE opsiyonu üzerinden yüklenir; ürün boşsa yükleme alanı gizlenir."
+        },
+        {
+          "id": "consent",
+          "name": "KVKK Onayı"
+        },
+        {
+          "id": "messages",
+          "name": "Butonlar ve Mesajlar"
+        },
+        {
+          "id": "appearance",
+          "name": "Görünüm"
+        }
+      ]
     }
   ],
   "customTypes": [

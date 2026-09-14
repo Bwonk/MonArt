@@ -10,3 +10,5 @@ export { CoinConfigurator } from "./CoinConfigurator/index";
 export { CollectionGallery } from "./CollectionGallery/index";
 export { CartPage } from "./CartPage/index";
 export { LegalPage } from "./LegalPage/index";
+export { ContactForm } from "./ContactForm/index";
+export { BespokeRequest } from "./BespokeRequest/index";

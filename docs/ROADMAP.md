@@ -42,7 +42,7 @@ Editor URL'sini tarayıcıda açık tut. MCP editor araçları ancak editor bağ
 | 5 | Koleksiyon galerisi + Lightbox | ✅ bitti (yayın önizlemesinde uçtan uca test edildi) |
 | 6 | Sepet sayfası + drawer'da kişiselleştirme özeti | ✅ bitti (editör önizlemesinde masaüstü, 380px, Day/Night, kupon ve adet test edildi) |
 | 7 | Statik içerik sayfaları: Hakkımızda, SSS, 7 hukuki doküman + Görsel Hakları | ✅ bitti (editörde masaüstü, 380px, Day/Night; yayın önizlemesinde metinler, link akışları ve Night düzeltmeleri doğrulandı. Yan menü aktif vurgusu düzeltmesi yeniden yayın bekliyor) |
-| 8 | Formlar: İletişim + Özel Tasarım talebi | ⏳ |
+| 8 | Formlar: İletişim + Özel Tasarım talebi | ✅ bitti (editör önizlemesinde masaüstü, 380px, Day/Night, doğrulama, klavye ve iki formun gönderimi test edildi; panelde mesajın görünmesi ve görselli talep kullanıcı testi bekliyor) |
 | 9 | Marka Elçileri sayfası (karar gerekli) | ⏳ |
 | 10 | Hazır hesap sayfaları + 404 | ⏳ |
 | 11 | Link bağlama, dil routing'leri, QA, yayın | ⏳ |
@@ -59,6 +59,7 @@ Editor URL'sini tarayıcıda açık tut. MCP editor araçları ancak editor bağ
 | `docs/configurator-logic.md` | Konfigüratörün tam mantık spesifikasyonu |
 | `docs/configurator-admin-setup.md` | Konfigüratör için admin'de kurulacak ürün, varyant, opsiyon seti ve kuponlar |
 | `docs/collection-gallery.md` | Koleksiyon galerisi spec'i: prop yapısı, lightbox, `?seri=` ve konfigüratör parametreleri |
+| `docs/forms.md` | İletişim ve Özel Tasarım formları: ikas iletişim formu API'si, mesaj biçimi, doğrulama, opsiyon üzerinden görsel yükleme |
 | `reference/MonArtDEMO_clean/` | Statik prototip (git dışında). Ana dosyalar: `MonArt Lux.html`, `monart-lux.js`, `monart-lux.css`, `monart-bespoke.js` |
 | `~/.claude/plans/ilk-nce-users-yigitozen-orca-projects-mo-sharded-umbrella.md` | Faz 2 sonrası doküman düzeltme planı |
 
@@ -107,6 +108,7 @@ Bunlar önceki fazlarda hata yapılıp düzeltilen konular. Her fazda geçerli.
 - Sayfadan section kaldırmak (`remove_page_section`) kullanıcı onayı ister.
 - Editör önizlemesinde link tıklaması sayfa değiştirmiyor. Sayfalar arası akışlar (URL parametresiyle açılış vb.) yalnız yayınlanmış önizlemede test edilebilir. `publish_theme` dry-run dahil izin ister.
 - Kod değişikliği editöre `build` + `import_section` ile gider; section yeniden mount olur (açık lightbox/sekme sıfırlanır).
+- `ikas-component dev` açıkken kaynak dosyadaki her değişiklik bağlı editöre de gider ve section'ları yeniden mount eder (başka oturumun değişikliği de). Önizlemede form doldururken kod değiştirme; doldurulmuş form sıfırlanır (Faz 8).
 
 **Çalışma şekli**
 - Yazışma Türkçe. Koddan önce kısa bir plan veya doküman, onaydan sonra kod.
@@ -133,6 +135,8 @@ Bunlar önceki fazlarda hata yapılıp düzeltilen konular. Her fazda geçerli.
 | CollectionGallery | section | `wnbxmerd-Cv0kAyhqw9` |
 | CartPage | section | `wnbxmerd-0bOGxJFtlY` |
 | LegalPage | section | `wnbxmerd-t47FaQ6XEn` |
+| ContactForm | section | `wnbxmerd-ncdF4QsnHr` |
+| BespokeRequest | section | `wnbxmerd-EXHqxAvbZ1` |
 
 Özel enum "Seri" (`roma` / `osmanli` / `misir`): `5rzSm7oLdF`. SeriesCard'ın `seriesKey` prop'u bunu kullanır.
 
@@ -170,6 +174,15 @@ Bunlar önceki fazlarda hata yapılıp düzeltilen konular. Her fazda geçerli.
 | Kullanım Şartları (Görsel Hakları ve Sanatsal Tolerans) | `RGt1KkPkeN` | `kullanim-sartlari` | LegalPage `7pcWHVQXnw` |
 
 Hukuki metinler referansın `LEGAL_DOCS`'undan (ve Kullanım Şartları i18n `terms_artwork_body`'den) birebir aktarıldı; gövde `<h2>` madde başlığı + `<p>`. Her LegalPage'in `navLinks` prop'unda 8 dokümanın PAGE linki var. Yan menüde aktif doküman `window.location.pathname` ile link href'i karşılaştırılarak bulunur. Editör önizlemesinde pathname `about:srcdoc` olduğu için vurgu yalnız yayında görünür. Footer'daki Yardım sütunu, 6 hukuki link, "Zanaat Hikayemiz", "Ustaya Sor" ve Header'daki "Hakkımızda" bu sayfalara PAGE linkiyle bağlı.
+
+**Form sayfaları (Faz 8)** — CUSTOM, spec `docs/forms.md`.
+
+| Sayfa | page id | slug | Section |
+|---|---|---|---|
+| İletişim | `f7IJM52GCz` | `iletisim` | ContactForm `EWmhW7xrzq` |
+| Özel Tasarım | `FuhA9MUQOO` | `ozel-tasarim` | BespokeRequest `XqpBXzO0xd` (`product` = Sikke Kolye; görseller "Yüz 1 · Fotoğraf" opsiyonu üzerinden yüklenir) |
+
+İki form da ikas iletişim formunu (`submitContactForm`) kullanır; konu, sipariş no, materyal ve görsel linkleri mesaj metnine `[İletişim]` / `[Özel Tasarım Talebi]` etiketli başlıkla yazılır. KVKK onay linki KVKK sayfasına PAGE linki. Header nav'daki "İletişim" ve "Özel Tasarım", Footer'daki "Bize Ulaşın", Ana sayfa ve Hakkımızda'daki BespokeCall butonu bu sayfalara bağlı.
 
 **Mağaza** — `dev-monoart.myikas.com`, storefront `a9b97462-bc96-4c36-87c0-1cf0d37313e9`, vitrin satış kanalı `ed3c0b49-3edd-4b05-acf5-3f0899e03cf5`. Kategori yok.
 
@@ -209,10 +222,12 @@ Hukuki metinler referansın `LEGAL_DOCS`'undan (ve Kullanım Şartları i18n `te
 | Footer seri linkleri EXTERNAL `/pages/koleksiyon?seri=…`; dil routing prefix'i almaz | Footer | 11 |
 | Ana vitrinde (`dev-monoart.myikas.com`) hâlâ eski tema var ve `<html lang="en">` dönüyor; büyük harfe çevrilen Türkçe metinde i → I oluyor. Bizim temanın önizlemesi `lang="tr"`. Ana temaya yayından sonra doğrula | tüm section'lar | 11 |
 | Galeride 22 Ayar, Model ve Paketleme görselleri yok, yer tutucu görünüyor. Merchant yükleyecek; istenirse `showEmptyCells` kapatılır | CollectionGallery | içerik |
-| BespokeCall butonu şimdilik `mailto` | BespokeCall | 8 |
 | Sepet sayfası "Atölyeye Dön" EXTERNAL `/#atolye`; dil routing prefix'i almaz | CartPage | 11 |
-| Header nav'da "İletişim" ve "Özel Tasarım" hâlâ EXTERNAL `/#iletisim`, `/#ozel-tasarim` ("Hakkımızda" Faz 7'de sayfaya bağlandı) | Header | 8 ve 11 |
-| Hangi referans modülleri atılacak: Atölye/kota, Siparişlerim, Welcome, Quota, Elçiler, Özel Tasarım formu | — | 8 ve 9 başında karar |
+| Hangi referans modülleri atılacak: Atölye/kota, Siparişlerim, Welcome, Quota, Elçiler (Özel Tasarım formu Faz 8'de sayfa olarak yapıldı) | — | 9 başında karar |
+| Faz 8 test mesajları (ad "Test Claude", test@ornek.com) panelde görünüyor mu, kullanıcı kontrol edecek; mesaj başlığı ve görsel linkleri okunur mu bakılmalı. Test mesajları sonra silinebilir | admin | 11 (QA) |
+| Özel Tasarım formunda görselli gönderim editör önizlemesinde otomasyonla denenemedi (iç iframe). Kullanıcı elle test edecek: tür/5 MB reddi, 4-5 dosyanın parçalı yüklenmesi, mesajdaki linklerin açılması | BespokeRequest | 11 (QA) |
+| Görsel yükleme Sikke Kolye'nin "Yüz 1 · Fotoğraf" opsiyonuna bağlı: siparişe bağlanmayan dosyaların ikas'ta ne kadar saklandığı bilinmiyor, linkler herkese açık. Opsiyonun adı veya dosya ayarı değişirse form da etkilenir | BespokeRequest | bilgi |
+| Global `.mon-btn`'de `:focus-visible` stili yok; klavyede buton odağı görünmüyor. Formlarda yerel olarak eklendi, `global.css`'e genel kural konmalı | global.css | 11 (QA) |
 
 ---
 

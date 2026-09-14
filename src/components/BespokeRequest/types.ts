@@ -1,0 +1,54 @@
+// This file is auto-generated — do not edit manually.
+import type { IkasProduct, IkasNavigationLink } from "@ikas/bp-storefront";
+
+export interface Props {
+  eyebrow?: string;
+  title?: string;
+  intro?: string;
+  firstNameLabel?: string;
+  firstNamePlaceholder?: string;
+  lastNameLabel?: string;
+  lastNamePlaceholder?: string;
+  phoneLabel?: string;
+  phonePlaceholder?: string;
+  emailLabel?: string;
+  emailPlaceholder?: string;
+  materialLabel?: string;
+  materialPlaceholder?: string;
+  materialOptions?: string;
+  noteLabel?: string;
+  notePlaceholder?: string;
+  noteMaxLength?: number;
+  notice?: string;
+  filesLabel?: string;
+  filesHint?: string;
+  dropLead?: string;
+  dropHint?: string;
+  removeFileLabel?: string;
+  maxFiles?: number;
+  fileTypeError?: string;
+  fileSizeError?: string;
+  fileLimitError?: string;
+  uploadError?: string;
+  product?: IkasProduct | null;
+  uploadOptionName?: string;
+  consentText?: string;
+  consentLink?: IkasNavigationLink | null;
+  consentError?: string;
+  submitText?: string;
+  uploadingText?: string;
+  submittingText?: string;
+  cancelLink?: IkasNavigationLink | null;
+  requiredError?: string;
+  emailError?: string;
+  phoneError?: string;
+  materialError?: string;
+  failureText?: string;
+  successTitle?: string;
+  successText?: string;
+  successButtonText?: string;
+  messageTag?: string;
+  filesHeading?: string;
+  backgroundColor?: string;
+  anchorId?: string;
+}

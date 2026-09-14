@@ -1,0 +1,86 @@
+/* ===== KVKK onay kutusu ===== */
+.mf-consent { display: grid; gap: 6px; }
+.mf-consent__row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  cursor: pointer;
+  user-select: none;
+}
+.mf-consent__row input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.mf-consent__box {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  border: 1.4px solid var(--line-strong);
+  border-radius: 3px;
+  background: var(--bg-page);
+  transition: border-color var(--dur, .2s), background var(--dur, .2s), box-shadow var(--dur, .2s);
+}
+.mf-consent__row:hover .mf-consent__box { border-color: var(--gold-dim); }
+.mf-consent__row input:checked + .mf-consent__box {
+  border-color: var(--gold);
+  background: var(--gold-grad, var(--gold));
+  box-shadow: 0 0 10px rgba(201, 168, 76, 0.3);
+}
+.mf-consent__row input:checked + .mf-consent__box::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 1.5px;
+  width: 5px;
+  height: 10px;
+  border: solid #2A1B02;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.mf-consent__row input:focus-visible + .mf-consent__box {
+  outline: 2px solid rgba(201, 168, 76, 0.6);
+  outline-offset: 2px;
+}
+.mf-consent__text {
+  font-family: var(--f-body);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text);
+  text-wrap: pretty;
+}
+.mf-consent__link {
+  color: var(--gold);
+  text-decoration: underline;
+  text-decoration-color: rgba(201, 168, 76, 0.45);
+  text-underline-offset: 2px;
+  transition: color var(--dur, .2s);
+}
+.mf-consent__link:hover { color: var(--gold-light); }
+
+.mf-consent.is-missing .mf-consent__box {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px rgba(176, 52, 52, 0.16);
+}
+.mf-consent.is-missing .mf-consent__row { animation: mf-consent-shake .4s ease; }
+.mf-consent__error {
+  padding-left: 30px;
+  font-family: var(--f-body);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--error);
+}
+
+@keyframes mf-consent-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mf-consent.is-missing .mf-consent__row { animation: none; }
+}

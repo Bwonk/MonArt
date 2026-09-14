@@ -1,0 +1,88 @@
+/* ===== Referans görsel yükleme ===== */
+.ru__drop {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 7px;
+  padding: 30px 22px;
+  text-align: center;
+  cursor: pointer;
+  border-color: var(--gold-dim);
+  background: var(--surface-input);
+}
+.ru__drop.is-filled { border-style: dashed; }
+.ru__drop.is-disabled { cursor: default; opacity: 0.6; }
+/* Klavye odağı görünür kalsın diye input görünmez ama odaklanabilir. */
+.ru__input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+.ru__drop:focus-within { border-color: var(--gold); box-shadow: var(--sh-focus); }
+.ru__icon {
+  font-size: 24px;
+  line-height: 1;
+  color: var(--gold);
+}
+.ru__lead {
+  font-family: var(--f-deco);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  color: var(--ink);
+}
+.ru__hint {
+  font-family: var(--f-body);
+  font-size: 11px;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--text) 62%, transparent);
+}
+
+.ru__files {
+  display: grid;
+  gap: 7px;
+  margin: 2px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.ru__file {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px 8px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-field, 6px);
+  background: var(--bg-page);
+  font-family: var(--f-body);
+  font-size: 12.5px;
+  color: var(--ink);
+}
+.ru__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ru__size {
+  font-size: 11px;
+  color: color-mix(in srgb, var(--text) 62%, transparent);
+}
+.ru__remove {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--gold);
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity var(--dur, .2s), background var(--dur, .2s);
+}
+.ru__remove:hover { opacity: 1; background: var(--surface-hover); }
+.ru__remove:disabled { cursor: default; opacity: 0.35; }
