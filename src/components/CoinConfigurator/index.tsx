@@ -14,7 +14,6 @@ import {
   setOptionRealPrices,
   hasValidProductOptionSetValues,
   initProductOptionSetValues,
-  productOptionFileUpload,
   addItemToCart,
   saveCouponCode,
   formatCurrency,
@@ -22,6 +21,7 @@ import {
 } from "@ikas/bp-storefront";
 import { Props } from "./types";
 import { useSectionTheme, cx } from "../../utils/theme-mode";
+import { uploadOptionFiles } from "../../utils/option-file-upload";
 import {
   FaceKey,
   FaceState,
@@ -127,6 +127,7 @@ export function CoinConfigurator(props: Props) {
     backToggleDesc = "",
     faceDividerText = "✦ 2. Yüz Tasarımı ✦",
     photoTooLargeToast = "Fotoğraf 5 MB'tan büyük olamaz.",
+    photoUploadErrorToast = "Fotoğraflar yüklenemedi, lütfen tekrar deneyin.",
     photoTypeToast = "Yalnızca JPG veya PNG yükleyebilirsiniz.",
     consentMissingToast = "",
     noteLabel = "Sipariş Notu",
@@ -569,8 +570,13 @@ export function CoinConfigurator(props: Props) {
         const opt = findOption(options, prefix, optPhotos);
         const files = f.photos.filter((x): x is File => !!x);
         if (active && isFile(opt) && files.length) {
-          const urls = await productOptionFileUpload(opt!, files);
-          if (!opt!.values?.length && urls?.length) opt!.values = urls;
+          const urls = await uploadOptionFiles(opt!, files);
+          // Eksik yüklemede fotoğrafsız sipariş oluşmasın.
+          if (urls.length < files.length) {
+            showToast(photoUploadErrorToast);
+            return;
+          }
+          if (!opt!.values?.length) opt!.values = urls;
         }
       }
       const optionSet = product.productOptionSet;

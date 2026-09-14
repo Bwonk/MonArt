@@ -146,6 +146,8 @@
 .mon-menu.is-open { pointer-events: auto; }
 .mon-menu__backdrop { opacity: 0; transition: opacity var(--dur) ease; }
 .mon-menu.is-open .mon-menu__backdrop { opacity: 1; }
+/* global .mon-drawer.is-open panelin kendisini bekliyor; is-open kapsayıcıda olduğu için panel burada açılır. */
+.mon-menu.is-open .mon-menu__panel { transform: none; }
 .mon-menu__panel {
   position: absolute;
   top: 0;
@@ -158,6 +160,8 @@
   gap: 24px;
   border-left: 1px solid var(--line);
   color: var(--text);
+  /* Kapalıyken gölge (--sh-drawer) görünür alana taşmasın. */
+  transform: translateX(calc(100% + 120px));
 }
 .mon-menu__head { display: flex; align-items: center; justify-content: space-between; }
 .mon-menu__nav { display: flex; flex-direction: column; gap: 6px; flex: 1; overflow-y: auto; }

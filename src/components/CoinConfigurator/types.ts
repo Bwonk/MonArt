@@ -167,4 +167,5 @@ export interface Props {
   optNote?: string;
   anchorId?: string;
   backgroundColor?: string;
+  photoUploadErrorToast?: string;
 }

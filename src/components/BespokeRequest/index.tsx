@@ -1,10 +1,11 @@
 import { useRef, useState } from "preact/hooks";
-import { IkasProductOption, productOptionFileUpload } from "@ikas/bp-storefront";
+import type { IkasProductOption } from "@ikas/bp-storefront";
 import { Props } from "./types";
 import { useSectionTheme, cx } from "../../utils/theme-mode";
 import { linkAttrs } from "../../utils/links";
 import { allOptions, findOption, isFile } from "../../utils/ikas-options";
 import { PHOTO_MAX_BYTES, PHOTO_TYPES } from "../../utils/coin";
+import { uploadOptionFiles } from "../../utils/option-file-upload";
 import {
   buildMessage,
   fillTemplate,
@@ -51,7 +52,7 @@ async function uploadInChunks(option: IkasProductOption, files: File[]): Promise
   const urls: string[] = [];
   for (let i = 0; i < files.length; i += size) {
     const part = files.slice(i, i + size);
-    const res = await productOptionFileUpload(option, part);
+    const res = await uploadOptionFiles(option, part);
     if (!res || res.length < part.length) return null;
     urls.push(...res);
   }

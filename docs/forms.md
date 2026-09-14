@@ -77,11 +77,12 @@ Ad/Soyad ikas'ta ayrı olduğu için referanstaki tek "Ad Soyad" alanı **iki al
 
 ## 4. Referans görsel yükleme (Özel Tasarım)
 
-ikas'ta iletişim formuna dosya eklenemiyor. Görseller **Sikke Kolye ürününün FILE opsiyonu** ("Yüz 1 · Fotoğraf") üzerinden CDN'e yüklenir, dönen linkler mesaja yazılır. Sipariş ya da sepet oluşmaz.
+ikas'ta iletişim formuna dosya eklenemiyor. Görseller **Sikke Kolye ürününün FILE opsiyonu** ("Yüz 1 · Fotoğraf") üzerinden ikas'ın S3 bucket'ına yüklenir, dönen `optionUrl`'ler mesaja yazılır. Sipariş ya da sepet oluşmaz.
 
 - Section'da `product` (PRODUCT) prop'u → Sikke Kolye. `uploadOptionName` (varsayılan `Yüz 1 · Fotoğraf`) `·` ile anahtar kelimelere bölünür, `findOption` ile opsiyon bulunur.
 - Ürün seçili değilse veya opsiyon bulunamazsa **yükleme alanı hiç görünmez**, form görselsiz çalışır.
-- `productOptionFileUpload(option, files)` opsiyonun `fileSettings.maxQuantity` değerinden fazla dosya verilirse hiçbir şey yüklemiyor. Bu yüzden dosyalar `maxQuantity` (yoksa 3) boyunda parçalara bölünüp sırayla yüklenir. Fonksiyon opsiyonun `values` dizisine dokunmuyor.
+- **`productOptionFileUpload` kullanılmıyor.** `@ikas/bp-storefront` 2.9.1'de S3'e FormData gönderirken `Content-Type: multipart/form-data` başlığını elle koyuyor, boundary eksik kaldığı için S3 `400 MalformedPOSTRequest` dönüyor ve fonksiyon her zaman boş liste veriyor (yayın önizlemesinde doğrulandı; başlıksız aynı istek 204). Yerine `src/utils/option-file-upload.ts` → `uploadOptionFiles(option, files)`: storefront API `getProductOptionFileUrl` (başlıklar `IkasStorefrontConfig`'ten: `x-api-key`, `x-sfid`, `x-sfrid`, varsa müşteri token'ı) → S3 presigned POST, `Content-Type` tarayıcıya bırakılır. Konfigüratör de aynı yardımcıyı kullanır. ikas düzeltince geri dönülebilir.
+- Opsiyonun `fileSettings.maxQuantity` (şu an 3) değerinden fazla dosya tek seferde verilmez; dosyalar bu boyda parçalara bölünüp sırayla yüklenir.
 - İstemci kontrolü: tür `image/jpeg`, `image/png`, `image/webp` (opsiyonun `allowedExtensions` listesi de varsa onunla kesiştirilir), dosya başına 5 MB, en fazla `maxFiles` (varsayılan 5). Aynı ad+boyuttaki dosya ikinci kez eklenmez. Reddedilen dosya için alanın altında hata metni çıkar.
 - Sürükle-bırak ve tıklayıp seçme; listede ad, KB ve kaldır (×) düğmesi.
 - Akış: doğrulama → (dosya varsa) yükleme, buton "Görseller yükleniyor…" → mesaj gönderimi, buton "Gönderiliyor…" → başarı ekranı.
@@ -89,7 +90,7 @@ ikas'ta iletişim formuna dosya eklenemiyor. Görseller **Sikke Kolye ürünün�
 
 **Bilinen kısıtlar**
 - Referanstaki PDF ve SVG desteklenmiyor (opsiyon yalnız jpg/png/webp alıyor).
-- Dosya linki herkese açık; linki bilen görseli açabilir.
+- **Bucket herkese kapalı:** `optionUrl` imzasız S3 adresi, tarayıcıda `403 AccessDenied` dönüyor. Sipariş satırında ikas paneli dosyayı kendi yetkisiyle gösteriyor olabilir; iletişim mesajındaki düz link ise merchant'ta açılmayabilir. Kullanıcı panelden kontrol edecek; açılmıyorsa görseller WhatsApp/e-posta ile istenir (yükleme alanı kaldırılır) ya da sıfır fiyatlı talep ürünü kurulur.
 - Siparişe bağlanmayan dosyaların ikas tarafında sonradan temizlenip temizlenmediği bilinmiyor. Merchant talebi aldığında görselleri kendi arşivine indirmeli.
 - Konfigüratördeki opsiyonun adı veya dosya ayarları değişirse (`maxQuantity`, uzantılar) bu form da etkilenir.
 

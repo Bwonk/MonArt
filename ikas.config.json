@@ -2301,6 +2301,14 @@
           "required": false,
           "defaultValue": "#FFFFFF",
           "groupId": "appearance"
+        },
+        {
+          "name": "photoUploadErrorToast",
+          "displayName": "Fotoğraf Yükleme Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Fotoğraflar yüklenemedi, lütfen tekrar deneyin.",
+          "groupId": "photos"
         }
       ],
       "propGroups": [

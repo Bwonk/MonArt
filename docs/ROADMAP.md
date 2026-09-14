@@ -41,7 +41,7 @@ Editor URL'sini tarayıcıda açık tut. MCP editor araçları ancak editor bağ
 | 4 | Konfigüratör canlı test + ürün bağlama + ürün sayfası | ✅ bitti (fotoğraf yükleme ve sipariş satırı elle testi Faz 11 QA'ya ertelendi) |
 | 5 | Koleksiyon galerisi + Lightbox | ✅ bitti (yayın önizlemesinde uçtan uca test edildi) |
 | 6 | Sepet sayfası + drawer'da kişiselleştirme özeti | ✅ bitti (editör önizlemesinde masaüstü, 380px, Day/Night, kupon ve adet test edildi) |
-| 7 | Statik içerik sayfaları: Hakkımızda, SSS, 7 hukuki doküman + Görsel Hakları | ✅ bitti (editörde masaüstü, 380px, Day/Night; yayın önizlemesinde metinler, link akışları ve Night düzeltmeleri doğrulandı. Yan menü aktif vurgusu düzeltmesi yeniden yayın bekliyor) |
+| 7 | Statik içerik sayfaları: Hakkımızda, SSS, 7 hukuki doküman + Görsel Hakları | ✅ bitti (editörde masaüstü, 380px, Day/Night; yayın önizlemesinde metinler, link akışları, Night düzeltmeleri ve yan menü aktif vurgusu — masaüstü ve 400px çip kayması — doğrulandı) |
 | 8 | Formlar: İletişim + Özel Tasarım talebi | ✅ bitti (editör önizlemesinde masaüstü, 380px, Day/Night, doğrulama, klavye ve iki formun gönderimi test edildi; panelde mesajın görünmesi ve görselli talep kullanıcı testi bekliyor) |
 | 9 | Marka Elçileri sayfası (karar gerekli) | ⏳ |
 | 10 | Hazır hesap sayfaları + 404 | ⏳ |
@@ -216,7 +216,7 @@ Hukuki metinler referansın `LEGAL_DOCS`'undan (ve Kullanım Şartları i18n `te
 | Footer'da INDEX'e giden linkler kaldı: "Tasarım Atölyesi" (`#atolye` çapası olmalı) ve alt bar "ambassadors" (Faz 9). Yardım, hukuki satır ve Atölye sütunu Faz 7'de bağlandı | Footer | 9 ve 11 |
 | Hukuki metinler referanstaki kısa taslak. Mesafeli Satış'ta satıcı unvanı, adres, MERSİS/vergi no, iletişim ve ödeme/teslim bilgileri; KVKK'da veri sorumlusunun iletişim bilgisi ve başvuru yöntemi yok. Merchant/avukat tamamlamalı, sonra `updatedDate` doldurulmalı | LegalPage sayfaları | içerik |
 | İçerik tutarsızlığı: SSS 4. soru "5 ila 15 iş günü", Teslimat ve Mesafeli Satış "10-15 iş günü" diyor | SSS / hukuki | içerik |
-| Yan menü aktif vurgusu ilk yayında görünmedi (hydration: ilk render'da okunan yol SSR'dan farklıydı). Düzeltildi, editöre aktarıldı; yeniden yayından sonra masaüstü ve mobil çiplerde (aktif çipin görünür alana kayması) doğrulanacak. Link tıklamaları, metinler ve Night düzeltmeleri yayın önizlemesinde doğrulandı | LegalPage | 8 başında |
+| Mobil menü paneli hiç açılmıyordu (Faz 1): global `.mon-drawer.is-open` panelin kendisini bekliyor, `is-open` ise kapsayıcıda. Header CSS'ine `.mon-menu.is-open .mon-menu__panel` kuralı eklendi; kapalı menü ve sepet çekmecesinin gölgesi sağ kenara taşıyordu, o da giderildi. Yayında doğrulandı (400px'te panel açılıyor, kapalı çekmeceler 120px dışarıda) — kapatılabilir | Header, CartDrawer | ✅ |
 | Night modunda sayfa en üstteyken Header gri görünüyor: cam (glass) bar arkadaki beyaz body zeminini gösteriyor. Body'ye gece zemini verilmeli ya da gece modunda bar opak olmalı | Header | 11 (QA) |
 | Hakkımızda ve SSS sayfalarında `h1` yok (OriginStory ve Faq başlığı `h2`) | SEO | 11 |
 | Footer seri linkleri EXTERNAL `/pages/koleksiyon?seri=…`; dil routing prefix'i almaz | Footer | 11 |
@@ -224,9 +224,10 @@ Hukuki metinler referansın `LEGAL_DOCS`'undan (ve Kullanım Şartları i18n `te
 | Galeride 22 Ayar, Model ve Paketleme görselleri yok, yer tutucu görünüyor. Merchant yükleyecek; istenirse `showEmptyCells` kapatılır | CollectionGallery | içerik |
 | Sepet sayfası "Atölyeye Dön" EXTERNAL `/#atolye`; dil routing prefix'i almaz | CartPage | 11 |
 | Hangi referans modülleri atılacak: Atölye/kota, Siparişlerim, Welcome, Quota, Elçiler (Özel Tasarım formu Faz 8'de sayfa olarak yapıldı) | — | 9 başında karar |
-| Faz 8 test mesajları (ad "Test Claude", test@ornek.com) panelde görünüyor mu, kullanıcı kontrol edecek; mesaj başlığı ve görsel linkleri okunur mu bakılmalı. Test mesajları sonra silinebilir | admin | 11 (QA) |
-| Özel Tasarım formunda görselli gönderim editör önizlemesinde otomasyonla denenemedi (iç iframe). Kullanıcı elle test edecek: tür/5 MB reddi, 4-5 dosyanın parçalı yüklenmesi, mesajdaki linklerin açılması | BespokeRequest | 11 (QA) |
-| Görsel yükleme Sikke Kolye'nin "Yüz 1 · Fotoğraf" opsiyonuna bağlı: siparişe bağlanmayan dosyaların ikas'ta ne kadar saklandığı bilinmiyor, linkler herkese açık. Opsiyonun adı veya dosya ayarı değişirse form da etkilenir | BespokeRequest | bilgi |
+| İletişim formu mesajları admin panelinde görünmüyor (Gelen Kutusu'nda "ikas Form" kanalı "Yakında"); mesajlar mağaza sahibinin e-postasına geliyor — kullanıcı test mesajlarının geldiğini doğruladı. Merchant'a form mesajlarını e-postadan takip etmesi söylenmeli | admin / e-posta | bilgi |
+| Özel Tasarım görselli gönderim yayında çalışıyor: 4 dosya 3+1 parça S3'e yüklendi (204), mesaj gönderildi (200), başarı ekranı açıldı; istemci kontrolleri (PDF/6 MB reddi, tekrar, 5 dosya sınırı, kaldır) doğrulandı. Kalan: e-postadaki görsel linklerinin merchant'ta açılması (anonim 403). Kullanıcı yükleme hatasını ve bucket erişimini ikas'a danışacak; sonuca göre yükleme kalır ya da WhatsApp/e-posta ile görsel isteme sürümüne geçilir | BespokeRequest | ikas yanıtı |
+| **ikas `productOptionFileUpload` tarayıcıda çalışmıyor** (bp-storefront 2.9.1, S3'e elle `Content-Type: multipart/form-data` → 400 `MalformedPOSTRequest`). Konfigüratördeki fotoğraflar bu yüzden hiç yüklenmiyordu. `src/utils/option-file-upload.ts` ile aşıldı (konfigüratör + Özel Tasarım); konfigüratör eksik yüklemede artık sepete eklemiyor (`photoUploadErrorToast`). ikas SDK ekibine bildirilmeli; düzelince yardımcı kaldırılabilir | CoinConfigurator, BespokeRequest | ikas |
+| Yüklenen dosyaların `optionUrl`'i imzasız S3 adresi ve 403 dönüyor (bucket kapalı). Özel Tasarım mesajındaki linkler merchant'ta açılıyor mu, kullanıcı panelden kontrol edecek; açılmıyorsa yükleme yerine WhatsApp/e-posta ile görsel istenir. Konfigüratör siparişinde dosyanın panelde açıldığı da test siparişinde görülmeli | BespokeRequest, CoinConfigurator | 8 sonu |
 | Global `.mon-btn`'de `:focus-visible` stili yok; klavyede buton odağı görünmüyor. Formlarda yerel olarak eklendi, `global.css`'e genel kural konmalı | global.css | 11 (QA) |
 
 ---
