@@ -3395,6 +3395,107 @@
           "name": "Görünüm"
         }
       ]
+    },
+    {
+      "id": "wnbxmerd-t47FaQ6XEn",
+      "name": "LegalPage",
+      "entry": "./src/components/LegalPage/index.tsx",
+      "styles": "./src/components/LegalPage/styles.css",
+      "type": "section",
+      "props": [
+        {
+          "name": "eyebrow",
+          "displayName": "Üst Süs",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "✦",
+          "groupId": "content"
+        },
+        {
+          "name": "title",
+          "displayName": "Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Mesafeli Satış Sözleşmesi",
+          "groupId": "content"
+        },
+        {
+          "name": "updatedLabel",
+          "displayName": "Güncelleme Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Son güncelleme",
+          "groupId": "content"
+        },
+        {
+          "name": "updatedDate",
+          "displayName": "Güncelleme Tarihi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "",
+          "groupId": "content"
+        },
+        {
+          "name": "body",
+          "displayName": "Doküman Metni",
+          "type": "RICH_TEXT",
+          "required": false,
+          "groupId": "content"
+        },
+        {
+          "name": "showNav",
+          "displayName": "Doküman Menüsünü Göster",
+          "type": "BOOLEAN",
+          "required": false,
+          "defaultValue": true,
+          "groupId": "nav"
+        },
+        {
+          "name": "navTitle",
+          "displayName": "Menü Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Dokümanlar",
+          "groupId": "nav"
+        },
+        {
+          "name": "navLinks",
+          "displayName": "Menü Linkleri",
+          "type": "LIST_OF_LINK",
+          "required": false,
+          "groupId": "nav"
+        },
+        {
+          "name": "backgroundColor",
+          "displayName": "Arka Plan (Gündüz)",
+          "type": "COLOR",
+          "required": false,
+          "defaultValue": "#FFFFFF",
+          "groupId": "appearance"
+        },
+        {
+          "name": "anchorId",
+          "displayName": "Çapa (id)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "",
+          "groupId": "appearance"
+        }
+      ],
+      "propGroups": [
+        {
+          "id": "content",
+          "name": "İçerik"
+        },
+        {
+          "id": "nav",
+          "name": "Doküman Menüsü"
+        },
+        {
+          "id": "appearance",
+          "name": "Görünüm"
+        }
+      ]
     }
   ],
   "customTypes": [

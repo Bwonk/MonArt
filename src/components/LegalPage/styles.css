@@ -1,0 +1,199 @@
+/* ===== Hukuki doküman sayfası ===== */
+.legal {
+  width: 100%;
+  min-height: 60vh;
+  padding: calc(var(--header-h, 84px) * 0.5 + 24px) var(--gutter, 28px) var(--section-y, 96px);
+  background: var(--bg-page);
+  color: var(--text);
+  scroll-margin-top: var(--header-h, 84px);
+}
+.legal__inner {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 40px 64px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.legal__inner--solo {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: var(--w-prose, 760px);
+}
+
+/* ---------- Başlık ---------- */
+.legal__head {
+  grid-column: 1 / -1;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+.legal__orn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 18px;
+  color: var(--gold);
+  font-size: 13px;
+}
+.legal__orn-line {
+  width: 46px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim));
+}
+.legal__orn-line--end { transform: scaleX(-1); }
+.legal__title {
+  display: block;
+  margin: 0;
+  font-family: var(--f-deco);
+  font-size: clamp(26px, 3.4vw, 40px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--heading);
+  text-wrap: balance;
+}
+.legal__updated {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin: 16px 0 0;
+  font-family: var(--f-ui);
+  font-size: 10.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.legal__updated-label { color: var(--gold-dim); }
+
+/* ---------- Doküman menüsü ---------- */
+.legal__nav {
+  position: sticky;
+  top: calc(var(--header-h, 84px) + 24px);
+  align-self: start;
+}
+.legal__nav-title {
+  display: block;
+  margin-bottom: 14px;
+  font-family: var(--f-ui);
+  font-size: var(--fs-label, 9.5px);
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+}
+.legal__nav-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-left: 1px solid var(--line);
+}
+.legal__nav-link {
+  display: block;
+  margin-left: -1px;
+  padding: 9px 0 9px 16px;
+  border-left: 2px solid transparent;
+  font-family: var(--f-body);
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s;
+}
+.legal__nav-link:hover { color: var(--gold); }
+.legal__nav-link.is-active {
+  border-left-color: var(--gold);
+  color: var(--heading);
+  font-weight: 600;
+}
+.legal__nav-link:focus-visible { outline: 1px solid var(--gold); outline-offset: 2px; }
+
+/* ---------- Metin (RICH_TEXT) ---------- */
+.legal__body {
+  max-width: var(--w-prose, 760px);
+  min-width: 0;
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.9;
+  letter-spacing: 0.01em;
+  color: var(--text);
+}
+.legal__body h2,
+.legal__body h3,
+.legal__body h4 {
+  display: block;
+  margin: 36px 0 12px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+  font-family: var(--f-ui);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.legal__body > :first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+.legal__body h3,
+.legal__body h4 { padding-top: 0; border-top: 0; margin-top: 24px; font-size: 12px; }
+.legal__body p {
+  margin: 0 0 16px;
+  text-align: justify;
+  text-wrap: pretty;
+}
+.legal__body p:last-child { margin-bottom: 0; }
+.legal__body strong,
+.legal__body b { color: var(--heading); font-weight: 700; }
+.legal__body a {
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--line-strong);
+}
+.legal__body a:hover { text-decoration-color: var(--gold); }
+.legal__body ul,
+.legal__body ol { margin: 0 0 16px; padding-left: 22px; }
+.legal__body li { margin-bottom: 6px; }
+.legal__body li::marker { color: var(--gold); }
+
+/* ---------- Mobil ---------- */
+@media (max-width: bp(5pw2fQi7Yr)) {
+  .legal { padding: 32px var(--gutter-m, 16px) var(--section-y-m, 56px); }
+  .legal__inner { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .legal__head { padding-bottom: 24px; }
+  .legal__nav { position: static; min-width: 0; }
+  .legal__nav-title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .legal__nav-list {
+    display: flex;
+    gap: 8px;
+    margin: 0 calc(var(--gutter-m, 16px) * -1);
+    padding: 2px var(--gutter-m, 16px) 6px;
+    border-left: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .legal__nav-list::-webkit-scrollbar { display: none; }
+  .legal__nav-list li { flex: none; }
+  .legal__nav-link {
+    margin: 0;
+    padding: 8px 14px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .legal__nav-link.is-active {
+    border-color: var(--gold);
+    background: var(--gold);
+    color: var(--bg-page);
+  }
+}
+@media (max-width: bp(5Xmvk6D0gV)) {
+  .legal__body { font-size: 15px; line-height: 1.82; }
+  .legal__body p { text-align: left; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .legal__nav-link { transition: none; }
+}

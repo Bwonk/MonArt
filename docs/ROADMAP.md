@@ -41,7 +41,7 @@ Editor URL'sini tarayıcıda açık tut. MCP editor araçları ancak editor bağ
 | 4 | Konfigüratör canlı test + ürün bağlama + ürün sayfası | ✅ bitti (fotoğraf yükleme ve sipariş satırı elle testi Faz 11 QA'ya ertelendi) |
 | 5 | Koleksiyon galerisi + Lightbox | ✅ bitti (yayın önizlemesinde uçtan uca test edildi) |
 | 6 | Sepet sayfası + drawer'da kişiselleştirme özeti | ✅ bitti (editör önizlemesinde masaüstü, 380px, Day/Night, kupon ve adet test edildi) |
-| 7 | Statik içerik sayfaları: Hakkımızda, SSS, 7 hukuki doküman + Görsel Hakları | ⏳ |
+| 7 | Statik içerik sayfaları: Hakkımızda, SSS, 7 hukuki doküman + Görsel Hakları | ✅ bitti (editör önizlemesinde masaüstü, 380px, Day/Night test edildi; link tıklamaları ve yan menü aktif vurgusu yayın önizlemesinde denenecek) |
 | 8 | Formlar: İletişim + Özel Tasarım talebi | ⏳ |
 | 9 | Marka Elçileri sayfası (karar gerekli) | ⏳ |
 | 10 | Hazır hesap sayfaları + 404 | ⏳ |
@@ -83,6 +83,8 @@ Bunlar önceki fazlarda hata yapılıp düzeltilen konular. Her fazda geçerli.
 - `.mon-btn`, `.mon-field`, `.mon-card`, `.mon-eyebrow`, `.mon-panel`, `.mon-backdrop` gibi utility'ler `global.css`'te hazır, yeniden yazılmaz.
 - Vitrinde başlık öğeleri (`h1`–`h4`) inline davranabiliyor; önünde veya arkasında inline/inline-flex öğe (buton, ikon, eyebrow) varsa aynı satıra biniyor. Başlık class'ına `display: block` ver (Faz 4'te SealModal, BespokeCall ve SeriesCard böyle düzeltildi).
 - Büyük görselde (lightbox vb.) `srcset`'in doğal genişliğine güvenme. CDN küçük kaynağı büyütmediği için görsel olduğundan küçük çiziliyor. Boyutu kapsayıcıdan ver: `width/height: 100%; object-fit: contain`.
+- COMPONENT_LIST child'ının (FaqItem, SeriesCard) wrapper'ı global token'ları gündüz değerine sıfırlar; parent'ın gece paleti child'a inmez. Child kökünde de `useSectionTheme()` className ve style'ı uygulanır (Faz 7'de düzeltildi).
+- Section'lar arasında boşluk için `margin` kullanma: gece modunda aradan sayfanın beyaz zemini görünür. Boşluk `padding` ile verilir (Faz 7'de Footer düzeltildi).
 - Grid öğesi sütunundan genişse `justify-self: center` onu başa hizalıyor. Ortalamak için negatif yatay margin kullan: `margin-inline: calc((100% - <genişlik>) / 2)`.
 
 **Tema**
@@ -129,6 +131,7 @@ Bunlar önceki fazlarda hata yapılıp düzeltilen konular. Her fazda geçerli.
 | CoinConfigurator | section | `wnbxmerd-5HM2GavfPR` |
 | CollectionGallery | section | `wnbxmerd-Cv0kAyhqw9` |
 | CartPage | section | `wnbxmerd-0bOGxJFtlY` |
+| LegalPage | section | `wnbxmerd-t47FaQ6XEn` |
 
 Özel enum "Seri" (`roma` / `osmanli` / `misir`): `5rzSm7oLdF`. SeriesCard'ın `seriesKey` prop'u bunu kullanır.
 
@@ -149,6 +152,23 @@ Bunlar önceki fazlarda hata yapılıp düzeltilen konular. Her fazda geçerli.
 **Koleksiyon sayfası** — page id `zQWeWMtpEV` (CUSTOM, slug `koleksiyon`, vitrinde **`/pages/koleksiyon`**; CUSTOM sayfalar `/pages/<slug>` altında yayınlanır). Sıra: Header `E2CEgC1Ty0` · CollectionGallery `KmMWViHQSH` · Footer `tyvOc9iBPx`. Galerideki 12 sikke görseli konfigüratörün yüklü görselleriyle aynı id'ler. Ana sayfadaki Hero "Koleksiyonları İncele" butonu ve 3 seri kartı bu sayfaya gider (kartlar `?seri=` ekler). Footer'ın Koleksiyon sütunu da bağlı.
 
 **Sepet sayfası** — page id `lBaF5XFhjB` (CART). Sıra: Header `mYelHbcKWW` · CartPage `uZr5rmv1FA` · Footer `w5yumDkrtk`. "Atölyeye Dön" (`continueLink`) EXTERNAL `/#atolye`; boşsa INDEX'e gider. Drawer ve sayfa aynı `CartLine` + `CoinCheckoutButton` sub-component'lerini ve `src/utils/cart-summary.ts` özetini kullanır. Özet, opsiyon adlarını `OPTION_CONTRACT` (`src/utils/ikas-options.ts`) varsayılanlarıyla eşler; konfigüratördeki "Opsiyon Sözleşmesi" prop'ları değiştirilirse sepet özeti eşleşmez. Satır küçük resmi tasarıma göre seçilir: konfigüratör sikke görsellerinin haritasını localStorage'a (`monart_artwork`, `src/utils/coin-thumbs.ts`) yazar, satır 1. yüzün seri/cinsiyet/büst/sarık ve materyal+kaplama bilgisiyle aynı görseli bulur; harita yoksa ürün görseline düşer. Her iki ürünün tüm varyantlarında yedek görsel olarak MA monogram sikkesi var (admin'den yüklendi; ödeme sayfası ve admin bunu gösterir).
+
+**İçerik sayfaları (Faz 7)** — hepsi CUSTOM, vitrinde `/pages/<slug>`. Header ve Footer ortak (common) section; değerleri Ana sayfadaki yerleşimde tutulur, her sayfaya otomatik eklenir.
+
+| Sayfa | page id | slug | Section'lar |
+|---|---|---|---|
+| Hakkımızda | `ytkXaJdSTQ` | `hakkimizda` | OriginStory `qOJkmSAuyz` · BespokeCall `1aU6fBOJpa` (Ana sayfa değerlerinin kopyası) |
+| SSS | `oo5bBtJ1WP` | `sss` | Faq `67BccwoSlf` (10 FaqItem, Ana sayfa kopyası) |
+| Mesafeli Satış Sözleşmesi | `vEjPFBNMLU` | `mesafeli-satis-sozlesmesi` | LegalPage `scbSmLz9RW` |
+| KVKK & Görsel Gizliliği Politikası | `zp6v9sr7sa` | `kvkk` | LegalPage `X3uxT5UpyO` |
+| Gizlilik Politikası | `CYw737k2W6` | `gizlilik-politikasi` | LegalPage `nB8iQpdxsX` |
+| Teslimat & İade Koşulları | `4m35ejxS0Z` | `teslimat-ve-iade` | LegalPage `OP0w0iFxV2` |
+| İptal ve İade Şartları | `uIC7lTSa2z` | `iptal-ve-iade` | LegalPage `sT0DGn2S06` |
+| Hediye Sertifikası Şartları | `U20UofHczV` | `hediye-sertifikasi` | LegalPage `oc92cY1imV` |
+| Bakım Rehberi | `RkFAJyKEeV` | `bakim-rehberi` | LegalPage `ttjsgzBC7O` |
+| Kullanım Şartları (Görsel Hakları ve Sanatsal Tolerans) | `RGt1KkPkeN` | `kullanim-sartlari` | LegalPage `7pcWHVQXnw` |
+
+Hukuki metinler referansın `LEGAL_DOCS`'undan (ve Kullanım Şartları i18n `terms_artwork_body`'den) birebir aktarıldı; gövde `<h2>` madde başlığı + `<p>`. Her LegalPage'in `navLinks` prop'unda 8 dokümanın PAGE linki var. Yan menüde aktif doküman `window.location.pathname` ile link href'i karşılaştırılarak bulunur. Editör önizlemesinde pathname `about:srcdoc` olduğu için vurgu yalnız yayında görünür. Footer'daki Yardım sütunu, 6 hukuki link, "Zanaat Hikayemiz", "Ustaya Sor" ve Header'daki "Hakkımızda" bu sayfalara PAGE linkiyle bağlı.
 
 **Mağaza** — `dev-monoart.myikas.com`, storefront `a9b97462-bc96-4c36-87c0-1cf0d37313e9`, vitrin satış kanalı `ed3c0b49-3edd-4b05-acf5-3f0899e03cf5`. Kategori yok.
 
@@ -179,13 +199,18 @@ Bunlar önceki fazlarda hata yapılıp düzeltilen konular. Her fazda geçerli.
 | %100 kupon sepetteki **tüm** Sikke Kolye adetlerini sıfırlıyor. Gerçek sertifika için sertifika bedeli kadar Sabit Tutar indirim ya da adet sınırı seçilmeli | admin | 11 |
 | Fiyatlar "₺ 22,000.00" biçiminde; mağaza para birimi biçimi admin ayarlarından TR'ye çevrilmeli | admin | 11 |
 | "Kolyeni Tasarla" CTA'sı `#atolye` çapasına gitmeli | Hero | 11 |
-| Footer'daki birçok link INDEX'e gidiyor (Koleksiyon sütunu Faz 5'te bağlandı) | Footer | 7 ve 11 |
+| Footer'da INDEX'e giden linkler kaldı: "Tasarım Atölyesi" (`#atolye` çapası olmalı) ve alt bar "ambassadors" (Faz 9). Yardım, hukuki satır ve Atölye sütunu Faz 7'de bağlandı | Footer | 9 ve 11 |
+| Hukuki metinler referanstaki kısa taslak. Mesafeli Satış'ta satıcı unvanı, adres, MERSİS/vergi no, iletişim ve ödeme/teslim bilgileri; KVKK'da veri sorumlusunun iletişim bilgisi ve başvuru yöntemi yok. Merchant/avukat tamamlamalı, sonra `updatedDate` doldurulmalı | LegalPage sayfaları | içerik |
+| İçerik tutarsızlığı: SSS 4. soru "5 ila 15 iş günü", Teslimat ve Mesafeli Satış "10-15 iş günü" diyor | SSS / hukuki | içerik |
+| Hukuki sayfalar, Hakkımızda ve SSS arası link tıklamaları ile yan menü aktif vurgusu yayın önizlemesinde test edilmedi | LegalPage, Footer | 11 (QA) |
+| Night modunda sayfa en üstteyken Header gri görünüyor: cam (glass) bar arkadaki beyaz body zeminini gösteriyor. Body'ye gece zemini verilmeli ya da gece modunda bar opak olmalı | Header | 11 (QA) |
+| Hakkımızda ve SSS sayfalarında `h1` yok (OriginStory ve Faq başlığı `h2`) | SEO | 11 |
 | Footer seri linkleri EXTERNAL `/pages/koleksiyon?seri=…`; dil routing prefix'i almaz | Footer | 11 |
 | Ana vitrinde (`dev-monoart.myikas.com`) hâlâ eski tema var ve `<html lang="en">` dönüyor; büyük harfe çevrilen Türkçe metinde i → I oluyor. Bizim temanın önizlemesi `lang="tr"`. Ana temaya yayından sonra doğrula | tüm section'lar | 11 |
 | Galeride 22 Ayar, Model ve Paketleme görselleri yok, yer tutucu görünüyor. Merchant yükleyecek; istenirse `showEmptyCells` kapatılır | CollectionGallery | içerik |
 | BespokeCall butonu şimdilik `mailto` | BespokeCall | 8 |
 | Sepet sayfası "Atölyeye Dön" EXTERNAL `/#atolye`; dil routing prefix'i almaz | CartPage | 11 |
-| Header nav EXTERNAL `/#craft` gibi linklerle çalışıyor | Header | 11 |
+| Header nav'da "İletişim" ve "Özel Tasarım" hâlâ EXTERNAL `/#iletisim`, `/#ozel-tasarim` ("Hakkımızda" Faz 7'de sayfaya bağlandı) | Header | 8 ve 11 |
 | Hangi referans modülleri atılacak: Atölye/kota, Siparişlerim, Welcome, Quota, Elçiler, Özel Tasarım formu | — | 8 ve 9 başında karar |
 
 ---

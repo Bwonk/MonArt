@@ -1,11 +1,12 @@
 /* ===== MonArt Footer ===== */
+/* Üst boşluk margin değil padding: margin'de gece modunda sayfanın beyaz zemini aradan görünüyordu.
+   Üst çizgi boşluğun altına background ile çizilir. */
 .mon-footer {
+  --footer-gap: var(--section-y, 96px);
   width: 100%;
-  margin-top: var(--section-y, 96px);
-  padding: 56px var(--gutter, 28px) 32px;
-  border-top: 1px solid var(--line);
+  padding: calc(var(--footer-gap) + 56px) var(--gutter, 28px) 32px;
   color: var(--text);
-  background: var(--bg-page);
+  background: linear-gradient(var(--line), var(--line)) 0 var(--footer-gap) / 100% 1px no-repeat, var(--bg-page);
 }
 .mon-footer__inner {
   max-width: var(--w-footer, 980px);
@@ -135,7 +136,7 @@
 
 /* Mobil ≤ 860px (tema breakpoint: Mobile) */
 @media (max-width: bp(5pw2fQi7Yr)) {
-  .mon-footer { margin-top: var(--section-y-m, 56px); padding: 40px var(--gutter-m, 16px) 24px; }
+  .mon-footer { --footer-gap: var(--section-y-m, 56px); padding: calc(var(--footer-gap) + 40px) var(--gutter-m, 16px) 24px; }
   .mon-footer__cols { grid-template-columns: 1fr 1fr; gap: 24px; }
   .mon-footer__extra { flex-direction: column; }
 }

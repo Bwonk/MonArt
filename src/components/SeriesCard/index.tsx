@@ -1,7 +1,7 @@
 import { useState } from "preact/hooks";
 import { getDefaultSrc, createMediaSrcset, IkasImage } from "@ikas/bp-storefront";
 import { Props } from "./types";
-import { cx } from "../../utils/theme-mode";
+import { useSectionTheme, cx } from "../../utils/theme-mode";
 import { linkAttrs, withQuery } from "../../utils/links";
 import { FlipIcon } from "../../sub-components/Icons";
 
@@ -32,6 +32,8 @@ export function SeriesCard(props: Props) {
     seriesKey,
   } = props;
 
+  // Child bileşenin wrapper'ı token'ları gündüz değerine sıfırlar; gece paletini kökte yeniden bağla.
+  const theme = useSectionTheme();
   const [flipped, setFlipped] = useState(false);
   const canFlip = !!backImage;
   // Seri seçiliyse link galeride o sekmeyi açar (?seri=roma).
@@ -39,7 +41,7 @@ export function SeriesCard(props: Props) {
   if (attrs.href && seriesKey) attrs.href = withQuery(attrs.href, { seri: seriesKey });
 
   return (
-    <article className={cx("series-card", flipped && "is-flipped")}>
+    <article className={cx("series-card", flipped && "is-flipped", theme.className)} style={theme.style}>
       {badge && <span className="series-card__badge">{badge}</span>}
 
       <div className="series-card__coin mon-anim-float">

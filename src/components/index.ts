@@ -9,3 +9,4 @@ export { Faq } from "./Faq/index";
 export { CoinConfigurator } from "./CoinConfigurator/index";
 export { CollectionGallery } from "./CollectionGallery/index";
 export { CartPage } from "./CartPage/index";
+export { LegalPage } from "./LegalPage/index";
