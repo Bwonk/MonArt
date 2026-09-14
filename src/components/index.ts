@@ -12,3 +12,4 @@ export { CartPage } from "./CartPage/index";
 export { LegalPage } from "./LegalPage/index";
 export { ContactForm } from "./ContactForm/index";
 export { BespokeRequest } from "./BespokeRequest/index";
+export { AmbassadorProgram } from "./AmbassadorProgram/index";

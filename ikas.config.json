@@ -4301,6 +4301,290 @@
           "name": "Görünüm"
         }
       ]
+    },
+    {
+      "id": "wnbxmerd-BFMxX7SqEq",
+      "name": "AmbassadorProgram",
+      "entry": "./src/components/AmbassadorProgram/index.tsx",
+      "styles": "./src/components/AmbassadorProgram/styles.css",
+      "type": "section",
+      "props": [
+        {
+          "name": "eyebrow",
+          "displayName": "Üst Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yalnızca Davet ile",
+          "groupId": "content"
+        },
+        {
+          "name": "title",
+          "displayName": "Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "The MonetArts Co-Creation Society",
+          "groupId": "content"
+        },
+        {
+          "name": "paragraphOne",
+          "displayName": "1. Paragraf",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "MonetArts, geçmişin ihtişamını modern çizgilerle buluşturan seçkin bir topluluktur. Biz, sadece mücevher değil; zamana meydan okuyan benzersiz hikâyeler üretiyoruz. Bu felsefeyi paylaşan ve kendi kitlesine sıradan bir reklam değil, ölümsüz bir tarih mirası hediye etmek isteyen seçkin içerik üreticilerini Marka Elçimiz (Brand Ambassador) olmaya davet ediyoruz.",
+          "groupId": "content"
+        },
+        {
+          "name": "paragraphTwo",
+          "displayName": "2. Paragraf",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "MonetArts Ambassador programına kabul edildiğinizde, size ve kitlenize özel olarak tanımlanacak ayrıcalıklar sayesinde hem takipçilerinize zamansız bir MonetArts jesti sunabilecek, hem de bu küresel iş ortaklığından özel kazanımlar elde edeceksiniz. MonetArts mirasını birlikte büyütmek için aşağıdaki formu doldurarak ilk adımı atabilirsiniz.",
+          "groupId": "content"
+        },
+        {
+          "name": "firstNameLabel",
+          "displayName": "Ad Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ad *",
+          "groupId": "fields"
+        },
+        {
+          "name": "lastNameLabel",
+          "displayName": "Soyad Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Soyad *",
+          "groupId": "fields"
+        },
+        {
+          "name": "emailLabel",
+          "displayName": "E-posta Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "E-posta Adresi *",
+          "groupId": "fields"
+        },
+        {
+          "name": "emailPlaceholder",
+          "displayName": "E-posta Yer Tutucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "siz@eposta.com",
+          "groupId": "fields"
+        },
+        {
+          "name": "phoneLabel",
+          "displayName": "Telefon Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Telefon",
+          "groupId": "fields"
+        },
+        {
+          "name": "phoneHint",
+          "displayName": "Telefon Ek Notu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "(isteğe bağlı)",
+          "groupId": "fields"
+        },
+        {
+          "name": "phonePlaceholder",
+          "displayName": "Telefon Yer Tutucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "05XX XXX XX XX",
+          "groupId": "fields"
+        },
+        {
+          "name": "socialLabel",
+          "displayName": "Sosyal Medya Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sosyal Medya Hesabı *",
+          "groupId": "fields"
+        },
+        {
+          "name": "socialPlaceholder",
+          "displayName": "Sosyal Medya Yer Tutucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "@kullaniciadi · Instagram / TikTok",
+          "groupId": "fields"
+        },
+        {
+          "name": "locationLabel",
+          "displayName": "Lokasyon Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Hedef Kitle Lokasyonu *",
+          "groupId": "fields"
+        },
+        {
+          "name": "locationPlaceholder",
+          "displayName": "Lokasyon Yer Tutucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "örn. Türkiye, Körfez, Avrupa",
+          "groupId": "fields"
+        },
+        {
+          "name": "visionLabel",
+          "displayName": "Vizyon Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "MonetArts ruhunu kitlenize nasıl yansıtmayı hayal ediyorsunuz?",
+          "groupId": "fields"
+        },
+        {
+          "name": "visionPlaceholder",
+          "displayName": "Vizyon Yer Tutucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Vizyonunuzu paylaşın…",
+          "groupId": "fields"
+        },
+        {
+          "name": "consentText",
+          "displayName": "KVKK Onay Metni ({link} = bağlantı)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Başvurumun değerlendirilmesi amacıyla ilettiğim bilgilerin {link} kapsamında işlenmesine onay veriyorum.",
+          "groupId": "consent"
+        },
+        {
+          "name": "consentLink",
+          "displayName": "KVKK Bağlantısı",
+          "type": "LINK",
+          "required": false,
+          "defaultValue": {
+            "linkType": "EXTERNAL",
+            "label": "KVKK Aydınlatma Metni",
+            "externalLink": "/pages/kvkk",
+            "subLinks": []
+          },
+          "groupId": "consent"
+        },
+        {
+          "name": "consentError",
+          "displayName": "Onay Hata Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Devam etmek için KVKK onayını işaretleyin.",
+          "groupId": "consent"
+        },
+        {
+          "name": "submitText",
+          "displayName": "Gönder Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Başvuruyu Gönder",
+          "groupId": "messages"
+        },
+        {
+          "name": "submittingText",
+          "displayName": "Gönderiliyor Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Gönderiliyor…",
+          "groupId": "messages"
+        },
+        {
+          "name": "requiredError",
+          "displayName": "Zorunlu Alan Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bu alan zorunludur.",
+          "groupId": "messages"
+        },
+        {
+          "name": "emailError",
+          "displayName": "E-posta Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Geçerli bir e-posta adresi girin.",
+          "groupId": "messages"
+        },
+        {
+          "name": "phoneError",
+          "displayName": "Telefon Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Geçerli bir telefon numarası girin.",
+          "groupId": "messages"
+        },
+        {
+          "name": "failureText",
+          "displayName": "Gönderim Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Başvurunuz gönderilemedi. Lütfen biraz sonra tekrar deneyin.",
+          "groupId": "messages"
+        },
+        {
+          "name": "successTitle",
+          "displayName": "Başarı Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Teşekkürler",
+          "groupId": "messages"
+        },
+        {
+          "name": "successText",
+          "displayName": "Başarı Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Başvurunuz MonetArts atölyesine ulaştı — ekibimiz seçkin birkaç isimle iletişime geçecektir.",
+          "groupId": "messages"
+        },
+        {
+          "name": "messageTag",
+          "displayName": "Panel Etiketi (mesaj başı)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Elçi Başvurusu",
+          "groupId": "messages"
+        },
+        {
+          "name": "backgroundColor",
+          "displayName": "Arka Plan (Gündüz)",
+          "type": "COLOR",
+          "required": false,
+          "defaultValue": "#FFFFFF",
+          "groupId": "appearance"
+        },
+        {
+          "name": "anchorId",
+          "displayName": "Çapa (id)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "",
+          "groupId": "appearance"
+        }
+      ],
+      "propGroups": [
+        {
+          "id": "content",
+          "name": "İçerik"
+        },
+        {
+          "id": "fields",
+          "name": "Form Alanları"
+        },
+        {
+          "id": "consent",
+          "name": "KVKK Onayı"
+        },
+        {
+          "id": "messages",
+          "name": "Butonlar ve Mesajlar"
+        },
+        {
+          "id": "appearance",
+          "name": "Görünüm"
+        }
+      ]
     }
   ],
   "customTypes": [

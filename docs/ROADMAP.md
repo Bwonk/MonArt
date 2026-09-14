@@ -43,7 +43,7 @@ Editor URL'sini tarayıcıda açık tut. MCP editor araçları ancak editor bağ
 | 6 | Sepet sayfası + drawer'da kişiselleştirme özeti | ✅ bitti (editör önizlemesinde masaüstü, 380px, Day/Night, kupon ve adet test edildi) |
 | 7 | Statik içerik sayfaları: Hakkımızda, SSS, 7 hukuki doküman + Görsel Hakları | ✅ bitti (editörde masaüstü, 380px, Day/Night; yayın önizlemesinde metinler, link akışları, Night düzeltmeleri ve yan menü aktif vurgusu — masaüstü ve 400px çip kayması — doğrulandı) |
 | 8 | Formlar: İletişim + Özel Tasarım talebi | ✅ bitti (editör önizlemesinde masaüstü, 380px, Day/Night, doğrulama, klavye ve iki formun gönderimi test edildi; panelde mesajın görünmesi ve görselli talep kullanıcı testi bekliyor) |
-| 9 | Marka Elçileri sayfası (karar gerekli) | ⏳ |
+| 9 | Marka Elçileri sayfası: tanıtım + başvuru formu | ✅ bitti (editör önizlemesinde masaüstü, 380px, Day/Night, doğrulama ve telefonsuz gerçek gönderim test edildi; e-postadaki mesaj biçimi kullanıcı kontrolü bekliyor) |
 | 10 | Hazır hesap sayfaları + 404 | ⏳ |
 | 11 | Link bağlama, dil routing'leri, QA, yayın | ⏳ |
 
@@ -59,7 +59,7 @@ Editor URL'sini tarayıcıda açık tut. MCP editor araçları ancak editor bağ
 | `docs/configurator-logic.md` | Konfigüratörün tam mantık spesifikasyonu |
 | `docs/configurator-admin-setup.md` | Konfigüratör için admin'de kurulacak ürün, varyant, opsiyon seti ve kuponlar |
 | `docs/collection-gallery.md` | Koleksiyon galerisi spec'i: prop yapısı, lightbox, `?seri=` ve konfigüratör parametreleri |
-| `docs/forms.md` | İletişim ve Özel Tasarım formları: ikas iletişim formu API'si, mesaj biçimi, doğrulama, opsiyon üzerinden görsel yükleme |
+| `docs/forms.md` | İletişim, Özel Tasarım ve Elçi başvurusu formları: ikas iletişim formu API'si, mesaj biçimi, doğrulama, opsiyon üzerinden görsel yükleme |
 | `reference/MonArtDEMO_clean/` | Statik prototip (git dışında). Ana dosyalar: `MonArt Lux.html`, `monart-lux.js`, `monart-lux.css`, `monart-bespoke.js` |
 | `~/.claude/plans/ilk-nce-users-yigitozen-orca-projects-mo-sharded-umbrella.md` | Faz 2 sonrası doküman düzeltme planı |
 
@@ -87,6 +87,7 @@ Bunlar önceki fazlarda hata yapılıp düzeltilen konular. Her fazda geçerli.
 - COMPONENT_LIST child'ının (FaqItem, SeriesCard) wrapper'ı global token'ları gündüz değerine sıfırlar; parent'ın gece paleti child'a inmez. Child kökünde de `useSectionTheme()` className ve style'ı uygulanır (Faz 7'de düzeltildi).
 - Section'lar arasında boşluk için `margin` kullanma: gece modunda aradan sayfanın beyaz zemini görünür. Boşluk `padding` ile verilir (Faz 7'de Footer düzeltildi).
 - Tarayıcıya özgü değerleri (URL, localStorage) ilk render'da okuma; `useState` boş/varsayılanla başlasın, değer `useEffect`'te set edilsin. Hydrate mevcut DOM attribute'larını yamamaz, ilk render'da farklı değer okunursa fark hiç görünmez (Faz 7 LegalPage aktif vurgusu).
+- Ortalı büyük başlıkta tireli kelime ("Co-Creation") tireden bölünüyor. Kelimeyi `white-space: nowrap` bir span'a al (Faz 9 AmbassadorProgram).
 - Grid öğesi sütunundan genişse `justify-self: center` onu başa hizalıyor. Ortalamak için negatif yatay margin kullan: `margin-inline: calc((100% - <genişlik>) / 2)`.
 
 **Tema**
@@ -137,6 +138,7 @@ Bunlar önceki fazlarda hata yapılıp düzeltilen konular. Her fazda geçerli.
 | LegalPage | section | `wnbxmerd-t47FaQ6XEn` |
 | ContactForm | section | `wnbxmerd-ncdF4QsnHr` |
 | BespokeRequest | section | `wnbxmerd-EXHqxAvbZ1` |
+| AmbassadorProgram | section | `wnbxmerd-BFMxX7SqEq` |
 
 Özel enum "Seri" (`roma` / `osmanli` / `misir`): `5rzSm7oLdF`. SeriesCard'ın `seriesKey` prop'u bunu kullanır.
 
@@ -184,6 +186,8 @@ Hukuki metinler referansın `LEGAL_DOCS`'undan (ve Kullanım Şartları i18n `te
 
 İki form da ikas iletişim formunu (`submitContactForm`) kullanır; konu, sipariş no, materyal ve görsel linkleri mesaj metnine `[İletişim]` / `[Özel Tasarım Talebi]` etiketli başlıkla yazılır. KVKK onay linki KVKK sayfasına PAGE linki. Header nav'daki "İletişim" ve "Özel Tasarım", Footer'daki "Bize Ulaşın", Ana sayfa ve Hakkımızda'daki BespokeCall butonu bu sayfalara bağlı.
 
+**Marka Elçileri (Faz 9)** — CUSTOM, page id `WNMHBZ5MUH`, slug `elciler` (`/pages/elciler`). Section: AmbassadorProgram `RsdAcUoT6F`. Spec `docs/forms.md` §7. Kapsam yalnız tanıtım + başvuru formu; elçi girişi, panel, modeller ve sözleşme yok. Başvuru ikas iletişim formuyla `[Elçi Başvurusu]` başlığıyla gider (sosyal medya ve lokasyon başlıkta, vizyon gövdede; telefon isteğe bağlı). KVKK onay linki KVKK sayfasına, Footer alt bardaki "ambassadors" linki bu sayfaya PAGE linki. Referansın Atölye/kota, Quota ve Welcome modülleri atıldı; "Siparişlerim" Faz 10'da ikas hazır hesap sayfalarıyla karşılanır.
+
 **Mağaza** — `dev-monoart.myikas.com`, storefront `a9b97462-bc96-4c36-87c0-1cf0d37313e9`, vitrin satış kanalı `ed3c0b49-3edd-4b05-acf5-3f0899e03cf5`. Kategori yok.
 
 **Ürünler ve kurulum (Faz 4)**
@@ -213,7 +217,7 @@ Hukuki metinler referansın `LEGAL_DOCS`'undan (ve Kullanım Şartları i18n `te
 | %100 kupon sepetteki **tüm** Sikke Kolye adetlerini sıfırlıyor. Gerçek sertifika için sertifika bedeli kadar Sabit Tutar indirim ya da adet sınırı seçilmeli | admin | 11 |
 | Fiyatlar "₺ 22,000.00" biçiminde; mağaza para birimi biçimi admin ayarlarından TR'ye çevrilmeli | admin | 11 |
 | "Kolyeni Tasarla" CTA'sı `#atolye` çapasına gitmeli | Hero | 11 |
-| Footer'da INDEX'e giden linkler kaldı: "Tasarım Atölyesi" (`#atolye` çapası olmalı) ve alt bar "ambassadors" (Faz 9). Yardım, hukuki satır ve Atölye sütunu Faz 7'de bağlandı | Footer | 9 ve 11 |
+| Footer'da INDEX'e giden tek link kaldı: "Tasarım Atölyesi" (`#atolye` çapası olmalı). Alt bar "ambassadors" Faz 9'da Elçiler sayfasına bağlandı | Footer | 11 |
 | Hukuki metinler referanstaki kısa taslak. Mesafeli Satış'ta satıcı unvanı, adres, MERSİS/vergi no, iletişim ve ödeme/teslim bilgileri; KVKK'da veri sorumlusunun iletişim bilgisi ve başvuru yöntemi yok. Merchant/avukat tamamlamalı, sonra `updatedDate` doldurulmalı | LegalPage sayfaları | içerik |
 | İçerik tutarsızlığı: SSS 4. soru "5 ila 15 iş günü", Teslimat ve Mesafeli Satış "10-15 iş günü" diyor | SSS / hukuki | içerik |
 | Mobil menü paneli hiç açılmıyordu (Faz 1): global `.mon-drawer.is-open` panelin kendisini bekliyor, `is-open` ise kapsayıcıda. Header CSS'ine `.mon-menu.is-open .mon-menu__panel` kuralı eklendi; kapalı menü ve sepet çekmecesinin gölgesi sağ kenara taşıyordu, o da giderildi. Yayında doğrulandı (400px'te panel açılıyor, kapalı çekmeceler 120px dışarıda) — kapatılabilir | Header, CartDrawer | ✅ |
@@ -223,11 +227,11 @@ Hukuki metinler referansın `LEGAL_DOCS`'undan (ve Kullanım Şartları i18n `te
 | Ana vitrinde (`dev-monoart.myikas.com`) hâlâ eski tema var ve `<html lang="en">` dönüyor; büyük harfe çevrilen Türkçe metinde i → I oluyor. Bizim temanın önizlemesi `lang="tr"`. Ana temaya yayından sonra doğrula | tüm section'lar | 11 |
 | Galeride 22 Ayar, Model ve Paketleme görselleri yok, yer tutucu görünüyor. Merchant yükleyecek; istenirse `showEmptyCells` kapatılır | CollectionGallery | içerik |
 | Sepet sayfası "Atölyeye Dön" EXTERNAL `/#atolye`; dil routing prefix'i almaz | CartPage | 11 |
-| Hangi referans modülleri atılacak: Atölye/kota, Siparişlerim, Welcome, Quota, Elçiler (Özel Tasarım formu Faz 8'de sayfa olarak yapıldı) | — | 9 başında karar |
 | İletişim formu mesajları admin panelinde görünmüyor (Gelen Kutusu'nda "ikas Form" kanalı "Yakında"); mesajlar mağaza sahibinin e-postasına geliyor — kullanıcı test mesajlarının geldiğini doğruladı. Merchant'a form mesajlarını e-postadan takip etmesi söylenmeli | admin / e-posta | bilgi |
 | Özel Tasarım görselli gönderim yayında çalışıyor: 4 dosya 3+1 parça S3'e yüklendi (204), mesaj gönderildi (200), başarı ekranı açıldı; istemci kontrolleri (PDF/6 MB reddi, tekrar, 5 dosya sınırı, kaldır) doğrulandı. Kalan: e-postadaki görsel linklerinin merchant'ta açılması (anonim 403). Kullanıcı yükleme hatasını ve bucket erişimini ikas'a danışacak; sonuca göre yükleme kalır ya da WhatsApp/e-posta ile görsel isteme sürümüne geçilir | BespokeRequest | ikas yanıtı |
 | **ikas `productOptionFileUpload` tarayıcıda çalışmıyor** (bp-storefront 2.9.1, S3'e elle `Content-Type: multipart/form-data` → 400 `MalformedPOSTRequest`). Konfigüratördeki fotoğraflar bu yüzden hiç yüklenmiyordu. `src/utils/option-file-upload.ts` ile aşıldı (konfigüratör + Özel Tasarım); konfigüratör eksik yüklemede artık sepete eklemiyor (`photoUploadErrorToast`). ikas SDK ekibine bildirilmeli; düzelince yardımcı kaldırılabilir | CoinConfigurator, BespokeRequest | ikas |
 | Yüklenen dosyaların `optionUrl`'i imzasız S3 adresi ve 403 dönüyor (bucket kapalı). Özel Tasarım mesajındaki linkler merchant'ta açılıyor mu, kullanıcı panelden kontrol edecek; açılmıyorsa yükleme yerine WhatsApp/e-posta ile görsel istenir. Konfigüratör siparişinde dosyanın panelde açıldığı da test siparişinde görülmeli | BespokeRequest, CoinConfigurator | 8 sonu |
+| Faz 9 test başvurusu ("Test Claude", test@ornek.com, `[Elçi Başvurusu]`) gönderildi, ikas kabul etti. Mağaza sahibinin e-postasında başlık satırının (Sosyal Medya Hesabı · Hedef Kitle Lokasyonu) ve vizyon bloğunun okunur geldiğini kullanıcı kontrol edecek. Footer "ambassadors" linkinin `/pages/elciler`'e gittiği yayında doğrulanacak | admin / Footer | 11 (QA) |
 | Global `.mon-btn`'de `:focus-visible` stili yok; klavyede buton odağı görünmüyor. Formlarda yerel olarak eklendi, `global.css`'e genel kural konmalı | global.css | 11 (QA) |
 
 ---

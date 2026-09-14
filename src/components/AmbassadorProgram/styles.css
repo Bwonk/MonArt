@@ -1,0 +1,120 @@
+/* ===== Marka Elçileri sayfası ===== */
+.amb {
+  width: 100%;
+  min-height: 60vh;
+  padding: calc(var(--header-h, 84px) * 0.5 + 40px) var(--gutter, 28px) var(--section-y, 96px);
+  background: var(--bg-page);
+  color: var(--text);
+  scroll-margin-top: var(--header-h, 84px);
+}
+.amb__inner {
+  display: grid;
+  gap: 48px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+/* ---------- Tanıtım ---------- */
+.amb__head { text-align: center; }
+.amb__eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  font-family: var(--f-ui);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.46em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+}
+.amb__eyebrow-line {
+  flex: none;
+  width: 42px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim));
+}
+.amb__eyebrow-line--end { transform: scaleX(-1); }
+.amb__title {
+  display: block;
+  margin: 0 0 22px;
+  font-family: var(--f-deco);
+  font-size: clamp(26px, 4.4vw, 46px);
+  font-weight: 700;
+  line-height: 1.16;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--heading);
+  text-wrap: balance;
+}
+.amb__nowrap { white-space: nowrap; }
+.amb__crest {
+  display: block;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.9;
+}
+.amb__copy {
+  max-width: 640px;
+  margin: 30px auto 0;
+}
+.amb__copy p {
+  margin: 0 0 20px;
+  font-family: var(--f-body);
+  font-size: 15.5px;
+  line-height: 1.85;
+  letter-spacing: 0.012em;
+  color: var(--text);
+  text-wrap: pretty;
+}
+.amb__copy p:last-child { margin-bottom: 0; }
+
+/* ---------- Form ---------- */
+.amb__form {
+  display: grid;
+  gap: 22px;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+.amb__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 8px;
+}
+.amb__failure {
+  margin: 0;
+  font-family: var(--f-body);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--error);
+  text-align: center;
+}
+.amb__submit { min-width: 280px; }
+.amb__submit:disabled { cursor: progress; opacity: 0.75; }
+/* Klavye odağı: global .mon-btn'de focus-visible yok (Faz 11 QA'da genelleştirilecek). */
+.amb__submit:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* ---------- Mobil ---------- */
+@media (max-width: bp(5pw2fQi7Yr)) {
+  .amb {
+    padding: 40px var(--gutter-m, 16px) var(--section-y-m, 56px);
+  }
+  .amb__inner { gap: 36px; }
+  .amb__copy p { font-size: 14.5px; line-height: 1.78; }
+}
+@media (max-width: bp(5Xmvk6D0gV)) {
+  .amb__eyebrow { gap: 12px; letter-spacing: 0.32em; }
+  .amb__eyebrow-line { width: 28px; }
+  .amb__form { padding-top: 32px; }
+  .amb__submit { width: 100%; min-width: 0; }
+}

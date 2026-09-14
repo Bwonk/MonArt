@@ -110,5 +110,40 @@ ikas'ta iletişim formuna dosya eklenemiyor. Görseller **Sikke Kolye ürünün�
 |---|---|---|
 | İletişim | `iletisim` → `/pages/iletisim` | `ContactForm` |
 | Özel Tasarım | `ozel-tasarim` → `/pages/ozel-tasarim` | `BespokeRequest` |
+| Marka Elçileri | `elciler` → `/pages/elciler` | `AmbassadorProgram` (§7) |
 
 Bu sayfalara PAGE linkiyle bağlanacaklar: Header nav "İletişim" ve CTA "Özel Tasarım", Footer "Bize Ulaşın", BespokeCall butonu (Ana sayfa ve Hakkımızda). `consentLink` → KVKK sayfası.
+
+---
+
+## 7. Marka Elçisi başvurusu (Faz 9)
+
+Referans: `MonArt Lux.html` `#ambassador` overlay (~1574–1762), `monart-lux.js` `setupAmbassador` (~1078–1113), `setupAmbPanel` (~2256), i18n `amb_*`. Referansta form hiçbir yere gitmiyor, yalnız teşekkür metni gösteriyor. "Elçi Girişi" kapalı, panel (istatistik, indirim kodu, onay belgesi, 3 model, sözleşme) sahte veriyle çalışıyor.
+
+**Kapsam (Faz 9 kararı):** yalnız tanıtım + başvuru formu. Giriş sekmesi, panel, modeller ve sözleşme yok; ikas'ta elçi/affiliate hesabı karşılığı yok. Referansın Atölye/kota, Quota ve Welcome modülleri de atıldı; "Siparişlerim" Faz 10'da ikas hazır hesap sayfalarıyla karşılanır.
+
+**Section:** `AmbassadorProgram`, CUSTOM sayfa "Marka Elçileri" (`elciler` → `/pages/elciler`). Overlay'in sticky başlık çubuğu (← Ana Sayfa, ×) yok, sayfada Header var. Akordeon sekmeleri de yok; form doğrudan görünür.
+
+Yapı (ortalı, tek sütun, referans 760px / form 640px): çizgili eyebrow "Yalnızca Davet ile" → `h1` "The MonetArts Co-Creation Society" → ✦ → 2 paragraf → form → başarı ekranı.
+
+| Alan | Kural | Mesaja nasıl gider |
+|---|---|---|
+| Ad, Soyad | zorunlu (referanstaki tek "Ad Soyad" ikas için ikiye bölündü) | ikas `firstName` / `lastName` |
+| E-posta | zorunlu, `x@y.z` | ikas `email` |
+| Telefon | **isteğe bağlı**; doluysa en az 7 rakam (referansta yok) | ikas `phone` |
+| Sosyal Medya Hesabı | zorunlu | başlık satırı |
+| Hedef Kitle Lokasyonu | zorunlu | başlık satırı |
+| Vizyon | isteğe bağlı | gövde: soru etiketi + cevap |
+| KVKK onayı | zorunlu (`consentText` boşsa kutu gizlenir) | — |
+
+```
+[Elçi Başvurusu] Sosyal Medya Hesabı: @kullanici · Hedef Kitle Lokasyonu: Türkiye, Körfez
+────────
+MonetArts ruhunu kitlenize nasıl yansıtmayı hayal ediyorsunuz?
+<cevap — boşsa bu blok yazılmaz>
+```
+
+- Doğrulama, hata gösterimi, ilk hatalı alana odak ve `failureText` §3 ve §5'teki gibi. Ortak parçalar: `FormField`, `ConsentCheck`, `FormSuccess`, `src/utils/contact-message.ts`.
+- Başarı ekranında "yeni başvuru" düğmesi yok (referansta da yok): ✦ + "Teşekkürler" + referans metni.
+- Gönder düğmesi varsayılanı "Başvuruyu Gönder" (referansın TR metni İngilizce "SUBMIT APPLICATION" idi; Türkçe seçildi). "The MonetArts Co-Creation Society" marka adı olarak İngilizce kalır.
+- Footer alt bardaki "ambassadors" linki bu sayfaya PAGE linkiyle bağlanır. `consentLink` → KVKK sayfası.

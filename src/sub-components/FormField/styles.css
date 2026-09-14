@@ -1,6 +1,7 @@
 /* ===== Form alanı (İletişim, Özel Tasarım) ===== */
 .mf-field {
   display: grid;
+  align-content: start; /* satır komşusu hata satırıyla uzayınca kontrol esnemesin */
   gap: 8px;
   min-width: 0;
 }
