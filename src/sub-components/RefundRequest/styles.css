@@ -1,0 +1,89 @@
+/* ===== İade talebi paneli ===== */
+.rfd { display: grid; gap: 16px; }
+.rfd__intro { margin: 0; color: var(--text); }
+.rfd__list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+.rfd__item {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.rfd__thumb {
+  display: block;
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--dark-2);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.rfd__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.rfd__name { display: grid; gap: 2px; min-width: 0; }
+.rfd__title {
+  font-family: var(--f-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+.rfd__meta { font-size: 12.5px; line-height: 1.45; color: var(--text-dim); overflow-wrap: anywhere; }
+
+.rfd__qty {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-card, 2px);
+}
+.rfd__qty-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--gold);
+  cursor: pointer;
+}
+.rfd__qty-btn:hover:not(:disabled) { background: var(--surface-hover); }
+.rfd__qty-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.rfd__qty-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+.rfd__qty-btn .mon-icon { width: 14px; height: 14px; }
+.rfd__qty-val {
+  min-width: 42px;
+  font-family: var(--f-ui);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text);
+}
+.rfd__qty-max { color: var(--text-muted); font-weight: 400; }
+
+.rfd__desc {
+  margin: 0;
+  padding: 12px 14px;
+  font-size: 13px;
+  line-height: 1.65;
+  white-space: pre-line;
+  color: var(--text);
+  background: var(--bg-page);
+  border-left: 2px solid var(--gold-dim);
+}
+.rfd__note { margin: 0; font-size: 13px; line-height: 1.65; color: var(--text-dim); }
+
+@media (max-width: bp(5Xmvk6D0gV)) {
+  .rfd__item { grid-template-columns: 40px minmax(0, 1fr); }
+  .rfd__thumb { width: 40px; height: 40px; }
+  .rfd__qty { grid-column: 2; justify-self: start; }
+}

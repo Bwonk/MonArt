@@ -125,3 +125,36 @@ Hepsi `@ikas/bp-storefront`. "[SDK]" = paket kaynağından, MCP dokümanında yo
 - **Favoriler:** `getFavoriteProducts(customerStore)`, `isFavoriteIkasProduct`, `removeIkasProductFromFavorites`, `addIkasProductToFavorites` (giriş ister), kart: `getSelectedProductVariant`, `getProductVariantMainImage`, `getDefaultSrc`, `createMediaSrcset`, `getSelectedProductVariantHref`, `getProductVariantFormattedFinalPrice`, `hasProductVariantDiscount`, `getProductVariantFormattedPrice`.
 - **Profil:** `getAccountInfoForm`, `initAccountInfoForm` async, `setAccountInfoFormFirstName/LastName/Phone/IsMarketingAccepted`, `submitAccountInfoForm` (ad, soyad zorunlu; `subscriptionStatus` her zaman gönderilir). Şifre değiştirme formu **yok**. Hesap silme: `getDeactivateCustomerForm`, `initDeactivateCustomerForm` (sync), `setDeactivateCustomerFormPassword`, `submitDeactivateCustomerForm`, sonra `logout`. `exportCustomerPersonalData` var (istenirse "verilerimi indir").
 - **Genel:** `I18n` çevirileri yalnız SDK'nın kendi anahtarlarında çalışır; kullanıcı metni TEXT prop. Formlar store'da tekil önbellek; sekme değişiminde `init*` yeniden çağrılmalı (eski başarı bandı kalmasın). Fiyat biçimi sipariş para biriminden (admin "₺ 22,000.00" açık ucu burada da görünür).
+
+### 3.6 Uygulama (Faz 10c)
+
+Kararlar (faz başında, kullanıcı): (a) sipariş satırındaki fotoğraflar için "Fotoğrafı aç" düğmesi **var**, (b) profilde "Verilerimin kopyasını gönder" (`exportCustomerPersonalData`, e-postaya gider) **var**, (c) iade nedeni için İletişim formuna link **yeterli**.
+
+`AccountPage` (`wnbxmerd-ifgtExD5te`, 159 prop, 14 grup). Metin varsayılanları `src/utils/account-texts.ts`'te (`ACCOUNT_TEXTS`, config `defaultValue`'larıyla aynı; yeni TEXT prop eklenirse ikisine de yazılır). Alt bileşenler `t: AccountTexts` alır. Yerleştirmede editör tüm varsayılanları kendisi yazdı; yalnız 4 LINK prop'u elle verildi.
+
+Plandan sapmalar ve SDK bulguları:
+- **Fotoğraf:** `downloadFile` imzalı adresi alıp `<a download>` tıklatıyor; S3 başka alan adında olduğu için `download` yok sayılır ve sekme dosyaya gidebilir. Aynı storefront işlemi (`getOrderLineFile`, gövde `{ input: { url } }`) `src/utils/storefront-api.ts`'te çağrılıyor; tıklamada boş sekme açılıp adres gelince oraya yönlendiriliyor (açılır pencere engelleyicisi async sonrası `window.open`'ı engelliyor). `option-file-upload.ts` de aynı `storefrontPost` yardımcısını kullanıyor.
+- **Hesap silme:** form yardımcısı yerine `deactivateCustomer(customerStore, password)` doğrudan; "bekleyen talep var" (`customer_deactivation_request_already_exists`) ancak API hata metninden ayırt ediliyor. Başarıda mesaj ~1,8 sn görünür, sonra `logout` + INDEX. API adı "deactivation request": silme anında mı yoksa onayla mı olduğu yayında görülecek.
+- **Adres formu:** `getEmptyAddressForm` ve `getIkasCustomerAddressForm` formu kendileri başlatıp observable döndürüyor; ayrıca `initAddressForm` çağırmak iki init'i yarıştırır. Yalnız `form.isInitialized` beklenir (iskelet). Düzenleme formu store'da önbellekte; kapatınca `clearIkasCustomerAddressForm`. SDK doğrulaması başlık, ad, soyad, adres, ülke, il, ilçe, mahalleyi kontrol ediyor; telefon ve TC'yi kontrol etmiyor (API reddederse `addressErrorText`).
+- **Durum çipi:** ikas `statusTranslation` çevirisi yüklenmemişse ham anahtar döndüğü için hiç kullanılmıyor. 22 paket / 16 satır / 8 sipariş durumu `src/utils/order-status.ts`'te dokuz gruba iner (Hazırlanıyor, Kargoya Verildi, Teslim Edildi, İptal Edildi, İptal Talebi Alındı, İade Sürecinde, İade Edildi, Talep Reddedildi, Teslim Edilemedi), metinler TEXT prop.
+- **Ödeme yöntemi:** `getOrderTransactionPaymentMethodTranslation` çeviri anahtarı dönerse `paymentGatewayName`'e düşülür; kart "Banka · •••• 1234", taksit `installmentText` / `singlePaymentText`.
+- **Kargo:** satırlar paket paket gruplanmadı; ürünler tek kartta, "Kargo Takibi" kartında her paket için durum + (birden çok paketse) paket no ve içindeki ürün adları + takip kutusu. Yalnız `shippingMethod === "SHIPMENT"` siparişlerde.
+- **İade:** iade edilebilir satırlar `Dialog` içinde adet seçimiyle; `refundDesc` (admin metni) varsa gösterilir. `getIkasOrderRefundableItems` iade ayarı yüklenmemişse (`_refundSettings` null) tüm uygun satırları döndürür; detay `getOrderDetailsOfPage` → `getOrder` ile ayarları yüklediği için sorun değil.
+- **Editör:** `IkasStorefrontConfig.isEditor` iken girişsiz ziyaretçi yönlendirilmez, "Giriş yapman gerekiyor" kartı görünür (editörde müşteri yok, paneller yalnız yayında görülür).
+- Favori sayısı `getFavoriteProductsIds` ile (ürünlerin tamamı çekilmez).
+- **Adres alanları (TR):** ikas'ın Türkiye formatında `state` yok; `city` = il (81), `district` = ilçe, `region` = mahalle. Etiket varsayılanları buna göre (Eyalet / İl / İlçe / Mahalle). Mahalle listesi gelmezse alan gizlenir: serbest metin kaydedilmiyor (ikas id bekliyor).
+- **Telefon:** SDK'nın telefon doğrulaması "12" gibi değerleri geçiriyor, API de kabul ediyor; `phoneError` pratikte görünmüyor.
+- **Gezinme:** `Router.navigateToPage` tam sayfa yüklemesi yapıyor (SPA değil); her sekme section'ı yeniden kurar.
+
+Yayın testi (2026-09-14, `3svte-dev-monoart.myikas.com`, ozenmain hesabı; sipariş yok):
+- ✅ Hesabım: form müşteri verisiyle doluyor, zorunlu ad hatası + odak, "Kaydediliyor…" → başarı bandı, yenilemede veri kalıcı. Linkler (sekmeler, sayaçlar, şifre sıfırlama) doğru.
+- ✅ Siparişlerim boş durumu + "Atölyeye Git" `/#atolye`; olmayan sipariş id'si → "Bu sipariş bulunamadı" + geri linki.
+- ✅ Favoriler: boş durum + Koleksiyon linki; API ile eklenen Sikke Kolye kartı (görsel, fiyat, "Tasarla" → ürün sayfası) ve kalp ile kaldırma.
+- ✅ Adresler: boş durum, form (Türkiye seçili, 81 il, il → ilçe zinciri), zorunlu hatalar + ilk hataya odak, ekleme, ön dolu düzenleme, Esc ile kapanan ve onayla silen pencere, kaydırma kilidinin kalkması. Test adresi silindi.
+- ✅ Hesap silme penceresi: şifre alanına odak, boş şifre hatası, Tab döngüsü, Esc. API çağrısı yapılmadı.
+- ✅ Gece modu, 400px (çip şeridi, taşma yok, adres penceresi alttan panel).
+- ✅ Çıkış → ana sayfa; girişsiz `/account/orders` → `/account/login?redirect=%2Faccount%2Forders`.
+- Bulunup düzeltilenler (yeniden yayın bekliyor): adres etiketleri (il/ilçe kaymıştı), serbest metin mahalle alanı, adres formu açılınca ilk alana odak, gece modunda soluk metin kontrastı.
+- ✅ Girişten sonra `?redirect` dönüşü (Giriş → `/account/orders`).
+- Favoriler kullanıcı kararıyla gizlendi: `showFavorites` (BOOLEAN, varsayılan kapalı) menüdeki sekmeyi ve Hesabım'daki sayacı kaldırır; panel ve sayfa durur.
+- Kalan: veri kopyası e-postası, sipariş listesi/detayı/kargo/iade (test siparişi gerekiyor), gerçek hesap silme (ayrı test hesabı).

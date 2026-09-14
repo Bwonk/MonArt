@@ -1,11 +1,28 @@
 /**
- * Üyelik sayfaları (giriş, kayıt, şifre, doğrulama) için ortak yardımcılar.
- * Spec: docs/account-pages.md §1.
+ * Üyelik ve hesap sayfaları için ortak yardımcılar.
+ * Spec: docs/account-pages.md §1, §3.
  */
 import { useEffect } from "preact/hooks";
-import { customerStore, waitForCustomerStoreInit, Router, withRoutePrefix } from "@ikas/bp-storefront";
+import {
+  customerStore,
+  waitForCustomerStoreInit,
+  Router,
+  withRoutePrefix,
+  getIkasOrderHref,
+  IkasOrder,
+} from "@ikas/bp-storefront";
 
-export type AuthPage = "LOGIN" | "REGISTER" | "FORGOT_PASSWORD" | "RECOVER_PASSWORD" | "ACTIVATE_CUSTOMER" | "ACCOUNT";
+export type AuthPage =
+  | "LOGIN"
+  | "REGISTER"
+  | "FORGOT_PASSWORD"
+  | "RECOVER_PASSWORD"
+  | "ACTIVATE_CUSTOMER"
+  | "ACCOUNT"
+  | "ORDERS"
+  | "ADDRESSES"
+  | "FAVORITE_PRODUCTS"
+  | "INDEX";
 
 const PATHS: Record<AuthPage, string> = {
   LOGIN: "/account/login",
@@ -14,18 +31,41 @@ const PATHS: Record<AuthPage, string> = {
   RECOVER_PASSWORD: "/account/recover-password",
   ACTIVATE_CUSTOMER: "/account/activate",
   ACCOUNT: "/account",
+  ORDERS: "/account/orders",
+  ADDRESSES: "/account/addresses",
+  FAVORITE_PRODUCTS: "/account/favorite-products",
+  INDEX: "/",
 };
+
+/** Değiştirici tuşsuz sol tıkta varsayılanı engelleyip `go`'yu çalıştırır (yeni sekme davranışı korunur). */
+function spaClick(go: () => void) {
+  return (e: MouseEvent) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    e.preventDefault();
+    go();
+  };
+}
 
 /** Gerçek href (sağ tık, SEO) + SPA gezinmesi. */
 export function pageLink(page: AuthPage) {
   return {
     href: withRoutePrefix(PATHS[page]),
-    onClick: (e: MouseEvent) => {
-      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
-      e.preventDefault();
-      Router.navigateToPage(page);
-    },
+    onClick: spaClick(() => Router.navigateToPage(page)),
   };
+}
+
+/** Sipariş detayı linki (`/account/orders/<id>`). */
+export function orderLink(order: IkasOrder) {
+  return {
+    href: getIkasOrderHref(order),
+    onClick: spaClick(() => Router.navigateToPage("ORDER_DETAIL", order.id)),
+  };
+}
+
+/** Giriş sayfasına, dönüşte bu sayfaya gelecek şekilde gider. */
+export function goToLogin(): void {
+  const here = typeof window === "undefined" ? "" : window.location.pathname + window.location.search;
+  Router.navigateToPage("LOGIN", undefined, here ? { redirect: here } : undefined);
 }
 
 /** URL sorgu parametresi; yalnız tarayıcıda, olay ya da effect içinde çağrılır. */

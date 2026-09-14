@@ -5805,6 +5805,1383 @@
           "name": "Görünüm"
         }
       ]
+    },
+    {
+      "id": "wnbxmerd-ifgtExD5te",
+      "name": "AccountPage",
+      "entry": "./src/components/AccountPage/index.tsx",
+      "styles": "./src/components/AccountPage/styles.css",
+      "type": "section",
+      "props": [
+        {
+          "name": "eyebrow",
+          "displayName": "Süs İşareti",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "✦",
+          "groupId": "general"
+        },
+        {
+          "name": "gateTitle",
+          "displayName": "Giriş Gerekli Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Giriş yapman gerekiyor",
+          "groupId": "general"
+        },
+        {
+          "name": "gateText",
+          "displayName": "Giriş Gerekli Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Siparişlerini, adreslerini ve favorilerini görmek için hesabına giriş yap.",
+          "groupId": "general"
+        },
+        {
+          "name": "gateButton",
+          "displayName": "Giriş Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Giriş Yap",
+          "groupId": "general"
+        },
+        {
+          "name": "loadingText",
+          "displayName": "Yükleniyor (ekran okuyucu)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yükleniyor…",
+          "groupId": "general"
+        },
+        {
+          "name": "closeLabel",
+          "displayName": "Kapat (ekran okuyucu)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kapat",
+          "groupId": "general"
+        },
+        {
+          "name": "cancelText",
+          "displayName": "Vazgeç Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Vazgeç",
+          "groupId": "general"
+        },
+        {
+          "name": "retryText",
+          "displayName": "Tekrar Dene Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Tekrar dene",
+          "groupId": "general"
+        },
+        {
+          "name": "navLabel",
+          "displayName": "Menü Adı (ekran okuyucu)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Hesap menüsü",
+          "groupId": "nav"
+        },
+        {
+          "name": "navProfile",
+          "displayName": "Kişisel Bilgiler",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kişisel Bilgilerim",
+          "groupId": "nav"
+        },
+        {
+          "name": "navOrders",
+          "displayName": "Siparişler",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Siparişlerim",
+          "groupId": "nav"
+        },
+        {
+          "name": "navAddresses",
+          "displayName": "Adresler",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Adreslerim",
+          "groupId": "nav"
+        },
+        {
+          "name": "navFavorites",
+          "displayName": "Favoriler",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Favorilerim",
+          "groupId": "nav"
+        },
+        {
+          "name": "navLogout",
+          "displayName": "Çıkış",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Çıkış Yap",
+          "groupId": "nav"
+        },
+        {
+          "name": "greetingText",
+          "displayName": "Karşılama",
+          "type": "TEXT",
+          "required": false,
+          "description": "{name} yerine müşterinin adı gelir.",
+          "defaultValue": "Merhaba, {name}",
+          "groupId": "profile"
+        },
+        {
+          "name": "profileIntro",
+          "displayName": "Karşılama Altı Metin",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Siparişlerini, adreslerini ve favori tasarımlarını buradan yönetebilirsin.",
+          "groupId": "profile"
+        },
+        {
+          "name": "statOrders",
+          "displayName": "Özet: Sipariş",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sipariş",
+          "groupId": "profile"
+        },
+        {
+          "name": "statAddresses",
+          "displayName": "Özet: Adres",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kayıtlı Adres",
+          "groupId": "profile"
+        },
+        {
+          "name": "statFavorites",
+          "displayName": "Özet: Favori",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Favori",
+          "groupId": "profile"
+        },
+        {
+          "name": "lastOrderTitle",
+          "displayName": "Son Sipariş Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Son Siparişin",
+          "groupId": "profile"
+        },
+        {
+          "name": "allOrdersText",
+          "displayName": "Tüm Siparişler Linki",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Tüm siparişlerim",
+          "groupId": "profile"
+        },
+        {
+          "name": "noOrdersText",
+          "displayName": "Sipariş Yok Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Henüz bir siparişin yok.",
+          "groupId": "profile"
+        },
+        {
+          "name": "infoTitle",
+          "displayName": "Bilgi Formu Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kişisel Bilgiler",
+          "groupId": "profile"
+        },
+        {
+          "name": "firstNameLabel",
+          "displayName": "Ad Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ad",
+          "groupId": "profile"
+        },
+        {
+          "name": "lastNameLabel",
+          "displayName": "Soyad Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Soyad",
+          "groupId": "profile"
+        },
+        {
+          "name": "emailLabel",
+          "displayName": "E-posta Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "E-posta",
+          "groupId": "profile"
+        },
+        {
+          "name": "emailLockText",
+          "displayName": "E-posta Kilit Notu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "(değiştirilemez)",
+          "groupId": "profile"
+        },
+        {
+          "name": "phoneLabel",
+          "displayName": "Telefon Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Telefon",
+          "groupId": "profile"
+        },
+        {
+          "name": "phoneHint",
+          "displayName": "Telefon Notu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "(isteğe bağlı)",
+          "groupId": "profile"
+        },
+        {
+          "name": "phonePlaceholder",
+          "displayName": "Telefon Örnek Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "+90 5__ ___ __ __",
+          "groupId": "profile"
+        },
+        {
+          "name": "marketingText",
+          "displayName": "Pazarlama İzni Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yeni koleksiyonlar ve kampanyalardan e-posta ile haberdar olmak istiyorum.",
+          "groupId": "profile"
+        },
+        {
+          "name": "saveText",
+          "displayName": "Kaydet Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kaydet",
+          "groupId": "profile"
+        },
+        {
+          "name": "savingText",
+          "displayName": "Kaydet (yükleniyor)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kaydediliyor…",
+          "groupId": "profile"
+        },
+        {
+          "name": "saveSuccessText",
+          "displayName": "Kayıt Başarılı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bilgilerin güncellendi.",
+          "groupId": "profile"
+        },
+        {
+          "name": "saveErrorText",
+          "displayName": "Kayıt Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bilgilerin kaydedilemedi. Lütfen tekrar dene.",
+          "groupId": "profile"
+        },
+        {
+          "name": "passwordTitle",
+          "displayName": "Şifre Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Şifre",
+          "groupId": "profile"
+        },
+        {
+          "name": "passwordText",
+          "displayName": "Şifre Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Şifreni değiştirmek için e-posta adresine bir sıfırlama bağlantısı gönderiyoruz.",
+          "groupId": "profile"
+        },
+        {
+          "name": "passwordLinkText",
+          "displayName": "Şifre Sıfırlama Linki",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Şifremi sıfırla",
+          "groupId": "profile"
+        },
+        {
+          "name": "privacyTitle",
+          "displayName": "Gizlilik Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Verilerin",
+          "groupId": "profile"
+        },
+        {
+          "name": "exportText",
+          "displayName": "Verilerimi İndir Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Verilerimin kopyasını gönder",
+          "groupId": "profile"
+        },
+        {
+          "name": "exportingText",
+          "displayName": "Verilerimi İndir (yükleniyor)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Gönderiliyor…",
+          "groupId": "profile"
+        },
+        {
+          "name": "exportSuccessText",
+          "displayName": "Veri Kopyası Gönderildi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kişisel verilerinin bir kopyası e-posta adresine gönderildi.",
+          "groupId": "profile"
+        },
+        {
+          "name": "exportErrorText",
+          "displayName": "Veri Kopyası Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İstek gönderilemedi. Lütfen tekrar dene.",
+          "groupId": "profile"
+        },
+        {
+          "name": "deleteLinkText",
+          "displayName": "Hesabı Sil Linki",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Hesabımı sil",
+          "groupId": "profile"
+        },
+        {
+          "name": "deleteTitle",
+          "displayName": "Silme Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Hesabını silmek istediğine emin misin?",
+          "groupId": "delete"
+        },
+        {
+          "name": "deleteWarningText",
+          "displayName": "Silme Uyarısı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bu işlem geri alınamaz. Siparişlerin ve kişiselleştirme dosyaların, yasal saklama süresi boyunca KVKK kapsamında saklanmaya devam edebilir.",
+          "groupId": "delete"
+        },
+        {
+          "name": "deletePasswordLabel",
+          "displayName": "Şifre Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Onaylamak için şifren",
+          "groupId": "delete"
+        },
+        {
+          "name": "showPasswordLabel",
+          "displayName": "Şifreyi Göster",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Şifreyi göster",
+          "groupId": "delete"
+        },
+        {
+          "name": "hidePasswordLabel",
+          "displayName": "Şifreyi Gizle",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Şifreyi gizle",
+          "groupId": "delete"
+        },
+        {
+          "name": "deleteConfirmText",
+          "displayName": "Sil Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Hesabımı Sil",
+          "groupId": "delete"
+        },
+        {
+          "name": "deletingText",
+          "displayName": "Sil Butonu (yükleniyor)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Siliniyor…",
+          "groupId": "delete"
+        },
+        {
+          "name": "deleteSuccessText",
+          "displayName": "Silme Talebi Alındı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Hesap silme talebin alındı. Çıkış yapılıyor…",
+          "groupId": "delete"
+        },
+        {
+          "name": "deletePendingText",
+          "displayName": "Bekleyen Talep Var",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Zaten işlemde olan bir hesap silme talebin var.",
+          "groupId": "delete"
+        },
+        {
+          "name": "deleteErrorText",
+          "displayName": "Silme Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Hesabın silinemedi. Şifreni kontrol edip tekrar dene.",
+          "groupId": "delete"
+        },
+        {
+          "name": "ordersIntro",
+          "displayName": "Siparişler Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "",
+          "groupId": "orders"
+        },
+        {
+          "name": "ordersEmptyText",
+          "displayName": "Boş Liste Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Henüz bir siparişin yok. İlk sikkeni atölyede tasarla.",
+          "groupId": "orders"
+        },
+        {
+          "name": "ordersEmptyLink",
+          "displayName": "Boş Liste Butonu",
+          "type": "LINK",
+          "required": false,
+          "defaultValue": {
+            "linkType": "EXTERNAL",
+            "label": "Atölyeye Git",
+            "externalLink": "/#atolye",
+            "subLinks": []
+          },
+          "groupId": "orders"
+        },
+        {
+          "name": "orderNoLabel",
+          "displayName": "Sipariş No Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sipariş No",
+          "groupId": "orders"
+        },
+        {
+          "name": "orderDateLabel",
+          "displayName": "Tarih Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Tarih",
+          "groupId": "orders"
+        },
+        {
+          "name": "orderItemsText",
+          "displayName": "Ürün Adedi",
+          "type": "TEXT",
+          "required": false,
+          "description": "{count} yerine ürün adedi gelir.",
+          "defaultValue": "{count} ürün",
+          "groupId": "orders"
+        },
+        {
+          "name": "orderTotalLabel",
+          "displayName": "Toplam Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Toplam",
+          "groupId": "orders"
+        },
+        {
+          "name": "orderDetailText",
+          "displayName": "Detay Linki",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Detayı Gör",
+          "groupId": "orders"
+        },
+        {
+          "name": "showMoreText",
+          "displayName": "Daha Fazla Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Daha fazla göster",
+          "groupId": "orders"
+        },
+        {
+          "name": "ordersErrorText",
+          "displayName": "Yükleme Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Siparişlerin yüklenemedi.",
+          "groupId": "orders"
+        },
+        {
+          "name": "statusPreparing",
+          "displayName": "Hazırlanıyor",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Hazırlanıyor",
+          "groupId": "status"
+        },
+        {
+          "name": "statusShipped",
+          "displayName": "Kargoda",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kargoya Verildi",
+          "groupId": "status"
+        },
+        {
+          "name": "statusDelivered",
+          "displayName": "Teslim Edildi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Teslim Edildi",
+          "groupId": "status"
+        },
+        {
+          "name": "statusCancelled",
+          "displayName": "İptal Edildi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İptal Edildi",
+          "groupId": "status"
+        },
+        {
+          "name": "statusCancelRequested",
+          "displayName": "İptal Talebi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İptal Talebi Alındı",
+          "groupId": "status"
+        },
+        {
+          "name": "statusRefundProcess",
+          "displayName": "İade Sürecinde",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İade Sürecinde",
+          "groupId": "status"
+        },
+        {
+          "name": "statusRefunded",
+          "displayName": "İade Edildi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İade Edildi",
+          "groupId": "status"
+        },
+        {
+          "name": "statusRejected",
+          "displayName": "Talep Reddedildi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Talep Reddedildi",
+          "groupId": "status"
+        },
+        {
+          "name": "statusProblem",
+          "displayName": "Teslim Edilemedi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Teslim Edilemedi",
+          "groupId": "status"
+        },
+        {
+          "name": "backToOrdersText",
+          "displayName": "Siparişlere Dön",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Siparişlerime dön",
+          "groupId": "orderDetail"
+        },
+        {
+          "name": "orderTitle",
+          "displayName": "Sipariş Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "description": "{no} yerine sipariş numarası gelir.",
+          "defaultValue": "Sipariş #{no}",
+          "groupId": "orderDetail"
+        },
+        {
+          "name": "orderNotFoundText",
+          "displayName": "Sipariş Bulunamadı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bu sipariş bulunamadı.",
+          "groupId": "orderDetail"
+        },
+        {
+          "name": "itemsTitle",
+          "displayName": "Ürünler Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ürünler",
+          "groupId": "orderDetail"
+        },
+        {
+          "name": "frontLabel",
+          "displayName": "Ön Yüz Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ön",
+          "groupId": "orderDetail"
+        },
+        {
+          "name": "backLabel",
+          "displayName": "Arka Yüz Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Arka",
+          "groupId": "orderDetail"
+        },
+        {
+          "name": "platingLabel",
+          "displayName": "Kaplama Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "description": "Kaplama opsiyonu işaretliyse satır başlığına eklenir",
+          "defaultValue": "24 Ayar Altın Kaplama",
+          "groupId": "orderDetail"
+        },
+        {
+          "name": "detailsLabel",
+          "displayName": "Detaylar Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Tasarım Detayları",
+          "groupId": "orderDetail"
+        },
+        {
+          "name": "yesText",
+          "displayName": "İşaretli Kutu Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Evet",
+          "groupId": "orderDetail"
+        },
+        {
+          "name": "photoOpenText",
+          "displayName": "Fotoğrafı Aç Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Fotoğrafı aç",
+          "groupId": "orderDetail"
+        },
+        {
+          "name": "photoErrorText",
+          "displayName": "Fotoğraf Açılamadı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Dosya açılamadı",
+          "groupId": "orderDetail"
+        },
+        {
+          "name": "quantityLabel",
+          "displayName": "Adet Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Adet",
+          "groupId": "orderDetail"
+        },
+        {
+          "name": "shippingAddressTitle",
+          "displayName": "Teslimat Adresi Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Teslimat Adresi",
+          "groupId": "orderDetail"
+        },
+        {
+          "name": "billingAddressTitle",
+          "displayName": "Fatura Adresi Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Fatura Adresi",
+          "groupId": "orderDetail"
+        },
+        {
+          "name": "paymentTitle",
+          "displayName": "Ödeme Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ödeme",
+          "groupId": "orderDetail"
+        },
+        {
+          "name": "installmentText",
+          "displayName": "Taksit Metni",
+          "type": "TEXT",
+          "required": false,
+          "description": "{count} yerine taksit sayısı gelir.",
+          "defaultValue": "{count} Taksit",
+          "groupId": "orderDetail"
+        },
+        {
+          "name": "singlePaymentText",
+          "displayName": "Tek Çekim Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Tek Çekim",
+          "groupId": "orderDetail"
+        },
+        {
+          "name": "summaryTitle",
+          "displayName": "Özet Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sipariş Özeti",
+          "groupId": "orderDetail"
+        },
+        {
+          "name": "subtotalLabel",
+          "displayName": "Ara Toplam",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ara Toplam",
+          "groupId": "orderDetail"
+        },
+        {
+          "name": "shippingLabel",
+          "displayName": "Kargo",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kargo",
+          "groupId": "orderDetail"
+        },
+        {
+          "name": "freeShippingText",
+          "displayName": "Ücretsiz Kargo",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ücretsiz",
+          "groupId": "orderDetail"
+        },
+        {
+          "name": "totalLabel",
+          "displayName": "Toplam",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Toplam",
+          "groupId": "orderDetail"
+        },
+        {
+          "name": "taxIncludedText",
+          "displayName": "KDV Notu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "KDV dahil",
+          "groupId": "orderDetail"
+        },
+        {
+          "name": "cargoTitle",
+          "displayName": "Kargo Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kargo Takibi",
+          "groupId": "cargo"
+        },
+        {
+          "name": "packageLabel",
+          "displayName": "Paket Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Paket",
+          "groupId": "cargo"
+        },
+        {
+          "name": "cargoCompanyLabel",
+          "displayName": "Kargo Firması Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kargo Firması",
+          "groupId": "cargo"
+        },
+        {
+          "name": "trackingNumberLabel",
+          "displayName": "Takip No Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Takip No",
+          "groupId": "cargo"
+        },
+        {
+          "name": "copyText",
+          "displayName": "Kopyala Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kopyala",
+          "groupId": "cargo"
+        },
+        {
+          "name": "copiedText",
+          "displayName": "Kopyalandı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kopyalandı",
+          "groupId": "cargo"
+        },
+        {
+          "name": "trackText",
+          "displayName": "Takip Et Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kargoyu Takip Et",
+          "groupId": "cargo"
+        },
+        {
+          "name": "notShippedText",
+          "displayName": "Kargo Bilgisi Yok",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kargo bilgisi, paketin kargoya verildiğinde burada görünecek.",
+          "groupId": "cargo"
+        },
+        {
+          "name": "refundButtonText",
+          "displayName": "İade Talebi Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İade Talebi Oluştur",
+          "groupId": "refund"
+        },
+        {
+          "name": "refundTitle",
+          "displayName": "İade Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İade Talebi",
+          "groupId": "refund"
+        },
+        {
+          "name": "refundIntro",
+          "displayName": "İade Giriş Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İade etmek istediğin ürünleri ve adetlerini seç.",
+          "groupId": "refund"
+        },
+        {
+          "name": "refundNoticeText",
+          "displayName": "Kişiye Özel Ürün Notu",
+          "type": "TEXT",
+          "required": false,
+          "description": "{link} yerine İade Şartları Linki gelir.",
+          "defaultValue": "Kişiye özel üretilen sikkeler, üretim hatası dışında iade edilemez. Ayrıntılar için {link}.",
+          "groupId": "refund"
+        },
+        {
+          "name": "refundPolicyLink",
+          "displayName": "İade Şartları Linki",
+          "type": "LINK",
+          "required": false,
+          "defaultValue": {
+            "linkType": "EXTERNAL",
+            "label": "İptal ve İade Şartları",
+            "externalLink": "/pages/iptal-ve-iade",
+            "subLinks": []
+          },
+          "groupId": "refund"
+        },
+        {
+          "name": "refundReasonText",
+          "displayName": "İade Nedeni Metni",
+          "type": "TEXT",
+          "required": false,
+          "description": "{link} yerine İletişim Linki gelir.",
+          "defaultValue": "İade nedenini {link} üzerinden bize iletebilirsin.",
+          "groupId": "refund"
+        },
+        {
+          "name": "refundContactLink",
+          "displayName": "İletişim Linki",
+          "type": "LINK",
+          "required": false,
+          "defaultValue": {
+            "linkType": "EXTERNAL",
+            "label": "iletişim formu",
+            "externalLink": "/pages/iletisim",
+            "subLinks": []
+          },
+          "groupId": "refund"
+        },
+        {
+          "name": "refundQuantityLabel",
+          "displayName": "İade Adedi (ekran okuyucu)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İade adedi",
+          "groupId": "refund"
+        },
+        {
+          "name": "refundSubmitText",
+          "displayName": "Gönder Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Talebi Gönder",
+          "groupId": "refund"
+        },
+        {
+          "name": "refundSubmittingText",
+          "displayName": "Gönder (yükleniyor)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Gönderiliyor…",
+          "groupId": "refund"
+        },
+        {
+          "name": "refundSuccessText",
+          "displayName": "İade Talebi Alındı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İade talebin alındı. En kısa sürede seninle iletişime geçeceğiz.",
+          "groupId": "refund"
+        },
+        {
+          "name": "refundErrorText",
+          "displayName": "İade Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İade talebi gönderilemedi. Lütfen tekrar dene.",
+          "groupId": "refund"
+        },
+        {
+          "name": "refundedTitle",
+          "displayName": "İade Talepleri Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İade Taleplerin",
+          "groupId": "refund"
+        },
+        {
+          "name": "addressesEmptyText",
+          "displayName": "Boş Liste Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Henüz kayıtlı bir adresin yok.",
+          "groupId": "addresses"
+        },
+        {
+          "name": "addAddressText",
+          "displayName": "Yeni Adres Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yeni Adres Ekle",
+          "groupId": "addresses"
+        },
+        {
+          "name": "defaultBadgeText",
+          "displayName": "Varsayılan Rozeti",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Varsayılan",
+          "groupId": "addresses"
+        },
+        {
+          "name": "editText",
+          "displayName": "Düzenle Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Düzenle",
+          "groupId": "addresses"
+        },
+        {
+          "name": "deleteText",
+          "displayName": "Sil Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sil",
+          "groupId": "addresses"
+        },
+        {
+          "name": "deleteAddressTitle",
+          "displayName": "Silme Onayı Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Adresi sil",
+          "groupId": "addresses"
+        },
+        {
+          "name": "deleteAddressText",
+          "displayName": "Silme Onayı Metni",
+          "type": "TEXT",
+          "required": false,
+          "description": "{title} yerine adres başlığı gelir.",
+          "defaultValue": "“{title}” adresini silmek istediğine emin misin?",
+          "groupId": "addresses"
+        },
+        {
+          "name": "deleteAddressConfirm",
+          "displayName": "Silme Onayı Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Adresi Sil",
+          "groupId": "addresses"
+        },
+        {
+          "name": "deleteAddressErrorText",
+          "displayName": "Silme Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Adres silinemedi. Lütfen tekrar dene.",
+          "groupId": "addresses"
+        },
+        {
+          "name": "addTitle",
+          "displayName": "Ekleme Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yeni Adres",
+          "groupId": "addresses"
+        },
+        {
+          "name": "editTitle",
+          "displayName": "Düzenleme Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Adresi Düzenle",
+          "groupId": "addresses"
+        },
+        {
+          "name": "addressSaveText",
+          "displayName": "Kaydet Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Adresi Kaydet",
+          "groupId": "addresses"
+        },
+        {
+          "name": "addressSavingText",
+          "displayName": "Kaydet (yükleniyor)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kaydediliyor…",
+          "groupId": "addresses"
+        },
+        {
+          "name": "addressErrorText",
+          "displayName": "Kayıt Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Adres kaydedilemedi. Lütfen tekrar dene.",
+          "groupId": "addresses"
+        },
+        {
+          "name": "addrTitleLabel",
+          "displayName": "Adres Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Adres Başlığı",
+          "groupId": "addressForm"
+        },
+        {
+          "name": "addrTitlePlaceholder",
+          "displayName": "Adres Başlığı Örneği",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ev, İş…",
+          "groupId": "addressForm"
+        },
+        {
+          "name": "addrFirstNameLabel",
+          "displayName": "Ad",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ad",
+          "groupId": "addressForm"
+        },
+        {
+          "name": "addrLastNameLabel",
+          "displayName": "Soyad",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Soyad",
+          "groupId": "addressForm"
+        },
+        {
+          "name": "addrIdentityLabel",
+          "displayName": "Kimlik No",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "T.C. Kimlik No",
+          "groupId": "addressForm"
+        },
+        {
+          "name": "addrLine1Label",
+          "displayName": "Adres",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Adres",
+          "groupId": "addressForm"
+        },
+        {
+          "name": "addrLine1Placeholder",
+          "displayName": "Adres Örneği",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Cadde, sokak, bina ve daire no",
+          "groupId": "addressForm"
+        },
+        {
+          "name": "addrLine2Label",
+          "displayName": "Adres (devam)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Adres (devam)",
+          "groupId": "addressForm"
+        },
+        {
+          "name": "addrPostalCodeLabel",
+          "displayName": "Posta Kodu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Posta Kodu",
+          "groupId": "addressForm"
+        },
+        {
+          "name": "addrCountryLabel",
+          "displayName": "Ülke",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ülke",
+          "groupId": "addressForm"
+        },
+        {
+          "name": "addrStateLabel",
+          "displayName": "Eyalet",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Eyalet",
+          "groupId": "addressForm"
+        },
+        {
+          "name": "addrCityLabel",
+          "displayName": "İl",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İl",
+          "groupId": "addressForm"
+        },
+        {
+          "name": "addrDistrictLabel",
+          "displayName": "İlçe",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İlçe",
+          "groupId": "addressForm"
+        },
+        {
+          "name": "addrRegionLabel",
+          "displayName": "Mahalle",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Mahalle",
+          "groupId": "addressForm"
+        },
+        {
+          "name": "addrPhoneLabel",
+          "displayName": "Telefon",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Telefon",
+          "groupId": "addressForm"
+        },
+        {
+          "name": "selectPlaceholder",
+          "displayName": "Seçim Örneği",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Seçiniz",
+          "groupId": "addressForm"
+        },
+        {
+          "name": "optionalHint",
+          "displayName": "İsteğe Bağlı Notu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "(isteğe bağlı)",
+          "groupId": "addressForm"
+        },
+        {
+          "name": "favoritesEmptyText",
+          "displayName": "Boş Liste Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Favori listen boş. Beğendiğin tasarımları kalp simgesiyle buraya ekleyebilirsin.",
+          "groupId": "favorites"
+        },
+        {
+          "name": "favoritesEmptyLink",
+          "displayName": "Boş Liste Butonu",
+          "type": "LINK",
+          "required": false,
+          "defaultValue": {
+            "linkType": "EXTERNAL",
+            "label": "Koleksiyonu İncele",
+            "externalLink": "/pages/koleksiyon",
+            "subLinks": []
+          },
+          "groupId": "favorites"
+        },
+        {
+          "name": "designText",
+          "displayName": "Tasarla Linki",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Tasarla",
+          "groupId": "favorites"
+        },
+        {
+          "name": "removeFavoriteLabel",
+          "displayName": "Favoriden Çıkar (ekran okuyucu)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Favorilerden çıkar",
+          "groupId": "favorites"
+        },
+        {
+          "name": "favoritesErrorText",
+          "displayName": "Yükleme Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Favorilerin yüklenemedi.",
+          "groupId": "favorites"
+        },
+        {
+          "name": "requiredError",
+          "displayName": "Zorunlu Alan Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bu alan zorunlu.",
+          "groupId": "errors"
+        },
+        {
+          "name": "phoneError",
+          "displayName": "Telefon Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Geçerli bir telefon numarası gir.",
+          "groupId": "errors"
+        },
+        {
+          "name": "invalidError",
+          "displayName": "Geçersiz Alan Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bu alanı kontrol et.",
+          "groupId": "errors"
+        },
+        {
+          "name": "backgroundColor",
+          "displayName": "Arka Plan Rengi",
+          "type": "COLOR",
+          "required": false,
+          "description": "Gündüz modunda section zemini",
+          "defaultValue": "#FFFFFF",
+          "groupId": "appearance"
+        },
+        {
+          "name": "decreaseLabel",
+          "displayName": "Azalt (ekran okuyucu)",
+          "type": "TEXT",
+          "required": false,
+          "groupId": "general",
+          "defaultValue": "Azalt"
+        },
+        {
+          "name": "increaseLabel",
+          "displayName": "Artır (ekran okuyucu)",
+          "type": "TEXT",
+          "required": false,
+          "groupId": "general",
+          "defaultValue": "Artır"
+        },
+        {
+          "name": "showFavorites",
+          "displayName": "Favoriler Sekmesi",
+          "type": "BOOLEAN",
+          "required": false,
+          "groupId": "nav",
+          "description": "Kapalıyken menüde ve Hesabım özetinde Favoriler görünmez",
+          "defaultValue": false
+        }
+      ],
+      "propGroups": [
+        {
+          "id": "general",
+          "name": "Genel"
+        },
+        {
+          "id": "nav",
+          "name": "Menü"
+        },
+        {
+          "id": "profile",
+          "name": "Kişisel Bilgiler"
+        },
+        {
+          "id": "delete",
+          "name": "Hesap Silme"
+        },
+        {
+          "id": "orders",
+          "name": "Siparişler"
+        },
+        {
+          "id": "status",
+          "name": "Sipariş Durumları"
+        },
+        {
+          "id": "orderDetail",
+          "name": "Sipariş Detayı"
+        },
+        {
+          "id": "cargo",
+          "name": "Kargo Takibi"
+        },
+        {
+          "id": "refund",
+          "name": "İade Talebi"
+        },
+        {
+          "id": "addresses",
+          "name": "Adresler"
+        },
+        {
+          "id": "addressForm",
+          "name": "Adres Formu"
+        },
+        {
+          "id": "favorites",
+          "name": "Favoriler"
+        },
+        {
+          "id": "errors",
+          "name": "Hata Metinleri"
+        },
+        {
+          "id": "appearance",
+          "name": "Görünüm"
+        }
+      ]
     }
   ],
   "customTypes": [

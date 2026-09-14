@@ -9,7 +9,8 @@
  *   2. fields + file ile S3'e POST (200/204 başarı) → optionUrl döner
  * ikas düzeltince `productOptionFileUpload`'a geri dönülebilir.
  */
-import { IkasProductOption, IkasStorefrontConfig } from "@ikas/bp-storefront";
+import { IkasProductOption } from "@ikas/bp-storefront";
+import { storefrontPost } from "./storefront-api";
 
 interface PresignedUpload {
   url: string;
@@ -18,27 +19,11 @@ interface PresignedUpload {
 }
 
 async function getPresignedUpload(option: IkasProductOption, file: File): Promise<PresignedUpload | null> {
-  const apiUrl = IkasStorefrontConfig.apiUrl;
-  if (!apiUrl) return null;
-  const headers: Record<string, string> = {
-    "Content-Type": "application/json",
-    "x-api-key": IkasStorefrontConfig.apiKey || "",
-    "x-sfid": IkasStorefrontConfig.storefrontId || "",
-    "x-sfrid": IkasStorefrontConfig.storefrontRoutingId || "",
-  };
-  if (IkasStorefrontConfig.customerToken) headers.authorization = `Bearer ${IkasStorefrontConfig.customerToken}`;
-  const res = await fetch(`${apiUrl}/getProductOptionFileUrl`, {
-    method: "POST",
-    headers,
-    body: JSON.stringify({
-      fileName: file.name,
-      productOptionSetId: option.productOptionSetId,
-      productOptionId: option.id,
-    }),
+  const data = await storefrontPost<PresignedUpload>("getProductOptionFileUrl", {
+    fileName: file.name,
+    productOptionSetId: option.productOptionSetId,
+    productOptionId: option.id,
   });
-  if (!res.ok) return null;
-  const json = await res.json();
-  const data = json?.data?.getProductOptionFileUrl;
   return data?.url && data?.fields && data?.optionUrl ? data : null;
 }
 

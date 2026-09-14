@@ -19,3 +19,4 @@ export { AuthRegister } from "./AuthRegister/index";
 export { AuthForgotPassword } from "./AuthForgotPassword/index";
 export { AuthRecoverPassword } from "./AuthRecoverPassword/index";
 export { AuthVerifyEmail } from "./AuthVerifyEmail/index";
+export { AccountPage } from "./AccountPage/index";

@@ -1,0 +1,102 @@
+/* ===== Sipariş kartı ===== */
+.ocard {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px 20px;
+  padding: 18px 20px;
+  background: var(--dark);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card, 2px);
+  transition: border-color var(--dur, .25s);
+}
+.ocard:hover { border-color: var(--line-strong); }
+
+.ocard__thumb {
+  display: block;
+  width: 72px;
+  height: 72px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--dark-2);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.ocard__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ocard__thumb-empty { display: block; width: 100%; height: 100%; }
+
+.ocard__body { display: grid; gap: 6px; min-width: 0; }
+.ocard__top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+.ocard__no {
+  font-family: var(--f-deco);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--heading);
+}
+.ocard__label {
+  margin-right: 4px;
+  font-family: var(--f-ui);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+}
+.ocard__title {
+  margin: 0;
+  overflow: hidden;
+  font-family: var(--f-body);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ocard__more { color: var(--text-muted); }
+.ocard__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  margin: 0;
+  font-family: var(--f-body);
+  font-size: 12.5px;
+  color: var(--text-dim);
+}
+
+.ocard__aside {
+  display: grid;
+  justify-items: end;
+  gap: 8px;
+  text-align: right;
+}
+.ocard__total {
+  display: grid;
+  gap: 2px;
+  font-family: var(--f-deco);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--heading);
+  white-space: nowrap;
+}
+.ocard__detail { white-space: nowrap; }
+
+@media (max-width: bp(5Xmvk6D0gV)) {
+  .ocard {
+    grid-template-columns: 56px minmax(0, 1fr);
+    align-items: start;
+    gap: 14px;
+    padding: 16px;
+  }
+  .ocard__thumb { width: 56px; height: 56px; }
+  .ocard__aside {
+    grid-column: 1 / -1;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    justify-items: start;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+    text-align: left;
+  }
+  .ocard__detail { justify-self: end; }
+}

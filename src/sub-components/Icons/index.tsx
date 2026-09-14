@@ -155,3 +155,11 @@ export function FacebookIcon({ className }: IconProps) {
     </svg>
   );
 }
+
+export function HeartIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M12 20s-7.5-4.6-7.5-10.1A4.4 4.4 0 0 1 12 7.2a4.4 4.4 0 0 1 7.5 2.7C19.5 15.4 12 20 12 20Z" />
+    </svg>
+  );
+}

@@ -1,0 +1,67 @@
+/* ===== Kargo takip kutusu ===== */
+.cargo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+  padding: 14px 16px;
+  background: var(--bg-page);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card, 2px);
+}
+.cargo--empty {
+  display: block;
+  margin: 0;
+  font-family: var(--f-body);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-dim);
+}
+.cargo__list { display: grid; gap: 6px; margin: 0; min-width: 0; }
+.cargo__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  font-family: var(--f-body);
+  font-size: 13.5px;
+  color: var(--text);
+}
+.cargo__row dt {
+  min-width: 8.5em;
+  font-family: var(--f-ui);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+}
+.cargo__row dd { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 0; min-width: 0; }
+.cargo__number {
+  font-family: var(--f-ui);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  overflow-wrap: anywhere;
+  user-select: all;
+}
+.cargo__copy {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: var(--f-body);
+  font-size: 12px;
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.cargo__copy:hover { color: var(--gold-light); }
+.cargo__copy:focus-visible,
+.cargo__track:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.cargo__track { flex: none; }
+
+@media (max-width: bp(5Xmvk6D0gV)) {
+  .cargo__track { width: 100%; }
+  .cargo__row dt { min-width: 0; width: 100%; }
+}

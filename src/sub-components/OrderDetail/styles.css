@@ -1,0 +1,140 @@
+/* ===== Sipariş detayı ===== */
+.odet { display: grid; gap: 20px; min-width: 0; }
+
+.odet__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 18px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.odet__head-main { flex: 1 1 260px; min-width: 0; }
+.odet__title {
+  display: block;
+  margin: 0;
+  font-family: var(--f-deco);
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.25;
+  color: var(--heading);
+}
+.odet__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 6px 0 0;
+  font-family: var(--f-body);
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.odet__refund-btn { margin-left: auto; }
+.odet__refund-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.odet__lines { margin: 0; padding: 0; list-style: none; }
+
+/* ---------- Kargo ---------- */
+.odet__pkgs { display: grid; gap: 16px; margin: 0; padding: 0; list-style: none; }
+.odet__pkg { display: grid; gap: 10px; }
+.odet__pkg + .odet__pkg { padding-top: 16px; border-top: 1px dashed var(--line-strong); }
+.odet__pkg-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+.odet__pkg-no {
+  font-family: var(--f-ui);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.odet__pkg-items { margin: 0; font-family: var(--f-body); font-size: 12.5px; line-height: 1.55; color: var(--text-dim); }
+
+/* ---------- İade talepleri ---------- */
+.odet__refunds { display: grid; margin: 0; padding: 0; list-style: none; }
+.odet__refund {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+.odet__refund:last-child { border-bottom: 0; }
+.odet__refund-name {
+  font-family: var(--f-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+/* ---------- Adres / ödeme ---------- */
+.odet__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.odet__box { padding: 20px 22px; }
+.odet__addr {
+  display: grid;
+  gap: 3px;
+  margin: 0;
+  font-family: var(--f-body);
+  font-size: 13.5px;
+  font-style: normal;
+  line-height: 1.6;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+.odet__addr strong { font-weight: 600; color: var(--heading); }
+
+/* ---------- Özet ---------- */
+.odet__summary { max-width: 440px; margin-left: auto; width: 100%; }
+.odet__sum { display: grid; gap: 10px; margin: 0; }
+.odet__sum-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: var(--f-body);
+  font-size: 14px;
+  color: var(--text);
+}
+.odet__sum-row dt { color: var(--text-dim); }
+.odet__sum-row dd { margin: 0; text-align: right; white-space: nowrap; }
+.odet__sum-row--adj dd { color: var(--success); }
+.odet__sum-row--total {
+  margin-top: 6px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-strong);
+}
+.odet__sum-row--total dt {
+  font-family: var(--f-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--heading);
+}
+.odet__sum-row--total dd {
+  display: grid;
+  justify-items: end;
+  gap: 2px;
+  font-family: var(--f-deco);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+.odet__sum-row--total small {
+  font-family: var(--f-body);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+@media (max-width: bp(5Xmvk6D0gV)) {
+  .odet__refund-btn { width: 100%; margin-left: 0; }
+  .odet__summary { max-width: none; }
+}

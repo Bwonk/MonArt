@@ -1,0 +1,89 @@
+/* ===== Kişisel Bilgilerim ===== */
+.prof { display: grid; gap: 20px; min-width: 0; }
+
+.prof__hello {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px 32px;
+}
+.prof__who { min-width: 0; }
+.prof__greet {
+  display: block;
+  margin: 0;
+  font-family: var(--f-deco);
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.25;
+  color: var(--heading);
+  overflow-wrap: anywhere;
+}
+.prof__email {
+  margin: 6px 0 0;
+  font-family: var(--f-body);
+  font-size: 13.5px;
+  color: var(--text-dim);
+  overflow-wrap: anywhere;
+}
+.prof__intro {
+  margin: 12px 0 0;
+  font-family: var(--f-body);
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text);
+  text-wrap: pretty;
+}
+
+.prof__stats {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(88px, auto);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--line);
+  border-radius: var(--r-card, 2px);
+  background: var(--bg-page);
+}
+.prof__stats li + li { border-left: 1px solid var(--line); }
+.prof__stat {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: background var(--dur, .25s);
+}
+.prof__stat:hover { background: var(--surface-hover); }
+.prof__stat:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+.prof__stat-num {
+  font-family: var(--f-deco);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--gold-light);
+}
+.prof__stat-label {
+  font-family: var(--f-ui);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.prof__minor {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+.prof__privacy { display: flex; flex-wrap: wrap; gap: 10px 24px; }
+
+@media (max-width: bp(5Xmvk6D0gV)) {
+  .prof__hello { grid-template-columns: minmax(0, 1fr); }
+  .prof__stats { grid-auto-columns: minmax(0, 1fr); }
+  .prof__stat { padding: 12px 6px; }
+  .prof__minor { grid-template-columns: minmax(0, 1fr); }
+}

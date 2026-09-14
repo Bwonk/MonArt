@@ -1,0 +1,11 @@
+/* ===== Hesap silme penceresi (düğme stili .acc-btn-danger AccountPage'de) ===== */
+.acc-warning {
+  margin: 0;
+  padding: 12px 14px;
+  font-family: var(--f-body);
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--text);
+  background: color-mix(in srgb, var(--error) 6%, transparent);
+  border-left: 2px solid var(--error);
+}

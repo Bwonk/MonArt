@@ -1,0 +1,5 @@
+/* ===== Siparişlerim ===== */
+.olist { display: grid; gap: 16px; min-width: 0; }
+.olist__list { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+.olist__more { justify-self: center; margin-top: 6px; }
+.olist__more:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }

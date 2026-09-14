@@ -46,7 +46,7 @@ Editor URL'sini tarayıcıda açık tut. MCP editor araçları ancak editor bağ
 | 9 | Marka Elçileri sayfası: tanıtım + başvuru formu | ✅ bitti (editör önizlemesinde masaüstü, 380px, Day/Night, doğrulama ve telefonsuz gerçek gönderim test edildi; e-postadaki mesaj biçimi kullanıcı kontrolü bekliyor) |
 | 10 | Hazır hesap sayfaları + 404 | ✅ bitti. 404 yayında test edildi. Hazır hesap sayfaları yayında test edildi ama **kullanıcı kararıyla bırakıldı** (font ve gece modu ayarlanamıyor): yerine 10b/10c'de kendi section'larımız yazılıyor |
 | 10b | Üyelik section'ları: giriş, kayıt, şifremi unuttum, şifre yenileme, e-posta doğrulama | ✅ bitti (yayında: doğrulamalar, şifre göster/gizle, sayfalar arası linkler, token'sız ekranlar, 400px, Day/Night, gerçek giriş → Hesabım, girişliyken yönlendirme, `?redirect=` ve dış yönlendirme engeli, çıkış; sosyal buton hata bandı. Gerçek kayıt ve şifre sıfırlama e-postası gönderimi kullanıcı onayı bekliyor) |
-| 10c | Hesap section'ı: profil + hesap silme, siparişler, sipariş detayı (sikke özeti, kargo takibi, iade talebi), adresler, favoriler | ⏳ plan hazır: `docs/account-pages.md` §3 (API'ler doğrulandı). Yeni sohbette "Faz 10c'ye başlayalım" |
+| 10c | Hesap section'ı: profil + hesap silme, siparişler, sipariş detayı (sikke özeti, kargo takibi, iade talebi), adresler, favoriler | ✅ kod bitti (`AccountPage`, `docs/account-pages.md` §3.6); hazır `account` grubu kapatıldı, 5 sayfa yeniden açıldı. Yayında profil, boş sipariş/favori, favori kartı, adres ekle/düzenle/sil, silme penceresi, gece, 400px, çıkış, girişsiz yönlendirme ve `?redirect` dönüşü test edildi. Favoriler kullanıcı kararıyla gizli (`showFavorites`). Son düzeltmeler editörde, yayın bekliyor. Kalan testler Faz 11 QA'ya ertelendi |
 | 11 | Link bağlama, dil routing'leri, QA, yayın | ⏳ |
 
 ---
@@ -114,7 +114,7 @@ Bunlar önceki fazlarda hata yapılıp düzeltilen konular. Her fazda geçerli.
 - Kod değişikliği editöre `build` + `import_section` ile gider; section yeniden mount olur (açık lightbox/sekme sıfırlanır).
 - `ikas-component dev` açıkken kaynak dosyadaki her değişiklik bağlı editöre de gider ve section'ları yeniden mount eder (başka oturumun değişikliği de). Önizlemede form doldururken kod değiştirme; doldurulmuş form sıfırlanır (Faz 8).
 
-**Hazır hesap sayfaları (Faz 10) — üyelik grubu bırakıldı, hesap grubu 10c'ye kadar açık**
+**Hazır hesap sayfaları (Faz 10) — iki grup da bırakıldı (üyelik 10b'de, hesap 10c'de); notlar ileride hazır sayfa açılırsa diye duruyor**
 - Bir grubu `enable_ready_made_pages(false)` ile kapatmak o grubun sayfalarını **siler**; Header/Footer eklemiş olmak korumaz. Yerine `create_page(pageType)` ile boş sayfa açılır; Header ve Footer kendiliğinden gelir, section `index: 1` ile araya konur.
 - Hazır sayfaların kendi DOM'u `data-cc-scope="ikas"` altında; bizim `global.css` `:where([data-cc-scope~="wnbxmerd"])` ile scope'landığı için onlara ulaşmaz. Font `var(--ma-font)` ile gövde fontunu miras alır, renkler section'da inline `--ma-*` değişkenleri.
 - İçerik ikas'ın kendi bileşeni; section değil. Ayarlar yalnız `list_ready_made_pages` / `update_ready_made_page_prop` ile. Logo, köşe ve renkler paylaşılan `all` kapsamında, bir kez yazılır, 10 sayfaya gider.
@@ -158,6 +158,7 @@ Bunlar önceki fazlarda hata yapılıp düzeltilen konular. Her fazda geçerli.
 | AuthForgotPassword | section | `wnbxmerd-JEkqLQnAB4` |
 | AuthRecoverPassword | section | `wnbxmerd-sHFNplFxzU` |
 | AuthVerifyEmail | section | `wnbxmerd-mHwtZ0bnxo` |
+| AccountPage | section | `wnbxmerd-ifgtExD5te` |
 
 Özel enum "Seri" (`roma` / `osmanli` / `misir`): `5rzSm7oLdF`. SeriesCard'ın `seriesKey` prop'u bunu kullanır.
 
@@ -217,17 +218,17 @@ Hukuki metinler referansın `LEGAL_DOCS`'undan (ve Kullanım Şartları i18n `te
 | Şifre Yenileme | RECOVER_PASSWORD | `R9bAAZDNv7` | AuthRecoverPassword `UnFJ1NmgEk` |
 | E-posta Doğrulama | ACTIVATE_CUSTOMER | `oo5QdC1GPG` | AuthVerifyEmail `9bx9daIc4X` |
 
-**Hazır hesap sayfaları (Faz 10, 10c'de değişecek)** — `account` grubu açık. Her sayfada sıra: Header · (ikas hazır içeriği) · Footer. Aşağıdaki paylaşılan ayarlar yalnız bu sayfalar için geçerli.
+**Hesap sayfaları (Faz 10c)** — kendi section'ımız, spec `docs/account-pages.md` §3. Hazır `account` grubu kapalı (eski hazır sayfalar silindi, `create_page` ile yeniden açıldı). Her sayfada sıra: Header · AccountPage · Footer; section panelini sayfa tipinden seçer.
 
-| Sayfa | pageType | page id |
-|---|---|---|
-| Hesabım | ACCOUNT | `H2zK2T37p1` |
-| Adreslerim | ADDRESSES | `r35IQ2cOnP` |
-| Siparişlerim | ORDERS | `LgmFqIImUQ` |
-| Sipariş Detayı | ORDER_DETAIL | `vKQzrcN0JP` |
-| Favoriler | FAVORITE_PRODUCTS | `KeatEmWfeC` |
+| Sayfa | pageType | page id | AccountPage elementId |
+|---|---|---|---|
+| Hesabım | ACCOUNT | `Vqh5UJ59QY` | `COU6yaUK5J` |
+| Siparişlerim | ORDERS | `J254ofXBsd` | `AJLGTQDmyM` |
+| Sipariş Detayı | ORDER_DETAIL | `FbUPMP6SkA` | `RtCdJHiKbq` |
+| Adreslerim | ADDRESSES | `lnF1J8VSYD` | `s9U5lNxFnO` |
+| Favoriler | FAVORITE_PRODUCTS | `sUFOCuuSsn` | `9gqQwHV78D` |
 
-Paylaşılan ayarlar (`all`): logo MA sikke (`46ba7812…`), logo metni "MonetArts", köşe Keskin (`0`); renkler Day paletine bağlı — ana Bronze `a01PKQp4x5` + beyaz yazı `4Plr8cMVx1`, kart zemini Page, sayfa zemini ve ikincil zemin Ivory, içe gömülü zemin Sand, metin Ink / Text Dim / Text Muted, kenarlık Sand Deep, belirgin ve form kenarlığı Line, hata Error, olumlu Success Day, devam eden Bronze Dim, nötr Text Muted. Bildirim kutusu (notice) renkleri ikas varsayılanı. Header'da `showAccount` açık: girişliyse ACCOUNT, değilse LOGIN (yayında doğrulandı: `/account` ve `/account/login`).
+Her yerleşimde aynı 4 link: `ordersEmptyLink` EXTERNAL `/#atolye`, `refundPolicyLink` PAGE İptal ve İade (`uIC7lTSa2z`), `refundContactLink` PAGE İletişim (`f7IJM52GCz`), `favoritesEmptyLink` PAGE Koleksiyon (`zQWeWMtpEV`). Metinler beş sayfada ayrı ayrı saklanır; biri değişirse diğer dördüne de yazılmalı. Header'da `showAccount` açık: girişliyse ACCOUNT, değilse LOGIN (Faz 10'da yayında doğrulandı: `/account` ve `/account/login`). Hazır sayfaların paylaşılan (`all`) logo/renk ayarları artık hiçbir sayfada kullanılmıyor.
 
 **404 (Faz 10)** — NOT_FOUND sayfası `dy9iv`. Sıra: Header `KvvPBJ4QXa` · NotFound `V00RRJ1EyB` · Footer `9ivOpNoMTA`. "404"teki 0 yerine MA monogram halkası (`b535ed5a…`, şeffaf) Y ekseninde döner; logo sikke görseli (`46ba7812…`) koyu kare zeminli olduğu için kullanılmadı. Birincil buton Ana Sayfa (PAGE INDEX), ikincil "Kolyeni Tasarla" EXTERNAL `/#atolye`.
 
@@ -273,12 +274,14 @@ Paylaşılan ayarlar (`all`): logo MA sikke (`46ba7812…`), logo metni "MonetAr
 | İletişim formu mesajları admin panelinde görünmüyor (Gelen Kutusu'nda "ikas Form" kanalı "Yakında"); mesajlar mağaza sahibinin e-postasına geliyor — kullanıcı test mesajlarının geldiğini doğruladı. Merchant'a form mesajlarını e-postadan takip etmesi söylenmeli | admin / e-posta | bilgi |
 | Özel Tasarım görselli gönderim yayında çalışıyor: 4 dosya 3+1 parça S3'e yüklendi (204), mesaj gönderildi (200), başarı ekranı açıldı; istemci kontrolleri (PDF/6 MB reddi, tekrar, 5 dosya sınırı, kaldır) doğrulandı. Kalan: e-postadaki görsel linklerinin merchant'ta açılması (anonim 403). Kullanıcı yükleme hatasını ve bucket erişimini ikas'a danışacak; sonuca göre yükleme kalır ya da WhatsApp/e-posta ile görsel isteme sürümüne geçilir | BespokeRequest | ikas yanıtı |
 | **ikas `productOptionFileUpload` tarayıcıda çalışmıyor** (bp-storefront 2.9.1, S3'e elle `Content-Type: multipart/form-data` → 400 `MalformedPOSTRequest`). Konfigüratördeki fotoğraflar bu yüzden hiç yüklenmiyordu. `src/utils/option-file-upload.ts` ile aşıldı (konfigüratör + Özel Tasarım); konfigüratör eksik yüklemede artık sepete eklemiyor (`photoUploadErrorToast`). ikas SDK ekibine bildirilmeli; düzelince yardımcı kaldırılabilir | CoinConfigurator, BespokeRequest | ikas |
-| Yüklenen dosyaların `optionUrl`'i imzasız S3 adresi ve 403 dönüyor (bucket kapalı). Özel Tasarım mesajındaki linkler merchant'ta açılıyor mu, kullanıcı panelden kontrol edecek; açılmıyorsa yükleme yerine WhatsApp/e-posta ile görsel istenir. Konfigüratör siparişinde dosyanın panelde açıldığı da test siparişinde görülmeli | BespokeRequest, CoinConfigurator | 8 sonu |
+| Yüklenen dosyaların `optionUrl`'i imzasız S3 adresi ve 403 dönüyor (bucket kapalı). Özel Tasarım mesajındaki linkler merchant'ta açılıyor mu, kullanıcı panelden kontrol edecek; açılmıyorsa yükleme yerine WhatsApp/e-posta ile görsel istenir. Konfigüratör siparişinde dosyanın panelde açıldığı da test siparişinde görülmeli. Müşteri tarafında Faz 10c'deki sipariş detayı dosyayı storefront `getOrderLineFile` ile imzalı adresten açıyor; test siparişinde çalıştığı görülmeli | BespokeRequest, CoinConfigurator, AccountPage | 8 sonu |
 | Faz 9 test başvurusu ("Test Claude", test@ornek.com, `[Elçi Başvurusu]`) gönderildi, ikas kabul etti. Mağaza sahibinin e-postasında başlık satırının (Sosyal Medya Hesabı · Hedef Kitle Lokasyonu) ve vizyon bloğunun okunur geldiğini kullanıcı kontrol edecek. Footer "ambassadors" linkinin `/pages/elciler`'e gittiği yayında doğrulanacak | admin / Footer | 11 (QA) |
-| Hazır hesap sayfaları Night şemasına geçmiyor: gece modunda Header/Footer koyu, hazır içerik gündüz renginde kalıyor. ikas bu sayfalara şema geçişi sunmuyor; kabul edildi, istenirse bu sayfalarda tema düğmesi gizlenebilir | hazır sayfalar | bilgi |
-| Header hesap ikonunun girişsizken Giriş'e, girişliyken Hesabım'a gittiği; Hesabım menüsündeki Siparişlerim/Adreslerim/Favoriler ve çıkışın çalıştığı yayında giriş yapmış test müşterisiyle doğrulanacak (editörde hesap sayfaları açılmıyor, linkler gezinmiyor). Kayıt formundaki onay linklerinin Kullanım Şartları ve KVKK'ya gittiği de yayında bakılacak | Header, hazır sayfalar | 11 (QA) |
+| Hazır hesap sayfaları Night şemasına geçmiyordu ve ikas fontunu kullanıyordu. Faz 10c'de kendi `AccountPage` section'ımızla değiştirildi — kapatılabilir | hazır sayfalar | ✅ |
+| Faz 10c son düzeltmeleri (Favoriler gizleme, adres etiketleri İl/İlçe/Mahalle, seçeneksiz mahalle alanını gizleme, adres formunda ilk alana odak, gece soluk metin kontrastı) editöre gönderildi ve beş yerleşime yazıldı; yayına alınınca geçerli olur | AccountPage | yayın |
+| **Faz 10c kalan testleri** (§3.6 "Yayın testi"): "Verilerimin kopyasını gönder" e-postası, bir test siparişiyle sipariş listesi ve detay (sikke özeti, küçük resim, "Fotoğrafı aç" imzalı adresi, adresler, ödeme, toplamlar), kargo bilgisi (admin'den kargo girilince), iade talebi (kullanıcı onayıyla), hesap silme **ayrı test hesabıyla**. Yeniden yayından sonra adres formunun yeni etiketleri ve gece görünümü de bakılacak | AccountPage | 11 (QA) |
+| Favoriler **gizli** (kullanıcı kararı, 2026-09-14; başka bir planı var): `AccountPage.showFavorites` varsayılan kapalı → menüde ve Hesabım özetinde yok, favori sayısı sorgulanmıyor. Sayfa (FAVORITE_PRODUCTS) ve panel duruyor; açmak için beş yerleşimde `showFavorites` açılır. Sitede favoriye ekleme düğmesi yok; boş durum metni "kalp simgesiyle" diyor | AccountPage, CoinConfigurator | kullanıcı planı |
+| Kayıt formundaki onay linklerinin Kullanım Şartları ve KVKK'ya gittiği yayında bakılacak | AuthRegister | 11 (QA) |
 | Google/Facebook butonları açık ama **admin'de sosyal giriş kurulu değil**: yayında Google'a basınca ikas `socialLoginError=SETTINGS_NOT_FOUND!` döndü. Butonlar artık "Sosyal hesapla giriş tamamlanamadı" bandı gösteriyor. Admin'de Google/Facebook kurulmalı ya da AuthLogin/AuthRegister'da `showGoogle` / `showFacebook` kapatılmalı | admin / AuthLogin, AuthRegister | 11 |
-| Hazır sayfalardaki yazı tipi ikas'ın kendi fontu (başlık Cinzel değil); hazır bileşende tipografi ayarı yok | hazır sayfalar | bilgi |
 | 404 "Kolyeni Tasarla" EXTERNAL `/#atolye`; dil routing prefix'i almaz | NotFound | 11 |
 | Faz 10b'de gerçek gönderimle denenmedi (kullanıcı onayı bekliyor): kayıt formu (yeni test müşterisi), "şifremi unuttum" e-postası ve gelen linkle şifre yenileme, e-posta doğrulama linki. Yanlış şifre bandını kullanıcı elle denedi, sonucu kaydedilmedi. Mağaza captcha açarsa SDK `grecaptcha` bekler; bizde widget yok | AuthRegister, AuthForgotPassword, AuthRecoverPassword, AuthVerifyEmail | 11 (QA) |
 | Dil seçici tek dilde "TR ⌄" gösteriyor (referanstaki gibi); menüde yalnız TR var. Referanstaki EN/FR/IT/RU/AR için admin'de storefront routing'leri kurulmalı (admin MCP'de routing işlemi yok, arayüzden), her routing'de TEXT prop'lar çevrilmeli, AR'de `dir="rtl"` kontrol edilmeli. **SDK notu (bp-storefront 2.9.1):** `baseStore.languageOptions` yalnız ziyaretçinin ülkesini `countryCodes`'unda taşıyan routing'lerden kurulur; ülke kodu olmayan routing'lerde (bizim TR routing'i `countryCodes: null`) liste boş kalır. `LanguageSwitcher` bu durumda `IkasStorefrontConfig.routings`'ten okur. Routing'lere ülke kodu verilirse SDK listesi yalnız o ülkenin dillerini gösterir; kurulumda buna göre karar verilmeli | admin / Header / tüm section'lar | 11 |

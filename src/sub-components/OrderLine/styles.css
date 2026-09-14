@@ -1,0 +1,161 @@
+/* ===== Sipariş satırı (salt-okunur, CartLine sayfa varyantının kardeşi) ===== */
+.oline {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr) auto;
+  gap: 20px;
+  align-items: start;
+  padding: 22px 0;
+  border-bottom: 1px dashed var(--line-strong);
+}
+.oline:last-child { border-bottom: none; }
+.oline.is-cancelled { opacity: 0.55; }
+
+.oline__thumb {
+  display: block;
+  width: 88px;
+  height: 88px;
+  border-radius: var(--r-pill, 999px);
+  overflow: hidden;
+  background: var(--dark-2);
+  box-shadow: 0 0 0 1px var(--line-strong), inset 0 0 18px rgba(0, 0, 0, 0.35);
+}
+.oline__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.oline__thumb-empty { display: block; width: 100%; height: 100%; background: var(--swatch-22k); opacity: 0.5; }
+
+.oline__body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.oline__eyebrow {
+  display: block;
+  font-family: var(--f-ui);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.oline__title {
+  display: block;
+  font-family: var(--f-ui);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  text-decoration: none;
+  transition: color var(--dur, .25s);
+}
+.oline__title:hover { color: var(--gold); }
+.oline__meta {
+  margin: 0;
+  font-family: var(--f-body);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-dim);
+  overflow-wrap: anywhere;
+}
+.oline__face { display: block; }
+
+.oline__aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  white-space: nowrap;
+}
+.oline__price { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+.oline__price-now { font-family: var(--f-deco); font-size: 16px; font-weight: 700; color: var(--gold-light); }
+.oline__price-old { font-family: var(--f-deco); font-size: 12.5px; color: var(--text-dim); }
+.oline__qty {
+  font-family: var(--f-ui);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text);
+}
+.oline__qty-label {
+  margin-right: 6px;
+  font-size: 9.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ---------- Tasarım detayları ---------- */
+.oline__details { margin-top: 10px; }
+.oline__details-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--f-ui);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.oline__details-toggle::-webkit-details-marker { display: none; }
+.oline__details-toggle::after {
+  content: "+";
+  font-size: 14px;
+  letter-spacing: 0;
+  transition: transform var(--dur, .25s);
+}
+.oline__details[open] .oline__details-toggle::after { transform: rotate(45deg); }
+.oline__details-toggle:focus-visible { outline: 1px solid var(--gold); outline-offset: 3px; }
+.oline__details-list {
+  display: grid;
+  gap: 6px;
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-card, 2px);
+  background: var(--surface-input, var(--bg-page));
+}
+.oline__detail {
+  display: grid;
+  grid-template-columns: minmax(0, 11em) minmax(0, 1fr);
+  gap: 12px;
+  font-family: var(--f-body);
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+.oline__detail dt { color: var(--text-dim); }
+.oline__detail dd { margin: 0; color: var(--text); overflow-wrap: anywhere; }
+.oline__detail--files dd { display: grid; gap: 6px; }
+
+.oline__file { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
+.oline__file-name { overflow-wrap: anywhere; color: var(--text-dim); }
+.oline__file-btn {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: var(--f-body);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--gold);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--gold) 45%, transparent);
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.oline__file-btn:hover { color: var(--gold-light); }
+.oline__file-btn:disabled { cursor: progress; opacity: 0.6; }
+.oline__file-btn:focus-visible { outline: 1px solid var(--gold); outline-offset: 2px; }
+.oline__file-error { font-size: 12px; color: var(--error); }
+
+@media (max-width: bp(5Xmvk6D0gV)) {
+  .oline { grid-template-columns: 64px minmax(0, 1fr); gap: 14px; padding: 18px 0; }
+  .oline__thumb { width: 64px; height: 64px; }
+  .oline__aside {
+    grid-column: 2;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .oline__detail { grid-template-columns: 1fr; gap: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .oline__details-toggle::after { transition: none; }
+}
