@@ -35,7 +35,7 @@ Editor URL'sini tarayıcıda açık tut. MCP editor araçları ancak editor bağ
 | Faz | Kapsam | Durum |
 |---|---|---|
 | 0 | Design token'ları (`src/global.css`), tema global'leri, Day/Night şemaları | ✅ bitti |
-| 1 | Header, Footer, CartDrawer, LanguageSwitcher, NewsletterForm, Icons | ✅ bitti |
+| 1 | Header, Footer, CartDrawer, LanguageSwitcher, NewsletterForm, Icons | ✅ bitti (14.09.2026: Header referans navbar'ına eşitlendi — sağ küme sırası, küçük harf nav, çerçeveli "Özel Tasarım", tek dilde de "TR ⌄", sikke logosu büyütüldü. Logo **her sayfada** ana sayfadaki konfigüratör sikkesinin hizasında durur: CSS'te `--w-page`, `--w-preview`, `--w-header`, `--gutter` ve `100cqw` ile hesaplanır, JS ölçümü yok; bu token'lar değişirse hiza da değişir, 860px altında logo solda. Yayın önizlemesinde 1200/1480px'te ana sayfa, Koleksiyon, sepet, KVKK, Hakkımızda ve 404'te aynı konum; 880px'te sağ kümeyle çakışma yok; 400px, Day/Night, dil menüsü, Esc ve logo → ana sayfa doğrulandı) |
 | 2 | Hero + SeriesCard, OriginStory, BespokeCall, Faq + FaqItem | ✅ bitti |
 | 3 | CoinConfigurator (canvas, iki yüz, hediye/redeem, mühür ve foto rehberi modalları) | ✅ bitti |
 | 4 | Konfigüratör canlı test + ürün bağlama + ürün sayfası | ✅ bitti (fotoğraf yükleme ve sipariş satırı elle testi Faz 11 QA'ya ertelendi) |
@@ -91,6 +91,7 @@ Bunlar önceki fazlarda hata yapılıp düzeltilen konular. Her fazda geçerli.
 - Tarayıcıya özgü değerleri (URL, localStorage) ilk render'da okuma; `useState` boş/varsayılanla başlasın, değer `useEffect`'te set edilsin. Hydrate mevcut DOM attribute'larını yamamaz, ilk render'da farklı değer okunursa fark hiç görünmez (Faz 7 LegalPage aktif vurgusu).
 - Ortalı büyük başlıkta tireli kelime ("Co-Creation") tireden bölünüyor. Kelimeyi `white-space: nowrap` bir span'a al (Faz 9 AmbassadorProgram).
 - Grid öğesi sütunundan genişse `justify-self: center` onu başa hizalıyor. Ortalamak için negatif yatay margin kullan: `margin-inline: calc((100% - <genişlik>) / 2)`.
+- Sikke logosu (`46ba7812…`, 9:16, koyu zemin) dairede `object-fit: cover` + `scale(1.15)` ile gösterilir; büyütmeden sikkenin çevresinde koyu halka kalıyor. Header'da oran `logoCoinScale` prop'u (varsayılan 115).
 
 **Tema**
 - Varsayılan şema Day (fildişi), ikincisi Night.
@@ -280,6 +281,8 @@ Paylaşılan ayarlar (`all`): logo MA sikke (`46ba7812…`), logo metni "MonetAr
 | Hazır sayfalardaki yazı tipi ikas'ın kendi fontu (başlık Cinzel değil); hazır bileşende tipografi ayarı yok | hazır sayfalar | bilgi |
 | 404 "Kolyeni Tasarla" EXTERNAL `/#atolye`; dil routing prefix'i almaz | NotFound | 11 |
 | Faz 10b'de gerçek gönderimle denenmedi (kullanıcı onayı bekliyor): kayıt formu (yeni test müşterisi), "şifremi unuttum" e-postası ve gelen linkle şifre yenileme, e-posta doğrulama linki. Yanlış şifre bandını kullanıcı elle denedi, sonucu kaydedilmedi. Mağaza captcha açarsa SDK `grecaptcha` bekler; bizde widget yok | AuthRegister, AuthForgotPassword, AuthRecoverPassword, AuthVerifyEmail | 11 (QA) |
+| Dil seçici tek dilde "TR ⌄" gösteriyor (referanstaki gibi); menüde yalnız TR var. Referanstaki EN/FR/IT/RU/AR için admin'de storefront routing'leri kurulmalı (admin MCP'de routing işlemi yok, arayüzden), her routing'de TEXT prop'lar çevrilmeli, AR'de `dir="rtl"` kontrol edilmeli. **SDK notu (bp-storefront 2.9.1):** `baseStore.languageOptions` yalnız ziyaretçinin ülkesini `countryCodes`'unda taşıyan routing'lerden kurulur; ülke kodu olmayan routing'lerde (bizim TR routing'i `countryCodes: null`) liste boş kalır. `LanguageSwitcher` bu durumda `IkasStorefrontConfig.routings`'ten okur. Routing'lere ülke kodu verilirse SDK listesi yalnız o ülkenin dillerini gösterir; kurulumda buna göre karar verilmeli | admin / Header / tüm section'lar | 11 |
+| Footer'daki `hello@monetartscollections.com` linki ~880px genişlikte satıra sığmıyor, sayfa 21px yatay taşıyor. `.mon-footer__link`'e `overflow-wrap: anywhere` verilmeli | Footer | 11 (QA) |
 | Global `.mon-btn`'de `:focus-visible` stili yok; klavyede buton odağı görünmüyor. Formlarda yerel olarak eklendi, `global.css`'e genel kural konmalı | global.css | 11 (QA) |
 
 ---

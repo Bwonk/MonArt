@@ -298,6 +298,14 @@
           "required": false,
           "defaultValue": "Adedi artır",
           "groupId": "cartTexts"
+        },
+        {
+          "name": "logoCoinScale",
+          "displayName": "Logo Sikke Yakınlaştırma (%)",
+          "type": "NUMBER",
+          "required": false,
+          "description": "Koyu zeminli sikke görselini daireyi dolduracak kadar büyütür",
+          "defaultValue": 115
         }
       ],
       "propGroups": [

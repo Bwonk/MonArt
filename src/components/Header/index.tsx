@@ -1,4 +1,4 @@
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import {
   cartStore,
   customerStore,
@@ -15,6 +15,7 @@ import CartDrawer from "../../sub-components/CartDrawer";
 import LanguageSwitcher from "../../sub-components/LanguageSwitcher";
 import { PouchIcon, SunIcon, MoonIcon, MenuIcon, CloseIcon, UserIcon, ChevronIcon } from "../../sub-components/Icons";
 
+const FLIP_MS = 600;
 
 export function Header(props: Props) {
   const {
@@ -52,6 +53,7 @@ export function Header(props: Props) {
     increaseLabel = "Adedi artır",
     backgroundColor = "#FFFFFF",
     blurBackground = true,
+    logoCoinScale = 115,
   } = props;
 
   const theme = useSectionTheme();
@@ -59,6 +61,17 @@ export function Header(props: Props) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   useScrollLock(menuOpen);
+
+  // Tema değişince sikke dönerken bir kez büyüyüp küçülür (referans coinDepth).
+  const [spinning, setSpinning] = useState(false);
+  const prevNight = useRef(isNight);
+  useEffect(() => {
+    if (prevNight.current === isNight) return;
+    prevNight.current = isNight;
+    setSpinning(true);
+    const t = setTimeout(() => setSpinning(false), FLIP_MS);
+    return () => clearTimeout(t);
+  }, [isNight]);
 
   // Diğer bileşenler "ikas:open-cart-sidebar" ile keseyi açabilir.
   useEffect(() => {
@@ -111,13 +124,14 @@ export function Header(props: Props) {
         ...theme.style,
         ...(isNight ? {} : backgroundColor ? { "--header-bg": backgroundColor } : {}),
         "--logo-h": `${logoHeight}px`,
+        "--logo-zoom": String(logoCoinScale / 100),
       }}
     >
       <div className="mon-header__bar">
         <div className="mon-header__inner">
-          {/* Sol: 3D flip logo — gündüz sikke yüzü, gece yazı yüzü */}
+          {/* Sol: 3D flip logo — gündüz sikke yüzü, gece MA halkası */}
           <a className="mon-header__logo" href={withRoutePrefix("/")} onClick={goHome} aria-label={logoAlt}>
-            <span className={`mon-logo-flip${isNight ? " is-night" : ""}`}>
+            <span className={`mon-logo-flip${isNight ? " is-night" : ""}${spinning ? " is-spinning" : ""}`}>
               <span className="mon-logo-flip__face mon-logo-flip__face--coin">
                 {logoCoin ? <img src={getDefaultSrc(logoCoin)} alt={logoAlt} /> : <span className="mon-logo-flip__mono">MA</span>}
               </span>
@@ -133,40 +147,44 @@ export function Header(props: Props) {
             </span>
           </a>
 
-          {/* Orta: masaüstü navigasyon */}
-          <nav className="mon-header__nav" aria-label={menuLabel}>
-            {links.map((link, i) => (
-              <div key={i} className="mon-header__item">
-                <a className="mon-nav-link mon-header__link" {...linkAttrs(link)}>
-                  {link.label}
-                  {link.subLinks?.length > 0 && <ChevronIcon className="mon-icon mon-header__chev" />}
-                </a>
-                {link.subLinks?.length > 0 && (
-                  <div className="mon-header__dropdown mon-anim-reveal">
-                    {link.subLinks.map((sub, j) => (
-                      <a key={j} className="mon-header__sublink" {...linkAttrs(sub)}>
-                        {sub.label}
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </nav>
-
-          {/* Sağ: aksiyonlar */}
+          {/* Sağ küme (referans sırası): tema · nav + CTA · dil · hesap · kese */}
           <div className="mon-header__actions">
             {showThemeToggle && (
               <button
                 type="button"
-                className="mon-btn mon-btn--icon mon-header__theme"
+                className="mon-header__circle mon-header__theme"
                 aria-label={themeToggleLabel}
                 aria-pressed={isNight}
                 onClick={() => toggleThemeMode()}
               >
-                {isNight ? <SunIcon className="mon-icon" /> : <MoonIcon className="mon-icon" />}
+                {/* Mevcut modu gösterir: gündüz güneş, gece ay */}
+                {isNight ? <MoonIcon className="mon-icon" /> : <SunIcon className="mon-icon" />}
               </button>
             )}
+            <nav className="mon-header__nav" aria-label={menuLabel}>
+              {links.map((link, i) => (
+                <div key={i} className="mon-header__item">
+                  <a className="mon-header__link" {...linkAttrs(link)}>
+                    {link.label}
+                    {link.subLinks?.length > 0 && <ChevronIcon className="mon-icon mon-header__chev" />}
+                  </a>
+                  {link.subLinks?.length > 0 && (
+                    <div className="mon-header__dropdown mon-anim-reveal">
+                      {link.subLinks.map((sub, j) => (
+                        <a key={j} className="mon-header__sublink" {...linkAttrs(sub)}>
+                          {sub.label}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+              {showCta && ctaLink?.href && (
+                <a className="mon-header__cta" {...linkAttrs(ctaLink)}>
+                  {ctaLink.label}
+                </a>
+              )}
+            </nav>
             {showLanguageSwitcher && (
               <span className="mon-header__lang">
                 <LanguageSwitcher label={languageLabel} />
@@ -174,7 +192,7 @@ export function Header(props: Props) {
             )}
             {showAccount && (
               <a
-                className="mon-btn mon-btn--icon"
+                className="mon-header__circle"
                 href={withRoutePrefix(loggedIn ? "/account" : "/account/login")}
                 aria-label={accountLabel}
                 onClick={(e) => {
@@ -186,17 +204,12 @@ export function Header(props: Props) {
               </a>
             )}
             {showCart && (
-              <button type="button" className="mon-btn mon-btn--icon mon-header__cart" aria-label={cartLabel} onClick={() => setCartOpen(true)}>
+              <button type="button" className="mon-header__cart" aria-label={cartLabel} onClick={() => setCartOpen(true)}>
                 <PouchIcon className="mon-icon" />
                 {count > 0 && <span className="mon-count mon-header__badge">{count}</span>}
               </button>
             )}
-            {showCta && ctaLink?.href && (
-              <a className="mon-btn mon-btn--gold mon-header__cta" {...linkAttrs(ctaLink)}>
-                {ctaLink.label}
-              </a>
-            )}
-            <button type="button" className="mon-btn mon-btn--icon mon-header__burger" aria-label={menuLabel} aria-expanded={menuOpen} onClick={() => setMenuOpen(true)}>
+            <button type="button" className="mon-header__circle mon-header__burger" aria-label={menuLabel} aria-expanded={menuOpen} onClick={() => setMenuOpen(true)}>
               <MenuIcon className="mon-icon" />
             </button>
           </div>
@@ -237,7 +250,6 @@ export function Header(props: Props) {
                 {ctaLink.label}
               </a>
             )}
-            {showLanguageSwitcher && <LanguageSwitcher label={languageLabel} />}
           </div>
         </div>
       </div>

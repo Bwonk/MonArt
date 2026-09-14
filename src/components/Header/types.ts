@@ -39,4 +39,6 @@ export interface Props {
   cartPlatingLabel?: string;
   decreaseLabel?: string;
   increaseLabel?: string;
+  /** Koyu zeminli sikke görselini daireyi dolduracak kadar büyütür */
+  logoCoinScale?: number;
 }
