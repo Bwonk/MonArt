@@ -19,7 +19,7 @@
   color: var(--heading);
   text-wrap: balance;
 }
-.origin__accent { font-style: italic; font-weight: 400; color: var(--gold); }
+.origin__accent { font-style: italic; color: var(--gold); }   /* referansta vurgu başlığın ağırlığını (500) alır */
 .origin__plaque {
   max-width: 680px;
   margin: 0 auto;

@@ -148,3 +148,9 @@
   .cf__actions { justify-content: stretch; }
   .cf__submit { width: 100%; }
 }
+
+/* Referans tipografisi (yerel; ortak FormField ve global.css değişmez).
+   İletişim formu etiketi Montserrat 11/400; onay metni gündüz 300, gece 400. */
+.cf .mf-label { font-family: var(--f-ui); font-size: 11px; font-weight: 400; letter-spacing: 0.18em; }
+.cf .mf-consent__text { font-weight: 300; letter-spacing: 0.012em; }
+.cf.mon-night .mf-consent__text { font-weight: 400; letter-spacing: normal; }

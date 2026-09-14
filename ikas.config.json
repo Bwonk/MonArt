@@ -2333,6 +2333,59 @@
           "required": false,
           "defaultValue": "Fotoğraflar yüklenemedi, lütfen tekrar deneyin.",
           "groupId": "photos"
+        },
+        {
+          "name": "styleTestLabel",
+          "displayName": "Stil Testi Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "groupId": "styleTest",
+          "defaultValue": "Bir testi beğenin"
+        },
+        {
+          "name": "styleTestImage1",
+          "displayName": "Stil Testi Görseli 1",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "styleTest"
+        },
+        {
+          "name": "styleTestAlt1",
+          "displayName": "Stil Testi Görseli 1 · Alt Metin",
+          "type": "TEXT",
+          "required": false,
+          "groupId": "styleTest",
+          "defaultValue": "Seçenek 1"
+        },
+        {
+          "name": "styleTestImage2",
+          "displayName": "Stil Testi Görseli 2",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "styleTest"
+        },
+        {
+          "name": "styleTestAlt2",
+          "displayName": "Stil Testi Görseli 2 · Alt Metin",
+          "type": "TEXT",
+          "required": false,
+          "groupId": "styleTest",
+          "defaultValue": "Seçenek 2"
+        },
+        {
+          "name": "styleTestImage3",
+          "displayName": "Stil Testi Görseli 3",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "styleTest"
+        },
+        {
+          "name": "styleTestAlt3",
+          "displayName": "Stil Testi Görseli 3 · Alt Metin",
+          "type": "TEXT",
+          "required": false,
+          "groupId": "styleTest",
+          "defaultValue": "Seçenek 3"
         }
       ],
       "propGroups": [
@@ -2403,6 +2456,10 @@
         {
           "id": "appearance",
           "name": "Görünüm"
+        },
+        {
+          "id": "styleTest",
+          "name": "Adım 4 · Stil Testi"
         }
       ]
     },

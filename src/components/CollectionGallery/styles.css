@@ -75,6 +75,7 @@
   font-weight: 700;
   font-size: 20px;
   letter-spacing: 0.02em;
+  text-transform: uppercase;
   color: var(--heading);
   text-align: center;
 }
@@ -150,6 +151,7 @@
   font-weight: 700;
   font-size: clamp(24px, 3.6vw, 38px);
   line-height: 1.18;
+  text-transform: uppercase;
   color: var(--gold-light);
   text-wrap: balance;
 }
@@ -292,6 +294,7 @@
   font-family: var(--f-deco);
   font-weight: 700;
   font-size: 22px;
+  text-transform: uppercase;
   color: var(--cg-overlay-name);
 }
 .cg-item__sub {

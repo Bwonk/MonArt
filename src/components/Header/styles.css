@@ -188,6 +188,10 @@
 .mon-header.mon-night .mon-header__link { color: var(--gold-dim); }
 .mon-header__link:hover,
 .mon-header.mon-night .mon-header__link:hover { color: var(--gold-light); }
+/* Sepet çekmecesi (alt bileşen): gece alt metinler italik 400, gündüz dik 300 */
+.mon-header.mon-night .cart-line__meta,
+.mon-header.mon-night .kese__empty-text,
+.mon-header.mon-night .kese__empty-hint { font-style: italic; font-weight: 400; letter-spacing: normal; }
 .mon-header .mon-header__chev { width: 12px; height: 12px; transition: transform var(--dur); }
 .mon-header__item:hover .mon-header__chev { transform: rotate(180deg); }
 .mon-header__dropdown {

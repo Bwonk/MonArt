@@ -21,7 +21,7 @@
   margin-bottom: 14px;
   font-family: var(--f-deco);
   font-size: 10.5px;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--gold);
@@ -31,10 +31,9 @@
   margin: 0;
   font-family: var(--f-deco);
   font-size: clamp(26px, 3.4vw, 40px);
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.2;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.1em;
   color: var(--heading);
   text-wrap: balance;
 }
@@ -100,3 +99,10 @@
   .bq__actions { flex-direction: column-reverse; }
   .bq__btn { width: 100%; }
 }
+
+/* Referans tipografisi (yerel; ortak FormField, ReferenceUpload ve global.css değişmez).
+   Özel tasarım etiketleri Cinzel 400; onay metni gündüz 300, gece 400. */
+.bq .mf-label { font-weight: 400; }
+.bq .ru__lead { font-weight: 400; }
+.bq .mf-consent__text { font-weight: 300; letter-spacing: 0.012em; }
+.bq.mon-night .mf-consent__text { font-weight: 400; letter-spacing: normal; }

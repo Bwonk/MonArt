@@ -168,4 +168,11 @@ export interface Props {
   anchorId?: string;
   backgroundColor?: string;
   photoUploadErrorToast?: string;
+  styleTestLabel?: string;
+  styleTestImage1?: IkasImage | null;
+  styleTestAlt1?: string;
+  styleTestImage2?: IkasImage | null;
+  styleTestAlt2?: string;
+  styleTestImage3?: IkasImage | null;
+  styleTestAlt3?: string;
 }

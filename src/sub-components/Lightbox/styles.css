@@ -126,6 +126,7 @@
   font-weight: 700;
   font-size: 22px;
   letter-spacing: 0.02em;
+  text-transform: uppercase;
   color: var(--lb-gold-light);
 }
 .lb__sub {

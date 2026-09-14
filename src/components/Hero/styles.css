@@ -57,7 +57,9 @@
   text-transform: uppercase;
   color: var(--gold);
 }
-.hero__desc { margin: 0 auto 40px; text-wrap: pretty; }
+/* gündüz dik ve ince (.mon-editorial italiğini yerelde geçer); gece italik */
+.hero__desc { margin: 0 auto 40px; font-style: normal; font-weight: 300; letter-spacing: 0.012em; text-wrap: pretty; }
+.hero.mon-night .hero__desc { font-style: italic; font-weight: 400; letter-spacing: normal; }
 
 /* Seri kartları — alt bileşenler bu kabın doğrudan çocuklarıdır */
 .hero__cards {
@@ -101,7 +103,7 @@
   .hero { padding: 32px var(--gutter-m, 16px) 24px; }
   .hero__eyebrow { margin-bottom: 18px; }
   .hero__logo-wrap { width: 92vw; }
-  .hero__desc { font-size: 15px; margin-bottom: 28px; }
+  .hero__desc { font-size: 13.5px; line-height: 1.6; margin-bottom: 28px; }
   .hero__ctas { flex-direction: column; width: 100%; max-width: 320px; }
 }
 @media (max-width: bp(si9uMMi7m4)) {

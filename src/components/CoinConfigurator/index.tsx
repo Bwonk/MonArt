@@ -137,6 +137,13 @@ export function CoinConfigurator(props: Props) {
     step4Title = "Siparişini",
     step4TitleAccent = "tamamla",
     step4Hint = "",
+    styleTestLabel = "Bir testi beğenin",
+    styleTestImage1,
+    styleTestImage2,
+    styleTestImage3,
+    styleTestAlt1 = "Seçenek 1",
+    styleTestAlt2 = "Seçenek 2",
+    styleTestAlt3 = "Seçenek 3",
     sumMaterial = "Materyal",
     sumFront = "1. Yüz",
     sumBack = "2. Yüz",
@@ -213,6 +220,8 @@ export function CoinConfigurator(props: Props) {
   const [redeemCode, setRedeemCode] = useState<string | null>(null);
   const [redeemMsg, setRedeemMsg] = useState<{ ok: boolean; text: string } | null>(null);
   const [consentMissing, setConsentMissing] = useState<Record<FaceKey, boolean>>({ front: false, back: false });
+  /* Stil testi yalnız görsel: seçim siparişe yazılmaz (referanstaki gibi). */
+  const [styleOpt, setStyleOpt] = useState(0);
   const [sealOpen, setSealOpen] = useState(false);
   const [guideOpen, setGuideOpen] = useState(false);
   const guideResolver = useRef<((ok: boolean) => void) | null>(null);
@@ -646,6 +655,14 @@ export function CoinConfigurator(props: Props) {
   const faceTexts = props;
   const glyphSrc = imgSrc(glyphGuideImage);
   const isGift = giftMode === "gift";
+  const styleTest = [
+    { src: imgSrc(styleTestImage1), alt: styleTestAlt1 },
+    { src: imgSrc(styleTestImage2), alt: styleTestAlt2 },
+    { src: imgSrc(styleTestImage3), alt: styleTestAlt3 },
+  ]
+    .map((s, i) => ({ ...s, i }))
+    .filter((s): s is { src: string; alt: string; i: number } => !!s.src);
+  const activeStyle = styleTest.some((s) => s.i === styleOpt) ? styleOpt : styleTest[0]?.i;
 
   return (
     <section
@@ -796,6 +813,20 @@ export function CoinConfigurator(props: Props) {
             <div className="mon-step-num">{step4Num}</div>
             <h3 className="cfg__step-title">{step4Title} <em>{step4TitleAccent}</em></h3>
             {step4Hint && <p className="cfg__hint">{step4Hint}</p>}
+
+            {styleTest.length > 0 && (
+              <div className="cfg__style-test">
+                {styleTestLabel && <p className="cfg__style-label">{styleTestLabel}</p>}
+                <div className="cfg__style-grid">
+                  {styleTest.map((s) => (
+                    <button key={s.i} type="button" className={cx("cfg__style-opt", activeStyle === s.i && "is-active")} aria-pressed={activeStyle === s.i} onClick={() => setStyleOpt(s.i)}>
+                      <img src={s.src} alt={s.alt} loading="lazy" />
+                      <span className="cfg__style-check" aria-hidden="true">✓</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <div className="cfg__summary">
               <div className="cfg__row">

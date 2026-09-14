@@ -7,6 +7,8 @@
   color: var(--text);
 }
 .cart-pg__inner { max-width: var(--w-grid, 1200px); margin: 0 auto; }
+/* CartLine meta: gündüz dik 300 (alt bileşende), gece italik */
+.cart-pg.mon-night .cart-line__meta { font-style: italic; font-weight: 400; letter-spacing: normal; }
 
 /* ---------- Başlık ---------- */
 .cart-pg__head {

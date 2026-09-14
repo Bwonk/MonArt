@@ -20,8 +20,9 @@
   text-transform: uppercase;
   color: var(--heading);
 }
-.cfg__title em { font-style: italic; font-weight: 400; color: var(--gold); }
-.cfg__desc { max-width: 520px; margin: 0 auto; font-family: var(--f-body); font-style: italic; font-size: 16px; color: var(--ink-soft); }
+.cfg__title em { font-style: italic; color: var(--gold); }
+/* Açıklama ve alt metinler: gündüz dik ve ince (referans "kurumsal alt metin"), gece italik. */
+.cfg__desc { max-width: 520px; margin: 0 auto; font-family: var(--f-body); font-weight: 300; letter-spacing: 0.012em; font-size: 16px; color: var(--ink-soft); }
 
 /* İki kolon */
 .cfg__shell {
@@ -88,11 +89,12 @@
 .cfg__clear:hover { background: var(--gold-grad); color: var(--on-gold); letter-spacing: 0.34em; }
 .cfg__price-box { margin-top: 18px; padding-top: 16px; border-top: 1px dashed rgba(201,168,76,0.22); text-align: center; }
 .cfg__price-label { margin-bottom: 8px; font-family: var(--f-ui); font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold-dim); }
-.cfg__price-sub { margin-top: 6px; font-family: var(--f-body); font-style: italic; font-size: 12.5px; color: var(--gold-dim); }
+.cfg__price-sub { margin-top: 6px; font-family: var(--f-body); font-weight: 300; letter-spacing: 0.012em; font-size: 12.5px; color: var(--gold-dim); }
 
 /* ---- Sağ: adımlar ---- */
 .cfg__form { display: flex; flex-direction: column; gap: 64px; min-width: 0; }
 .cfg__step { display: flex; flex-direction: column; gap: 0; }
+.cfg__step .mon-step-num { text-transform: none; }
 .cfg__step-title {
   margin: 10px 0 6px;
   font-family: var(--f-deco);
@@ -102,7 +104,7 @@
   color: var(--heading);
 }
 .cfg__step-title em { font-style: italic; color: var(--gold); }
-.cfg__hint { margin: 0 0 28px; font-family: var(--f-body); font-style: italic; font-size: 15px; color: var(--ink-soft); }
+.cfg__hint { margin: 0 0 28px; font-family: var(--f-body); font-weight: 300; letter-spacing: 0.012em; font-size: 15px; color: var(--ink-soft); }
 .cfg__notice { margin: 12px 0 0; font-family: var(--f-body); font-style: italic; font-size: 12.5px; color: var(--gold-dim); }
 .cfg__notice--center { text-align: center; }
 
@@ -123,7 +125,7 @@
 .cfg__swatch--sm { width: 34px; height: 34px; margin-bottom: 7px; }
 .cfg__mat-name { display: block; margin-bottom: 4px; font-family: var(--f-ui); font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
 .cfg__mat-price { display: block; min-height: 1.2em; font-family: var(--f-deco); font-weight: 700; font-size: 16px; color: var(--gold-light); }
-.cfg__mat-spec { display: block; margin-top: 6px; font-family: var(--f-body); font-style: italic; font-size: 11px; color: var(--gold-dim); }
+.cfg__mat-spec { display: block; margin-top: 6px; font-family: var(--f-body); font-size: 11px; letter-spacing: 0.06em; color: var(--gold-dim); }
 
 /* Kaplama / 2. yüz kartları */
 .cfg__plate, .cfg__back-toggle {
@@ -153,15 +155,15 @@
   border: 1px solid color-mix(in oklch, var(--gold) 55%, transparent);
   background: color-mix(in oklch, var(--gold) 14%, transparent);
   font-family: var(--f-body);
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
   letter-spacing: .02em;
   color: var(--gold);
   white-space: nowrap;
 }
 .cfg__plate-price.is-free { color: var(--success); font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase; }
 .cfg__back-toggle { grid-template-columns: 20px 1fr; margin-top: 4px; }
-.cfg__back-text { font-family: var(--f-body); font-size: 14px; color: var(--text); }
+.cfg__back-text { font-family: var(--f-body); font-size: 14px; letter-spacing: 0.01em; color: var(--text); }
 .cfg__back-text b { color: var(--gold-light); font-weight: 600; }
 .cfg__back-desc {
   margin: 0 0 20px;
@@ -192,6 +194,75 @@
 .cfg__v-note { font-style: italic; color: var(--text-dim); }
 .cfg__total { font-family: var(--f-deco); font-weight: 700; font-size: 22px; font-style: normal; }
 
+/* Stil testi (yalnız görsel) */
+.cfg__style-test { margin: 0 0 22px; }
+.cfg__style-label {
+  margin: 0 0 12px;
+  font-family: var(--f-ui);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  text-align: center;
+}
+.cfg__style-grid { display: grid; grid-template-columns: repeat(3, 84px); justify-content: center; gap: 12px; }
+.cfg__style-opt {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  overflow: hidden;
+  border: 2px solid rgba(122,90,16,0.4);
+  border-radius: 3px;
+  background: #000;
+  cursor: pointer;
+  transition: border-color .25s, transform .25s, box-shadow .25s;
+}
+.cfg__style-opt img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 42%; }
+.cfg__style-opt:hover { border-color: rgba(201,168,76,0.7); transform: translateY(-2px); }
+.cfg__style-opt:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.cfg__style-opt.is-active { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.35), 0 6px 16px -4px rgba(0,0,0,0.5); }
+.cfg__style-check {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--r-pill);
+  background: var(--gold);
+  color: #1A1105;
+  font-size: 11px;
+  font-weight: 700;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity .2s, transform .2s;
+}
+.cfg__style-opt.is-active .cfg__style-check { opacity: 1; transform: scale(1); }
+
+/* Gündüz: önizleme ve özet paneli çerçevesiz (referans "KUTUSUZ"). Mobil önizleme çubuğu aşağıda opak kalır. */
+.cfg:not(.mon-night) .cfg__preview,
+.cfg:not(.mon-night) .cfg__summary {
+  background: none;
+  border-color: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+/* Gece: alt metinler italik 400 (referansın gece hali) */
+.cfg.mon-night .cfg__desc,
+.cfg.mon-night .cfg__hint,
+.cfg.mon-night .cfg__price-sub,
+.cfg.mon-night .fd__sub,
+.cfg.mon-night .fd__upload-text span { font-style: italic; font-weight: 400; letter-spacing: normal; }
+.cfg.mon-night .fd__sub { letter-spacing: 0.04em; }
+.cfg.mon-night .seal__text { font-weight: 400; letter-spacing: normal; }
+.cfg.mon-night .cfg__style-opt { border-color: rgba(255,255,255,0.55); }
+.cfg.mon-night .cfg__style-opt:hover { border-color: rgba(201,168,76,0.7); }
+.cfg.mon-night .cfg__style-opt.is-active { border-color: var(--gold); }
+
 /* Hediye modu */
 .cfg__gift { margin-top: 22px; }
 .cfg__gift-self, .cfg__gift-tab {
@@ -205,14 +276,14 @@
   border: 1px solid var(--line);
   cursor: pointer;
   font-family: var(--f-ui);
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-dim);
   transition: border-color var(--dur), color var(--dur), background var(--dur);
 }
-.cfg__gift-self { border-radius: 3px; padding: 14px 18px; }
+.cfg__gift-self { border-radius: 3px; padding: 14px 18px; font-size: 11px; }
 .cfg__gift-self span, .cfg__gift-tab span { color: var(--gold); opacity: .7; }
 .cfg__gift-self:hover, .cfg__gift-tab:hover { border-color: rgba(201,168,76,0.42); }
 .cfg__gift-self.is-active, .cfg__gift-tab.is-active { border-color: var(--gold); background: rgba(201,168,76,0.07); color: var(--gold-light); box-shadow: inset 0 0 22px rgba(201,168,76,0.08); }
@@ -222,13 +293,13 @@
 .cfg__redeem { margin-top: 14px; padding: 18px; border: 1px solid rgba(201,168,76,0.24); border-radius: 4px; background: rgba(201,168,76,0.04); }
 .cfg__redeem-intro { margin: 0 0 12px; font-family: var(--f-body); font-size: 13px; line-height: 1.6; color: var(--text-dim); }
 .cfg__redeem-row { display: flex; gap: 10px; }
-.cfg__redeem-input { flex: 1; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; }
+.cfg__redeem-input { flex: 1; font-size: 14px; letter-spacing: 0.04em; text-transform: none; }
 .cfg__redeem-msg { margin: 12px 0 0; font-family: var(--f-body); font-size: 13px; line-height: 1.5; }
 .cfg__redeem-msg.is-ok { color: var(--success); }
 .cfg__redeem-msg.is-err { color: var(--error-soft); }
 .cfg__gift-panel { margin-top: 16px; padding: 20px 20px 22px; border: 1px solid rgba(201,168,76,0.28); border-radius: 3px; background: rgba(201,168,76,0.035); }
 .cfg__gift-intro { margin: 0 0 18px; font-family: var(--f-body); font-size: 14px; line-height: 1.85; color: var(--text); text-wrap: pretty; }
-.cfg__gift-label { display: block; margin-bottom: 12px; }
+.cfg__gift-label { display: block; margin-bottom: 12px; font-weight: 600; letter-spacing: 0.24em; }
 .cfg__gift-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .cfg__gift-card { display: flex; flex-direction: column; align-items: center; gap: 7px; padding: 16px 8px 14px; background: transparent; cursor: pointer; color: inherit; font: inherit; }
 .cfg__gift-name { font-family: var(--f-ui); font-size: 9px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; line-height: 1.3; color: var(--text); }
@@ -239,7 +310,7 @@
 /* Sepete ekle + güven */
 .cfg__add { margin-top: 24px; }
 .cfg__add:disabled { opacity: .45; cursor: not-allowed; animation: none; }
-.cfg__trust { margin-top: 22px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 24px; font-family: var(--f-ui); font-size: 9.5px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-dim); text-align: center; }
+.cfg__trust { margin-top: 22px; display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 12px 24px; font-family: var(--f-ui); font-size: 9.5px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-dim); text-align: start; }
 
 /* Toast */
 .cfg__toast {
@@ -255,8 +326,8 @@
   background: var(--dark);
   box-shadow: var(--sh-modal);
   font-family: var(--f-ui);
-  font-size: 11px;
-  letter-spacing: 0.14em;
+  font-size: 10px;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--gold-light);
   text-align: center;
@@ -282,6 +353,12 @@
     column-gap: 10px;
     align-items: start;
     will-change: transform;
+  }
+  /* mobil yapışkan çubuk gündüzde de zeminli kalır (içerik altından kayar) */
+  .cfg:not(.mon-night) .cfg__preview {
+    background: color-mix(in srgb, var(--dark) 70%, transparent);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
   }
   .cfg__face-label { display: none; }
   /* Sikke orta sütundan geniş; negatif yatay margin taşmayı iki yana eşit dağıtır (justify-self tek başına başa hizalıyor). */

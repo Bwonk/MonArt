@@ -74,8 +74,9 @@
 
 @media (max-width: bp(5Xmvk6D0gV)) {
   .faq-item__q { gap: 12px; padding: 18px 2px; }
-  .faq-item__qt { font-size: 14px; }
+  .faq-item__qt { font-size: 13.5px; }
   .faq-item__a { padding: 0 8px 22px 36px; }
+  .faq-item__a p { font-size: 12.5px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .faq-item__a { animation: none; }

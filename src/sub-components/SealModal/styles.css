@@ -69,29 +69,34 @@
   font-family: var(--f-deco);
   font-weight: 700;
   font-size: 22px;
-  letter-spacing: 0.04em;
+  line-height: 1.25;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   color: #F0D060;
 }
 .seal__text {
   max-width: 56ch;
-  margin: 0 auto 26px;
+  margin: 0 auto 30px;
   font-family: var(--f-body);
-  font-size: 14.5px;
-  line-height: 1.75;
+  font-size: 16px;
+  font-weight: 300;               /* gündüz; gece 400 (CoinConfigurator CSS) */
+  line-height: 1.8;
+  letter-spacing: 0.012em;
   color: rgba(214,206,186,0.85);
   text-wrap: pretty;
 }
 .seal__text p { margin: 0 0 10px; }
 .seal__text p:last-child { margin: 0; }
-.seal__text em { color: #F0D060; font-style: italic; }
-.seal__text strong { color: #FFF0B8; }
-.seal__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-.seal__cancel { color: rgba(214,206,186,0.85); border-color: rgba(201,168,76,0.32); }
+.seal__text em { color: #F0D060; font-style: italic; font-weight: 400; }
+.seal__text strong { color: #FFF0B8; font-weight: 600; }
+.seal__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+.seal__actions .mon-btn { min-width: 232px; padding: 17px 26px; font-size: 12.5px; letter-spacing: 0.16em; }
+.seal__cancel { font-weight: 500; color: rgba(214,206,186,0.85); border-color: rgba(201,168,76,0.32); }
 .seal__cancel:hover { color: #F0D060; }
 
 @media (max-width: bp(5Xmvk6D0gV)) {
   .seal__inner { padding: 28px 20px 22px; }
+  .seal__title { font-size: 18px; }
   .seal__actions { flex-direction: column; }
-  .seal__actions .mon-btn { width: 100%; }
+  .seal__actions .mon-btn { width: 100%; min-width: 0; }
 }

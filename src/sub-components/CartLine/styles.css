@@ -52,11 +52,14 @@
   transition: color var(--dur, .25s);
 }
 .cart-line__title:hover { color: var(--gold); }
+/* gündüz dik ve ince; gece italik kuralı Header ve CartPage CSS'inde */
 .cart-line__meta {
   margin: 0;
   font-family: var(--f-body);
-  font-size: 12.5px;
-  line-height: 1.45;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.012em;
+  line-height: 1.35;
   color: var(--text-dim);
   overflow-wrap: anywhere;
 }
@@ -78,9 +81,9 @@
   white-space: nowrap;
 }
 .cart-line__price-now {
-  font-family: var(--f-deco);
+  font-family: var(--f-body);
   font-weight: 700;
-  font-size: 14px;
+  font-size: 13px;
   color: var(--gold-light);
 }
 .cart-line__price-old {
@@ -149,7 +152,7 @@
 .cart-line--page .cart-line__meta { font-size: 14px; }
 .cart-line--page .cart-line__face { display: block; }
 .cart-line--page .cart-line__face + .cart-line__face::before { content: none; }
-.cart-line--page .cart-line__price-now { font-size: 17px; }
+.cart-line--page .cart-line__price-now { font-family: var(--f-deco); font-size: 17px; }
 .cart-line--page .cart-line__price-old { font-size: 13px; }
 
 .cart-line__aside {
