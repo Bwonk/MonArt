@@ -9,7 +9,7 @@ export function Footer(props: Props) {
   const {
     logo,
     logoAlt = "MonetArts",
-    tagline = "Has Mücevher Sanatı",
+    tagline = "",
     columns,
     contactTitle = "İletişim",
     contactEmail,

@@ -125,10 +125,10 @@
   --w-copy:       640px;
   --w-preview:    380px;
 
-  /* Radius — "keskin lüks" */
-  --r-btn:    1px;
-  --r-card:   2px;
-  --r-input:  2px;
+  /* Radius — referans v2 köşe sistemi: kutu, girdi ve butonlarda tek yarıçap 6px */
+  --r-btn:    6px;
+  --r-card:   6px;
+  --r-input:  6px;
   --r-panel:  4px;
   --r-field:  6px;
   --r-modal:  14px;

@@ -204,7 +204,7 @@
   padding: 8px;
   background: var(--dark);
   border: 1px solid var(--line-strong);
-  border-radius: var(--r-panel);
+  border-radius: var(--r-card);
   box-shadow: var(--sh-modal);
   flex-direction: column;
 }
@@ -236,6 +236,7 @@
   color: var(--gold);
   text-decoration: none;
   border: 1px solid color-mix(in srgb, var(--gold) 45%, transparent);
+  border-radius: var(--r-btn);
   transition: border-color var(--dur), background var(--dur);
 }
 .mon-header__cta:hover { border-color: var(--gold); background: color-mix(in srgb, var(--gold) 12%, transparent); }

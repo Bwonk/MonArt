@@ -24,6 +24,7 @@
   flex-direction: column;
   color: var(--text);
   border-left: 1px solid var(--line);
+  border-radius: var(--r-card);
   /* Kapalıyken gölge (--sh-drawer) görünür alana taşmasın. */
   transform: translateX(calc(100% + 120px));
 }
@@ -97,6 +98,10 @@
 .kese__checkout { margin-top: 4px; }
 
 .kese__view-cart { align-self: center; }
+
+@media (max-width: bp(5pw2fQi7Yr)) {
+  .kese__panel { border-radius: 0; }
+}
 
 @media (max-width: bp(5Xmvk6D0gV)) {
   .kese__panel { width: 100vw; }

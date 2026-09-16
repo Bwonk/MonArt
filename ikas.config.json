@@ -365,7 +365,7 @@
           "displayName": "Slogan",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "Has Mücevher Sanatı",
+          "defaultValue": "",
           "groupId": "brand"
         },
         {
@@ -2162,7 +2162,7 @@
           "displayName": "Rehber Girişi",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "Özel tasarım ürünlerinizin modellemesini en doğru derinlikle 3D ortama aktarabilmemiz için fotoğrafınızı tam göz hizasından ve aşağıdaki 3 farklı açıdan çekip iletmeniz gerekmektedir:",
+          "defaultValue": "Özel tasarım ürününüzün dijital heykel işçiliğini en doğru derinlikle icra edebilmemiz için fotoğrafınızı tam göz hizasından ve aşağıdaki 3 farklı açıdan çekip iletmeniz gerekmektedir:",
           "groupId": "guide"
         },
         {
@@ -2714,7 +2714,7 @@
           "displayName": "Roma · Etiket 1",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "El Kalemkâr",
+          "defaultValue": "",
           "groupId": "roma"
         },
         {
@@ -2722,7 +2722,7 @@
           "displayName": "Roma · Etiket 2",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "Roma Rakamı",
+          "defaultValue": "",
           "groupId": "roma"
         },
         {
@@ -2730,7 +2730,7 @@
           "displayName": "Roma · Etiket 3",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "Defne Frizi",
+          "defaultValue": "",
           "groupId": "roma"
         },
         {
@@ -2871,7 +2871,7 @@
           "displayName": "Osmanlı · Etiket 1",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "Tuğra",
+          "defaultValue": "",
           "groupId": "osmanli"
         },
         {
@@ -2879,7 +2879,7 @@
           "displayName": "Osmanlı · Etiket 2",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "Hat Sanatı",
+          "defaultValue": "",
           "groupId": "osmanli"
         },
         {
@@ -2887,7 +2887,7 @@
           "displayName": "Osmanlı · Etiket 3",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "Çift Yüz",
+          "defaultValue": "",
           "groupId": "osmanli"
         },
         {
@@ -3028,7 +3028,7 @@
           "displayName": "Mısır · Etiket 1",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "Kartuş",
+          "defaultValue": "",
           "groupId": "misir"
         },
         {
@@ -3036,7 +3036,7 @@
           "displayName": "Mısır · Etiket 2",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "Hiyeroglif",
+          "defaultValue": "",
           "groupId": "misir"
         },
         {
@@ -3044,7 +3044,7 @@
           "displayName": "Mısır · Etiket 3",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "22 Ayar",
+          "defaultValue": "",
           "groupId": "misir"
         },
         {

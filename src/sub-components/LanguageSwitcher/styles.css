@@ -7,7 +7,7 @@
   padding: 6px 9px;
   background: var(--lang-bg, transparent);
   border: 1px solid var(--lang-border, var(--line-strong));
-  border-radius: 4px;
+  border-radius: var(--r-btn);
   color: var(--lang-text, var(--gold));
   cursor: pointer;
   font-family: var(--f-ui);
@@ -49,7 +49,7 @@
   padding: 8px 14px;
   background: none;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--r-btn);
   cursor: pointer;
   color: var(--lang-opt, var(--text-dim));
   font-family: var(--f-ui);

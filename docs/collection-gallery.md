@@ -12,7 +12,7 @@ Kaynak: `MonArt Lux.html` 1513–1570 ve 1766–1784, `monart-lux.js` 1021–125
 - **Seri sekmeleri** ×3: Roma, Osmanlı, Mısır. Aktif sekme alt çizgili; gündüzde kutulu.
 - **Hikâye kartı** (aktif seriye göre): eyebrow, iki satırlı başlık (ikinci satır italik),
   "MonetArts Miras Notu · Lütfen Okuyunuz" daveti (iki yanda altın çizgi), 2 paragraf
-  (gündüzde solda altın çizgili parşömen), 3 etiket, "Seriyi Keşfet →" butonu.
+  (gündüzde solda altın çizgili parşömen), 3 etiket (v2'de kaldırıldı), "Seriyi Keşfet →" butonu.
 - **Grid**: 3 satır (925 Gümüş, 14 Ayar, 22 Ayar) × 4 sütun (Bay, Bayan, Model, Paketleme).
   Kartlar 1:1, hover'da alttan gradient ile ad ve ayar. Mobilde 2 sütun.
   - Gümüş ve 14 Ayar satırında Bay ve Bayan gerçek sikke görseli. Gümüş satırı gümüş render,
@@ -68,7 +68,7 @@ kullanıyor.
 | `…Title` | TEXT | "İmparatorluğun Mührü," |
 | `…TitleItalic` | TEXT | "Sevginin Tanığı." |
 | `…Body1`, `…Body2` | TEXT | referans paragrafları |
-| `…Tag1`…`…Tag3` | TEXT | "El Kalemkâr", "Roma Rakamı", "Defne Frizi" |
+| `…Tag1`…`…Tag3` | TEXT | "El Kalemkâr", "Roma Rakamı", "Defne Frizi". **Referans v2'de etiketler kaldırıldı**: editörde 9 değer boş bırakılır, kod boşları gizler (R2b) |
 | `…SilverMale`, `…SilverFemale`, `…SilverModel`, `…SilverPackaging` | IMAGE | — |
 | `…Gold14Male` … `…Gold14Packaging` | IMAGE | — |
 | `…Gold22Male` … `…Gold22Packaging` | IMAGE | — |

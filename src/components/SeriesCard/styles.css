@@ -10,6 +10,7 @@
   content: '';
   position: absolute;
   inset: 0;
+  border-radius: var(--r-card);
   background: radial-gradient(60% 50% at 50% 30%, rgba(240,208,96,0.12) 0%, transparent 70%);
   opacity: 0;
   transition: opacity var(--dur-slow, .5s) ease;
@@ -28,6 +29,7 @@
   text-transform: uppercase;
   color: var(--gold-dim);
   border: 1px solid var(--line-strong);
+  border-radius: var(--r-pill);
   padding: 4px 8px;
 }
 

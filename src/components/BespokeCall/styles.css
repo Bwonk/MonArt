@@ -12,6 +12,7 @@
   padding: 44px 36px;
   text-align: center;
   border: 1px solid color-mix(in oklch, var(--gold) 30%, transparent);
+  border-radius: var(--r-card);
   background: color-mix(in oklch, var(--gold) 6%, transparent);
 }
 .bespoke__eyebrow {

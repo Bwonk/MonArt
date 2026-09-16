@@ -41,6 +41,8 @@ Kod opsiyonları **adındaki anahtar kelimelerle** bulur (`findOption`); bu keli
 | `optFace2` | `Yüz 2` | tüm 2. yüz opsiyonları |
 | `optSeries` | `Seri` | |
 | `optGender` | `Cinsiyet` | |
+| `optDirection` *(R2d)* | `Portre Yönü` | |
+| `optChain` *(R2d)* | `Zincir` | üst seviye CHOICE |
 | `optBust` | `Büst` | |
 | `optSarik` | `Sarık` | |
 | `optName` | `İsim` | |
@@ -64,6 +66,7 @@ Bir opsiyon "Yüz 1" **ve** "Seri" kelimelerini içeriyorsa 1. yüzün seri opsi
 | 1b | **Kaplama (14K)** (24 Ayar Altın Kaplama (14K)) | CHECKBOX | zorunlu değil | **ücretsiz**. ikas opsiyon fiyatı varyanta göre değişemediği için 14K'ya ayrı opsiyon açılır. Kod adında "Kaplama" geçen opsiyonlardan 14K'da en ucuzunu, gümüşte en pahalısını işaretler. Bu opsiyon yoksa 14K kartı "Ücretsiz" yerine gerçek fiyatı gösterir |
 | 2 | **2. Yüz** (2. Yüzü Kişiselleştir) | CHECKBOX | zorunlu değil | AMOUNT — referans materyale göre 8.000 / 14.000 / 24.000 ₺. ikas opsiyon fiyatı varyanta göre değişemez; **tek fiyat** girin (öneri 14.000 ₺) ya da RATIO (%15) kullanın; kod RATIO'yu varyant fiyatı üzerinden hesaplar |
 | 3 | **Sipariş Notu** | TEXT_AREA | max 400 | — |
+| 3b | **Zincir Uzunluğu** *(referans v2, R2d)* | CHOICE | değerler sırayla `50 cm` · `55 cm` · `60 cm`; **zorunlu** | — (kod varsayılan olarak `55 cm` seçer) |
 
 1. Yüz (üst seviye; her zaman aktif):
 
@@ -71,6 +74,7 @@ Bir opsiyon "Yüz 1" **ve** "Seri" kelimelerini içeriyorsa 1. yüzün seri opsi
 |---|---|---|---|---|
 | 4 | **Yüz 1 · Seri** | CHOICE | `Roma` · `Osmanlı` · `Mısır` | evet |
 | 5 | **Yüz 1 · Cinsiyet** | CHOICE | `Bay` · `Bayan` | evet |
+| 5b | **Yüz 1 · Portre Yönü** *(referans v2, R2d)* | CHOICE | `Sağa Bakan Profil` · `Sola Bakan Profil` | evet (kod varsayılan olarak sağı seçer) |
 | 6 | **Yüz 1 · Büst** | CHOICE | `Büstlü` · `Büstsüz` | hayır (yalnız Roma) |
 | 7 | **Yüz 1 · Sarık** | CHOICE | `Sarıklı` · `Açık Baş` | hayır (yalnız Osmanlı) |
 | 8 | **Yüz 1 · İsim** | TEXT | max 20 | hayır |
@@ -79,7 +83,9 @@ Bir opsiyon "Yüz 1" **ve** "Seri" kelimelerini içeriyorsa 1. yüzün seri opsi
 | 11 | **Yüz 1 · Fotoğraf** | FILE | min 0 · max 3 · jpg/png/webp | hayır |
 | 12 | **Yüz 1 · Telif** | CHECKBOX | "Fotoğrafların telif hakkına sahibim" | **evet** |
 
-2. Yüz — **"2. Yüz" CHECKBOX'ının child opsiyonları** olarak (ikas'ta "koşullu/alt opsiyon"): aynı 9 opsiyon, adları `Yüz 2 · …`. Child olarak kurulunca CHECKBOX kapalıyken ikas doğrulaması bunları istemez. Child kurulamıyorsa üst seviyeye de eklenebilir; kod 2. yüz kapalıyken değerleri boş bırakır, bu durumda **hiçbirini zorunlu yapmayın**.
+2. Yüz — **"2. Yüz" CHECKBOX'ının child opsiyonları** olarak (ikas'ta "koşullu/alt opsiyon"): aynı opsiyonlar (v2 ile 10: `Yüz 2 · Portre Yönü` dahil), adları `Yüz 2 · …`.
+
+> **Referans v2 ile eklenecek 3 opsiyon (kullanıcı admin arayüzünden kurar, R2d'nin ön koşulu):** `Zincir Uzunluğu` (üst seviye, 3b), `Yüz 1 · Portre Yönü` (5b), `Yüz 2 · Portre Yönü` ("2. Yüz"ün child'ı, zorunlu değil). Admin MCP'de opsiyon seti düzenleyen işlem yok. Değer adları tablodaki gibi yazılmalı; kod "sağa" / "sola" ve "50" / "55" / "60" anahtarlarıyla seçer. Child olarak kurulunca CHECKBOX kapalıyken ikas doğrulaması bunları istemez. Child kurulamıyorsa üst seviyeye de eklenebilir; kod 2. yüz kapalıyken değerleri boş bırakır, bu durumda **hiçbirini zorunlu yapmayın**.
 
 ### 2.2 CHOICE değer eşlemesi
 
@@ -91,12 +97,14 @@ Kod değeri de anahtar kelimeyle seçer; değer adı şunları içermeli:
 | Cinsiyet | Bay: `bay`, `erkek`, `male` · Bayan: `bayan`, `kadın`, `female` | "Bay" ararken "Bayan" dışlanır; "Bay" değeri "Bayan"dan **önce** olmalı gerekmez, dışlama var |
 | Büst | Büstlü: `büstlü`, `var`, `evet` · Büstsüz: `büstsüz`, `yok`, `hayır` | |
 | Sarık | Sarıklı: `sarıklı`, `tülbent`, `var` · Açık: `açık`, `sarıksız`, `yok` | Bayan için "Tülbentli" de geçerli |
+| Portre Yönü *(R2d)* | Sağ: `sağa`, `sağ` · Sol: `sola`, `sol` | |
+| Zincir Uzunluğu *(R2d)* | `50` / `55` / `60` | |
 
 ### 2.3 Sipariş satırında görünüm
 
 Tüm değerler `IkasOrderLineItemOption.values[]` olarak sipariş satırına düşer; ek "custom property" yok. Fotoğraflar FILE opsiyonu üzerinden ikas CDN'e yüklenir (sepete eklerken `productOptionFileUpload`).
 
-Sepet çekmecesi ve sepet sayfası bu değerlerden okunur bir özet türetir (`src/utils/cart-summary.ts`): başlık `Seri · Cinsiyet · Materyal` (kaplama işaretliyse `· 24 Ayar Altın Kaplama`), meta `Ön: İsim · Roma rakamı` ve 2. yüz açıksa `Arka: …`. Sepet sayfasındaki "Tasarım Detayları" listesi tüm dolu opsiyonları gösterir; CHECKBOX "Evet", FILE "N dosya" olarak yazılır. Özet opsiyonları **varsayılan** sözleşme anahtarlarıyla (`OPTION_CONTRACT`) bulur. Admin'deki opsiyon adları yukarıdaki tabloya uymalı; konfigüratördeki "Opsiyon Sözleşmesi" prop'larını değiştirmek sepet özetini bozar.
+Sepet çekmecesi ve sepet sayfası bu değerlerden okunur bir özet türetir (`src/utils/cart-summary.ts`): başlık `Seri · Cinsiyet · Materyal` (kaplama işaretliyse `· 24 Ayar Altın Kaplama`), meta `Ön: İsim · Roma rakamı` ve 2. yüz açıksa `Arka: …`. R2d ile meta satırına sola bakan yüzlerde yön ve zincir uzunluğu eklenir; sola bakan tasarımın küçük resmi aynalanır. Sepet sayfasındaki "Tasarım Detayları" listesi tüm dolu opsiyonları gösterir; CHECKBOX "Evet", FILE "N dosya" olarak yazılır. Özet opsiyonları **varsayılan** sözleşme anahtarlarıyla (`OPTION_CONTRACT`) bulur. Admin'deki opsiyon adları yukarıdaki tabloya uymalı; konfigüratördeki "Opsiyon Sözleşmesi" prop'larını değiştirmek sepet özetini bozar.
 
 ---
 

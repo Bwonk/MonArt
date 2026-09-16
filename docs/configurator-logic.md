@@ -2,6 +2,8 @@
 
 Kaynak: `reference/MonArtDEMO_clean/monart-lux.js` (kısaltma `L`), `MonArt Lux.html:199-755` (`H`), `monart-lux.css` (`C`). Bu doküman referans prototipin "atölye" (wizard) davranışını satır referanslarıyla çıkarır ve son bölümde ikas / Preact'e nasıl taşınacağını belirler.
 
+> **Referans v2 (16.09.2026):** satır numaraları ilk sürüme (`MonArtDEMO_clean`) aittir. Yeni sürüm `reference/MonArt2_clean/` portre yönü (§7), Osmanlı sol yay (§3.5), zincir uzunluğu (§10.6) ve yeni sipariş anahtarları (§10.4) ekledi. Tüm farklar ve yeni satır numaraları: `docs/reference-v2-changes.md`.
+
 Akış: **Materyal** → **1. Yüz** (seri, cinsiyet, opsiyonlar, isim, tarih, 3 foto) → **2. Yüz** (opsiyonel, ek ücret) → **Özet / Keseye At**. Sol sticky panelde canvas sikke önizlemesi her state değişiminde yeniden çizilir.
 
 ---
@@ -207,6 +209,18 @@ her harf: angularWidth = widths[i] / total * spread (ORANTILI); ang = cursor + d
 ```
 Ölü dallar: `side='left'`, `leftAngle`, `bottomAngleLeftOverride`, `kind!=='script'` (Cinzel 600, limit 40), `grooveStart/End`. Osmanlı tarih için `data.date.split('').reverse()` (`L:248`) — `dateOn:false` yüzünden çalışmaz.
 
+**v2 — portre yönü ile sol yay** (`MonArt2_clean/monart-lux.js:247-260`, `291-382`): isim portrenin önündeki yaya yazılır; `dir === 'left'` ise `side='left'`. Yeni imza `drawSideText(text, cx, cy, radius, side, kind, anchor, leftAngle, bottomAngleOverride, wideArea)`.
+```
+wide      = wideArea ?? (side === 'right')          // isim true, tarih false
+charLimit = wide ? 22 : 10;  maxSpread = wide ? 1.95 : 1.25
+sağ yay:  startCursor = bottomAngleOverride ?? 0.95;       step = -1   (değişmedi)
+sol yay:  bottom = bottomAngleOverride ?? (π − 0.95)
+          startCursor = bottom + spread;                   step = -1
+          → harf tepesi yine merkeze dönük (rotOffset −π/2), metnin SONU alta sabit, başı yukarı tırmanır
+her harf: ang = cursor + step * angularWidth / 2;  cursor += step * angularWidth
+```
+Tarih dalı v2'de ters çevirme yapmaz, açıyı aynalar (`θ → π − θ`); bizde Osmanlı tarihi yine kapalı.
+
 ### 3.6 Yüz çevirme animasyonu
 
 CSS `.preview-canvas { transition: transform 280ms cubic-bezier(.55,.04,.55,1); transform-origin: center }` + `.is-flipping { transform: scaleX(0) }` (`C:624-631`). `flipToFace(target, {scrollToStep})` (`L:952-975`): `is-flipping` ekle → 280 ms sonra `APP.currentFace = target`, `setFace`, class kaldır (geri açılır) → istenirse `#step-{target}` top−100'e smooth scroll.
@@ -273,6 +287,7 @@ return withBack + (m === 'silver' && platedOf('silver') ? PLATING_PRICE : 0);
 | Kontrol | Görünür | State | Görsele etkisi |
 |---|---|---|---|
 | Cinsiyet `[data-gender]` | daima | `gender` | `bay` ↔ `bayan` görseli |
+| **Portre Yönü** `[data-dir]` (v2) | daima; cinsiyetten sonra | `dir` (`'right'` varsayılan) | `left` → görsel aynalanır; Osmanlı'da isim sol yaya geçer. "i" düğmesi `#dirModal` bilgi penceresini açar (metinler `docs/reference-v2-changes.md` §2.2) |
 | Büst `[data-bust]` | yalnız Roma (`bustOpt`) | `bust` | `false` → `_nobust` |
 | Sarık `[data-sarik-cb]` | yalnız Osmanlı (`sarikOpt`); `checked = sarik !== false` | `sarik` | `false` → `_nosarik` |
 | Sakal `[data-beard-cb]` | hiç (`beardOpt:false`) | `beard` | `bay_sakal` (ölü) |
@@ -334,11 +349,17 @@ Handler kalıbı (`L:776-805`): state yaz → `is-active` toggle → gerekirse `
 | `Yuz1_Tarih_Roma` / `Yuz2_Tarih_Roma` | `dateOn ? roman : ''` | `XIX·VIII·XCVII` |
 | `Yuz1_Fotograf` / `Yuz2_Fotograf` | `photoFiles.map(f => f?.name ?? '—').join(' \| ')` | `ali_90.jpg \| ali_60.jpg \| —` |
 | *(redeem'de)* `Sertifika_Kodu`, `Odeme` | `redeemCode`, `'Hediye sertifikası ile karşılandı'` | |
+| *(v2)* `Yuz1_Portre_Yonu` / `Yuz2_Portre_Yonu` | `dir === 'left' ? 'Sola Bakan Profil' : 'Sağa Bakan Profil'` | `Sağa Bakan Profil` |
+| *(v2)* `Zincir_Uzunlugu` | `(APP.chain \|\| '55') + ' cm'` | `55 cm` |
+| *(v2)* `Indirim_Kodu`, `Indirim_Orani`, `Indirim_Sahibi` | sepet indirim kodu; bizde ikas kuponu, satıra yazılmaz | `ECE22`, `%5`, `Elçi · Ece Valide` |
 
 Eksik: `backEnabled`, `orderNote`, kaplama bayrağı (yalnız etikette), stil testi.
 
 ### 10.5 `resetDesign()` (`L:547-572`, `#clear-design`)
-Her iki yüzde `theme=0, text='', date='', roman='', beard/bust/sarik=false, photoFiles=[null×3]`; foto önizlemeleri, opt-in kutuları (açık), aynı-foto, telif kutuları sıfırlanır; `setFace('front')`. **Sıfırlanmayan:** materyal, kaplama, `backEnabled`, hediye/redeem, sepet, stil testi. `date` `''` olur (başlangıç `'01.01.01'` idi).
+Her iki yüzde `theme=0, text='', date='', roman='', beard/bust/sarik=false, photoFiles=[null×3]`, v2'de `dir='right'`; foto önizlemeleri, opt-in kutuları (açık), aynı-foto, telif kutuları sıfırlanır; `setFace('front')`. **Sıfırlanmayan:** materyal, kaplama, `backEnabled`, zincir (v2), hediye/redeem, sepet, stil testi. `date` `''` olur (başlangıç `'01.01.01'` idi).
+
+### 10.6 Zincir uzunluğu (v2, `MonArt2_clean/MonArt Lux.html:655-664`, `monart-lux.js:730-736`)
+Üst seviye alan, "2. Yüzü Kişiselleştir"den sonra ve Sipariş Notu'ndan önce. `APP.chain` = `'50' | '55' | '60'`, varsayılan `'55'`. Tıklama aktif sınıfı değiştirir ve `renderSummary()` çağırır; fiyatı etkilemez, özet satırına yazılmaz, yalnız sipariş satırında `Zincir_Uzunlugu`.
 
 ---
 
@@ -382,6 +403,8 @@ Yükleme (`L:2196-2206`): `document.fonts.ready.then(drawCoin)` + `document.font
 | 2. yüzü kişiselleştir | CHECKBOX, fiyatlı (`otherPrices` materyale göre 8000/14000/24000) | parent → Yüz2 alanları child opsiyon |
 | Yüz1/2 Seri | CHOICE box (Roma/Osmanlı/Mısır) | görsel + metin limitini belirler |
 | Yüz1/2 Cinsiyet | CHOICE (Bay/Bayan) | |
+| Yüz1/2 Portre Yönü (v2) | CHOICE (Sağa Bakan Profil / Sola Bakan Profil) | varsayılan sağ; Yüz2 child |
+| Zincir Uzunluğu (v2) | CHOICE (50 cm / 55 cm / 60 cm), üst seviye | varsayılan 55, fiyatsız |
 | Yüz1 Büst | CHOICE (Büstlü/Büstsüz) — Roma child | |
 | Yüz1/2 Sarık | CHOICE (Sarıklı · Tülbentli / Açık Baş) — Osmanlı child | |
 | Yüz1/2 İsim | TEXT (max 20; Mısır 15 kodda kırpılır) | canvas'a yazılır |

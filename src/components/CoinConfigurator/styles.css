@@ -40,11 +40,10 @@
   top: calc(var(--header-h, 84px) + 20px);
   align-self: start;
   padding: 22px 20px 20px;
-  background: color-mix(in srgb, var(--dark) 70%, transparent);
-  border: 1px solid var(--line);
-  border-radius: var(--r-card);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  /* referans v2: önizleme iki temada da çerçevesiz */
+  background: none;
+  border: none;
+  border-radius: 0;
   max-height: calc(100vh - var(--header-h, 84px) - 32px);
   overflow: auto;
   scrollbar-width: thin;
@@ -162,7 +161,8 @@
   white-space: nowrap;
 }
 .cfg__plate-price.is-free { color: var(--success); font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase; }
-.cfg__back-toggle { grid-template-columns: 20px 1fr; margin-top: 4px; }
+.cfg__plate { border-radius: var(--r-card); }
+.cfg__back-toggle { grid-template-columns: 20px 1fr; margin-top: 4px; border-radius: var(--r-card) var(--r-card) 0 0; }
 .cfg__back-text { font-family: var(--f-body); font-size: 14px; letter-spacing: 0.01em; color: var(--text); }
 .cfg__back-text b { color: var(--gold-light); font-weight: 600; }
 .cfg__back-desc {
@@ -170,6 +170,7 @@
   padding: 10px 14px 14px;
   border: 1px solid var(--line);
   border-top: none;
+  border-radius: 0 0 var(--r-card) var(--r-card);
   background: color-mix(in oklch, var(--gold) 3%, transparent);
   font-family: var(--f-body);
   font-size: 12px;
@@ -182,7 +183,7 @@
 .cfg__note { display: grid; gap: 9px; }
 .cfg__note-label { font-family: var(--f-deco); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
 .cfg__note-label span { font-family: var(--f-body); font-size: 10.5px; letter-spacing: .04em; text-transform: none; color: var(--text-muted); }
-.cfg__note-input { resize: vertical; min-height: 74px; font-size: 13px; line-height: 1.6; border-radius: 0; }
+.cfg__note-input { resize: vertical; min-height: 74px; font-size: 13px; line-height: 1.6; border-radius: var(--r-input); }
 .cfg__note-count { justify-self: end; font-family: var(--f-body); font-size: 10.5px; letter-spacing: .06em; color: var(--text-muted); }
 
 /* Özet */
@@ -213,7 +214,7 @@
   padding: 0;
   overflow: hidden;
   border: 2px solid rgba(122,90,16,0.4);
-  border-radius: 3px;
+  border-radius: var(--r-card);
   background: #000;
   cursor: pointer;
   transition: border-color .25s, transform .25s, box-shadow .25s;
@@ -242,8 +243,7 @@
 }
 .cfg__style-opt.is-active .cfg__style-check { opacity: 1; transform: scale(1); }
 
-/* Gündüz: önizleme ve özet paneli çerçevesiz (referans "KUTUSUZ"). Mobil önizleme çubuğu aşağıda opak kalır. */
-.cfg:not(.mon-night) .cfg__preview,
+/* Gündüz: özet paneli çerçevesiz (referans "KUTUSUZ"). Önizleme iki temada da çerçevesiz; mobil çubuk aşağıda zeminli. */
 .cfg:not(.mon-night) .cfg__summary {
   background: none;
   border-color: transparent;
@@ -283,21 +283,21 @@
   color: var(--text-dim);
   transition: border-color var(--dur), color var(--dur), background var(--dur);
 }
-.cfg__gift-self { border-radius: 3px; padding: 14px 18px; font-size: 11px; }
+.cfg__gift-self { border-radius: var(--r-btn); padding: 14px 18px; font-size: 11px; }
 .cfg__gift-self span, .cfg__gift-tab span { color: var(--gold); opacity: .7; }
 .cfg__gift-self:hover, .cfg__gift-tab:hover { border-color: rgba(201,168,76,0.42); }
 .cfg__gift-self.is-active, .cfg__gift-tab.is-active { border-color: var(--gold); background: rgba(201,168,76,0.07); color: var(--gold-light); box-shadow: inset 0 0 22px rgba(201,168,76,0.08); }
 .cfg__gift-tabs { display: grid; grid-template-columns: 1fr 1fr; margin-top: 8px; }
-.cfg__gift-tabs .cfg__gift-tab:first-child { border-radius: 3px 0 0 3px; border-right-width: 0; }
-.cfg__gift-tabs .cfg__gift-tab:last-child { border-radius: 0 3px 3px 0; }
-.cfg__redeem { margin-top: 14px; padding: 18px; border: 1px solid rgba(201,168,76,0.24); border-radius: 4px; background: rgba(201,168,76,0.04); }
+.cfg__gift-tabs .cfg__gift-tab:first-child { border-radius: var(--r-btn) 0 0 var(--r-btn); border-right-width: 0; }
+.cfg__gift-tabs .cfg__gift-tab:last-child { border-radius: 0 var(--r-btn) var(--r-btn) 0; }
+.cfg__redeem { margin-top: 14px; padding: 18px; border: 1px solid rgba(201,168,76,0.24); border-radius: var(--r-card); background: rgba(201,168,76,0.04); }
 .cfg__redeem-intro { margin: 0 0 12px; font-family: var(--f-body); font-size: 13px; line-height: 1.6; color: var(--text-dim); }
 .cfg__redeem-row { display: flex; gap: 10px; }
 .cfg__redeem-input { flex: 1; font-size: 14px; letter-spacing: 0.04em; text-transform: none; }
 .cfg__redeem-msg { margin: 12px 0 0; font-family: var(--f-body); font-size: 13px; line-height: 1.5; }
 .cfg__redeem-msg.is-ok { color: var(--success); }
 .cfg__redeem-msg.is-err { color: var(--error-soft); }
-.cfg__gift-panel { margin-top: 16px; padding: 20px 20px 22px; border: 1px solid rgba(201,168,76,0.28); border-radius: 3px; background: rgba(201,168,76,0.035); }
+.cfg__gift-panel { margin-top: 16px; padding: 20px 20px 22px; border: 1px solid rgba(201,168,76,0.28); border-radius: var(--r-card); background: rgba(201,168,76,0.035); }
 .cfg__gift-intro { margin: 0 0 18px; font-family: var(--f-body); font-size: 14px; line-height: 1.85; color: var(--text); text-wrap: pretty; }
 .cfg__gift-label { display: block; margin-bottom: 12px; font-weight: 600; letter-spacing: 0.24em; }
 .cfg__gift-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
@@ -359,6 +359,11 @@
     background: color-mix(in srgb, var(--dark) 70%, transparent);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
+  }
+  /* gece: opak zemin + alt çizgi (referans v2) */
+  .cfg.mon-night .cfg__preview {
+    background: var(--dark);
+    border-bottom: 1px solid var(--line);
   }
   .cfg__face-label { display: none; }
   /* Sikke orta sütundan geniş; negatif yatay margin taşmayı iki yana eşit dağıtır (justify-self tek başına başa hizalıyor). */

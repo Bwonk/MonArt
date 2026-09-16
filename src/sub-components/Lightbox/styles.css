@@ -85,6 +85,7 @@
   place-items: center;
   min-height: 0;
   overflow: hidden;
+  border-radius: var(--r-card);
   cursor: zoom-in;
   touch-action: pan-y;
   user-select: none;
@@ -149,7 +150,7 @@
   align-items: center;
   gap: 10px;
   padding: 13px 24px;
-  border-radius: 1px;
+  border-radius: var(--r-btn);
   background: var(--gold-grad);
   color: var(--on-gold, #0c0a04);
   font-family: var(--f-ui);

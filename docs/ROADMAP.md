@@ -12,6 +12,8 @@ Bu dosya `CLAUDE.md` içindeki import sayesinde her yeni oturumda otomatik yükl
 Faz N'e başlayalım.
 ```
 
+Alt adımlı fazlarda alt adımı yaz (ör. `Faz R2c'ye başlayalım.`). Sıradaki iş §1 Durum tablosunda ⏳ ile işaretli ilk satırdır.
+
 **Her fazda izlenecek akış** (Claude bunu kendiliğinden uygular):
 1. Fazın "Okunacaklar" listesindeki dosyaları incele.
 2. Kısa bir faz planı yaz, fazdaki "Karar gerekli" maddelerini sor ve onay al.
@@ -49,6 +51,12 @@ Editor URL'sini tarayıcıda açık tut. MCP editor araçları ancak editor bağ
 | 10c | Hesap section'ı: profil + hesap silme, siparişler, sipariş detayı (sikke özeti, kargo takibi, iade talebi), adresler, favoriler | ✅ kod bitti (`AccountPage`, `docs/account-pages.md` §3.6); hazır `account` grubu kapatıldı, 5 sayfa yeniden açıldı. Yayında profil, boş sipariş/favori, favori kartı, adres ekle/düzenle/sil, silme penceresi, gece, 400px, çıkış, girişsiz yönlendirme ve `?redirect` dönüşü test edildi. Favoriler kullanıcı kararıyla gizli (`showFavorites`). Son düzeltmeler editörde, yayın bekliyor. Kalan testler Faz 11 QA'ya ertelendi |
 | 11 | Link bağlama, dil routing'leri, QA, yayın | ⏳ 4 alt adım: **11a** linkler + küçük kod düzeltmeleri ✅ (editörde; yayın bekliyor) · **11b** yayın önizlemesinde QA · **11c** SEO + admin ayarları · **11d** 6 dil + üretim yayını |
 | ref | Referans eşitleme: "04 — Mühür" stil testi + tipografi (`docs/typography-audit.md`) | ✅ 14.09.2026. Stil testi ("Bir testi beğenin", 3 vazo, yalnız görsel) Ana sayfa ve Ürün sayfasında. Gündüz alt metinler dik 300 ve çerçevesiz önizleme/özet, gece italik ve çerçeveli (referansın iki teması). `global.css` ve tema tipografisi değişmedi. Yayın önizlemesinde gündüz/gece, 400px ve form sayfaları ölçüldü. Son iki küçük düzeltme (2. yüz anahtarı ls, Footer "Bize Ulaşın" 11px) editörde, sonraki yayında önizlemeye çıkar |
+| R2 | **Referans v2 eşitleme** (`reference/MonArt2_clean/`, farklar `docs/reference-v2-changes.md`). 11b QA'sından önce biter; her alt adım ayrı sohbette yapılabilir, ayrıntı §6 "Faz R2" | ⏳ 2/4 alt adım bitti |
+| R2a | Doküman: v2 farkları, admin opsiyon listesi, faz planı | ✅ 16.09.2026 |
+| R2b | Köşe sistemi 6px + içerik (Footer sloganı, galeri etiketleri, 3 hukuki metin, foto rehberi, gece önizleme çerçevesi) | ✅ 16.09.2026. Yayın önizlemesinde doğrulandı: gündüz/gece köşeler, gece önizleme çerçevesiz, 400px gece mobil çubuk opak + alt çizgi, galeri etiketleri yok, sekme/kart/CTA 6px, Mesafeli Satış md. 4–7, Hediye Sertifikası süresiz, Kullanım Şartları fikri mülkiyet maddesi, Footer sloganı yok, sepet çekmecesi 6px, foto rehberi yeni metin. Son düzeltme (cinsiyet anahtarında seçili düğmenin dış köşeleri) editörde, sonraki yayında görünür |
+| R2c | Sepet çekmecesi: indirim kodu + Ara Toplam/İndirim + sikke yığını PNG'li "Ödemeye Geç" butonu | ⏳ sıradaki. Admin'e bağlı değil |
+| R2d | Konfigüratör: portre yönü + bilgi penceresi, zincir uzunluğu, mobil açıklama, telif metinleri | ⏳ **ön koşul:** admin'de 3 opsiyon (§5) |
+| 12 | Marka Elçileri paneli (referans v2'de demo girişle yeniden açık) | ⏳ kapsam faz başında konuşulacak (kullanıcı kararı 16.09.2026: ayrı faz) |
 
 ---
 
@@ -63,7 +71,9 @@ Editor URL'sini tarayıcıda açık tut. MCP editor araçları ancak editor bağ
 | `docs/configurator-admin-setup.md` | Konfigüratör için admin'de kurulacak ürün, varyant, opsiyon seti ve kuponlar |
 | `docs/collection-gallery.md` | Koleksiyon galerisi spec'i: prop yapısı, lightbox, `?seri=` ve konfigüratör parametreleri |
 | `docs/forms.md` | İletişim, Özel Tasarım ve Elçi başvurusu formları: ikas iletişim formu API'si, mesaj biçimi, doğrulama, opsiyon üzerinden görsel yükleme |
-| `reference/MonArtDEMO_clean/` | Statik prototip (git dışında). Ana dosyalar: `MonArt Lux.html`, `monart-lux.js`, `monart-lux.css`, `monart-bespoke.js` |
+| `reference/MonArt2_clean/` | **Güncel** statik prototip (v2, 15.09.2026, git dışında). Ana dosyalar: `MonArt Lux.html`, `monart-lux.js`, `monart-lux.css`, `monart-bespoke.js`. Tarayıcıda açmak için `python3 -m http.server --directory reference/MonArt2_clean` (Chrome eklentisi `file://` açmıyor) |
+| `reference/MonArtDEMO_clean/` | İlk prototip (v1). Faz 0–11a ve eski dokümanlardaki satır numaraları buna ait; yalnız karşılaştırma için |
+| `docs/reference-v2-changes.md` | v1 → v2 farkları, birebir yeni metinler, ikas eşlemesi ve faz ataması |
 | `~/.claude/plans/ilk-nce-users-yigitozen-orca-projects-mo-sharded-umbrella.md` | Faz 2 sonrası doküman düzeltme planı |
 
 ---
@@ -85,6 +95,7 @@ Bunlar önceki fazlarda hata yapılıp düzeltilen konular. Her fazda geçerli.
 - Alt bileşen CSS'inde `.mon-night` gibi bağlam seçicisi çalışmaz. `--heading`, `--gold` gibi token'lar kullanılır.
 - Breakpoint: `@media (max-width: bp(5pw2fQi7Yr))` (860px, ana mobil) ve `bp(5Xmvk6D0gV)` (640px). Diğer id'ler `docs/theme-globals.md`'de.
 - `.mon-btn`, `.mon-field`, `.mon-card`, `.mon-eyebrow`, `.mon-panel`, `.mon-backdrop` gibi utility'ler `global.css`'te hazır, yeniden yazılmaz.
+- Tasarım düzeltmeleri bileşenin `styles.css`'ine yazılır; `global.css` token'ları ve utility'leri değiştirilmez. **Tek istisna (kullanıcı kararı 16.09.2026):** referans v2'nin köşe sistemi için `--r-btn`, `--r-card`, `--r-input` 6px yapılır (R2b).
 - Vitrinde başlık öğeleri (`h1`–`h4`) inline davranabiliyor; önünde veya arkasında inline/inline-flex öğe (buton, ikon, eyebrow) varsa aynı satıra biniyor. Başlık class'ına `display: block` ver (Faz 4'te SealModal, BespokeCall ve SeriesCard böyle düzeltildi).
 - Büyük görselde (lightbox vb.) `srcset`'in doğal genişliğine güvenme. CDN küçük kaynağı büyütmediği için görsel olduğundan küçük çiziliyor. Boyutu kapsayıcıdan ver: `width/height: 100%; object-fit: contain`.
 - COMPONENT_LIST child'ının (FaqItem, SeriesCard) wrapper'ı global token'ları gündüz değerine sıfırlar; parent'ın gece paleti child'a inmez. Child kökünde de `useSectionTheme()` className ve style'ı uygulanır (Faz 7'de düzeltildi).
@@ -285,6 +296,9 @@ Her yerleşimde aynı 4 link: `ordersEmptyLink` EXTERNAL `/#atolye`, `refundPoli
 | Dil seçici tek dilde "TR ⌄" gösteriyor (referanstaki gibi); menüde yalnız TR var. Referanstaki EN/FR/IT/RU/AR için admin'de storefront routing'leri kurulmalı (admin MCP'de routing işlemi yok, arayüzden), her routing'de TEXT prop'lar çevrilmeli, AR'de `dir="rtl"` kontrol edilmeli. **SDK notu (bp-storefront 2.9.1):** `baseStore.languageOptions` yalnız ziyaretçinin ülkesini `countryCodes`'unda taşıyan routing'lerden kurulur; ülke kodu olmayan routing'lerde (bizim TR routing'i `countryCodes: null`) liste boş kalır. `LanguageSwitcher` bu durumda `IkasStorefrontConfig.routings`'ten okur. Routing'lere ülke kodu verilirse SDK listesi yalnız o ülkenin dillerini gösterir; kurulumda buna göre karar verilmeli. **Kullanıcı kararı (Faz 11): referanstaki 6 dil.** Engel: MCP yazma araçları (`update_section_prop`, `update_page_sections`) routing id almıyor, yalnız `list_page_sections` routing durumunu okuyor; çevirinin editöre nasıl yazılacağı 11d başında araştırılacak. 655 TEXT/RICH_TEXT prop var; referansın `monart-i18n.js`'i ~200 anahtarı 6 dilde veriyor, hukuki/üyelik/hesap metinleri yalnız TR | admin / Header / tüm section'lar | 11d |
 | Footer e-postası ~880px'te 21px taşıyordu; Faz 11a'da `.mon-footer__link`'e `overflow-wrap: anywhere` verildi — yayında bakılacak | Footer | 11b (QA) |
 | Global `.mon-btn`'de `:focus-visible` yoktu; Faz 11a'da `global.css`'e eklendi (2px altın, 3px offset) — yayında klavyeyle bakılacak | global.css | 11b (QA) |
+| **R2d ön koşulu:** admin'de "Sikke Kişiselleştirme" setine `Zincir Uzunluğu` (üst seviye, 50/55/60 cm, zorunlu), `Yüz 1 · Portre Yönü` (Sağa/Sola Bakan Profil, zorunlu), `Yüz 2 · Portre Yönü` ("2. Yüz" child'ı) eklenmeli. Kullanıcı arayüzden kuracak; liste `docs/configurator-admin-setup.md` §2.1 | admin | R2d |
+| Sepet çekmecesi kupon testi (R2c): `MONETARTS-TEST-2026-0001` tek kullanımlık ve %100 indirimli. Faz 4'te yalnız sepete uygulandı; siparişle tüketildiyse ya da %100 test için uygun değilse admin'de küçük yüzdeli bir test kuponu gerekir (yazma işlemi kullanıcı onayıyla) | admin | R2c |
+| Referans v2'de uygulanmayacaklar (ikas checkout / sayfa yapısı yüzünden): ödeme penceresindeki onayların "Ayrıntılar"a bölünmesi, sabit kodlu indirim kodları, nav "İletişim"in modal açması. Liste `docs/reference-v2-changes.md` §1 | — | bilgi |
 | Tipografi eşitlemesinden kalan bilinçli farklar (`docs/typography-audit.md` "Bilerek bırakılanlar"): `.mon-btn` line-height (global), İletişim sayfa başlığı hâlâ 600 büyük harf (Özel Tasarım başlığı referans modalı gibi 500 ve büyük harfsiz oldu, iki form sayfası artık farklı), Hero alt satırı referansta gizli, "Temizle" ikonu yok, Rusça başlıklarda Cormorant yedeği | çeşitli | kullanıcı / 11d |
 
 ---
@@ -419,11 +433,90 @@ Her yerleşimde aynı 4 link: `ordersEmptyLink` EXTERNAL `/#atolye`, `refundPoli
 
 ---
 
+### Faz R2 — Referans v2 eşitleme
+
+**Amaç:** `reference/MonArt2_clean/` ile gelen değişiklikleri temaya taşımak. 11b QA'sından önce biter. Alt adımlar birbirinden bağımsız; her biri ayrı sohbette "Faz R2c'ye başlayalım" gibi başlatılır.
+
+**Her alt adımda ortak:**
+- Referans tarayıcıda: `python3 -m http.server 8765 --directory reference/MonArt2_clean` (arka planda), iş bitince durdur.
+- Kod → `check --json` + `build` → `import_section` (değişen section'lar; sub-component değiştiyse onu kullanan tüm section'lar) → editör değerleri `update_page_sections`.
+- Görsel test yayın önizlemesinde (`https://3svte-dev-monoart.myikas.com/`): yayını kullanıcı yapar (`publish_theme` auto mode'da reddediliyor). Sayfa iframe'siz olduğundan `javascript_tool` ile ölçülür; 400px için sayfaya `position:fixed; width:400px` aynı kaynaklı iframe eklenir. Gece testi `localStorage.monart_theme = "night"`, test sonunda `day`'e döndür.
+- Bitince §1 Durum satırını ve §5'i güncelle.
+
+---
+
+#### R2a — Doküman ✅ (16.09.2026)
+`docs/reference-v2-changes.md` yazıldı; `configurator-logic.md` (§3.5 sol yay, §7 yön, §10.4 anahtarlar, §10.6 zincir, §14.1), `configurator-admin-setup.md` (§2.1–2.3 üç yeni opsiyon), `collection-gallery.md`, `reference-inventory.md` güncellendi. Kullanıcı kararları: köşe için yalnız 3 global token, yön/zincir admin opsiyonu, elçi paneli Faz 12.
+
+#### R2b — Köşe sistemi + içerik ✅ (16.09.2026)
+Yapılanlar (yeniden yapılmaz):
+- `src/global.css` `--r-btn`, `--r-card`, `--r-input` = 6px (`--r-field` 6, `--r-modal` 14, `--r-pill` değişmedi).
+- 6px'e çekilen bileşen kuralları: `CoinConfigurator` (kaplama/2. yüz kartı, 2. yüz açıklaması alt köşeler, not alanı, stil testi, hediye anahtarı, redeem ve hediye paneli), `FaceDesigner` (büst/sarık kartı, hiyeroglif uyarısı, Roma rakamı kutusu, iptal ayrıntısı, cinsiyet anahtarı ilk/son düğme), `CollectionGallery` (sekme, CTA, görsel kartı; hücre etiketi pill), `Header` (Özel Tasarım CTA, dropdown), `SeriesCard` (hover katmanı; rozet pill), `BespokeCall` kartı, `LanguageSwitcher`, `Lightbox` (sahne, CTA), `CoinCheckoutButton`, `CartDrawer` paneli (≤860px düz). Mühür ve foto rehberi pencereleri referansta 14px, dokunulmadı. Onay kutuları (2–3px) bilerek küçük kaldı.
+- `CoinConfigurator` `.cfg__preview` iki temada çerçevesiz; ≤860px gece `var(--dark)` + alt `--line`.
+- Prop varsayılanları (CLI): `CoinConfigurator.pgIntro` yeni metin, `Footer.tagline` boş, `CollectionGallery.{roma,osmanli,misir}Tag1-3` boş.
+- Editör değerleri: Footer `tagline` (Ana sayfa `qsO74gYFds`), galeri 9 etiket (`KmMWViHQSH`), `pgIntro` (`CnxvAPawqP`, `vCT6WKmBTD`), LegalPage gövdeleri: Mesafeli Satış `scbSmLz9RW`, Hediye Sertifikası `oc92cY1imV`, Kullanım Şartları `7pcWHVQXnw`.
+
+#### R2c — Sepet çekmecesi: indirim kodu + ödeme butonu ⏳
+**Okunacaklar:** `docs/reference-v2-changes.md` §6.3 ve §7; referans `MonArt Lux.html:819-844`, `monart-lux.css:5235-5285` ve `5391-5402`; `src/sub-components/CartDrawer/index.tsx` + `styles.css`; `src/components/CartPage/index.tsx` (kupon akışı satır ~48-125: `saveCouponCode`, küçük harf yeniden deneme, `removeCouponCode`); `src/sub-components/CoinCheckoutButton`; `src/utils/cart-summary.ts`.
+
+**Mevcut durum:**
+- Kupon yalnız `CartPage`'de; metin prop'ları `coupon` grubunda (`couponLabel`, `couponPlaceholder`, `couponApplyText`, `couponApplyingText`, `couponRemoveText`, `couponAppliedLabel`, `couponErrorText`).
+- `CartDrawer` metinleri `Header`'dan gelir (`texts` nesnesi, Header grubu `cartTexts`); `checkoutButtonText` varsayılanı "Sikke Sikke Öde :)" (Header ve CartPage).
+- `CoinCheckoutButton` inline SVG sikke yığını çizer ve metindeki ":)"'yi `splitSmile` ile ayırır; Header'daki `CartDrawer` ve `CartPage` kullanır.
+
+**Karar gerekli (faz başında):**
+1. Buton görseli: `btn_coin_stack.png` IMAGE prop'u olarak mı (Header + CartPage'e `checkoutIcon`, editörden değiştirilebilir) yoksa sub-component'e sabit CDN adresi mi? Öneri: IMAGE prop, boşsa mevcut SVG.
+2. Çekmecedeki indirim satırları ikas sepetinden okunur. Hangi alanlar (ara toplam, kupon indirimi) doğru kaynak, MCP'den doğrulanmalı (`get_model_guide("IkasOrder")`, kupon/`orderAdjustments`).
+
+**İşler:**
+1. `src/sub-components/CouponField` (index.tsx + styles.css): CartPage'deki uygula/kaldır/hata akışını taşı; CartPage bunu kullansın (davranış değişmeden).
+2. `CartDrawer`: TOPLAM'ın üstüne `CouponField` + uygulanmışsa "Ara Toplam" ve "İndirim" satırları (v2 §7 görünümü: girdi + Uygula, uygulanınca "✦ KOD · Kaldır" kutusu, ≤420px alt alta).
+3. Header'a çekmece kupon metinleri için TEXT prop'lar (`cartTexts` grubuna, CLI): placeholder "İndirim kodu", Uygula, Uygulanıyor…, Kaldır, Ara Toplam, İndirim, boş kod "Lütfen bir indirim kodu girin.", geçersiz "Kod geçersiz veya süresi dolmuş."
+4. `CoinCheckoutButton`: görsel (58×52, `drop-shadow`, `margin-left:-10px`, hover `translateY(-2px) rotate(-3deg)`), etiket gövde fontu 600 14.5px ls .15em `#F8E3A8`, `gap:22px`; ≤720px 50×45, 13.5px, ls .12em, gap 16px. `splitSmile` kaldırılır.
+5. `upload_image` ile `reference/MonArt2_clean/assets/btn_coin_stack.png`; prop değerleri Header (Ana sayfa `I2zu1VeMMs`, common) ve CartPage (`uZr5rmv1FA`).
+6. `checkoutButtonText` varsayılanı ve iki yerleşim değeri → "Ödemeye Geç".
+7. `import_section`: Header, CartPage.
+
+**Test:** yayın önizlemesinde çekmecede boş kod, geçersiz kod, geçerli kupon (uygula → satırlar → kaldır), gündüz/gece, 400px; sepet sayfasında kupon hâlâ çalışıyor; buton görseli iki yerde. Kupon için §5'teki test kuponu notuna bak; sepet değişiklikleri kullanıcının test sepetinde kalır, test sonunda eski haline getir.
+
+**Bitti kriteri:** çekmecede kupon uygulanıp kaldırılabiliyor, toplam satırları doğru; buton referanstaki gibi; CartPage kuponu bozulmadı.
+
+#### R2d — Konfigüratör: portre yönü + zincir + metinler ⏳
+**Ön koşul (kullanıcı, admin arayüzü):** "Sikke Kişiselleştirme" setinde `Zincir Uzunluğu` (üst seviye; `50 cm` / `55 cm` / `60 cm`; zorunlu), `Yüz 1 · Portre Yönü` (`Sağa Bakan Profil` / `Sola Bakan Profil`; zorunlu), `Yüz 2 · Portre Yönü` ("2. Yüz" child'ı). Faz başında `search_products` / storefront ürün verisiyle opsiyonların geldiği doğrulanır (admin değişikliği vitrine ~30 dk gecikebilir).
+
+**Okunacaklar:** `docs/reference-v2-changes.md` §2–4; `docs/configurator-logic.md` §3.5, §7, §10.4–10.6; `docs/configurator-admin-setup.md` §2; referans `monart-lux.js:202-212` (aynalama), `247-260` + `291-382` (sol yay), `618-622` + `855-865` (yön), `730-736` (zincir), `2440-2467` (pencere), `MonArt Lux.html:319-331`, `655-664`, `1721-1751`, `monart-lux.css:5188-5226`; kod `src/utils/coin.ts` (`FaceState`, `defaultFace`), `src/sub-components/FaceDesigner`, `src/sub-components/CoinCanvas` (`drawSideText` yalnız sağ yay), `src/components/CoinConfigurator/index.tsx` (state satır ~214, `<CoinCanvas>` ~690), `src/utils/ikas-options.ts` (`OPTION_CONTRACT`), `src/utils/cart-summary.ts` (`summarizeLine`), `src/utils/coin-thumbs.ts` (`thumbForDesign`), `src/sub-components/SealModal` (pencere iskeleti).
+
+**İşler:**
+1. `coin.ts`: `FaceState`'e `direction: "right" | "left"` (varsayılan sağ); reset sağa döndürür.
+2. `FaceDesigner`: cinsiyetten sonra etiket + "i" düğmesi + alt metin + iki seçenekli anahtar (`.fd__gender` görünümü). Düğme `onOpenDirectionInfo` çağırır.
+3. Yeni `src/sub-components/DirectionInfoModal` (index.tsx + styles.css): `SealModal` iskeleti, Esc/backdrop/× kapatır, body kaydırması kilitli, `prefers-reduced-motion`. Metinler prop'tan (v2 §2.2).
+4. `CoinCanvas`: `direction` prop'u; `left` ise clip içinde `translate(SIZE,0) scale(-1,1)` ile yalnız görsel; Osmanlı'da isim sol yaya (referans sol yay dalı: `startCursor = (π − 0.95) + spread`, `step = -1`). Efekt bağımlılıklarına `direction`.
+5. Zincir: `CoinConfigurator`'da state (varsayılan "55"), 2. yüz kartından sonra, notun önünde üç seçenekli anahtar (`max-width: 460px`); fiyatı etkilemez, reset'te değişmez.
+6. `ikas-options.ts`: `OPTION_CONTRACT`'a `direction: "Portre Yönü"`, `chain: "Zincir"`; sepete eklerken `setChoiceByKeywords` ile "sağa"/"sola" ve "50"/"55"/"60". "Opsiyon Sözleşmesi" grubuna (`options`) `optDirection`, `optChain` prop'ları (CLI).
+7. `cart-summary.ts`: meta satırına sola bakan yüzde yön ve zincir; `CartLine` küçük resmi sola bakan 1. yüzde `transform: scaleX(-1)`.
+8. Yeni TEXT prop'lar (CLI; gruplar `faces`, `head`, `photos`): yön etiketi, alt metin, sol/sağ seçenek, "i" aria; pencere başlık, giriş, üst etiket, alt başlık, 4 madde başlığı + metni; zincir etiketi + alt metni; `descriptionMobile` (≤980px'te `description` yerine).
+9. Metin güncellemeleri (varsayılan + `CnxvAPawqP`, `vCT6WKmBTD` değerleri): `consentText` (v2 §4.2, `<strong>` gerekiyorsa prop tipi kontrol et), `consentInfoBody` (15/1-ç → 15/1-b), `consentMissingToast`.
+10. `import_section`: CoinConfigurator, CartPage, Header (sepet özeti değişirse).
+
+**Test:** yayın önizlemesinde Roma/Osmanlı/Mısır × sağ/sol, iki yüz ayrı yön; Osmanlı'da isim yaya taşınıyor ve alttan başlıyor; bilgi penceresi (Esc, backdrop, 400px); zincir seçimi; sepete ekle → çekmecede yön/zincir ve aynalı küçük resim; mobil açıklama metni; gündüz/gece.
+
+**Bitti kriteri:** check + build temiz; test listesi geçiyor; sepete eklenen satırın opsiyonlarında Portre Yönü ve Zincir Uzunluğu var (sipariş satırı 11b QA'da).
+
+---
+
+### Faz 12 — Marka Elçileri paneli
+
+**Karar gerekli (faz başında):** referans v2'deki panel (demo giriş, istatistikler, kişisel indirim kodu, sözleşme) ikas'ta nasıl karşılanacak ya da yapılacak mı. Elçi indirim kodları ikas kuponu olarak kurulabilir; komisyon takibinin karşılığı yok.
+
+**Okunacaklar:** `docs/reference-v2-changes.md` §8, `reference/MonArt2_clean/MonArt Lux.html` `id="ambassador"` bloğu, `monart-lux.js` elçi bölümü (~2359–2435), `src/components/AmbassadorProgram`.
+
+---
+
 ### Faz 11 — Link bağlama, dil, QA ve yayın
 
 **İşler:**
 1. Tüm INDEX'e giden linkleri düzelt: Hero CTA'ları, seri kartları, Footer kolonları, Header nav.
 2. Dil: admin'de TR dışındaki diller için storefront routing'leri kurulduysa `LanguageSwitcher`'ı test et, gerekli TEXT prop'ları routing başına doldur, Arapça için `dir="rtl"` davranışını kontrol et.
-3. QA: her sayfada Day ve Night şeması, 400px mobil, klavye ile gezinme, `prefers-reduced-motion`, konsol hataları. Faz 4'ten kalan elle testler (kullanıcı): konfigüratörde fotoğraf yükleme ve bir test siparişinde sipariş satırındaki opsiyon değerleri ile fotoğraf URL'leri.
+3. QA: her sayfada Day ve Night şeması, 400px mobil, klavye ile gezinme, `prefers-reduced-motion`, konsol hataları. Faz 4'ten kalan elle testler (kullanıcı): konfigüratörde fotoğraf yükleme ve bir test siparişinde sipariş satırındaki opsiyon değerleri ile fotoğraf URL'leri. Referans v2 (R2): tüm sayfalarda 6px köşeler, sipariş satırında portre yönü ve zincir uzunluğu, sepet çekmecesinde kupon ve ödeme butonu.
 4. SEO: sayfa başlıkları ve açıklamaları.
 5. `publish_theme` ile yayın. Üretim yayını kullanıcının açık onayıyla yapılır.

@@ -2,6 +2,8 @@
 
 Kaynak: `reference/MonArtDEMO_clean/` (MonArt Lux statik prototip). Bu doküman ikas Code Components temasına taşıma için referans envanteridir.
 
+> **Referans v2 (16.09.2026):** güncel referans `reference/MonArt2_clean/`. Bu envanter ilk sürümü anlatır; v2 farkları (portre yönü, zincir, sepet indirim kodu, 6px köşe sistemi, ödeme butonu, hukuki metinler, elçi paneli) `docs/reference-v2-changes.md` içinde.
+
 ## 1. Global'ler ve sayfa bazında bileşenler
 
 ### 1.1 Global'ler (her sayfada / her görünümde ortak)
