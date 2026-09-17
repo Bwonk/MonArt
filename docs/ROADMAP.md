@@ -51,11 +51,12 @@ Editor URL'sini tarayıcıda açık tut. MCP editor araçları ancak editor bağ
 | 10c | Hesap section'ı: profil + hesap silme, siparişler, sipariş detayı (sikke özeti, kargo takibi, iade talebi), adresler, favoriler | ✅ kod bitti (`AccountPage`, `docs/account-pages.md` §3.6); hazır `account` grubu kapatıldı, 5 sayfa yeniden açıldı. Yayında profil, boş sipariş/favori, favori kartı, adres ekle/düzenle/sil, silme penceresi, gece, 400px, çıkış, girişsiz yönlendirme ve `?redirect` dönüşü test edildi. Favoriler kullanıcı kararıyla gizli (`showFavorites`). Son düzeltmeler editörde, yayın bekliyor. Kalan testler Faz 11 QA'ya ertelendi |
 | 11 | Link bağlama, dil routing'leri, QA, yayın | ⏳ 4 alt adım: **11a** linkler + küçük kod düzeltmeleri ✅ (editörde; yayın bekliyor) · **11b** yayın önizlemesinde QA · **11c** SEO + admin ayarları · **11d** 6 dil + üretim yayını |
 | ref | Referans eşitleme: "04 — Mühür" stil testi + tipografi (`docs/typography-audit.md`) | ✅ 14.09.2026. Stil testi ("Bir testi beğenin", 3 vazo, yalnız görsel) Ana sayfa ve Ürün sayfasında. Gündüz alt metinler dik 300 ve çerçevesiz önizleme/özet, gece italik ve çerçeveli (referansın iki teması). `global.css` ve tema tipografisi değişmedi. Yayın önizlemesinde gündüz/gece, 400px ve form sayfaları ölçüldü. Son iki küçük düzeltme (2. yüz anahtarı ls, Footer "Bize Ulaşın" 11px) editörde, sonraki yayında önizlemeye çıkar |
-| R2 | **Referans v2 eşitleme** (`reference/MonArt2_clean/`, farklar `docs/reference-v2-changes.md`). 11b QA'sından önce biter; her alt adım ayrı sohbette yapılabilir, ayrıntı §6 "Faz R2" | ✅ 4/4 alt adım bitti (17.09.2026) |
+| R2 | **Referans v2 eşitleme** (`reference/MonArt2_clean/`, farklar `docs/reference-v2-changes.md`). 11b QA'sından önce biter; her alt adım ayrı sohbette yapılabilir, ayrıntı §6 "Faz R2" | ⏳ 4/5 alt adım bitti; R2e eklendi (17.09.2026) |
 | R2a | Doküman: v2 farkları, admin opsiyon listesi, faz planı | ✅ 16.09.2026 |
 | R2b | Köşe sistemi 6px + içerik (Footer sloganı, galeri etiketleri, 3 hukuki metin, foto rehberi, gece önizleme çerçevesi) | ✅ 16.09.2026. Yayın önizlemesinde doğrulandı: gündüz/gece köşeler, gece önizleme çerçevesiz, 400px gece mobil çubuk opak + alt çizgi, galeri etiketleri yok, sekme/kart/CTA 6px, Mesafeli Satış md. 4–7, Hediye Sertifikası süresiz, Kullanım Şartları fikri mülkiyet maddesi, Footer sloganı yok, sepet çekmecesi 6px, foto rehberi yeni metin. Son düzeltme (cinsiyet anahtarında seçili düğmenin dış köşeleri) editörde, sonraki yayında görünür |
 | R2c | Sepet çekmecesi: indirim kodu + Ara Toplam/İndirim + sikke yığını PNG'li "Ödemeye Geç" butonu | ✅ 16.09.2026. Yayın önizlemesinde doğrulandı: çekmecede boş kod, geçersiz kod (yazınca uyarı siliniyor), test kuponu uygula → Ara Toplam/İndirim/₺0 → kaldır; gündüz/gece, 400px (taşma yok); sepet sayfası kuponu (geçersiz, küçük harfle uygulama, kaldır) aynı; buton görseli iki yerde. Son düzeltme (400px'te "Uygula" yazısı ortalı) editörde, sonraki yayında görünür |
 | R2d | Konfigüratör: portre yönü + bilgi penceresi, zincir uzunluğu, mobil açıklama, telif metinleri | ✅ 17.09.2026. Yayın önizlemesinde doğrulandı: 3 admin opsiyonu vitrine geliyor; Roma sola aynalı; Osmanlı'da isim sola bakınca sol yayda (sonu altta), sağa bakınca sağ yayda; bilgi penceresi (Esc, backdrop, odak dönüşü, kaydırma kilidi, gündüz/gece); 2. yüz ayrı yön; "Temizle" iki yüzü sağa döndürüyor, zincir seçimi korunuyor; sepete ekle → çekmecede "Sola Bakan Profil · Zincir Uzunluğu: 60 cm" ve aynalı küçük resim (test satırı silindi); 400px'te mobil açıklama metni, taşma yok. Son düzeltme (400px'te yön düğmeleri tek satır) editörde, sonraki yayında görünür. Sipariş satırında opsiyonlar 11b QA'da |
+| R2e | Seri seçimine bağlı tipografi: referansta Tema · Seri (Roma / Osmanlı / Mısır) değişince konfigüratördeki yazı tipografisi de değişiyor. Önce analiz, sonra düzeltme; ayrıntı §6 "R2e" | ⏳ sıradaki, **Faz 11'den önce** (kullanıcı isteği 17.09.2026) |
 | 12 | Marka Elçileri paneli (referans v2'de demo girişle yeniden açık) | ⏳ kapsam faz başında konuşulacak (kullanıcı kararı 16.09.2026: ayrı faz) |
 
 ---
@@ -498,6 +499,35 @@ Yapılanlar (17.09.2026, yeniden yapılmaz):
 **Bitti kriteri:** check + build temiz; test listesi geçiyor; sepete eklenen satırın opsiyonlarında Portre Yönü ve Zincir Uzunluğu var (sipariş satırı 11b QA'da).
 
 ---
+
+#### R2e — Seri seçimine bağlı tipografi ⏳
+**Amaç:** Referansta 1. ya da 2. yüzde seri kartı (Roma / Osmanlı / Mısır) seçilince konfigüratördeki yazıların tipografisi değişiyor (kullanıcı gözlemi, 17.09.2026). Bizde seri değişince yalnız sikke görseli ve canvas yazısı değişiyor, arayüz tipografisi sabit. Bu farkın tam listesi çıkarılır, sonra temaya taşınır. Faz 11'den önce biter.
+
+**Okunacaklar:** referans `monart-lux.js` seri tıklaması (`data-theme-pick`, satır ~836-851: `syncFaceUI()` + `drawCoin()` + `renderSummary()` çağırıyor), `syncFaceUI` (~582-680: placeholder, isim önerileri `innerHTML`, sayaç, tarih alanı), `THEMES` (~24-34), `drawCoin` yazı motorları (~240-450); `monart-lux.css` `.text-input`, `.name-suggestion*`, `.roman-preview`, `.glyph-notice`, `.field-label`; `monart-i18n.js` seri anahtarları; `monart-atelier.css/js`. Bizde `src/sub-components/FaceDesigner` (+ `styles.css`), `src/components/CoinConfigurator` (özet `faceSummary`, `styles.css`), `src/sub-components/CoinCanvas`, `docs/typography-audit.md` (önceki tipografi eşitlemesi; çelişmemeli), `docs/configurator-logic.md` §3, §7.
+
+**Ön not (17.09.2026, yalnız grep):** CSS'te seriye göre sınıf (`is-osmanli`, `theme-roma` vb.) bulunmadı; tıklama `body`/section'a sınıf eklemiyor. Değişimin kaynağı büyük olasılıkla `syncFaceUI`'nin yeniden yazdığı içerik (öneri kartları, placeholder, inline stil) ya da seriye göre değişen font/ölçü. Bu varsayım analizde doğrulanmalı.
+
+**1. Analiz (kod yazmadan):**
+1. Referansı aç: `python3 -m http.server 8765 --directory reference/MonArt2_clean` (arka planda), Chrome'da `http://localhost:8765/MonArt%20Lux.html#wizard`.
+2. `javascript_tool` ile atölye formundaki (`.wizard-shell`) tüm görünür metin öğelerinin `font-family`, `font-size`, `font-weight`, `font-style`, `letter-spacing`, `text-transform`, `line-height`, `color` değerlerini seçici yoluyla birlikte topla. Roma, Osmanlı ve Mısır için ayrı ayrı; hem 1. hem 2. yüzde; gündüz ve gece; 1200px ve 400px (iframe). Üç seri arasındaki farkları diff'le. Aynı betikle önizleme panelini (etiket, fiyat, özet satırları) ve sepet özetini de ölç.
+3. Canvas yazısı ayrı kontrol: seriye göre `ctx.font` (Roma Cinzel 700 yay, Osmanlı AlphaKufi yan yay, Mısır yazısız) bizde `CoinCanvas` ile aynı mı; placeholder ve isim girdisinin fontu seriye göre değişiyor mu (ör. Osmanlı'da Kufi önizleme, Mısır'da hiyeroglif).
+4. Her fark için kaynak satırı (`L:`, `C:`) bul; bilinçli tasarım mı (seriye özgü font) yoksa `innerHTML` yeniden yazımının yan etkisi mi (ör. stil sıfırlanması) ayır. Yan etki olanlar taşınmaz, listede "uygulanmayacak" olarak kalır.
+5. Sonuçları `docs/typography-audit.md`'ye yeni bölüm olarak yaz: seri × öğe tablosu (referans değeri / bizdeki değer / fark), ekran görüntüsü karşılaştırması, önerilen eşleme.
+
+**Karar gerekli (analizden sonra):**
+- Seriye özgü fontlar yeni Google Fonts tema tipografi token'ı mı olacak (kural: yerel font yok; Kufi = `Coin Script` / Reem Kufi) yoksa mevcut token'larla mı karşılanacak?
+- Değişim yalnız o yüzün alanlarına mı, yoksa tüm atölye formuna mı uygulanacak (referans davranışına göre)?
+- Metinler seriye göre değişiyorsa (ör. etiket/placeholder) seri başına TEXT prop mu gerekiyor?
+
+**2. Düzeltme (onaydan sonra):**
+1. `FaceDesigner` köküne seri sınıfı (`fd--roma` / `fd--osmanli` / `fd--misir`) ver; seriye bağlı kurallar `FaceDesigner/styles.css`'e (alt bileşen CSS'inde bağlam seçicisi yerine kendi kök sınıfı). Özet/önizleme paneli etkileniyorsa `CoinConfigurator` köküne aktif yüzün serisi sınıfı (`cfg--series-*`).
+2. Yeni font gerekiyorsa `ensureGoogleFont` (`src/utils/fonts.ts`) ile yükle, `global.css` token'larına dokunma (§3 kuralı); tema tipografisi token'ı gerekiyorsa kullanıcıya sor.
+3. Canvas'ta fark çıkarsa `CoinCanvas` motorlarını düzelt.
+4. `check --json` + `build`, `import_section` CoinConfigurator (FaceDesigner değişirse yalnız o; sepet özeti etkilenirse Header, CartPage, AccountPage).
+
+**Test (yayın önizlemesi):** analizdeki ölçüm betiğini bizim sayfada çalıştır, seri × yüz × tema × genişlik tablosu referansla eşleşmeli; seri değiştirince önceki serinin stili kalmamalı; `prefers-reduced-motion` ve 400px'te taşma yok; Ürün sayfasındaki konfigüratör de aynı.
+
+**Bitti kriteri:** `docs/typography-audit.md`'de seri bölümü var; bilinçli farklar kullanıcı onaylı; yayında üç seride tipografi referansla aynı.
 
 ### Faz 12 — Marka Elçileri paneli
 
