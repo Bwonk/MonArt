@@ -21,6 +21,7 @@ import {
 } from "@ikas/bp-storefront";
 import { Props } from "./types";
 import { useSectionTheme, cx } from "../../utils/theme-mode";
+import { SLOT, slotVar } from "../../theme-tokens";
 import { uploadOptionFiles } from "../../utils/option-file-upload";
 import {
   FaceKey,
@@ -55,6 +56,21 @@ const GIFT_CODE_RE = /^MONETARTS-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/;
 const FLIP_MS = 280;
 /** Sikke görseli prop anahtarları: romaMGold, osmanliFSilverNosarik … */
 const ARTWORK_KEY_RE = /^(roma|osmanli|misir)[MF](Gold|Silver)(Nobust|Nosarik)?$/;
+
+/** Gündüz metin renkleri: Day şemasındaki "Configurator/Day …" slot'ları (styles.css `.cfg:not(.mon-night)`). */
+function dayTextVars(): Record<string, string> {
+  const pairs: Array<[string, string, string]> = [
+    ["--cfg-day-text", SLOT.cfgDayText, "#1A1105"],
+    ["--cfg-day-text-2", SLOT.cfgDayTextSecondary, "#4A360A"],
+    ["--cfg-day-soft", SLOT.cfgDayTextSoft, "#5A4A22"],
+    ["--cfg-day-label", SLOT.cfgDayLabel, "#6D5210"],
+    ["--cfg-day-em", SLOT.cfgDayEmphasis, "#573F0C"],
+    ["--cfg-day-faint", SLOT.cfgDayFaint, "#30281A"],
+  ];
+  const out: Record<string, string> = {};
+  for (const [name, slot, fallback] of pairs) out[name] = slotVar(slot, fallback) || fallback;
+  return out;
+}
 
 interface MaterialCard {
   key: MaterialKey;
@@ -700,7 +716,7 @@ export function CoinConfigurator(props: Props) {
       ref={rootRef}
       id={anchorId || undefined}
       className={cx("cfg", theme.className, isGift && "is-gift")}
-      style={{ ...theme.style, ...(!theme.isNight && backgroundColor ? { backgroundColor } : {}) }}
+      style={{ ...theme.style, ...(!theme.isNight ? dayTextVars() : {}), ...(!theme.isNight && backgroundColor ? { backgroundColor } : {}) }}
     >
       <div className="cfg__head">
         {eyebrow && <div className="mon-eyebrow cfg__eyebrow">{eyebrow}</div>}

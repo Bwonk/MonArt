@@ -277,6 +277,55 @@
   backdrop-filter: none;
 }
 
+/* Gündüz metin renkleri (referans v2 gündüz kuralları). Renkler Day şemasındaki slot'lardan gelir:
+   --cfg-day-* → "Configurator/Day …" (kökte dayTextVars), --text → Text, --gold-light → Accent/Light, --ink → Text/Ink.
+   Gece bu kurallar çalışmaz; konfigüratör ortak token'larla kalır. */
+.cfg:not(.mon-night) .cfg__title { color: var(--text); }
+.cfg:not(.mon-night) .cfg__step-title { color: var(--gold-light); }
+.cfg:not(.mon-night) .cfg__title em,
+.cfg:not(.mon-night) .cfg__step-title em { color: var(--cfg-day-em); }
+.cfg:not(.mon-night) .cfg__step .mon-step-num { color: var(--cfg-day-label); }
+.cfg:not(.mon-night) .cfg__desc,
+.cfg:not(.mon-night) .cfg__hint,
+.cfg:not(.mon-night) .cfg__mat-name,
+.cfg:not(.mon-night) .cfg__mat-price,
+.cfg:not(.mon-night) .cfg__v,
+.cfg:not(.mon-night) .cfg__v-note,
+.cfg:not(.mon-night) .fd__label > span:not(.fd__sub):not(.fd__count),
+.cfg:not(.mon-night) .fd__optin > span,
+.cfg:not(.mon-night) .fd__series-name,
+.cfg:not(.mon-night) .fd__text,
+.cfg:not(.mon-night) .fd__roman,
+.cfg:not(.mon-night) .fd__sugg-hint,
+.cfg:not(.mon-night) .fd__sugg-title,
+.cfg:not(.mon-night) .fd__sugg-name,
+.cfg:not(.mon-night) .fd__upload-text strong { color: var(--cfg-day-text); }
+.cfg:not(.mon-night) .cfg__mat-spec { color: color-mix(in srgb, var(--cfg-day-faint) 60%, transparent); }
+.cfg:not(.mon-night) .cfg__mat.is-active .cfg__mat-spec { color: color-mix(in oklch, var(--gold) 80%, transparent); }
+.cfg:not(.mon-night) .cfg__k,
+.cfg:not(.mon-night) .fd__sub,
+.cfg:not(.mon-night) .fd__sugg-desc,
+.cfg:not(.mon-night) .fd__upload-text span { color: var(--cfg-day-text-2); }
+.cfg:not(.mon-night) .fd__gender-btn,
+.cfg:not(.mon-night) .cfg__chain-btn,
+.cfg:not(.mon-night) .cfg__gift-self.is-active { color: var(--text); }
+.cfg:not(.mon-night) .fd__opt-name,
+.cfg:not(.mon-night) .cfg__plate-name { color: var(--ink); }
+.cfg:not(.mon-night) .fd__opt-desc,
+.cfg:not(.mon-night) .fd__field-sub,
+.cfg:not(.mon-night) .cfg__plate-desc,
+.cfg:not(.mon-night) .cfg__chain-sub { color: var(--cfg-day-soft); }
+.cfg:not(.mon-night) .fd__count:not(.is-max) { color: var(--cfg-day-text); }
+.cfg:not(.mon-night) .fd__text::placeholder { color: color-mix(in srgb, var(--gold-light) 45%, transparent); }
+.cfg:not(.mon-night) .fd__sugg-item:not(:disabled) { opacity: 1; }
+.cfg:not(.mon-night) .fd__consent-text,
+.cfg:not(.mon-night) .fd__consent-text strong { color: var(--cfg-day-label); }
+.cfg:not(.mon-night) .fd__glyph-notice p { color: color-mix(in srgb, var(--cfg-day-faint) 82%, transparent); }
+.cfg:not(.mon-night) .cfg__back-desc { color: var(--gold-light); }
+.cfg:not(.mon-night) .cfg__note-label { color: var(--cfg-day-label); }
+.cfg:not(.mon-night) .cfg__note-label span { color: color-mix(in srgb, var(--cfg-day-faint) 60%, transparent); }
+.cfg:not(.mon-night) .cfg__note-count { color: color-mix(in srgb, var(--cfg-day-faint) 55%, transparent); }
+
 /* Gece: alt metinler italik 400 (referansın gece hali) */
 .cfg.mon-night .cfg__desc,
 .cfg.mon-night .cfg__hint,
@@ -284,6 +333,7 @@
 .cfg.mon-night .fd__sub,
 .cfg.mon-night .fd__upload-text span { font-style: italic; font-weight: 400; letter-spacing: normal; }
 .cfg.mon-night .fd__sub { letter-spacing: 0.04em; }
+.cfg.mon-night .fd__sub--glyph { letter-spacing: 0.22em; }
 .cfg.mon-night .fd__field-sub,
 .cfg.mon-night .cfg__chain-sub { font-style: italic; font-weight: 400; }
 .cfg.mon-night .seal__text { font-weight: 400; letter-spacing: normal; }

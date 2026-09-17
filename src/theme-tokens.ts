@@ -28,6 +28,14 @@ export const SLOT = {
   primaryButtonText: "rhMpf1GtXc",       // #0C0A04
   success: "pEFi7HBDRM",           // Day #3F7A3F · Night #8FBF8F
   error: "utzj7XNdnS",             // #B03434
+  // Konfigüratör gündüz metin renkleri (R2e, referans v2). Yalnız Day şemasında tanımlı;
+  // gece konfigüratör yukarıdaki token'ları kullanır.
+  cfgDayText: "AAiI2Pg3hs",          // Configurator/Day Text #1A1105
+  cfgDayTextSecondary: "LxffeZiUYT", // Configurator/Day Text Secondary #4A360A
+  cfgDayTextSoft: "nbMe3TliYa",      // Configurator/Day Text Soft #5A4A22
+  cfgDayLabel: "AIet3wM4iu",         // Configurator/Day Label #6D5210
+  cfgDayEmphasis: "R8Lr3VvT9q",      // Configurator/Day Emphasis #573F0C
+  cfgDayFaint: "EhOzlwQi30",         // Configurator/Day Faint #30281A (saydamlıkla)
 } as const;
 
 export type SlotKey = keyof typeof SLOT;

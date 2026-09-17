@@ -8,7 +8,20 @@ Editor "Styles" panelinde MCP ile oluşturuldu. Renk/tipografi/keyframe id'leri 
 | Day (fildişi) | `WhIKBfy0wc` | `_WhIKBfy0wc` | ✔ |
 | Night (koyu altın) | `eMAHxjlNKs` | `_eMAHxjlNKs` | |
 
-Slot'lar (17): Background, Background/Surface, Background/Surface Deep, Background/Ivory, Text, Text/Dim, Text/Muted, Text/Ink, Accent, Accent/Light, Accent/Dim, Accent/Deep, Line, PrimaryButton/Background, PrimaryButton/Text, State/Success, State/Error — id'ler `src/theme-tokens.ts` içinde.
+Slot'lar (23): Background, Background/Surface, Background/Surface Deep, Background/Ivory, Text, Text/Dim, Text/Muted, Text/Ink, Accent, Accent/Light, Accent/Dim, Accent/Deep, Line, PrimaryButton/Background, PrimaryButton/Text, State/Success, State/Error ve konfigüratörün gündüz metin renkleri için 6 slot — id'ler `src/theme-tokens.ts` içinde.
+
+Konfigüratör gündüz slot'ları (17.09.2026). Değerleri yalnız Day şemasında girildi; Night şeması Day'den devralıyor ve konfigüratör gece bunları kullanmıyor. `CoinConfigurator` kökünde `--cfg-day-*` değişkenlerine bağlanır (`dayTextVars()`), kurallar `styles.css` `.cfg:not(.mon-night)`.
+
+| Slot | Day | id | Konfigüratörde |
+|---|---|---|---|
+| Configurator/Day Text | #1A1105 | `AAiI2Pg3hs` | açıklama, ipucu, malzeme adı/fiyatı, özet değeri, etiketler, seri adı, sayaç, isim/tarih alanı, Roma rakamı, öneri ipucu/başlık/adı, "Favori n" |
+| Configurator/Day Text Secondary | #4A360A | `LxffeZiUYT` | özet etiketleri, alan alt yazıları, öneri açıklaması, yükleme alt yazısı |
+| Configurator/Day Text Soft | #5A4A22 | `nbMe3TliYa` | büst/sarık ve kaplama açıklaması, yön ve zincir alt metni |
+| Configurator/Day Label | #6D5210 | `AIet3wM4iu` | adım numarası, sipariş notu etiketi, fotoğraf onay metni |
+| Configurator/Day Emphasis | #573F0C | `R8Lr3VvT9q` | başlıklardaki italik vurgu |
+| Configurator/Day Faint | #30281A | `EhOzlwQi30` | saydamlıkla: malzeme özelliği (%60), "(isteğe bağlı)" (%60), not sayacı (%55), hiyeroglif uyarısı (%82) |
+
+Mevcut slot'lardan: Text → ana başlık, cinsiyet/yön/zincir düğmeleri, seçili "Kendim İçin"; Accent/Light → adım başlıkları, 2. yüz açıklaması, placeholder (%45); Text/Ink → büst/sarık ve kaplama kartı adı (referans #2A1F08, Ink #231D10).
 
 ## Renkler (32)
 | Grup | Ad | Değer | id |
@@ -46,7 +59,7 @@ Slot'lar (17): Background, Background/Surface, Background/Surface Deep, Backgrou
 | State | Success Day | #3F7A3F | 08bjgUie0C |
 | State | Success Night | #8FBF8F | 4xZGzbOUC3 |
 
-## Tipografi (14) — `__patternElementEnum__` prop'u ile seçilir, `className` uygulanır
+## Tipografi (13) — `__patternElementEnum__` prop'u ile seçilir, `className` uygulanır
 | Ad | Font | Weight | Size | LH | LS | Transform | id |
 |---|---|---|---|---|---|---|---|
 | Display | Cinzel | 600 | 56px | 1.14 | 4px | uppercase | zpHQSeRqgJ |
@@ -62,9 +75,8 @@ Slot'lar (17): Background, Background/Surface, Background/Surface Deep, Backgrou
 | Editorial | Montserrat | 400 italic | 17.5px | 1.65 | — | — | gA8nav3Fcv |
 | Prose | Montserrat | 400 | 17px | 1.85 | .012em | — | xFbu2ZRdn8 |
 | Input | Montserrat | 400 | 13px | 1.4 | .18em | uppercase | jGKl9ygT8d |
-| Coin Script (canvas Kufi yazısı) | Reem Kufi | 400 | 30px | 1 | — | — | jyOhk5VMAx |
 
-Not: `Coin Script` yalnızca fontun (Google Fonts Reem Kufi) sayfaya yüklenmesi içindir; canvas `ctx.font` ile kullanır, DOM'da className'i gerekmez. Yerel `alpha-kufi.ttf` kullanılmaz.
+Not: `Coin Script` (Reem Kufi, `jyOhk5VMAx`) 17.09.2026'da silindi. Canvas'taki Osmanlı yazısı lisanslı AlphaKufi; koda gömülü (`src/utils/alpha-kufi-font.ts`), `CoinCanvas` `FontFace` ile yükler.
 
 Not: Display referansta `clamp(32px,6vw,72px)`; tema stili sabit 56px, responsive küçültme component CSS'inde `bp()` ile yapılır.
 

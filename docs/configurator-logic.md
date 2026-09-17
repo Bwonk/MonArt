@@ -377,7 +377,7 @@ Her iki yüzde `theme=0, text='', date='', roman='', beard/bust/sarik=false, pho
 | Roma tarih (`L:424`) | `600 {fs}px Cinzel, serif` |
 | Osmanlı (`L:292,316`) | `400 {fs}px "AlphaKufi", "Cinzel", serif` |
 
-Yükleme (`L:2196-2206`): `document.fonts.ready.then(drawCoin)` + `document.fonts.load('400 40px "AlphaKufi"')`/`'400 30px'` → `drawCoin()`. Referansta AlphaKufi yerel ttf'dir (`C:6-12`); **ikas'ta yerel font kullanılamaz** → Google Fonts **Reem Kufi** tema tipografi token'ı (`Coin Script`).
+Yükleme (`L:2196-2206`): `document.fonts.ready.then(drawCoin)` + `document.fonts.load('400 40px "AlphaKufi"')`/`'400 30px'` → `drawCoin()`. Referansta AlphaKufi yerel ttf'dir (`C:6-12`); ikas tema tipografisine yerel font bağlanamaz. 17.09.2026'dan beri AlphaKufi (lisanslı) koda gömülü ve `CoinCanvas`'ta `FontFace` ile yükleniyor (`src/utils/alpha-kufi-font.ts`, `ensureEmbeddedFont`).
 
 ---
 
@@ -422,7 +422,7 @@ Değerler `IkasOrderLineItemOption.values[]` olarak sipariş satırına düşer;
 - **`src/utils/coin.ts`** saf fonksiyonlar (referanstan birebir, testlenebilir): `toRoman`, `dateToRoman`, `formatDate`, `fontSafe`, `pickCoinImage(theme, gender, effectiveMat, {bust, sarik})`, `arcTextLayout(n, radius)` (font/spread), `sideTextLayout(widths, radius)`, `effectiveMaterial(mat, plated)`.
 - **`CoinCanvas`** (`useRef` + `useEffect`, 560×560): §3 pipeline; yeniden çizim tetikleyicileri: yüz, materyal, kaplama, seri, cinsiyet, büst/sarık, metin, roman. Flip: `is-flipping` 280 ms + yüz değişimi.
 - **Görsel matrisi**: 22 PNG `upload_images` ile CDN'e; section'da `CoinArtwork` COMPONENT_LIST child'ı (seri ENUM, cinsiyet ENUM, materyal ENUM altın/gümüş, varyant ENUM büstlü/büstsüz/sarıklı/sarıksız, IMAGE) → kod `pickCoinImage` ile eşleştirir; bulunamazsa en yakın (opsiyonsuz) görsel.
-- **Fontlar**: Cinzel tema token'ı mevcut; `Coin Script` (Reem Kufi 400) token'ı ikas tarafından yüklenir; `CoinCanvas` `document.fonts.load('700 30px "Cinzel"')` + `'400 30px "Reem Kufi"'` sonrası çizer. `ctx.font` string'lerinde `"Reem Kufi"` kullanılır.
+- **Fontlar**: Cinzel tema token'ı mevcut; AlphaKufi koda gömülü, `CoinCanvas` önce `ensureEmbeddedFont("AlphaKufi", …)` sonra `document.fonts.load('700 30px "Cinzel"')` + `'400 30px "AlphaKufi"'` sonrası çizer. `ctx.font` string'lerinde `"Reem Kufi"` kullanılır.
 - **Metinler** TEXT prop'lar (adım başlıkları, etiketler, öneri kartları, toast/uyarı metinleri, trust rozetleri).
 
 ### 14.3 Referans bug'larından düzeltilecekler

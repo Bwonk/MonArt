@@ -216,7 +216,7 @@ export default function FaceDesigner(props: Props) {
             <div className="fd__field">
               <div className="fd__label">
                 <span>{t.glyphGuideLabel}</span>
-                <span className="fd__sub">{t.glyphGuideSub}</span>
+                <span className="fd__sub fd__sub--glyph">{t.glyphGuideSub}</span>
               </div>
               <img className="fd__glyph-img" src={glyphGuideSrc} alt={t.glyphGuideLabel} loading="lazy" />
             </div>

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "preact/hooks";
 import { Direction, Finish, Series, SERIES_RULES, fontSafe, upperTr } from "../../utils/coin";
-import { ensureGoogleFont, waitForFonts } from "../../utils/fonts";
+import { ensureEmbeddedFont, ensureGoogleFont, waitForFonts } from "../../utils/fonts";
+import { ALPHA_KUFI_TTF_BASE64 } from "../../utils/alpha-kufi-font";
 
 /**
  * Sikke önizleme canvas'ı — referans `drawCoin()` pipeline'ının Preact portu.
@@ -27,7 +28,8 @@ export interface CoinCanvasProps {
 const SIZE = 560;
 const CX = SIZE / 2;
 const R = SIZE * 0.46;
-const SCRIPT_FONT = "Reem Kufi";
+/** Osmanlı yazısı: referanstaki AlphaKufi (lisanslı, koda gömülü). */
+const SCRIPT_FONT = "AlphaKufi";
 const SERIF_FONT = "Cinzel";
 
 const imgCache = new Map<string, HTMLImageElement>();
@@ -189,7 +191,6 @@ export default function CoinCanvas({ src, series, finish, look22k, direction, te
 
   useEffect(() => {
     ensureGoogleFont(SERIF_FONT, [600, 700]);
-    ensureGoogleFont(SCRIPT_FONT, [400]);
   }, []);
 
   useEffect(() => {
@@ -232,6 +233,7 @@ export default function CoinCanvas({ src, series, finish, look22k, direction, te
 
     const run = async () => {
       if (!fontsReady.current) {
+        await ensureEmbeddedFont(SCRIPT_FONT, ALPHA_KUFI_TTF_BASE64, { weight: "400", style: "normal" });
         await waitForFonts([`700 30px "${SERIF_FONT}"`, `600 20px "${SERIF_FONT}"`, `400 30px "${SCRIPT_FONT}"`]);
         fontsReady.current = true;
       }
