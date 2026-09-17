@@ -14,7 +14,7 @@ import {
   IkasOrderLineItem,
 } from "@ikas/bp-storefront";
 import { summarizeLine, CartSummaryTexts } from "../../utils/cart-summary";
-import { thumbForDesign } from "../../utils/coin-thumbs";
+import { lineThumbFor, MIRROR_STYLE } from "../../utils/coin-thumbs";
 import { TrashIcon, PlusIcon, MinusIcon } from "../Icons";
 
 export interface CartLineTexts extends CartSummaryTexts {
@@ -41,7 +41,7 @@ const CartLine = observer(function CartLine({ cart, item, texts, variant = "draw
   const summary = summarizeLine(item, texts);
   // Önce tasarıma uyan sikke görseli, yoksa ürün/varyant görseli.
   const variantImage = getIkasOrderLineVariantMainImage(item.variant);
-  const thumb = (summary.design && thumbForDesign(summary.design)) || (variantImage ? getDefaultSrc(variantImage) : null);
+  const thumb = lineThumbFor(summary.design, variantImage ? getDefaultSrc(variantImage) : null);
   const hasOldPrice = getOrderLineItemOverridenPriceWithQuantity(item) > 0;
   const isPage = variant === "page";
 
@@ -93,7 +93,7 @@ const CartLine = observer(function CartLine({ cart, item, texts, variant = "draw
   return (
     <li className={`cart-line${isPage ? " cart-line--page" : ""}${busy ? " is-busy" : ""}`}>
       <a className="cart-line__thumb" href={href} tabIndex={-1} aria-hidden="true">
-        {thumb ? <img src={thumb} alt="" loading="lazy" /> : <span className="cart-line__thumb-empty" />}
+        {thumb ? <img src={thumb.src} alt="" loading="lazy" style={thumb.mirrored ? MIRROR_STYLE : undefined} /> : <span className="cart-line__thumb-empty" />}
       </a>
 
       <div className="cart-line__body">

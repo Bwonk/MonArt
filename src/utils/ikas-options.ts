@@ -29,6 +29,8 @@ export const OPTION_CONTRACT = {
   face2: "Yüz 2",
   series: "Seri",
   gender: "Cinsiyet",
+  direction: "Portre Yönü",
+  chain: "Zincir",
   bust: "Büst",
   sarik: "Sarık",
   name: "İsim",

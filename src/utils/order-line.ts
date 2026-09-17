@@ -3,7 +3,7 @@
  */
 import { getDefaultSrc, getIkasOrderLineVariantMainImage, IkasOrderLineItem } from "@ikas/bp-storefront";
 import { summarizeLine, CartLineSummary, CartSummaryTexts } from "./cart-summary";
-import { thumbForDesign } from "./coin-thumbs";
+import { lineThumbFor, LineThumb } from "./coin-thumbs";
 import type { AccountTexts } from "./account-texts";
 
 export function summaryTexts(t: AccountTexts): CartSummaryTexts {
@@ -15,9 +15,7 @@ export function summarizeOrderLine(item: IkasOrderLineItem, t: AccountTexts): Ca
 }
 
 /** Önce tasarıma uyan sikke görseli (konfigüratörün localStorage haritası), yoksa varyant görseli. */
-export function lineThumb(item: IkasOrderLineItem, summary: CartLineSummary): string | null {
-  const fromDesign = summary.design && thumbForDesign(summary.design);
-  if (fromDesign) return fromDesign;
+export function lineThumb(item: IkasOrderLineItem, summary: CartLineSummary): LineThumb | null {
   const image = getIkasOrderLineVariantMainImage(item.variant);
-  return image ? getDefaultSrc(image) : null;
+  return lineThumbFor(summary.design, image ? getDefaultSrc(image) : null);
 }

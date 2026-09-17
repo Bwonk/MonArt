@@ -8,6 +8,11 @@ export type Gender = "M" | "F";
 export type Finish = "gold" | "silver";
 export type MaterialKey = "silver" | "14k" | "22k";
 export type FaceKey = "front" | "back";
+/** Portre yönü: görseller sağa bakar; "left" görseli aynalar (referans v2). */
+export type Direction = "right" | "left";
+export type ChainLength = "50" | "55" | "60";
+
+export const CHAIN_LENGTHS: ChainLength[] = ["50", "55", "60"];
 
 export const SERIES: Series[] = ["roma", "osmanli", "misir"];
 export const MATERIALS: MaterialKey[] = ["silver", "14k", "22k"];
@@ -34,6 +39,7 @@ export const SERIES_RULES: Record<Series, SeriesRule> = {
 export interface FaceState {
   series: Series;
   gender: Gender;
+  direction: Direction;
   /** Roma: büstlü (true) / büstsüz */
   bust: boolean;
   /** Osmanlı: sarıklı (true) / açık baş */
@@ -48,7 +54,7 @@ export interface FaceState {
 
 export function defaultFace(series: Series, gender: Gender): FaceState {
   // Referansın aksine büst/sarık VARSAYILAN AÇIK (kart görseliyle tutarlı).
-  return { series, gender, bust: true, sarik: true, nameOn: true, text: "", dateOn: true, date: "", photos: [null, null, null], consent: false };
+  return { series, gender, direction: "right", bust: true, sarik: true, nameOn: true, text: "", dateOn: true, date: "", photos: [null, null, null], consent: false };
 }
 
 /* ------------------------------------------------------------------ materyal */

@@ -5,6 +5,7 @@ import {
   FaceKey,
   Series,
   Gender,
+  Direction,
   SERIES,
   SERIES_RULES,
   NAME_SUGGESTIONS,
@@ -23,6 +24,7 @@ export type FaceTexts = Pick<
   | "nameLabel" | "dateLabel" | "dateSub" | "suggestionsHint" | "suggestionsMale" | "suggestionsFemale" | "suggestionSlot" | "suggestionNoteMisir"
   | "photoLabel" | "photoSub" | "photoSlotLabel" | "uploadSub" | "samePhotoText" | "consentText" | "consentInfoTitle" | "consentInfoBody"
   | "cancelInfoTitle" | "cancelInfoBody"
+  | "directionLabel" | "directionSub" | "directionLeft" | "directionRight" | "directionInfoAria"
 >;
 
 interface Props {
@@ -38,6 +40,8 @@ interface Props {
   /** Fotoğraf seçilmeden önce rehber; resolve(true) → dosya seçimine devam */
   requestPhotoGuide: () => Promise<boolean>;
   onToast: (msg: string) => void;
+  /** Portre Yönü "i" düğmesi: bilgi penceresini açar */
+  onOpenDirectionInfo: () => void;
   photoTooLargeToast: string;
   photoTypeToast: string;
   /** 2. yüz için: 1. yüzün fotoğraflarını kopyala */
@@ -46,12 +50,17 @@ interface Props {
   disabled?: boolean;
 }
 
+/** RICH_TEXT değerini satır içi HTML'e indirir (etiket içinde <p> olmasın). */
+function inlineHtml(html: string | undefined): string {
+  return (html ?? "").trim().replace(/<\/p>\s*<p[^>]*>/gi, "<br>").replace(/^<p[^>]*>|<\/p>$/gi, "");
+}
+
 function seriesName(t: FaceTexts, s: Series): string {
   return s === "roma" ? t.seriesRoma ?? "Roma" : s === "osmanli" ? t.seriesOsmanli ?? "Osmanlı" : t.seriesMisir ?? "Mısır";
 }
 
 export default function FaceDesigner(props: Props) {
-  const { face, state, onChange, thumbs, glyphGuideSrc, texts: t, onActivate, requestPhotoGuide, onToast, photoTooLargeToast, photoTypeToast, samePhoto, consentMissing, disabled } = props;
+  const { face, state, onChange, thumbs, glyphGuideSrc, texts: t, onActivate, requestPhotoGuide, onToast, onOpenDirectionInfo, photoTooLargeToast, photoTypeToast, samePhoto, consentMissing, disabled } = props;
   const rule = SERIES_RULES[state.series];
   const textRef = useRef<HTMLInputElement>(null);
   const fileRefs = useRef<Array<HTMLInputElement | null>>([null, null, null]);
@@ -148,6 +157,24 @@ export default function FaceDesigner(props: Props) {
           {(["M", "F"] as Gender[]).map((g) => (
             <button key={g} type="button" className={cx("fd__gender-btn", state.gender === g && "is-active")} aria-pressed={state.gender === g} onClick={() => { onChange({ gender: g }); onActivate(); }}>
               {g === "M" ? t.genderMale : t.genderFemale}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Portre yönü (referans v2): varsayılan sağ; sol görseli aynalar */}
+      <div className="fd__field">
+        <div className="fd__label fd__label--info">
+          <span>{t.directionLabel}</span>
+          <button type="button" className="fd__info-dot" aria-label={t.directionInfoAria} onClick={onOpenDirectionInfo}>
+            i
+          </button>
+        </div>
+        {t.directionSub && <p className="fd__field-sub">{t.directionSub}</p>}
+        <div className="fd__gender fd__gender--dir" role="group" aria-label={t.directionLabel}>
+          {(["left", "right"] as Direction[]).map((d) => (
+            <button key={d} type="button" className={cx("fd__gender-btn", state.direction === d && "is-active")} aria-pressed={state.direction === d} onClick={() => { onChange({ direction: d }); onActivate(); }}>
+              {d === "left" ? t.directionLeft : t.directionRight}
             </button>
           ))}
         </div>
@@ -310,7 +337,7 @@ export default function FaceDesigner(props: Props) {
         <label className={cx("fd__consent", consentMissing && "is-missing", photosLocked && "is-locked")}>
           <input type="checkbox" checked={state.consent} disabled={photosLocked} onChange={(e) => onChange({ consent: (e.target as HTMLInputElement).checked })} />
           <span className="fd__consent-box" aria-hidden="true" />
-          <span className="fd__consent-text">{t.consentText}</span>
+          <span className="fd__consent-text" dangerouslySetInnerHTML={{ __html: inlineHtml(t.consentText) }} />
         </label>
         {t.consentInfoBody && (
           <details className="fd__info">

@@ -23,6 +23,33 @@
   text-transform: none;
   color: var(--gold-dim);
 }
+/* etiket + "i" bilgi düğmesi (Portre Yönü) */
+.fd__label--info { justify-content: flex-start; align-items: center; gap: 9px; }
+.fd__info-dot {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 17px;
+  height: 17px;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, var(--gold) 55%, transparent);
+  border-radius: 50%;
+  background: transparent;
+  font-family: var(--f-body);
+  font-size: 10px;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--gold);
+  cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+.fd__info-dot:hover { background: color-mix(in srgb, var(--gold) 16%, transparent); border-color: var(--gold); }
+.fd__info-dot:focus-visible { outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 28%, transparent); }
+/* alan açıklaması (referans v2 .field-sub); etiketle arası .fd__field gap'i + negatif margin */
+.fd__field-sub { margin: -3px 0 1px; font-family: var(--f-body); font-size: 12.5px; font-weight: 300; line-height: 1.6; color: var(--ink-soft); text-wrap: pretty; }
 .fd__count { font-family: var(--f-ui); font-size: 9px; letter-spacing: 0.2em; color: var(--gold-dim); }
 .fd__count.is-max { color: var(--warn); }
 
@@ -206,6 +233,7 @@
 .fd__consent input:checked + .fd__consent-box::after { content: ''; position: absolute; left: 4.5px; top: 1px; width: 4px; height: 8px; border: solid #2A1B02; border-width: 0 2px 2px 0; transform: rotate(45deg); }
 .fd__consent input:focus-visible + .fd__consent-box { outline: 2px solid rgba(201,168,76,0.55); outline-offset: 2px; }
 .fd__consent-text { font-family: var(--f-body); font-size: 10.5px; line-height: 1.6; letter-spacing: 0.012em; text-transform: lowercase; color: var(--text-dim); text-wrap: pretty; }
+.fd__consent-text strong { font-weight: 600; color: var(--text); }
 .fd__consent.is-missing .fd__consent-box { border-color: var(--error); box-shadow: 0 0 0 3px rgba(176,52,52,0.16); }
 .fd__consent.is-missing { animation: fd-shake .4s ease; }
 .fd__consent.is-locked { pointer-events: none; opacity: .72; }
@@ -228,4 +256,9 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .fd__consent.is-missing { animation: none; }
+}
+
+/* Portre yönü: "Sola Bakan Profil" 400px'te iki satıra inmesin */
+@media (max-width: bp(5Xmvk6D0gV)) {
+  .fd__gender--dir .fd__gender-btn { padding: 14px 8px; letter-spacing: 0.14em; }
 }

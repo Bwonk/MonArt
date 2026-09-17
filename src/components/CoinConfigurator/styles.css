@@ -186,6 +186,32 @@
 .cfg__note-input { resize: vertical; min-height: 74px; font-size: 13px; line-height: 1.6; border-radius: var(--r-input); }
 .cfg__note-count { justify-self: end; font-family: var(--f-body); font-size: 10.5px; letter-spacing: .06em; color: var(--text-muted); }
 
+/* Zincir uzunluğu (referans v2) — etiket ve anahtar FaceDesigner'ın cinsiyet alanıyla aynı görünüm */
+.cfg__chain { display: flex; flex-direction: column; gap: 10px; }
+.cfg__chain-label { font-family: var(--f-ui); font-size: 9.5px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); }
+.cfg__chain-sub { margin: -3px 0 1px; font-family: var(--f-body); font-size: 12.5px; font-weight: 300; line-height: 1.6; color: var(--ink-soft); text-wrap: pretty; }
+.cfg__chain-row { display: grid; grid-template-columns: repeat(3, 1fr); max-width: 460px; border: 1px solid var(--line); border-radius: var(--r-card); overflow: hidden; }
+.cfg__chain-btn {
+  background: transparent;
+  border: none;
+  padding: 14px;
+  font-family: var(--f-ui);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  cursor: pointer;
+  transition: background var(--dur), color var(--dur), box-shadow var(--dur);
+}
+.cfg__chain-btn + .cfg__chain-btn { border-left: 1px solid var(--line); }
+.cfg__chain-btn:first-child { border-radius: calc(var(--r-card) - 1px) 0 0 calc(var(--r-card) - 1px); }
+.cfg__chain-btn:last-child { border-radius: 0 calc(var(--r-card) - 1px) calc(var(--r-card) - 1px) 0; }
+.cfg__chain-btn:hover { color: var(--gold); }
+.cfg__chain-btn.is-active { background: var(--surface-hover); color: var(--gold-light); box-shadow: inset 0 0 0 1px var(--gold); }
+
+/* Atölye açıklaması: yan yana düzende masaüstü metni, alt alta düzende mobil metni */
+.cfg__desc-narrow { display: none; }
+
 /* Özet */
 .cfg__summary { padding: 24px 24px 22px; background: color-mix(in srgb, var(--dark) 70%, transparent); border: 1px solid var(--line); border-radius: var(--r-card); }
 .cfg__row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 10px 0; font-family: var(--f-body); font-size: 15px; border-bottom: 1px dashed rgba(201,168,76,0.12); }
@@ -258,6 +284,8 @@
 .cfg.mon-night .fd__sub,
 .cfg.mon-night .fd__upload-text span { font-style: italic; font-weight: 400; letter-spacing: normal; }
 .cfg.mon-night .fd__sub { letter-spacing: 0.04em; }
+.cfg.mon-night .fd__field-sub,
+.cfg.mon-night .cfg__chain-sub { font-style: italic; font-weight: 400; }
 .cfg.mon-night .seal__text { font-weight: 400; letter-spacing: normal; }
 .cfg.mon-night .cfg__style-opt { border-color: rgba(255,255,255,0.55); }
 .cfg.mon-night .cfg__style-opt:hover { border-color: rgba(201,168,76,0.7); }
@@ -337,6 +365,8 @@
 @media (max-width: bp(5pw2fQi7Yr)) {
   .cfg { padding: var(--section-y-m, 56px) 0 80px; }
   .cfg__head { padding: 0 var(--gutter-m, 16px); margin-bottom: 28px; }
+  .cfg__desc-wide { display: none; }
+  .cfg__desc-narrow { display: inline; }
   .cfg__shell { display: block; }
   .cfg__preview {
     top: var(--header-h, 84px);
@@ -392,6 +422,8 @@
   .cfg__summary { padding: 18px 16px; }
   .cfg__row { flex-direction: column; align-items: flex-start; gap: 4px; }
   .cfg__v { text-align: left; }
+  .cfg__chain-row { max-width: none; }
+  .cfg__chain-btn { padding: 14px 8px; letter-spacing: 0.18em; }
 }
 @media (prefers-reduced-motion: reduce) {
   .cfg__flip, .cfg__clear { transition: none; }

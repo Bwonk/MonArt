@@ -28,7 +28,7 @@ export interface CartLineSummary {
   productName: string;
   /** "Roma · Bay · 14 Ayar Altın · 24 Ayar Altın Kaplama" ya da opsiyonsuz satırda ürün adı */
   title: string;
-  /** Yüz başına meta parçaları: ["Ön: IMPERATOR · XIX·VIII·XCVII", "Arka: Osmanlı · AYŞE"] */
+  /** Meta parçaları: ["Ön: IMPERATOR · XIX·VIII·XCVII", "Arka: Osmanlı · AYŞE · Sola Bakan Profil", "Zincir Uzunluğu: 55 cm"] */
   faces: string[];
   /** Opsiyonsuz satırda varyant değerleri ("14 Ayar Altın") */
   variantText: string;
@@ -86,7 +86,13 @@ function faceValues(options: IkasOrderLineItemOption[], prefix: string) {
     name: firstValue(findOption(options, prefix, K.name)),
     date: firstValue(findOption(options, prefix, K.date)),
     roman: firstValue(findOption(options, prefix, K.roman)),
+    direction: firstValue(findOption(options, prefix, K.direction)),
   };
+}
+
+/** Portre yönü değeri sola bakan profil mi ("Sola Bakan Profil"). */
+function isLeft(value: string): boolean {
+  return normalizeKey(value).includes("sola");
 }
 
 /** Detay listesindeki tek opsiyonun okunur değeri; boşsa "". */
@@ -126,6 +132,7 @@ export function summarizeLine(item: IkasOrderLineItem, texts: CartSummaryTexts):
     ? {
         series,
         gender: genderKey(front.gender),
+        direction: isLeft(front.direction) ? "left" : "right",
         bust: isOn(firstValue(findOption(options, K.face1, K.bust)), /bustsuz|yok|hayir/),
         sarik: isOn(firstValue(findOption(options, K.face1, K.sarik)), /acik|sariksiz|yok/),
         material: materialFromLabel(variantText),
@@ -134,14 +141,18 @@ export function summarizeLine(item: IkasOrderLineItem, texts: CartSummaryTexts):
     : null;
   const title = joinParts([front.series, front.gender, variantText, plated ? texts.platingLabel : ""]);
 
-  const faces = [`${texts.frontLabel}: ${joinParts([front.name, front.roman || front.date]) || "—"}`];
+  // Görseller sağa bakar; yalnız sola bakan yüzde yön yazılır (değer admin'deki opsiyon adı).
+  const faces = [`${texts.frontLabel}: ${joinParts([front.name, front.roman || front.date, isLeft(front.direction) ? front.direction : ""]) || "—"}`];
   if (isChecked(findOption(options, K.backFace))) {
     const back = faceValues(options, K.face2);
     // Arka yüzün seri/cinsiyeti öndekinden farklıysa onları da yaz; isim/tarih yoksa "—".
     const differs = back.series !== front.series || back.gender !== front.gender;
     const backHead = differs ? [back.series, back.gender] : [];
-    faces.push(`${texts.backLabel}: ${joinParts([...backHead, back.name, back.roman || back.date]) || "—"}`);
+    faces.push(`${texts.backLabel}: ${joinParts([...backHead, back.name, back.roman || back.date, isLeft(back.direction) ? back.direction : ""]) || "—"}`);
   }
+  const chainOpt = findOption(options, K.chain);
+  const chain = firstValue(chainOpt);
+  if (chainOpt && chain) faces.push(`${chainOpt.name}: ${chain}`);
 
   return { isCustom, productName, title, faces, variantText, details, design };
 }

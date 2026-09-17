@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "preact/hooks";
-import { Finish, Series, SERIES_RULES, fontSafe, upperTr } from "../../utils/coin";
+import { Direction, Finish, Series, SERIES_RULES, fontSafe, upperTr } from "../../utils/coin";
 import { ensureGoogleFont, waitForFonts } from "../../utils/fonts";
 
 /**
@@ -14,6 +14,8 @@ export interface CoinCanvasProps {
   finish: Finish;
   /** 22K görünümü (saturate/brightness filtresi) */
   look22k: boolean;
+  /** Portre yönü: "left" görseli aynalar, Osmanlı'da ismi sol yaya taşır */
+  direction: Direction;
   text: string;
   roman: string;
   /** Yüz çevirme animasyonu (scaleX 0) */
@@ -123,8 +125,12 @@ function drawBottomArcText(ctx: CanvasRenderingContext2D, finish: Finish, raw: s
   ctx.restore();
 }
 
-/** Osmanlı — sağ yan yay, Kufi yazı, alttan yukarı sarar (harf genişliğine orantılı). */
-function drawSideText(ctx: CanvasRenderingContext2D, finish: Finish, raw: string, radius: number) {
+/**
+ * Osmanlı — yan yay, Kufi yazı, alttan yukarı sarar (harf genişliğine orantılı).
+ * İsim portrenin önündeki yaya yazılır: sağa bakınca sağ yay, sola bakınca sol yay.
+ * Harf tepesi iki yayda da merkeze döner; sol yayda metnin SONU alta sabitlenir (sağ yayın aynası).
+ */
+function drawSideText(ctx: CanvasRenderingContext2D, finish: Finish, raw: string, radius: number, side: "right" | "left") {
   const text = fontSafe((raw || "").toLocaleLowerCase("tr-TR")).slice(0, 22);
   const n = text.length;
   if (!n) return;
@@ -148,12 +154,13 @@ function drawSideText(ctx: CanvasRenderingContext2D, finish: Finish, raw: string
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   const grad = inkGradient(ctx, finish, CX - radius, CX, CX + radius, CX);
-  const dir = -1;
+  const step = -1;
   const rotOffset = -Math.PI / 2;
-  let cursor = 0.95; // alt-sağ (~saat 4:30), yukarı doğru sarar
+  // sağ: alt-sağdan (~saat 4:30) yukarı sarar · sol: alt-soldan (~saat 7:30) yayın boyu kadar yukarıdan başlar
+  let cursor = side === "right" ? 0.95 : Math.PI - 0.95 + spread;
   for (let i = 0; i < n; i++) {
     const aw = (widths[i] / total) * spread;
-    const ang = cursor + (dir * aw) / 2;
+    const ang = cursor + (step * aw) / 2;
     ctx.save();
     ctx.translate(CX + Math.cos(ang) * radius, CX + Math.sin(ang) * radius);
     ctx.rotate(ang + rotOffset);
@@ -162,7 +169,7 @@ function drawSideText(ctx: CanvasRenderingContext2D, finish: Finish, raw: string
     ctx.fillStyle = grad;
     ctx.fillText(text[i], 0, 0);
     ctx.restore();
-    cursor += dir * aw;
+    cursor += step * aw;
   }
   ctx.restore();
 }
@@ -176,7 +183,7 @@ function drawFallback(ctx: CanvasRenderingContext2D) {
   ctx.fillRect(0, 0, SIZE, SIZE);
 }
 
-export default function CoinCanvas({ src, series, finish, look22k, text, roman, flipping, ariaLabel, className }: CoinCanvasProps) {
+export default function CoinCanvas({ src, series, finish, look22k, direction, text, roman, flipping, ariaLabel, className }: CoinCanvasProps) {
   const ref = useRef<HTMLCanvasElement>(null);
   const fontsReady = useRef(false);
 
@@ -201,6 +208,11 @@ export default function CoinCanvas({ src, series, finish, look22k, text, roman, 
       ctx.clip();
       if (img) {
         ctx.filter = look22k ? "saturate(1.30) brightness(0.94)" : "none";
+        // Sola bakan profilde yalnız kabartma aynalanır; yazılar sonra çizildiği için ters dönmez.
+        if (direction === "left") {
+          ctx.translate(SIZE, 0);
+          ctx.scale(-1, 1);
+        }
         ctx.drawImage(img, CX - R, CX - R, R * 2, R * 2);
         ctx.filter = "none";
       } else {
@@ -214,7 +226,7 @@ export default function CoinCanvas({ src, series, finish, look22k, text, roman, 
         drawArcText(ctx, finish, text, inscR);
         if (rule.dateOn && roman) drawBottomArcText(ctx, finish, roman, inscR);
       } else if (rule.engine === "side") {
-        drawSideText(ctx, finish, text, R * 0.6);
+        drawSideText(ctx, finish, text, R * 0.6, direction === "left" ? "left" : "right");
       }
     };
 
@@ -237,7 +249,7 @@ export default function CoinCanvas({ src, series, finish, look22k, text, roman, 
     return () => {
       cancelled = true;
     };
-  }, [src, series, finish, look22k, text, roman]);
+  }, [src, series, finish, look22k, direction, text, roman]);
 
   return (
     <canvas

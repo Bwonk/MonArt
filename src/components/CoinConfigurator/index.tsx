@@ -27,6 +27,8 @@ import {
   FaceState,
   MaterialKey,
   Series,
+  ChainLength,
+  CHAIN_LENGTHS,
   MATERIALS,
   SERIES_RULES,
   defaultFace,
@@ -44,6 +46,7 @@ import { saveArtworkMap } from "../../utils/coin-thumbs";
 import CoinCanvas from "../../sub-components/CoinCanvas";
 import FaceDesigner from "../../sub-components/FaceDesigner";
 import SealModal from "../../sub-components/SealModal";
+import DirectionInfoModal from "../../sub-components/DirectionInfoModal";
 import PhotoGuideModal from "../../sub-components/PhotoGuideModal";
 import { FlipIcon } from "../../sub-components/Icons";
 
@@ -91,6 +94,7 @@ export function CoinConfigurator(props: Props) {
     title = "Kendi mirasını",
     titleAccent = "tasarla.",
     description = "",
+    descriptionMobile = "",
     faceFrontLabel = "1. Yüz Görünümü",
     faceBackLabel = "2. Yüz Görünümü",
     flipLabel = "Yüzü Çevir",
@@ -130,6 +134,24 @@ export function CoinConfigurator(props: Props) {
     photoUploadErrorToast = "Fotoğraflar yüklenemedi, lütfen tekrar deneyin.",
     photoTypeToast = "Yalnızca JPG veya PNG yükleyebilirsiniz.",
     consentMissingToast = "",
+    chainLabel = "Zincir Uzunluğu",
+    chainSub = "",
+    chain50Text = "50 cm",
+    chain55Text = "55 cm",
+    chain60Text = "60 cm",
+    dirModalTitle = "",
+    dirModalLead = "",
+    dirModalKicker = "",
+    dirModalSub = "",
+    dirClause1Title = "",
+    dirClause1Text = "",
+    dirClause2Title = "",
+    dirClause2Text = "",
+    dirClause3Title = "",
+    dirClause3Text = "",
+    dirClause4Title = "",
+    dirClause4Text = "",
+    dirModalCloseLabel = "Kapat",
     noteLabel = "Sipariş Notu",
     noteOptional = "",
     notePlaceholder = "",
@@ -188,6 +210,8 @@ export function CoinConfigurator(props: Props) {
     optFace2 = OPTION_CONTRACT.face2,
     optSeries = OPTION_CONTRACT.series,
     optGender = OPTION_CONTRACT.gender,
+    optDirection = OPTION_CONTRACT.direction,
+    optChain = OPTION_CONTRACT.chain,
     optBust = OPTION_CONTRACT.bust,
     optSarik = OPTION_CONTRACT.sarik,
     optName = OPTION_CONTRACT.name,
@@ -215,6 +239,11 @@ export function CoinConfigurator(props: Props) {
   const [back, setBack] = useState<FaceState>(() => defaultFace("osmanli", "F"));
   const [samePhoto, setSamePhoto] = useState(false);
   const [note, setNote] = useState("");
+  /* Zincir fiyatı etkilemez; "Temizle" sıfırlamaz (referans v2). */
+  const [chain, setChain] = useState<ChainLength>("55");
+  const [dirInfoOpen, setDirInfoOpen] = useState(false);
+  const openDirInfo = useCallback(() => setDirInfoOpen(true), []);
+  const closeDirInfo = useCallback(() => setDirInfoOpen(false), []);
   const [giftMode, setGiftMode] = useState<GiftMode>("self");
   const [redeemInput, setRedeemInput] = useState("");
   const [redeemCode, setRedeemCode] = useState<string | null>(null);
@@ -519,10 +548,12 @@ export function CoinConfigurator(props: Props) {
     for (const o of platingOpts) setCheckbox(o, isPlated && o === platingOpt);
     setCheckbox(backOpt, backEnabled);
     setText(findOption(options, optNote), note);
+    setChoiceByKeywords(findOption(options, optChain), [chain]);
     for (const [prefix, f, active] of faces) {
       const rule = SERIES_RULES[f.series];
       setChoiceByKeywords(findOption(options, prefix, optSeries), active ? [f.series === "roma" ? "roma" : f.series === "osmanli" ? "osman" : "misir"] : []);
       setChoiceByKeywords(findOption(options, prefix, optGender), active ? (f.gender === "M" ? ["bay", "erkek", "male"] : ["bayan", "kadin", "female"]) : [], f.gender === "M" ? ["bayan"] : []);
+      setChoiceByKeywords(findOption(options, prefix, optDirection), active ? [f.direction === "left" ? "sola" : "saga"] : []);
       setChoiceByKeywords(findOption(options, prefix, optBust), active && rule.bustOpt ? (f.bust ? ["bustlu", "var", "evet"] : ["bustsuz", "yok", "hayir"]) : []);
       setChoiceByKeywords(findOption(options, prefix, optSarik), active && rule.sarikOpt ? (f.sarik ? ["sarikli", "tulbent", "var"] : ["acik", "sariksiz", "yok"]) : []);
       setText(findOption(options, prefix, optName), active && f.nameOn ? f.text : "");
@@ -534,7 +565,7 @@ export function CoinConfigurator(props: Props) {
   };
   useEffect(() => {
     syncOptions();
-  }, [options, front, back, backEnabled, isPlated, note, platingOpt]);
+  }, [options, front, back, backEnabled, isPlated, note, chain, platingOpt]);
 
   /* ------------------------------------------------------------ özet */
   const genderLabel = (f: FaceState) => (f.gender === "M" ? props.genderMale ?? "♂ Bay" : props.genderFemale ?? "♀ Bayan");
@@ -676,7 +707,13 @@ export function CoinConfigurator(props: Props) {
         <h2 className="cfg__title">
           {title} {titleAccent && <em>{titleAccent}</em>}
         </h2>
-        {description && <p className="cfg__desc">{description}</p>}
+        {(description || descriptionMobile) && (
+          <p className="cfg__desc">
+            {/* Mobilde önizleme üstte, adımlar altta: ayrı metin (referans v2) */}
+            <span className={cx(descriptionMobile && "cfg__desc-wide")}>{description}</span>
+            {descriptionMobile && <span className="cfg__desc-narrow">{descriptionMobile}</span>}
+          </p>
+        )}
       </div>
 
       <div className="cfg__shell">
@@ -692,6 +729,7 @@ export function CoinConfigurator(props: Props) {
               series={faceState.series}
               finish={finish}
               look22k={look22k}
+              direction={faceState.direction}
               text={faceState.nameOn ? faceState.text : ""}
               roman={faceRoman}
               flipping={flipping}
@@ -760,6 +798,7 @@ export function CoinConfigurator(props: Props) {
               onActivate={() => flipTo("front", false)}
               requestPhotoGuide={requestPhotoGuide}
               onToast={showToast}
+              onOpenDirectionInfo={openDirInfo}
               photoTooLargeToast={photoTooLargeToast}
               photoTypeToast={photoTypeToast}
               consentMissing={consentMissing.front}
@@ -791,6 +830,7 @@ export function CoinConfigurator(props: Props) {
               onActivate={() => backEnabled && flipTo("back", false)}
               requestPhotoGuide={requestPhotoGuide}
               onToast={showToast}
+              onOpenDirectionInfo={openDirInfo}
               photoTooLargeToast={photoTooLargeToast}
               photoTypeToast={photoTypeToast}
               samePhoto={{ on: samePhoto, onToggle: toggleSamePhoto }}
@@ -798,6 +838,19 @@ export function CoinConfigurator(props: Props) {
               disabled={!backEnabled}
             />
           </section>
+
+          {/* Zincir uzunluğu (referans v2) */}
+          <div className="cfg__chain">
+            <div className="cfg__chain-label" id="mon-chain-label">{chainLabel}</div>
+            {chainSub && <p className="cfg__chain-sub">{chainSub}</p>}
+            <div className="cfg__chain-row" role="group" aria-labelledby="mon-chain-label">
+              {CHAIN_LENGTHS.map((c) => (
+                <button key={c} type="button" className={cx("cfg__chain-btn", chain === c && "is-active")} aria-pressed={chain === c} onClick={() => setChain(c)}>
+                  {c === "50" ? chain50Text : c === "55" ? chain55Text : chain60Text}
+                </button>
+              ))}
+            </div>
+          </div>
 
           {/* Sipariş notu */}
           <div className="cfg__note">
@@ -919,6 +972,21 @@ export function CoinConfigurator(props: Props) {
       </div>
 
       <SealModal open={sealOpen} title={sealTitle} html={sealText} cancelText={sealCancel} confirmText={sealConfirm} onCancel={() => setSealOpen(false)} onConfirm={() => void addToCartConfirmed()} />
+      <DirectionInfoModal
+        open={dirInfoOpen}
+        title={dirModalTitle}
+        lead={dirModalLead}
+        kicker={dirModalKicker}
+        subtitle={dirModalSub}
+        clauses={[
+          { title: dirClause1Title, text: dirClause1Text },
+          { title: dirClause2Title, text: dirClause2Text },
+          { title: dirClause3Title, text: dirClause3Text },
+          { title: dirClause4Title, text: dirClause4Text },
+        ]}
+        closeLabel={dirModalCloseLabel}
+        onClose={closeDirInfo}
+      />
       <PhotoGuideModal
         open={guideOpen}
         title={pgTitle}

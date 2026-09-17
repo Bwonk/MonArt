@@ -4,13 +4,15 @@
  * Konfigüratör render olduğunda "prop anahtarı → görsel URL" haritasını localStorage'a yazar,
  * sepet satırı tasarımın seri/cinsiyet/görünüm anahtarıyla haritadan okur.
  */
-import { Finish, Gender, MaterialKey, Series, artworkCandidates, effectiveFinish } from "./coin";
+import { Direction, Finish, Gender, MaterialKey, Series, artworkCandidates, effectiveFinish } from "./coin";
 
 const STORAGE_KEY = "monart_artwork";
 
 export interface LineDesign {
   series: Series;
   gender: Gender;
+  /** Sola bakan tasarımda küçük resim yatay aynalanır */
+  direction: Direction;
   bust: boolean;
   sarik: boolean;
   material: MaterialKey | null;
@@ -35,6 +37,21 @@ function readArtworkMap(): Record<string, string> {
     return {};
   }
 }
+
+export interface LineThumb {
+  src: string;
+  /** Görsel sağa bakar; sola bakan tasarımda `transform: scaleX(-1)` */
+  mirrored: boolean;
+}
+
+/** Sepet/sipariş satırı küçük resmi: önce tasarıma uyan sikke görseli, yoksa yedek (ürün) görseli. */
+export function lineThumbFor(design: LineDesign | null, fallback: string | null): LineThumb | null {
+  const fromDesign = design && thumbForDesign(design);
+  if (fromDesign) return { src: fromDesign, mirrored: design!.direction === "left" };
+  return fallback ? { src: fallback, mirrored: false } : null;
+}
+
+export const MIRROR_STYLE = { transform: "scaleX(-1)" };
 
 /** Tasarıma uyan sikke görseli; harita yoksa ya da eşleşme yoksa null. */
 export function thumbForDesign(design: LineDesign): string | null {

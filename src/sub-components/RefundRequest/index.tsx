@@ -10,6 +10,7 @@ import {
 } from "@ikas/bp-storefront";
 import type { AccountTexts } from "../../utils/account-texts";
 import { summarizeOrderLine, lineThumb } from "../../utils/order-line";
+import { MIRROR_STYLE } from "../../utils/coin-thumbs";
 import { linkAttrs } from "../../utils/links";
 import Dialog from "../Dialog";
 import { PlusIcon, MinusIcon } from "../Icons";
@@ -106,7 +107,7 @@ const RefundRequest = observer(function RefundRequest({ order, t, policyLink, co
             return (
               <li key={item.id} className="rfd__item">
                 <span className="rfd__thumb" aria-hidden="true">
-                  {thumb && <img src={thumb} alt="" loading="lazy" />}
+                  {thumb && <img src={thumb.src} alt="" loading="lazy" style={thumb.mirrored ? MIRROR_STYLE : undefined} />}
                 </span>
                 <span className="rfd__name">
                   <span className="rfd__title">{summary.title}</span>

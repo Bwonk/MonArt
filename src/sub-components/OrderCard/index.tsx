@@ -11,6 +11,7 @@ import { fill } from "../../utils/account-texts";
 import { orderLink } from "../../utils/auth";
 import { orderStatusInfo } from "../../utils/order-status";
 import { summarizeOrderLine, lineThumb } from "../../utils/order-line";
+import { MIRROR_STYLE } from "../../utils/coin-thumbs";
 import OrderStatus from "../OrderStatus";
 
 interface Props {
@@ -32,7 +33,7 @@ const OrderCard = observer(function OrderCard({ order, t }: Props) {
   return (
     <article className="ocard">
       <a className="ocard__thumb" href={link.href} onClick={link.onClick} tabIndex={-1} aria-hidden="true">
-        {thumb ? <img src={thumb} alt="" loading="lazy" /> : <span className="ocard__thumb-empty" />}
+        {thumb ? <img src={thumb.src} alt="" loading="lazy" style={thumb.mirrored ? MIRROR_STYLE : undefined} /> : <span className="ocard__thumb-empty" />}
       </a>
 
       <div className="ocard__body">

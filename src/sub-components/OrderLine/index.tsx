@@ -11,6 +11,7 @@ import {
 } from "@ikas/bp-storefront";
 import type { AccountTexts } from "../../utils/account-texts";
 import { summarizeOrderLine, lineThumb } from "../../utils/order-line";
+import { MIRROR_STYLE } from "../../utils/coin-thumbs";
 import { getOrderLineFileUrl } from "../../utils/storefront-api";
 import { cx } from "../../utils/theme-mode";
 
@@ -73,7 +74,7 @@ const OrderLine = observer(function OrderLine({ item, t }: Props) {
   return (
     <li className={cx("oline", item.status === "CANCELLED" && "is-cancelled")}>
       <a className="oline__thumb" href={href} tabIndex={-1} aria-hidden="true">
-        {thumb ? <img src={thumb} alt="" loading="lazy" /> : <span className="oline__thumb-empty" />}
+        {thumb ? <img src={thumb.src} alt="" loading="lazy" style={thumb.mirrored ? MIRROR_STYLE : undefined} /> : <span className="oline__thumb-empty" />}
       </a>
 
       <div className="oline__body">

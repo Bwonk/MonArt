@@ -1839,9 +1839,9 @@
         {
           "name": "consentText",
           "displayName": "Telif Onayı Metni",
-          "type": "TEXT",
+          "type": "RICH_TEXT",
           "required": false,
-          "defaultValue": "Yüklediğim görselin telif/mülkiyet haklarına uygun olduğunu ve çözünürlük/baskı kalitesi sorumluluğunun tarafıma ait olduğunu kabul ediyorum.",
+          "defaultValue": "<p>Yüklediğim görselin <strong>telif/marka haklarına sahip olduğumu</strong> onaylıyorum. Telif veya marka ihlali içeren görsellerde satıcının siparişi tek taraflı iptal etme hakkı olduğunu kabul ediyorum.</p>",
           "groupId": "photos"
         },
         {
@@ -1873,7 +1873,7 @@
           "displayName": "İptal Bilgi Metni",
           "type": "RICH_TEXT",
           "required": false,
-          "defaultValue": "<p><strong>Sanatın icra edilebilirliği.</strong> Yüklediğiniz fotoğraflar, kabartma portre işçiliğine teknik olarak elverişli olup olmadığı yönünden üretim ekibimizce incelenir. Çözünürlüğün yetersiz olması, yüzün kapalı, gölgede veya profilden okunamaz durumda bulunması, açıların rehberimize uymaması ya da görselin sanatsal işçiliğe imkân vermemesi hâlinde tasarımınızı hakkıyla üretemeyiz.</p><p><strong>Tek taraflı fesih hakkımız.</strong> Bu hâllerde MonetArts Studio, siparişi tek taraflı olarak feshetme hakkını saklı tutar. Fesih bir yaptırım değildir; sanatımızı icra edemeyeceğimiz gerekçesine dayanır. Öncelikle sizinle iletişime geçilir ve yeni fotoğraf gönderme imkânı tanınır.</p><p><strong>Bedelin iadesi.</strong> 6502 sayılı Tüketicinin Korunması Hakkında Kanun ve Mesafeli Sözleşmeler Yönetmeliği'nin 16. maddesi uyarınca, siparişin tarafımızca ifa edilememesi hâlinde sözleşme feshedilir; tahsil edilen tüm bedel ve varsa teslim masrafları, fesih bildiriminden itibaren <strong>en geç 14 gün içinde</strong> hiçbir kesinti yapılmaksızın ödeme yönteminize iade edilir.</p><p><strong>Üretime geçildikten sonra.</strong> Kalıp ve kabartma işçiliği başladıktan sonra fotoğraf kaynaklı fesih gündeme gelmez; uygunluk incelemesi üretim öncesinde tamamlanır.</p>",
+          "defaultValue": "<p><strong>Sanatın icra edilebilirliği.</strong> Yüklediğiniz fotoğraflar, kabartma portre işçiliğine teknik olarak elverişli olup olmadığı yönünden üretim ekibimizce incelenir. Çözünürlüğün yetersiz olması, yüzün kapalı, gölgede veya profilden okunamaz durumda bulunması, açıların rehberimize uymaması ya da görselin sanatsal işçiliğe imkân vermemesi hâlinde tasarımınızı hakkıyla üretemeyiz.</p><p><strong>Tek taraflı fesih hakkımız.</strong> Bu hâllerde MonetArts Studio, siparişi tek taraflı olarak feshetme hakkını saklı tutar. Fesih bir yaptırım değildir; sanatımızı icra edemeyeceğimiz gerekçesine dayanır. Öncelikle sizinle iletişime geçilir ve yeni fotoğraf gönderme imkânı tanınır.</p><p><strong>Bedelin iadesi.</strong> 6502 sayılı Tüketicinin Korunması Hakkında Kanun ve Mesafeli Sözleşmeler Yönetmeliği'nin 16. maddesi uyarınca, siparişin tarafımızca ifa edilememesi hâlinde sözleşme feshedilir; tahsil edilen tüm bedel ve varsa teslim masrafları, fesih bildiriminden itibaren <strong>en geç 14 gün içinde</strong> hiçbir kesinti yapılmaksızın ödeme yönteminize iade edilir. Kişiye özel üretilen ürünlerde cayma hakkının bulunmaması (Yönetmelik m. 15/1-b) bu iade yükümlülüğümüzü ortadan kaldırmaz.</p><p><strong>Üretime geçildikten sonra.</strong> Kalıp ve kabartma işçiliği başladıktan sonra fotoğraf kaynaklı fesih gündeme gelmez; uygunluk incelemesi üretim öncesinde tamamlanır.</p>",
           "groupId": "photos"
         },
         {
@@ -1881,7 +1881,7 @@
           "displayName": "Onay Eksik Uyarısı",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "✦ Lütfen görsel telif ve baskı kalitesi sorumluluğunu onaylayınız.",
+          "defaultValue": "✦ Lütfen görselin telif ve marka haklarına sahip olduğunuzu onaylayınız.",
           "groupId": "photos"
         },
         {
@@ -2465,6 +2465,214 @@
           "required": false,
           "groupId": "styleTest",
           "defaultValue": "Seçenek 3"
+        },
+        {
+          "name": "descriptionMobile",
+          "displayName": "Açıklama (mobil)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Üstte canlı önizleme, altta adım adım. Yüzü çevir; iki ayrı hikaye dök.",
+          "groupId": "head"
+        },
+        {
+          "name": "directionLabel",
+          "displayName": "Portre Yönü · Etiket",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Portre Yönü",
+          "groupId": "faces"
+        },
+        {
+          "name": "directionSub",
+          "displayName": "Portre Yönü · Alt Metin",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sikkenizin üzerindeki profilin bakış açısını belirleyin.",
+          "groupId": "faces"
+        },
+        {
+          "name": "directionLeft",
+          "displayName": "Portre Yönü · Sol",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sola Bakan Profil",
+          "groupId": "faces"
+        },
+        {
+          "name": "directionRight",
+          "displayName": "Portre Yönü · Sağ",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sağa Bakan Profil",
+          "groupId": "faces"
+        },
+        {
+          "name": "directionInfoAria",
+          "displayName": "Portre Yönü · Bilgi Düğmesi (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Portre yönü hakkında bilgi",
+          "groupId": "faces"
+        },
+        {
+          "name": "chainLabel",
+          "displayName": "Etiket",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Zincir Uzunluğu",
+          "groupId": "chain"
+        },
+        {
+          "name": "chainSub",
+          "displayName": "Alt Metin",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kolye zinciri ürüne dâhildir; boy tercihinizi seçin.",
+          "groupId": "chain"
+        },
+        {
+          "name": "chain50Text",
+          "displayName": "50 cm",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "50 cm",
+          "groupId": "chain"
+        },
+        {
+          "name": "chain55Text",
+          "displayName": "55 cm",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "55 cm",
+          "groupId": "chain"
+        },
+        {
+          "name": "chain60Text",
+          "displayName": "60 cm",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "60 cm",
+          "groupId": "chain"
+        },
+        {
+          "name": "dirModalTitle",
+          "displayName": "Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "SİKKELERDE PORTRE YÖNÜNÜN TARİHSEL MANTIĞI",
+          "groupId": "dirModal"
+        },
+        {
+          "name": "dirModalLead",
+          "displayName": "Giriş",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sikkelerde portrelerin yönü sabit bir kurala bağlı değildir; tarih boyunca hükümdarların gücünü, egemenlik dönemlerini ve estetik dengeleri yansıtmak için sağa veya sola bakacak şekilde işlenmiştir. Kendi özel MonetArts sikkenizde portrenizin yönünü kişisel estetik tercihinize veya koleksiyonunuzun hikayesine göre dilediğiniz gibi seçebilirsiniz.",
+          "groupId": "dirModal"
+        },
+        {
+          "name": "dirModalKicker",
+          "displayName": "Üst Etiket",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ünvan",
+          "groupId": "dirModal"
+        },
+        {
+          "name": "dirModalSub",
+          "displayName": "Alt Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sikkelerde Yön Geleneği ve Antik Sikke Sanatı",
+          "groupId": "dirModal"
+        },
+        {
+          "name": "dirClause1Title",
+          "displayName": "Madde 1 · Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Antik Yunan ve Roma Dönemi · Güç ve Tanrısallık",
+          "groupId": "dirModal"
+        },
+        {
+          "name": "dirClause1Text",
+          "displayName": "Madde 1 · Metin",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Antik Roma ve Yunan sikkelerinde profilin yönü, hükümdarın güç sembolüydü. Genellikle sağa bakan portreler hakimiyet ve geleceğe bakışı temsil ederken, sola bakan portreler zafer, anma veya özel askeri başarıları simgelemek için tercih edilirdi.",
+          "groupId": "dirModal"
+        },
+        {
+          "name": "dirClause2Title",
+          "displayName": "Madde 2 · Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kraliyet Hükümdar Değişimi Geleneği · Alternatif Yön Kuralı",
+          "groupId": "dirModal"
+        },
+        {
+          "name": "dirClause2Text",
+          "displayName": "Madde 2 · Metin",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İngiltere ve Avrupa darphanelerinde asırlardır süren bir gelenek vardır: Tahta çıkan her yeni hükümdarın sikke üzerindeki profili, bir önceki hükümdarın tam tersi yönüne bakar. Örneğin II. Elizabeth sağa bakarken, Kral III. Charles sola bakmaktadır.",
+          "groupId": "dirModal"
+        },
+        {
+          "name": "dirClause3Title",
+          "displayName": "Madde 3 · Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Osmanlı ve Doğu Numizmatiği · Tuğra ve Yazı Düzlemi",
+          "groupId": "dirModal"
+        },
+        {
+          "name": "dirClause3Text",
+          "displayName": "Madde 3 · Metin",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Osmanlı hat ve madalyon sanatında insan figüründen ziyade tuğra ve yazının akış yönü esas alınırdı. Batı etkisindeki son dönem Osmanlı madalyon ve nişanlarında ise profilin yönü, kompozisyondaki ay-yıldız veya floral bordürlerin estetik dengesine göre belirlenmiştir.",
+          "groupId": "dirModal"
+        },
+        {
+          "name": "dirClause4Title",
+          "displayName": "Madde 4 · Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Tasarım Düzlemi ve Kompozisyon Dengesi",
+          "groupId": "dirModal"
+        },
+        {
+          "name": "dirClause4Text",
+          "displayName": "Madde 4 · Metin",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sikkenin kenarındaki bordür motifleri, yazılar veya eşlik eden semboller (lale, defne çelengi vb.) ile portre arasında görsel bir denge kurmak esastır. Işığın kabartma üzerindeki düşüş açısı, seçilen bakış yönüyle doğrudan etkileşime girer.",
+          "groupId": "dirModal"
+        },
+        {
+          "name": "dirModalCloseLabel",
+          "displayName": "Kapat Düğmesi (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kapat",
+          "groupId": "dirModal"
+        },
+        {
+          "name": "optDirection",
+          "displayName": "Portre Yönü",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Portre Yönü",
+          "groupId": "options"
+        },
+        {
+          "name": "optChain",
+          "displayName": "Zincir Uzunluğu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Zincir",
+          "groupId": "options"
         }
       ],
       "propGroups": [
@@ -2539,6 +2747,14 @@
         {
           "id": "styleTest",
           "name": "Adım 4 · Stil Testi"
+        },
+        {
+          "id": "chain",
+          "name": "Zincir Uzunluğu"
+        },
+        {
+          "id": "dirModal",
+          "name": "Portre Yönü Penceresi"
         }
       ]
     },
