@@ -1,0 +1,155 @@
+/* ===== Kupon / indirim kodu ===== */
+.coupon__label {
+  display: block;
+  margin-bottom: 8px;
+  font-family: var(--f-ui);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.coupon__row { display: flex; gap: 8px; }
+.coupon__input {
+  flex: 1;
+  min-width: 0;
+  text-transform: uppercase;
+}
+.coupon__input::placeholder { text-transform: none; }
+.coupon__btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.coupon__btn.is-busy { cursor: progress; }
+.coupon__msg { margin: 8px 0 0; }
+.coupon__code { overflow-wrap: anywhere; }
+.coupon__remove {
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: color var(--dur, .25s);
+}
+.coupon__remove:disabled { opacity: 0.5; cursor: progress; }
+
+/* ----- Sepet sayfası (özet kutusu) ----- */
+.coupon--page .coupon__input {
+  padding-inline: 12px;
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+}
+.coupon--page .coupon__input::placeholder { letter-spacing: 0; }
+.coupon--page .coupon__input.is-invalid { border-color: var(--error); }
+.coupon--page .coupon__btn { flex-shrink: 0; padding-inline: 16px; }
+.coupon--page .coupon__msg { font-size: 12.5px; color: var(--error); }
+.coupon--page .coupon__applied {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  padding: 12px 14px;
+  border: 1px dashed var(--gold-dim);
+  border-radius: var(--r-field, 6px);
+  background: var(--surface-active);
+}
+.coupon--page .coupon__applied .coupon__label { width: 100%; margin: 0; }
+.coupon--page .coupon__tag { flex: 1; min-width: 0; }
+.coupon--page .coupon__code {
+  font-family: var(--f-ui);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--gold-light);
+}
+.coupon--page .coupon__remove {
+  font-family: var(--f-ui);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--text-dim);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.coupon--page .coupon__remove:hover:not(:disabled) { color: var(--error); }
+
+/* ----- Kese altbilgisi (referans v2 .promo) — gündüz tabanı; gece Header CSS'inde ----- */
+.coupon--drawer {
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.coupon--drawer .coupon__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+}
+.coupon--drawer .coupon__input {
+  padding: 13px 14px;
+  border: 1px solid rgba(138, 106, 24, 0.26);
+  border-radius: var(--r-input, 6px);
+  background: rgba(255, 255, 255, 0.7);
+  color: #2A1F08;
+  font-family: var(--f-body);
+  font-size: 13.5px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  outline: none;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+.coupon--drawer .coupon__input::placeholder { color: #7A6A42; letter-spacing: 0.04em; }
+.coupon--drawer .coupon__input:focus { border-color: var(--gold); background: rgba(201, 168, 76, 0.05); }
+.coupon--drawer .coupon__input.is-invalid { border-color: #9E3B3B; }
+.coupon--drawer .coupon__btn {
+  appearance: none;
+  padding: 13px 22px;
+  border: 1px solid rgba(138, 106, 24, 0.45);
+  border-radius: var(--r-btn, 6px);
+  background: transparent;
+  color: #7A5C12;
+  font-family: var(--f-cinz);
+  font-size: 9.5px;
+  letter-spacing: 0.2em;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+.coupon--drawer .coupon__btn:hover:not(:disabled) { background: rgba(201, 168, 76, 0.14); border-color: var(--gold); }
+.coupon--drawer .coupon__btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.coupon--drawer .coupon__msg {
+  margin-top: 9px;
+  font-family: var(--f-body);
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+.coupon--drawer .coupon__msg.is-err { color: #9E3B3B; }
+.coupon--drawer .coupon__applied {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 14px;
+  border: 1px solid rgba(138, 106, 24, 0.34);
+  border-radius: var(--r-card, 6px);
+  background: rgba(201, 168, 76, 0.12);
+}
+.coupon--drawer .coupon__tag {
+  min-width: 0;
+  font-family: var(--f-body);
+  font-size: 12.5px;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: #7A5C12;
+}
+.coupon--drawer .coupon__code { font-weight: 600; letter-spacing: 0.12em; }
+.coupon--drawer .coupon__remove {
+  flex-shrink: 0;
+  font-family: var(--f-cinz);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: #5A4A22;
+}
+.coupon--drawer .coupon__remove:hover:not(:disabled) { color: var(--gold); }
+
+@media (max-width: 420px) {
+  .coupon--drawer .coupon__row { grid-template-columns: minmax(0, 1fr); }
+  .coupon--drawer .coupon__btn { padding: 12px 18px; }
+}

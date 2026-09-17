@@ -42,7 +42,8 @@ export function Header(props: Props) {
     cartEmptyHint = "Atölyede ilk eserini şekillendir.",
     cartEmptyButtonText = "Atölyeye Git",
     totalLabel = "Toplam",
-    checkoutButtonText = "Sikke Sikke Öde :)",
+    checkoutButtonText = "Ödemeye Geç",
+    checkoutIcon,
     viewCartButtonText = "Keseyi Gör",
     removeLabel = "Kaldır",
     quantityLabel = "Adet",
@@ -51,6 +52,15 @@ export function Header(props: Props) {
     cartPlatingLabel = "24 Ayar Altın Kaplama",
     decreaseLabel = "Adedi azalt",
     increaseLabel = "Adedi artır",
+    cartCouponPlaceholder = "İndirim kodu",
+    cartCouponApplyText = "Uygula",
+    cartCouponApplyingText = "Uygulanıyor…",
+    cartCouponRemoveText = "Kaldır",
+    cartCouponEmptyText = "Lütfen bir indirim kodu girin.",
+    cartCouponErrorText = "Kod geçersiz veya süresi dolmuş.",
+    cartCouponFreeText = "Bu siparişte indirim uygulanabilecek bir bedel bulunmuyor.",
+    cartSubtotalLabel = "Ara Toplam",
+    cartDiscountLabel = "İndirim",
     backgroundColor = "#FFFFFF",
     blurBackground = true,
     logoCoinScale = 115,
@@ -102,6 +112,17 @@ export function Header(props: Props) {
     totalLabel,
     checkoutButtonText,
     viewCartButtonText,
+    subtotalLabel: cartSubtotalLabel,
+    discountLabel: cartDiscountLabel,
+    coupon: {
+      placeholder: cartCouponPlaceholder,
+      applyText: cartCouponApplyText,
+      applyingText: cartCouponApplyingText,
+      removeText: cartCouponRemoveText,
+      errorText: cartCouponErrorText,
+      emptyCodeText: cartCouponEmptyText,
+      freeCartText: cartCouponFreeText,
+    },
     removeLabel,
     quantityLabel,
     decreaseLabel,
@@ -254,7 +275,7 @@ export function Header(props: Props) {
         </div>
       </div>
 
-      {showCart && <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} texts={cartTexts} />}
+      {showCart && <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} texts={cartTexts} checkoutIcon={checkoutIcon} />}
     </header>
   );
 }

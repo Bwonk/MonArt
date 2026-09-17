@@ -1,5 +1,5 @@
 // This file is auto-generated — do not edit manually.
-import type { IkasNavigationLink } from "@ikas/bp-storefront";
+import type { IkasNavigationLink, IkasImage } from "@ikas/bp-storefront";
 
 export interface Props {
   eyebrow?: string;
@@ -38,4 +38,5 @@ export interface Props {
   couponAppliedLabel?: string;
   couponErrorText?: string;
   backgroundColor?: string;
+  checkoutIcon?: IkasImage | null;
 }

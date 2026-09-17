@@ -95,6 +95,18 @@
   justify-content: space-between;
 }
 .kese__total .mon-label { font-size: 10.5px; font-weight: 500; letter-spacing: 0.32em; }
+
+/* indirim uygulanınca TOPLAM'ın üstünde ara toplam + indirim (referans v2 .cart-total--line); gece renkleri Header CSS'inde */
+.kese__lines { display: grid; gap: 6px; }
+.kese__total--line .mon-label { font-size: 12.5px; }
+.kese__sub {
+  font-family: var(--f-body);
+  font-size: 13.5px;
+  font-weight: 400;
+  color: #3A2C0A;
+  white-space: nowrap;
+}
+.kese__total--save .kese__sub { color: #2F6B33; }
 .kese__checkout { margin-top: 4px; }
 
 .kese__view-cart { align-self: center; }

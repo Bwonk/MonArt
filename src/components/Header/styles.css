@@ -192,6 +192,21 @@
 .mon-header.mon-night .cart-line__meta,
 .mon-header.mon-night .kese__empty-text,
 .mon-header.mon-night .kese__empty-hint { font-style: italic; font-weight: 400; letter-spacing: normal; }
+
+/* kese indirim kodu — gece (referans v2 .promo koyu tema) */
+.mon-header.mon-night .coupon__input { color: #F2EEE4; background: rgba(255, 255, 255, 0.03); border-color: var(--line); }
+.mon-header.mon-night .coupon__input::placeholder { color: rgba(255, 255, 255, 0.34); }
+.mon-header.mon-night .coupon__input:focus { border-color: var(--gold); background: rgba(201, 168, 76, 0.05); }
+.mon-header.mon-night .coupon__input.is-invalid { border-color: #E9A5A5; }
+.mon-header.mon-night .coupon__btn { color: var(--gold); border-color: rgba(201, 168, 76, 0.55); }
+.mon-header.mon-night .coupon__btn:hover:not(:disabled) { border-color: var(--gold); }
+.mon-header.mon-night .coupon__msg.is-err { color: #E9A5A5; }
+.mon-header.mon-night .coupon__applied { background: rgba(201, 168, 76, 0.07); border-color: rgba(201, 168, 76, 0.45); }
+.mon-header.mon-night .coupon__tag { color: var(--gold); }
+.mon-header.mon-night .coupon__remove { color: rgba(255, 255, 255, 0.5); }
+.mon-header.mon-night .coupon__remove:hover:not(:disabled) { color: var(--gold); }
+.mon-header.mon-night .kese__sub { color: rgba(255, 255, 255, 0.72); }
+.mon-header.mon-night .kese__total--save .kese__sub { color: #8FBF8F; }
 .mon-header .mon-header__chev { width: 12px; height: 12px; transition: transform var(--dur); }
 .mon-header__item:hover .mon-header__chev { transform: rotate(180deg); }
 .mon-header__dropdown {

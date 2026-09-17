@@ -215,7 +215,7 @@
           "displayName": "Ödeme Butonu",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "Sikke Sikke Öde :)",
+          "defaultValue": "Ödemeye Geç",
           "groupId": "cartTexts"
         },
         {
@@ -306,6 +306,85 @@
           "required": false,
           "description": "Koyu zeminli sikke görselini daireyi dolduracak kadar büyütür",
           "defaultValue": 115
+        },
+        {
+          "name": "checkoutIcon",
+          "displayName": "Ödeme Butonu Görseli",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "cartTexts"
+        },
+        {
+          "name": "cartCouponPlaceholder",
+          "displayName": "İndirim Kodu Alanı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İndirim kodu",
+          "groupId": "cartTexts"
+        },
+        {
+          "name": "cartCouponApplyText",
+          "displayName": "İndirim Kodu Uygula",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Uygula",
+          "groupId": "cartTexts"
+        },
+        {
+          "name": "cartCouponApplyingText",
+          "displayName": "İndirim Kodu Uygulanıyor",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Uygulanıyor…",
+          "groupId": "cartTexts"
+        },
+        {
+          "name": "cartCouponRemoveText",
+          "displayName": "İndirim Kodu Kaldır",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kaldır",
+          "groupId": "cartTexts"
+        },
+        {
+          "name": "cartCouponEmptyText",
+          "displayName": "Boş Kod Uyarısı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Lütfen bir indirim kodu girin.",
+          "groupId": "cartTexts"
+        },
+        {
+          "name": "cartCouponErrorText",
+          "displayName": "Geçersiz Kod Uyarısı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kod geçersiz veya süresi dolmuş.",
+          "groupId": "cartTexts"
+        },
+        {
+          "name": "cartCouponFreeText",
+          "displayName": "Bedelsiz Sepet Uyarısı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bu siparişte indirim uygulanabilecek bir bedel bulunmuyor.",
+          "groupId": "cartTexts"
+        },
+        {
+          "name": "cartSubtotalLabel",
+          "displayName": "Ara Toplam Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ara Toplam",
+          "groupId": "cartTexts"
+        },
+        {
+          "name": "cartDiscountLabel",
+          "displayName": "İndirim Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İndirim",
+          "groupId": "cartTexts"
         }
       ],
       "propGroups": [
@@ -3390,7 +3469,7 @@
           "displayName": "Ödeme Butonu",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "Sikke Sikke Öde :)",
+          "defaultValue": "Ödemeye Geç",
           "groupId": "summary"
         },
         {
@@ -3456,6 +3535,13 @@
           "required": false,
           "defaultValue": "#FFFFFF",
           "groupId": "appearance"
+        },
+        {
+          "name": "checkoutIcon",
+          "displayName": "Ödeme Butonu Görseli",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "summary"
         }
       ],
       "propGroups": [

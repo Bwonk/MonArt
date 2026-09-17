@@ -41,4 +41,14 @@ export interface Props {
   increaseLabel?: string;
   /** Koyu zeminli sikke görselini daireyi dolduracak kadar büyütür */
   logoCoinScale?: number;
+  checkoutIcon?: IkasImage | null;
+  cartCouponPlaceholder?: string;
+  cartCouponApplyText?: string;
+  cartCouponApplyingText?: string;
+  cartCouponRemoveText?: string;
+  cartCouponEmptyText?: string;
+  cartCouponErrorText?: string;
+  cartCouponFreeText?: string;
+  cartSubtotalLabel?: string;
+  cartDiscountLabel?: string;
 }
