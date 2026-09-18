@@ -104,9 +104,16 @@ Tek farkımız düğmenin 6px daha uzun olmasıydı: referans `line-height: norm
 Doğrulama (yeni kurallar canlı sayfaya enjekte edilip ölçüldü): 400/440/480px'te iki düğme de 38×38,
 sikke 240px, bindirme yerine **24px boşluk**; 481px ve üstünde etiketler dönüyor, taşma yok.
 
-⚠️ Ayrı ve **dokunulmayan** bir durum: fiyat kutusu (`right: 18px`, ≤640px'te `z-index: 3`) 400px'te
-sikkenin sağ ~41px'inin üstüne biniyor. Referansta da böyle ve z-index sayesinde okunuyor; kullanıcı
-bunu bildirmedi, değiştirilmedi.
+**Fiyat kutusu (aynı turda, kullanıcı isteği):** düzeltmeden sonra kullanıcı fiyatın "bir tık sağ üste"
+gitmesi gerektiğini söyledi. 400px'te üç aday canlı sayfada denenip karşılaştırıldı — `top` 58 (referans,
+üstten 37,2px) / 46 (25,2px) / 38 (17,2px). Seçilen: **`top: 38px`**; "TOPLAM FİYAT" çevir düğmesinin üst
+hizasına geliyor (düğme üstten 16px) ve `₺` sikkenin kenarından kurtuluyor. Referanstan bilinçli sapma.
+
+`right: 18px` **değiştirilmedi**: sayfa gutter'ıyla aynı hizada (malzeme kartları, başlıklar ve Footer'ın
+sağ kenarı), daha sağa alınırsa o hizadan taşar. Kullanıcıya 14px'lik varyant sunuldu, seçilmedi.
+
+481/640/860px'te doğrulandı: fiyat her genişlikte çubuğun içinde kalıyor, sikkeyle yatay bindirme yok
+(481px'te 0,7px, önceden de öyleydi).
 
 ---
 

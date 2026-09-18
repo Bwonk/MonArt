@@ -454,7 +454,10 @@
   .cfg__stage { grid-column: 2; grid-row: 1; width: 240px; height: 240px; max-width: none; margin: 0 calc((100% - 240px) / 2); justify-self: center; align-self: start; position: relative; z-index: 2; }
   .cfg__preview-actions { grid-column: 1; grid-row: 1; align-items: stretch; gap: 8px; }
   .cfg__flip, .cfg__clear { padding: 8px 10px; font-size: 8.5px; letter-spacing: 0.14em; justify-content: center; }
-  .cfg__price-box { position: absolute; right: 18px; top: 58px; transform: translateY(-50%); margin: 0; padding: 0; border: none; text-align: right; }
+  /* Referans 58px; kullanıcı kararı (18.09.2026) fiyatı çubuğun sağ üstüne çekmek. 38px'te
+     "TOPLAM FİYAT" çevir düğmesinin üst hizasına gelir ve ₺ sikkenin kenarından kurtulur.
+     Sağ 18px sayfa gutter'ıyla aynı hizada, bilerek değiştirilmedi. */
+  .cfg__price-box { position: absolute; right: 18px; top: 38px; transform: translateY(-50%); margin: 0; padding: 0; border: none; text-align: right; }
   .cfg__price-label { font-size: 8.5px; letter-spacing: 0.24em; margin-bottom: 2px; }
   .cfg__price { font-size: 20px; }
   .cfg__price-sub { display: none; }
