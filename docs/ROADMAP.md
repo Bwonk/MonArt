@@ -76,6 +76,7 @@ Editor URL'sini tarayıcıda açık tut. MCP editor araçları ancak editor bağ
 | `reference/MonArtDEMO_clean/` | İlk prototip (v1). Faz 0–11a ve eski dokümanlardaki satır numaraları buna ait; yalnız karşılaştırma için |
 | `docs/reference-v2-changes.md` | v1 → v2 farkları, birebir yeni metinler, ikas eşlemesi ve faz ataması |
 | `docs/qa-11b.md` | Faz 11b QA raporu: tarama yöntemi, bulgular (B1–B4), doğrulanan açık uçlar, kullanıcıda kalanlar |
+| `docs/store-handover.md` | Temayı merchant'ın mağazasına bağlama runbook'u: neyin taşındığı, otomatik/elle adımlar, sayfa SEO, doğrulama |
 | `~/.claude/plans/ilk-nce-users-yigitozen-orca-projects-mo-sharded-umbrella.md` | Faz 2 sonrası doküman düzeltme planı |
 
 ---
@@ -281,7 +282,7 @@ Her yerleşimde aynı 4 link: `ordersEmptyLink` EXTERNAL `/#atolye`, `refundPoli
 | ~~Hakkımızda ve SSS'te `h1` yoktu~~ ✅ 11b: ikisinde de `h1` var. Aynı taramada ürün sayfasında `h1` olmadığı bulundu; CoinConfigurator'a `titleAsH1` eklenip Ürün sayfasında açıldı, yayında doğrulandı | SEO | ✅ |
 | EXTERNAL göreli linkler (`/#atolye`, `/pages/koleksiyon?seri=…`) dil prefix'i almıyordu (Footer seri linkleri, CartPage "Atölyeye Dön", 404 "Kolyeni Tasarla", AccountPage boş durumları). Faz 11a: `linkAttrs`/`linkHref` (`src/utils/links.ts`) `/` ile başlayan href'leri `withRoutePrefix`'ten geçiriyor. İkinci routing kurulunca doğrulanacak | tüm link'ler | 11d |
 | Ana vitrinde (`dev-monoart.myikas.com`) hâlâ eski tema var ve `<html lang="en">` dönüyor; büyük harfe çevrilen Türkçe metinde i → I oluyor. Bizim temanın önizlemesi `lang="tr"`. Ana temaya yayından sonra doğrula | tüm section'lar | 11 |
-| **Tema sayfalarının `<title>` etiketi boş** (11b bulgusu B3): `/sikke-kolye` dışında taranan 20 sayfanın hepsinde `document.title === ""`. Ürün sayfası başlığını üründen alıyor. Kod değil, editördeki sayfa/SEO ayarı; son commit SEO adımını Faz 11 planından çıkardığı için karar kullanıcıda | tüm sayfalar | kullanıcı / SEO |
+| **Tema sayfalarının `<title>` etiketi boş** (11b bulgusu B3): `/sikke-kolye` dışında 20 sayfada `document.title === ""`, `description` boş, `og:site_name` mağaza adı yerine URL basıyor. **Tema hatası değil** — ikas bu etiketleri kendisi basıyor, alanlar mağaza tarafında boş. MCP'de sayfa SEO yazan araç yok. Devirde doldurulacak: `docs/store-handover.md` §3.G | mağaza ayarı | devir |
 | Kapalı çekmecelerde klavye odağı (B1) ve Esc (B2) 11b'de düzeltilip yayında doğrulandı. Aynı `visibility` kalıbı başka bir katman eklenirse tekrarlanmalı | Header, CartDrawer | ✅ |
 | Galeride 22 Ayar, Model ve Paketleme görselleri yok, yer tutucu görünüyor. Merchant yükleyecek; istenirse `showEmptyCells` kapatılır | CollectionGallery | içerik |
 | İletişim formu mesajları admin panelinde görünmüyor (Gelen Kutusu'nda "ikas Form" kanalı "Yakında"); mesajlar mağaza sahibinin e-postasına geliyor — kullanıcı test mesajlarının geldiğini doğruladı. Merchant'a form mesajlarını e-postadan takip etmesi söylenmeli | admin / e-posta | bilgi |
