@@ -1,4 +1,5 @@
 import { observer } from "@ikas/component-utils";
+import { useEffect } from "preact/hooks";
 import {
   cartStore,
   Router,
@@ -41,6 +42,17 @@ interface Props {
 
 const CartDrawer = observer(function CartDrawer({ open, onClose, texts, checkoutIcon }: Props) {
   useScrollLock(open);
+
+  // Modallarda olduğu gibi Esc çekmeceyi kapatır.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open, onClose]);
+
   const cart = cartStore.cart;
   const lines = (cart?.orderLineItems ?? []).filter((item) => !item.deleted);
   const count = cart ? getIkasOrderTotalItemCount(cart) : 0;

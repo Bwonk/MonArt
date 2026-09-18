@@ -2673,6 +2673,13 @@
           "required": false,
           "defaultValue": "Zincir",
           "groupId": "options"
+        },
+        {
+          "name": "titleAsH1",
+          "displayName": "Başlığı H1 yap",
+          "type": "BOOLEAN",
+          "required": false,
+          "groupId": "head"
         }
       ],
       "propGroups": [

@@ -201,4 +201,5 @@ export interface Props {
   dirModalCloseLabel?: string;
   optDirection?: string;
   optChain?: string;
+  titleAsH1?: boolean;
 }

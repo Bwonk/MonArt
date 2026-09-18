@@ -296,8 +296,11 @@
   inset: 0;
   z-index: var(--z-drawer, 8800);
   pointer-events: none;
+  /* Kapalı menü ekran dışına kayıyordu ama linkleri Tab sırasında kalıyordu (bkz. CartDrawer). */
+  visibility: hidden;
+  transition: visibility 0s linear var(--dur-slow);
 }
-.mon-menu.is-open { pointer-events: auto; }
+.mon-menu.is-open { pointer-events: auto; visibility: visible; transition: visibility 0s; }
 .mon-menu__backdrop { opacity: 0; transition: opacity var(--dur) ease; }
 .mon-menu.is-open .mon-menu__backdrop { opacity: 1; }
 /* global .mon-drawer.is-open panelin kendisini bekliyor; is-open kapsayıcıda olduğu için panel burada açılır. */

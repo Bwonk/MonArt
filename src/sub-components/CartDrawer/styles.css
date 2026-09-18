@@ -4,8 +4,13 @@
   inset: 0;
   z-index: var(--z-drawer, 8800);
   pointer-events: none;
+  /* Kapalı çekmece yalnız ekran dışına kayıyordu; içindeki düğmeler Tab sırasında kalıyor
+     ve odak halkası görünmez yere gidiyordu (aria-hidden içinde odaklanabilir öğe).
+     Modallardaki gibi visibility ile gizlenir; geçiş gecikmesi kapanma animasyonunu korur. */
+  visibility: hidden;
+  transition: visibility 0s linear var(--dur-slow);
 }
-.kese.is-open { pointer-events: auto; }
+.kese.is-open { pointer-events: auto; visibility: visible; transition: visibility 0s; }
 
 .kese__backdrop {
   opacity: 0;

@@ -72,6 +72,16 @@ export function Header(props: Props) {
   const [cartOpen, setCartOpen] = useState(false);
   useScrollLock(menuOpen);
 
+  // Modallarda olduğu gibi Esc mobil menüyü kapatır.
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
+
   // Tema değişince sikke dönerken bir kez büyüyüp küçülür (referans coinDepth).
   const [spinning, setSpinning] = useState(false);
   const prevNight = useRef(isNight);

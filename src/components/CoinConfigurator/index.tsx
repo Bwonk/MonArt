@@ -111,6 +111,7 @@ export function CoinConfigurator(props: Props) {
     titleAccent = "tasarla.",
     description = "",
     descriptionMobile = "",
+    titleAsH1 = false,
     faceFrontLabel = "1. Yüz Görünümü",
     faceBackLabel = "2. Yüz Görünümü",
     flipLabel = "Yüzü Çevir",
@@ -244,6 +245,7 @@ export function CoinConfigurator(props: Props) {
   } = props as Props & { closeLabel?: string };
 
   const theme = useSectionTheme();
+  const Title = titleAsH1 ? "h1" : "h2";
 
   /* ------------------------------------------------------------ state */
   const [material, setMaterialState] = useState<MaterialKey>("22k");
@@ -720,9 +722,10 @@ export function CoinConfigurator(props: Props) {
     >
       <div className="cfg__head">
         {eyebrow && <div className="mon-eyebrow cfg__eyebrow">{eyebrow}</div>}
-        <h2 className="cfg__title">
+        {/* Ürün sayfasında konfigüratör sayfanın ana içeriği; orada başlık h1 olur (Hero yok). */}
+        <Title className="cfg__title">
           {title} {titleAccent && <em>{titleAccent}</em>}
-        </h2>
+        </Title>
         {(description || descriptionMobile) && (
           <p className="cfg__desc">
             {/* Mobilde önizleme üstte, adımlar altta: ayrı metin (referans v2) */}
