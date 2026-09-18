@@ -501,6 +501,12 @@
   }
   .cfg__flip-icon, .cfg__clear-icon { width: 15px; height: 15px; }
 }
+/* ~425px altında sikkenin yayı fiyat satırının sol alt köşesini kesiyordu (400px'te ₺ glifini
+   11,5px). Kullanıcı kararı (18.09.2026): düzen aynı kalsın, yalnız punto düşsün.
+   14px 390px ve üstünde tamamen kurtarıyor (400px'te 8,7px boşluk). */
+@media (max-width: 430px) {
+  .cfg__price { font-size: 14px; }
+}
 @media (prefers-reduced-motion: reduce) {
   .cfg__flip, .cfg__clear { transition: none; }
 }

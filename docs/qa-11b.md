@@ -115,6 +115,35 @@ sağ kenarı), daha sağa alınırsa o hizadan taşar. Kullanıcıya 14px'lik va
 481/640/860px'te doğrulandı: fiyat her genişlikte çubuğun içinde kalıyor, sikkeyle yatay bindirme yok
 (481px'te 0,7px, önceden de öyleydi).
 
+**Yukarı taşımadan sonra kalan değme (aynı tur):** yayında bakınca `₺` glifi hâlâ sikkenin yayına
+değiyordu. Ölçüm (400px): glif 278,8–286,4; dairenin o yükseklikteki ulaşımı glifin üstünde 263,1,
+ortasında 278,7, **altında 290,3** — yani rim glifin sol alt köşesini 11,5px kesiyor.
+
+Denenen ve **yetmeyen** çözümler (hepsi ölçüldü):
+- Fiyatı daha yukarı almak: kutu zaten çubuğun 16px üst payına dayanmış durumda.
+- Sikkeyi sola kaydırmak: 390px+ çözüyor, ama 360/375px'te yeterli kaydırma sikkeyi düğmelere çarptırıyor.
+- Sikkeyi küçültmek: 360px'te fiyat kutusu (103px) ekranın %29'u; ortalanmış sikke hangi boyutta olursa
+  olsun yayı fiyata ulaşıyor (temiz kalması için sikkenin ~125px'e inmesi gerekiyordu).
+- Fiyatı sağa almak: `right: 18px` sayfa gutter'ı, taşarsa alttaki kartlar ve Footer'la hizası bozulur.
+
+Kullanıcıya dört seçenek sunuldu (fiyat kendi satırına — 136→168px çubuk, her genişlikte temiz; sikke
+12px sola; fiyata zemin plakası; olduğu gibi). **Kullanıcı kararı: düzen aynı kalsın, yalnız punto düşsün.**
+
+Uygulanan: `@media (max-width: 430px) { .cfg__price { font-size: 14px } }` (17px'ten). Çakışma ~425px
+altında başladığı için kural oraya sınırlandı, tabletlerde punto düşmüyor. Sonuç (pozitif = boşluk):
+
+| Genişlik | 17px (önce) | 14px (sonra) |
+|---|---|---|
+| 414 | −4,4 | **+15,7** |
+| 400 | −11,5 | **+8,7** |
+| 390 | −16,5 | **+3,7** |
+| 375 | −24 | −3,8 |
+| 360 | −31,5 | −11,3 |
+
+⚠️ **360 ve 375px'te (iPhone SE / mini) `₺` hâlâ yaya değiyor.** Punto tek başına orayı kurtarmıyor:
+13px'te 375 kurtuluyor (+3) ama 360 yine değiyor (−4,5). Orayı da temizlemek için yapısal seçeneklerden
+biri (fiyatın kendi satırına çıkması) gerekiyor.
+
 ---
 
 ## 3. Doğrulanan açık uçlar
