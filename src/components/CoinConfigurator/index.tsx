@@ -49,7 +49,7 @@ import FaceDesigner from "../../sub-components/FaceDesigner";
 import SealModal from "../../sub-components/SealModal";
 import DirectionInfoModal from "../../sub-components/DirectionInfoModal";
 import PhotoGuideModal from "../../sub-components/PhotoGuideModal";
-import { FlipIcon } from "../../sub-components/Icons";
+import { FlipIcon, TrashIcon } from "../../sub-components/Icons";
 
 type GiftMode = "self" | "gift" | "redeem";
 const GIFT_CODE_RE = /^MONETARTS-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/;
@@ -756,12 +756,15 @@ export function CoinConfigurator(props: Props) {
             />
           </div>
           <div className="cfg__preview-actions">
+            {/* ≤480px: sikke (240px) yan sütunlara yer bırakmıyor. Etiketler görsel olarak
+                gizlenir (erişilebilir ad olarak kalır), düğmeler ikona iner. */}
             <button type="button" className="cfg__flip" onClick={flipCoin}>
               <FlipIcon className="cfg__flip-icon" />
-              <span>{flipLabel}</span>
+              <span className="cfg__btn-label">{flipLabel}</span>
             </button>
             <button type="button" className="cfg__clear" onClick={clearDesign}>
-              {clearLabel}
+              <TrashIcon className="cfg__clear-icon" />
+              <span className="cfg__btn-label">{clearLabel}</span>
             </button>
           </div>
           <div className="cfg__price-box">

@@ -79,11 +79,15 @@
   font-weight: 600;
   letter-spacing: 0.24em;
   text-transform: uppercase;
+  /* Gövdenin 1.55'i iki satıra kırılan etikette düğmeyi gereksiz uzatıyordu (referans: normal). */
+  line-height: 1.2;
   cursor: pointer;
   transition: background var(--dur), color var(--dur), letter-spacing var(--dur);
 }
 .cfg__flip:hover { background: rgba(201,168,76,0.18); }
 .cfg__flip-icon { width: 13px; height: 13px; }
+/* "Temizle" ikonu yalnız dar ekrandaki ikon düğmesinde görünür (referansta da ikonu yok). */
+.cfg__clear-icon { display: none; width: 13px; height: 13px; }
 .cfg__clear { padding: 8px 18px; font-size: 9.5px; font-weight: 500; letter-spacing: 0.3em; }
 .cfg__clear:hover { background: var(--gold-grad); color: var(--on-gold); letter-spacing: 0.34em; }
 .cfg__price-box { margin-top: 18px; padding-top: 16px; border-top: 1px dashed rgba(201,168,76,0.22); text-align: center; }
@@ -474,6 +478,25 @@
   .cfg__v { text-align: left; }
   .cfg__chain-row { max-width: none; }
   .cfg__chain-btn { padding: 14px 8px; letter-spacing: 0.18em; }
+}
+/* 240px sikke + iki 96px yan sütun + boşluk + kenar payı = 488px ister. Altında sikke
+   düğmelerin üstüne biniyordu (400px'te 34px). Kullanıcı kararı (18.09.2026): sikke tam
+   boyunda kalsın, düğmeler ikona insin. 480px literal: tema breakpoint'leri 860 ve 640. */
+@media (max-width: 480px) {
+  .cfg__preview { grid-template-columns: 44px 1fr 44px; }
+  .cfg__preview-actions { gap: 10px; }
+  .cfg__flip, .cfg__clear { padding: 0; width: 38px; height: 38px; justify-content: center; gap: 0; }
+  .cfg__clear-icon { display: block; }
+  /* Etiket görsel olarak gizlenir ama erişilebilir ad olarak kalır (aria-label tekrarına gerek yok). */
+  .cfg__btn-label {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .cfg__flip-icon, .cfg__clear-icon { width: 15px; height: 15px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .cfg__flip, .cfg__clear { transition: none; }

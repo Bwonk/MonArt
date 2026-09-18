@@ -80,6 +80,34 @@ planından çıkardığı için karar kullanıcıda.
 Yalnız **Ürün sayfası** yerleşiminde (`vCT6WKmBTD`) açıldı; Ana sayfada (`CnxvAPawqP`) kapalı kaldı ki
 Hero'nun `h1`'i tek kalsın. Stil `.cfg__title` class'ından geldiği için görsel değişiklik yok.
 
+### B5 — Mobil önizleme çubuğunda sikke düğmeleri eziyordu ✅ düzeltildi
+
+Kullanıcı bildirimi (18.09.2026, 400px ekran görüntüsü). Ölçüm:
+
+- Sikke sabit **240px** ve ortalanmış (400px'te 80…320), düğmeler **96px**'lik yan sütunda (18…114).
+  Sikke `z-index: 2` ile üstte olduğu için **düğmelerin sağ 34px'ini örtüyordu**.
+- "YÜZÜ ÇEVİR" 96px'e sığmayıp iki satıra kırılıyor, düğme 44,3px oluyordu ("TEMİZLE" 31,2px).
+- Geometri: 240px sikke + 2×96px sütun + 2×10px boşluk + 2×18px kenar payı = **488px** ister.
+  480px'te kıl payı kurtuluyor (−6px), altında bindirme kaçınılmaz.
+
+**Port hatası değil:** referans v2 aynı ızgarayı (`96px 1fr 96px`), aynı 240px sikkeyi ve aynı
+8.5px/0.14em'i kullanıyor; `reference/MonArt2_clean` 400px'te ölçüldü, orada da iki satır (38px).
+Tek farkımız düğmenin 6px daha uzun olmasıydı: referans `line-height: normal`, biz gövdeden
+1,55 miras alıyorduk (13.175px).
+
+**Düzeltme (kullanıcı kararı: sikke tam boyunda kalsın, düğmeler ikona insin):**
+- `.cfg__flip, .cfg__clear` → `line-height: 1.2` (her genişlikte; 44,3 → 38,4px, referansla aynı).
+- `@media (max-width: 480px)` (tema breakpoint'leri 860 ve 640 olduğu için literal): yan sütunlar
+  `44px`, düğmeler 38×38 ikon karesi, `.cfg__clear`'a `TrashIcon` eklendi, etiketler görsel olarak
+  gizlendi ama **erişilebilir ad olarak kaldı** (sr-only kalıbı; `aria-label` tekrarı gerekmedi).
+
+Doğrulama (yeni kurallar canlı sayfaya enjekte edilip ölçüldü): 400/440/480px'te iki düğme de 38×38,
+sikke 240px, bindirme yerine **24px boşluk**; 481px ve üstünde etiketler dönüyor, taşma yok.
+
+⚠️ Ayrı ve **dokunulmayan** bir durum: fiyat kutusu (`right: 18px`, ≤640px'te `z-index: 3`) 400px'te
+sikkenin sağ ~41px'inin üstüne biniyor. Referansta da böyle ve z-index sayesinde okunuyor; kullanıcı
+bunu bildirmedi, değiştirilmedi.
+
 ---
 
 ## 3. Doğrulanan açık uçlar
