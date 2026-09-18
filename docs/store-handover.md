@@ -25,6 +25,9 @@ yayında kullanıcı onayı al.**
 `docs/ROADMAP.md` §4 "Kimlikler" tablosundaki bütün id'ler **dev mağazasına aittir**, yeni mağazada geçersizdir.
 Bileşen id'leri (`wnbxmerd-…`) `ikas.config.json`'dan geldiği için değişmez.
 
+Değerlerin yedeği `backup/` altında durur ve `scripts/export-section-values.mjs` ile üretilir (§3.F).
+**Dev mağazası kapanmadan önce bu yedeğin güncel olduğundan emin ol** — prop değerleri başka hiçbir yerde tutulmuyor.
+
 ---
 
 ## 2. Ön koşullar
@@ -89,14 +92,29 @@ CUSTOM sayfalar vitrinde `/pages/<slug>` altında yayınlanır.
 1. `npx ikas-component build`, sonra her bileşen için `import_section`.
 2. `add_sections_to_page` ile yerleştir (Header `index: 0`, section `index: 1`, Footer sonda).
 3. Prop değerlerini **eski mağazadan aktar**. Devirden önce, eski editör bağlıyken:
-   - `list_editor_pages` → sayfa listesi
-   - her sayfa için `list_page_sections` → `elementId` listesi
-   - her yerleşim için `get_section_values` → değerler
-   Bunları tek bir JSON'a yaz. Yeni mağazada `update_page_sections` ile geri bas; bu sırada
-   **görsel id'lerini**, **ürün id'lerini** ve **PAGE link hedeflerindeki sayfa id'lerini** yeni
-   karşılıklarıyla değiştir (B ve E adımlarındaki haritalar).
+
+   ```
+   node scripts/export-section-values.mjs
+   ```
+
+   Bütün sayfaları gezip `backup/section-values-<tarih>.json` yazar. MCP'ye ihtiyaç duymaz —
+   `ikas-component` CLI'sini doğrudan çağırır (MCP sunucusu da zaten onu çağırıyor).
+   Dosyanın içinde her yerleşim için `elementId`, `componentId`, `name` ve `propValues` var;
+   sonunda da `idInventory` bloğu: yeni mağazada yeniden eşlenecek **görsel**, **ürün**, **varyant**,
+   **PAGE link hedefi** ve **göreli href** listeleri.
+
+   Yeni mağazada `update_page_sections` ile geri bas; bu sırada `idInventory`'deki id'leri B (görsel)
+   ve E (sayfa) adımlarında oluşan yeni karşılıklarıyla değiştir.
+
+   ⚠️ **Varsayılanında bırakılmış prop'lar yedekte yoktur** — editör yalnız değiştirilen değerleri
+   saklıyor. Sorun değil: varsayılanlar `ikas.config.json` ve bileşen kodunda, yani repo'da taşınıyor.
+   Yedek "eksik" görünürse önce prop'un varsayılanına bak.
+
+   ⚠️ Yedek prop **şemasını** taşımaz (her yerleşimde tekrarlanıp dosyayı dörde katlıyordu ve
+   içindeki `writeExample` yer tutucuları id envanterini kirletiyordu). Şema `ikas.config.json`'da.
+
 4. Header ve Footer **common** section'dır: değerleri INDEX sayfasındaki yerleşimde saklanır, bir kez
-   yazılır, her sayfaya gider.
+   yazılır, her sayfaya gider. Betik bunu tanıyıp bir kez yedekler, diğer sayfalarda `commonRef` bırakır.
 
 ⚠️ AccountPage metinleri **beş sayfada ayrı ayrı** saklanır; biri değişirse diğer dördüne de yazılmalı.
 
