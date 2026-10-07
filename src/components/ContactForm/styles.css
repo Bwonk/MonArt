@@ -154,3 +154,9 @@
 .cf .mf-label { font-family: var(--f-ui); font-size: 11px; font-weight: 400; letter-spacing: 0.18em; }
 .cf .mf-consent__text { font-weight: 300; letter-spacing: 0.012em; }
 .cf.mon-night .mf-consent__text { font-weight: 400; letter-spacing: normal; }
+
+/* Özel tasarım uyarısı (konu listesinde seçilince açılan Dialog) */
+.cf__alert-text { margin: 0; font-family: var(--f-body); font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--ink-soft); }
+.cf__alert-list { display: grid; gap: 14px; margin: 20px 0 0; }
+.cf__alert-item { display: grid; gap: 4px; }
+.cf__alert-ok { min-width: 140px; }

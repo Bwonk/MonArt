@@ -5,6 +5,7 @@ import {
   IkasImage,
   cartStore,
   getDefaultSrc,
+  getSrc,
   getDisplayedProductVariantTypes,
   getSelectedProductVariant,
   selectVariantValue,
@@ -49,6 +50,7 @@ import FaceDesigner from "../../sub-components/FaceDesigner";
 import SealModal from "../../sub-components/SealModal";
 import DirectionInfoModal from "../../sub-components/DirectionInfoModal";
 import PhotoGuideModal from "../../sub-components/PhotoGuideModal";
+import GiftNote, { GiftNoteTexts, GiftNoteValue } from "../../sub-components/GiftNote";
 import { FlipIcon, TrashIcon } from "../../sub-components/Icons";
 
 type GiftMode = "self" | "gift" | "redeem";
@@ -239,6 +241,13 @@ export function CoinConfigurator(props: Props) {
     optPlating = OPTION_CONTRACT.plating,
     optConsent = OPTION_CONTRACT.consent,
     optNote = OPTION_CONTRACT.note,
+    optGiftNote = OPTION_CONTRACT.giftNote,
+    optParchment = OPTION_CONTRACT.parchment,
+    showGiftNote = true,
+    gnPaperRoma,
+    gnPaperOsmanli,
+    gnPaperMisir,
+    gnGlyphMask,
     anchorId = "atolye",
     backgroundColor = "#FFFFFF",
     closeLabel = "Kapat",
@@ -257,6 +266,15 @@ export function CoinConfigurator(props: Props) {
   const [back, setBack] = useState<FaceState>(() => defaultFace("osmanli", "F"));
   const [samePhoto, setSamePhoto] = useState(false);
   const [note, setNote] = useState("");
+  /* Hediye notu yalnız "Notu Kaydet" ile siparişe gider (referans v3). */
+  const [giftNote, setGiftNote] = useState<GiftNoteValue | null>(null);
+  /* Hediye notu zorunlu (kullanıcı kararı 07.10.2026): kayıtlı parşömen yoksa sepete eklenmez. */
+  const [giftNoteMissing, setGiftNoteMissing] = useState(false);
+  const giftNoteRef = useRef<HTMLDivElement>(null);
+  const saveGiftNote = useCallback((v: GiftNoteValue | null) => {
+    setGiftNote(v);
+    if (v) setGiftNoteMissing(false);
+  }, []);
   /* Zincir fiyatı etkilemez; "Temizle" sıfırlamaz (referans v2). */
   const [chain, setChain] = useState<ChainLength>("55");
   const [dirInfoOpen, setDirInfoOpen] = useState(false);
@@ -556,6 +574,10 @@ export function CoinConfigurator(props: Props) {
     };
   }, []);
 
+  /* Hediye notu: yalnız sikkedeki serilerin parşömeni seçilebilir (tek yüz 1, çift yüz en çok 2). */
+  const giftAllowed: Series[] = backEnabled && back.series !== front.series ? [front.series, back.series] : [front.series];
+  const giftAllowedKey = giftAllowed.join(",");
+
   /* ------------------------------------------------------------ ikas opsiyon senkronu */
   const syncOptions = () => {
     if (!product || !options.length) return;
@@ -566,6 +588,15 @@ export function CoinConfigurator(props: Props) {
     for (const o of platingOpts) setCheckbox(o, isPlated && o === platingOpt);
     setCheckbox(backOpt, backEnabled);
     setText(findOption(options, optNote), note);
+    // Kayıtlı parşömen artık sikkede yoksa ilk izinli seriye düşer (referans orderProps).
+    const gn = showGiftNote && giftNote ? giftNote : null;
+    const gnCiv = gn ? (giftAllowed.includes(gn.civ) ? gn.civ : giftAllowed[0]) : null;
+    setText(findOption(options, optGiftNote), gn ? gn.text : "");
+    setChoiceByKeywords(
+      findOption(options, optParchment),
+      !gnCiv ? [] : gnCiv === "roma" ? ["roma"] : gnCiv === "osmanli" ? ["osman"] : gn!.uv ? ["uv"] : ["misir"],
+      gnCiv === "misir" && !gn!.uv ? ["uv"] : [],
+    );
     setChoiceByKeywords(findOption(options, optChain), [chain]);
     for (const [prefix, f, active] of faces) {
       const rule = SERIES_RULES[f.series];
@@ -583,7 +614,7 @@ export function CoinConfigurator(props: Props) {
   };
   useEffect(() => {
     syncOptions();
-  }, [options, front, back, backEnabled, isPlated, note, chain, platingOpt]);
+  }, [options, front, back, backEnabled, isPlated, note, chain, platingOpt, giftNote, giftAllowedKey, showGiftNote]);
 
   /* ------------------------------------------------------------ özet */
   const genderLabel = (f: FaceState) => (f.gender === "M" ? props.genderMale ?? "♂ Bay" : props.genderFemale ?? "♀ Bayan");
@@ -607,9 +638,18 @@ export function CoinConfigurator(props: Props) {
     return false;
   };
 
+  const giftNoteOk = (): boolean => {
+    if (!showGiftNote || giftNote) return true;
+    setGiftNoteMissing(true);
+    showToast(props.gnMissingToast ?? "");
+    giftNoteRef.current?.scrollIntoView({ block: "center", behavior: "smooth" });
+    return false;
+  };
+
   const addToCart = () => {
     if (!product || adding) return;
     if (!consentOk()) return;
+    if (!giftNoteOk()) return;
     if (sealText) setSealOpen(true);
     else void addToCartConfirmed();
   };
@@ -702,6 +742,57 @@ export function CoinConfigurator(props: Props) {
 
   /* ------------------------------------------------------------ render */
   const faceTexts = props;
+  const gnTexts: GiftNoteTexts = {
+    eyebrow: props.gnEyebrow ?? "Hediye Notu",
+    title: props.gnTitle ?? "Parşömeninizi Seçin",
+    facesSingle: props.gnFacesSingle ?? "Tek yüz",
+    facesDouble: props.gnFacesDouble ?? "Çift yüz",
+    ruleOne: props.gnRuleOne ?? "Yalnızca sikkenizdeki {seri} parşömeni seçilebilir.",
+    ruleTwo: props.gnRuleTwo ?? "Yalnızca sikkenizdeki {seri} parşömenleri seçilebilir.",
+    and: props.gnAnd ?? "ve",
+    seriesNames: { roma: seriesLabel("roma"), osmanli: seriesLabel("osmanli"), misir: seriesLabel("misir") },
+    subs: {
+      roma: props.gnRomaSub ?? "Anıt Yazısı · Cinzel",
+      osmanli: props.gnOsmanliSub ?? "Hat Estetiği · El Yazısı",
+      misir: props.gnMisirSub ?? "Özgün Hiyeroglif Alfabesi",
+    },
+    lockedSub: props.gnLockedSub ?? "Sikkenizde bu seri yok",
+    uvLabel: props.gnUvLabel ?? "Gece modu (UV ışık)",
+    placeholder: props.gnPlaceholder ?? "",
+    glyphPlaceholder: props.gnGlyphPlaceholder ?? "",
+    suggLabel: props.gnSuggLabel ?? "",
+    suggestions: {
+      roma: [
+        { t: props.gnRomaSugg1 ?? "", s: props.gnRomaSugg1Sub ?? "" },
+        { t: props.gnRomaSugg2 ?? "", s: props.gnRomaSugg2Sub ?? "" },
+        { t: props.gnRomaSugg3 ?? "", s: props.gnRomaSugg3Sub ?? "" },
+      ],
+      osmanli: [
+        { t: props.gnOsmanliSugg1 ?? "", s: props.gnOsmanliSugg1Sub ?? "" },
+        { t: props.gnOsmanliSugg2 ?? "", s: props.gnOsmanliSugg2Sub ?? "" },
+        { t: props.gnOsmanliSugg3 ?? "", s: props.gnOsmanliSugg3Sub ?? "" },
+      ],
+      misir: [
+        { t: props.gnMisirSugg1 ?? "", s: props.gnMisirSugg1Sub ?? "" },
+        { t: props.gnMisirSugg2 ?? "", s: props.gnMisirSugg2Sub ?? "" },
+        { t: props.gnMisirSugg3 ?? "", s: props.gnMisirSugg3Sub ?? "" },
+      ],
+    },
+    inputLabel: props.gnInputLabel ?? "Notunuz",
+    inputPlaceholder: props.gnInputPlaceholder ?? "",
+    saveText: props.gnSaveText ?? "Notu Kaydet",
+    savedText: props.gnSavedText ?? "✓ Not kaydedildi · {seri} parşömeni",
+    savedUvText: props.gnSavedUvText ?? "· UV",
+    savedToast: props.gnSavedToast ?? "",
+    cardText: props.gnCardText ?? "",
+    openText: props.gnOpenText ?? "Parşömen Seç",
+    editText: props.gnEditText ?? "Düzenle",
+    removeText: props.gnRemoveText ?? "Kaldır",
+    closeLabel,
+  };
+  const gnPapers = { roma: imgSrc(gnPaperRoma), osmanli: imgSrc(gnPaperOsmanli), misir: imgSrc(gnPaperMisir) };
+  // Glif maskesi 6×6 sprite; büyük gliflerde keskin kalması için kaynağa yakın genişlikte istenir.
+  const gnGlyphSrc = gnGlyphMask ? getSrc(gnGlyphMask, 1440) : null;
   const glyphSrc = imgSrc(glyphGuideImage);
   const isGift = giftMode === "gift";
   const styleTest = [
@@ -873,6 +964,22 @@ export function CoinConfigurator(props: Props) {
               ))}
             </div>
           </div>
+
+          {showGiftNote && (
+            <div ref={giftNoteRef}>
+            <GiftNote
+              allowed={giftAllowed}
+              doubleFace={backEnabled}
+              papers={gnPapers}
+              glyphMask={gnGlyphSrc}
+              texts={gnTexts}
+              saved={giftNote}
+              missing={giftNoteMissing}
+              onSave={saveGiftNote}
+              onToast={showToast}
+            />
+            </div>
+          )}
 
           {/* Sipariş notu */}
           <div className="cfg__note">

@@ -10,7 +10,7 @@ export function Hero(props: Props) {
     eyebrow = "✦ Sanatımıza Ortak Olun ✦",
     logotype,
     title = "Tarihi Senin Hikayenle Yaz",
-    subtitle = "Kişiye Özel · El İşçiliği · Sonsuz Anlam",
+    subtitle = "",
     description = "",
     showLogotypeShine = true,
     primaryCta,

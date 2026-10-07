@@ -41,6 +41,8 @@ export const OPTION_CONTRACT = {
   plating: "Kaplama",
   consent: "Telif",
   note: "Sipariş Notu",
+  giftNote: "Hediye Notu",
+  parchment: "Parşömen",
 } as const;
 
 /** Opsiyon setindeki tüm opsiyonlar (çocuklar dahil, düzleştirilmiş). */

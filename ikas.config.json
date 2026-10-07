@@ -832,7 +832,7 @@
           "displayName": "Alt Başlık",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "Kişiye Özel · El İşçiliği · Sonsuz Anlam",
+          "defaultValue": "",
           "groupId": "content"
         },
         {
@@ -2680,6 +2680,410 @@
           "type": "BOOLEAN",
           "required": false,
           "groupId": "head"
+        },
+        {
+          "name": "gnPaperRoma",
+          "displayName": "Roma Parşömeni",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnPaperOsmanli",
+          "displayName": "Osmanlı Parşömeni",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnPaperMisir",
+          "displayName": "Mısır Parşömeni",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnGlyphMask",
+          "displayName": "Hiyeroglif Maskesi (6×6 sprite)",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "giftNote"
+        },
+        {
+          "name": "showGiftNote",
+          "displayName": "Hediye Notunu Göster",
+          "type": "BOOLEAN",
+          "required": false,
+          "defaultValue": true,
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnEyebrow",
+          "displayName": "Üst Etiket",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Hediye Notu",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnTitle",
+          "displayName": "Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Parşömeninizi Seçin",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnFacesSingle",
+          "displayName": "Tek Yüz Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Tek yüz",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnFacesDouble",
+          "displayName": "Çift Yüz Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Çift yüz",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnRuleOne",
+          "displayName": "Kural (tek parşömen, {seri})",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yalnızca sikkenizdeki {seri} parşömeni seçilebilir.",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnRuleTwo",
+          "displayName": "Kural (iki parşömen, {seri})",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yalnızca sikkenizdeki {seri} parşömenleri seçilebilir.",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnAnd",
+          "displayName": "Bağlaç (ve)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "ve",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnRomaSub",
+          "displayName": "Roma Alt Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Anıt Yazısı · Cinzel",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnOsmanliSub",
+          "displayName": "Osmanlı Alt Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Hat Estetiği · El Yazısı",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnMisirSub",
+          "displayName": "Mısır Alt Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Özgün Hiyeroglif Alfabesi",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnLockedSub",
+          "displayName": "Kilitli Sekme Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sikkenizde bu seri yok",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnUvLabel",
+          "displayName": "UV Düğmesi Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Gece modu (UV ışık)",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnPlaceholder",
+          "displayName": "Kağıt Boş Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Notunuz burada belirir",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnGlyphPlaceholder",
+          "displayName": "Kağıt Boş Metni (Mısır)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Notunuz burada hiyeroglife dönüşür",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnSuggLabel",
+          "displayName": "Öneriler Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kadim sözlerden öneriler",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnRomaSugg1",
+          "displayName": "Roma Öneri 1",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Amor vincit omnia",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnRomaSugg1Sub",
+          "displayName": "Roma Öneri 1 Açıklama",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Aşk her şeyi fetheder · Vergilius",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnRomaSugg2",
+          "displayName": "Roma Öneri 2",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Carpe diem",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnRomaSugg2Sub",
+          "displayName": "Roma Öneri 2 Açıklama",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Anı yaşa · Horatius",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnRomaSugg3",
+          "displayName": "Roma Öneri 3",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Tecum vivere amem",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnRomaSugg3Sub",
+          "displayName": "Roma Öneri 3 Açıklama",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Seninle yaşamayı severdim · Horatius",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnOsmanliSugg1",
+          "displayName": "Osmanlı Öneri 1",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sevelim sevilelim, bu dünya kimseye kalmaz",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnOsmanliSugg1Sub",
+          "displayName": "Osmanlı Öneri 1 Açıklama",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yunus Emre",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnOsmanliSugg2",
+          "displayName": "Osmanlı Öneri 2",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bir safâ bahşedelim gel şu dil-i nâşâda",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnOsmanliSugg2Sub",
+          "displayName": "Osmanlı Öneri 2 Açıklama",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Gel, şu neşesiz gönle bir sevinç verelim · Nedim",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnOsmanliSugg3",
+          "displayName": "Osmanlı Öneri 3",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ömrün uzun, bahtın açık olsun",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnOsmanliSugg3Sub",
+          "displayName": "Osmanlı Öneri 3 Açıklama",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Eski bir hayır duası",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnMisirSugg1",
+          "displayName": "Mısır Öneri 1",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ankh djet",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnMisirSugg1Sub",
+          "displayName": "Mısır Öneri 1 Açıklama",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sonsuza dek yaşa",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnMisirSugg2",
+          "displayName": "Mısır Öneri 2",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Meri",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnMisirSugg2Sub",
+          "displayName": "Mısır Öneri 2 Açıklama",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sevgili · “mr”: sevmek",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnMisirSugg3",
+          "displayName": "Mısır Öneri 3",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ankh wedja seneb",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnMisirSugg3Sub",
+          "displayName": "Mısır Öneri 3 Açıklama",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Hayat, esenlik, sağlık · firavun duası",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnInputLabel",
+          "displayName": "Not Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Notunuz",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnInputPlaceholder",
+          "displayName": "Not Placeholder",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sevdiğinize iletmek istediğiniz sözler…",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnSaveText",
+          "displayName": "Kaydet Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Notu Kaydet",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnSavedText",
+          "displayName": "Kaydedildi Metni ({seri})",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "✓ Not kaydedildi · {seri} parşömeni",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnSavedUvText",
+          "displayName": "Kaydedildi UV Eki",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "· UV",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnSavedToast",
+          "displayName": "Kaydedildi Bildirimi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "❦ Hediye notu parşömeni kaydedildi",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "optGiftNote",
+          "displayName": "Hediye Notu Opsiyonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Hediye Notu",
+          "groupId": "options"
+        },
+        {
+          "name": "optParchment",
+          "displayName": "Hediye Parşömeni Opsiyonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Parşömen",
+          "groupId": "options"
+        },
+        {
+          "name": "gnCardText",
+          "displayName": "Kart Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sikkenize, seçtiğiniz medeniyetin parşömeninde bir not eşlik etsin.",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnOpenText",
+          "displayName": "Kart Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Parşömen Seç",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnEditText",
+          "displayName": "Düzenle Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Düzenle",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnRemoveText",
+          "displayName": "Kaldır Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kaldır",
+          "groupId": "giftNote"
+        },
+        {
+          "name": "gnMissingToast",
+          "displayName": "Eksik Not Uyarısı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Siparişe devam etmek için hediye notu parşömeninizi seçip notunuzu kaydedin.",
+          "groupId": "giftNote"
         }
       ],
       "propGroups": [
@@ -2762,6 +3166,11 @@
         {
           "id": "dirModal",
           "name": "Portre Yönü Penceresi"
+        },
+        {
+          "id": "giftNote",
+          "name": "Hediye Notu",
+          "description": "Referans v3 hediye notu parşömeni"
         }
       ]
     },
@@ -4226,6 +4635,61 @@
           "required": false,
           "defaultValue": "",
           "groupId": "appearance"
+        },
+        {
+          "name": "bespokeSubject",
+          "displayName": "Uyarıyı Açan Konu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Özel Tasarım Talebi",
+          "groupId": "bespokeAlert"
+        },
+        {
+          "name": "bespokeAlertTitle",
+          "displayName": "Pencere Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Özel Tasarım Talepleri",
+          "groupId": "bespokeAlert"
+        },
+        {
+          "name": "bespokeAlertText",
+          "displayName": "Pencere Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Özel tasarım talepleriniz için lütfen iletişim kanallarımızdan bizimle iletişime geçin. Fotoğraf ve fikirlerinizi e-posta ya da WhatsApp üzerinden paylaşabilirsiniz.",
+          "groupId": "bespokeAlert"
+        },
+        {
+          "name": "bespokeAlertButton",
+          "displayName": "Tamam Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Tamam",
+          "groupId": "bespokeAlert"
+        },
+        {
+          "name": "bespokeAlertCloseLabel",
+          "displayName": "Kapat Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kapat",
+          "groupId": "bespokeAlert"
+        },
+        {
+          "name": "bespokeAlertPhoneLabel",
+          "displayName": "Telefon Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Telefon / WhatsApp",
+          "groupId": "bespokeAlert"
+        },
+        {
+          "name": "bespokeAlertPhone",
+          "displayName": "Telefon Numarası (boşsa İletişim Bilgileri'ndeki)",
+          "type": "TEXT",
+          "required": false,
+          "groupId": "bespokeAlert"
         }
       ],
       "propGroups": [
@@ -4252,6 +4716,11 @@
         {
           "id": "appearance",
           "name": "Görünüm"
+        },
+        {
+          "id": "bespokeAlert",
+          "name": "Özel Tasarım Uyarısı",
+          "description": "Konu listesinde özel tasarım seçilince açılan pencere"
         }
       ]
     },

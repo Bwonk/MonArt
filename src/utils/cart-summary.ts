@@ -153,6 +153,10 @@ export function summarizeLine(item: IkasOrderLineItem, texts: CartSummaryTexts):
   const chainOpt = findOption(options, K.chain);
   const chain = firstValue(chainOpt);
   if (chainOpt && chain) faces.push(`${chainOpt.name}: ${chain}`);
+  // Hediye notunun yalnız parşömeni yazılır; not metni siparişte görünür.
+  const parchmentOpt = findOption(options, K.parchment);
+  const parchment = firstValue(parchmentOpt);
+  if (parchmentOpt && parchment) faces.push(`${parchmentOpt.name}: ${parchment}`);
 
   return { isCustom, productName, title, faces, variantText, details, design };
 }

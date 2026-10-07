@@ -54,7 +54,7 @@ export interface FaceState {
 
 export function defaultFace(series: Series, gender: Gender): FaceState {
   // Referansın aksine büst/sarık VARSAYILAN AÇIK (kart görseliyle tutarlı).
-  return { series, gender, direction: "right", bust: true, sarik: true, nameOn: true, text: "", dateOn: true, date: "", photos: [null, null, null], consent: false };
+  return { series, gender, direction: "right", bust: false, sarik: true, nameOn: true, text: "", dateOn: true, date: "", photos: [null, null, null], consent: false };
 }
 
 /* ------------------------------------------------------------------ materyal */

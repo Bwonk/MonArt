@@ -387,7 +387,7 @@
 .cfg__gift-name { font-family: var(--f-ui); font-size: 9px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; line-height: 1.3; color: var(--text); }
 .cfg__gift-price { font-family: var(--f-deco); font-weight: 700; font-size: 14px; color: var(--gold-light); }
 /* hediye modunda yüz adımları sönük */
-.cfg.is-gift .cfg__step:nth-of-type(2), .cfg.is-gift .cfg__step:nth-of-type(3), .cfg.is-gift .cfg__divider, .cfg.is-gift .cfg__note { opacity: .3; filter: grayscale(.55); pointer-events: none; user-select: none; }
+.cfg.is-gift .cfg__step:nth-of-type(2), .cfg.is-gift .cfg__step:nth-of-type(3), .cfg.is-gift .cfg__divider, .cfg.is-gift .cfg__note, .cfg.is-gift .gn { opacity: .3; filter: grayscale(.55); pointer-events: none; user-select: none; }
 
 /* Sepete ekle + güven */
 .cfg__add { margin-top: 24px; }
@@ -510,3 +510,17 @@
 @media (prefers-reduced-motion: reduce) {
   .cfg__flip, .cfg__clear { transition: none; }
 }
+
+/* Hediye notu parşömeni — gece renkleri (gündüz GiftNote/styles.css'te; referans body:not(.theme-day)) */
+.cfg.mon-night .gn__title,
+.cfg.mon-night .gn__tab,
+.cfg.mon-night .gn__sugg-item,
+.cfg.mon-night .gn__card-quote { color: #F3E6C4; }
+.cfg.mon-night .gn__rule,
+.cfg.mon-night .gn__card-text { color: rgba(255,255,255,.6); }
+.cfg.mon-night .gn__label,
+.cfg.mon-night .gn__card-link,
+.cfg.mon-night .gnm__x { color: rgba(255,255,255,.7); }
+.cfg.mon-night .gn__input { background: rgba(255,255,255,.03); color: #F3E6C4; }
+.cfg.mon-night .gnm__panel { background: #0a0a0e; }
+.cfg.mon-night .gn__sheet::before { filter: drop-shadow(0 16px 28px rgba(0,0,0,.45)); }

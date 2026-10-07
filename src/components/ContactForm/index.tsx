@@ -12,6 +12,7 @@ import {
 import FormField, { fieldAria } from "../../sub-components/FormField";
 import ConsentCheck from "../../sub-components/ConsentCheck";
 import FormSuccess from "../../sub-components/FormSuccess";
+import Dialog from "../../sub-components/Dialog";
 
 type Field = "firstName" | "lastName" | "email" | "phone" | "subject" | "order" | "message";
 type Values = Record<Field, string>;
@@ -58,6 +59,13 @@ export function ContactForm(props: Props) {
     infoAddress = "",
     infoHoursLabel = "",
     infoHours = "",
+    bespokeSubject = "Özel Tasarım Talebi",
+    bespokeAlertTitle = "Özel Tasarım Talepleri",
+    bespokeAlertText = "",
+    bespokeAlertButton = "Tamam",
+    bespokeAlertCloseLabel = "Kapat",
+    bespokeAlertPhoneLabel = "Telefon / WhatsApp",
+    bespokeAlertPhone = "",
     backgroundColor = "#FFFFFF",
     anchorId = "",
   } = props;
@@ -68,6 +76,7 @@ export function ContactForm(props: Props) {
   const [consent, setConsent] = useState(false);
   const [attempted, setAttempted] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "failed">("idle");
+  const [bespokeOpen, setBespokeOpen] = useState(false);
 
   const subjects = splitOptions(subjectOptions);
   const subject = values.subject || subjects[0] || "";
@@ -86,6 +95,12 @@ export function ContactForm(props: Props) {
 
   const set = (field: Field) => (e: Event) => {
     const value = (e.target as HTMLInputElement).value;
+    // Özel tasarım talebi formdan alınmaz: uyarı açılır, konu önceki seçimde kalır.
+    if (field === "subject" && bespokeSubject && value.trim() === bespokeSubject.trim()) {
+      (e.target as HTMLSelectElement).value = subject;
+      setBespokeOpen(true);
+      return;
+    }
     setValues((v) => ({ ...v, [field]: value }));
     if (status === "failed") setStatus("idle");
   };
@@ -139,6 +154,12 @@ export function ContactForm(props: Props) {
     { label: infoHoursLabel, value: infoHours, href: "" },
   ].filter((i) => i.value.trim());
   const hasInfo = showInfo && info.length > 0;
+  // Uyarıdaki kanallar: e-posta + telefon (uyarının kendi numarası, boşsa İletişim Bilgileri'ndeki).
+  const alertPhone = bespokeAlertPhone.trim() || infoPhone.trim();
+  const channels = [
+    { label: infoEmailLabel, value: infoEmail, href: infoEmail ? `mailto:${infoEmail}` : "" },
+    { label: bespokeAlertPhoneLabel || infoPhoneLabel, value: alertPhone, href: alertPhone ? `tel:${alertPhone.replace(/[^\d+]/g, "")}` : "" },
+  ].filter((i) => i.value.trim());
   const sending = status === "sending";
 
   return (
@@ -305,6 +326,34 @@ export function ContactForm(props: Props) {
           </aside>
         )}
       </div>
+
+      <Dialog
+        open={bespokeOpen}
+        title={bespokeAlertTitle}
+        closeLabel={bespokeAlertCloseLabel}
+        onClose={() => setBespokeOpen(false)}
+        footer={
+          <button type="button" className="mon-btn mon-btn--gold cf__alert-ok" onClick={() => setBespokeOpen(false)}>
+            {bespokeAlertButton}
+          </button>
+        }
+      >
+        {bespokeAlertText && <p className="cf__alert-text">{bespokeAlertText}</p>}
+        {channels.length > 0 && (
+          <dl className="cf__alert-list">
+            {channels.map((i) => (
+              <div key={i.href} className="cf__alert-item">
+                {i.label && <dt className="cf__info-label">{i.label}</dt>}
+                <dd className="cf__info-value">
+                  <a className="cf__info-link" href={i.href}>
+                    {i.value}
+                  </a>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        )}
+      </Dialog>
     </section>
   );
 }

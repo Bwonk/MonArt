@@ -1,9 +1,11 @@
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import { getDefaultSrc, createMediaSrcset, IkasImage } from "@ikas/bp-storefront";
 import { Props } from "./types";
 import { useSectionTheme, cx } from "../../utils/theme-mode";
 import { linkAttrs, withQuery } from "../../utils/links";
 import { FlipIcon } from "../../sub-components/Icons";
+
+const AUTO_FLIP_MS = 4000;
 
 function CoinFace({ image, alt, side }: { image?: IkasImage | null; alt: string; side: "front" | "back" }) {
   return (
@@ -36,6 +38,13 @@ export function SeriesCard(props: Props) {
   const theme = useSectionTheme();
   const [flipped, setFlipped] = useState(false);
   const canFlip = !!backImage;
+  // Referans gibi sikke 4 sn'de bir kendiliğinden döner; elle çevirince sayaç sıfırlanır.
+  const [flipTick, setFlipTick] = useState(0);
+  useEffect(() => {
+    if (!canFlip || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timer = window.setInterval(() => setFlipped((v) => !v), AUTO_FLIP_MS);
+    return () => window.clearInterval(timer);
+  }, [canFlip, flipTick]);
   // Seri seçiliyse link galeride o sekmeyi açar (?seri=roma).
   const attrs = linkAttrs(link);
   if (attrs.href && seriesKey) attrs.href = withQuery(attrs.href, { seri: seriesKey });
@@ -56,7 +65,10 @@ export function SeriesCard(props: Props) {
           type="button"
           className={cx("series-card__flip", flipped && "is-active")}
           aria-pressed={flipped}
-          onClick={() => setFlipped((v) => !v)}
+          onClick={() => {
+            setFlipped((v) => !v);
+            setFlipTick((n) => n + 1);
+          }}
         >
           <FlipIcon className="series-card__flip-icon" />
           <span>{flipLabel}</span>

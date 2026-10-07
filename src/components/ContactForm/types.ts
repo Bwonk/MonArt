@@ -42,4 +42,11 @@ export interface Props {
   infoHours?: string;
   backgroundColor?: string;
   anchorId?: string;
+  bespokeSubject?: string;
+  bespokeAlertTitle?: string;
+  bespokeAlertText?: string;
+  bespokeAlertButton?: string;
+  bespokeAlertCloseLabel?: string;
+  bespokeAlertPhoneLabel?: string;
+  bespokeAlertPhone?: string;
 }
